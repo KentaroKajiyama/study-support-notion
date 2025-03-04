@@ -99,7 +99,7 @@ export class Remaining {
    */
   static async updateRemainingsAll(subfieldDictList){
     try {
-      const current_subfieldDictList = this.getRemaining();
+      const current_subfieldDictList = getRemainingsAll();
       const promises = subfieldDictList.map(async (subfield_dict) => {
         try {
           const current_subfield_dict = current_subfieldDictList.find(cd => cd.name === subfield_dict.name);

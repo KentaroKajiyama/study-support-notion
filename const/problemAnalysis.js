@@ -19,5 +19,8 @@ export const probAnalysis = {
   },
   reviewLevel: {
     name: '復習レベル', type: 'status'
+  },
+  probId: {
+    name: 'Problem ID', type: 'number'
   }
 }

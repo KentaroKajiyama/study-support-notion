@@ -4,7 +4,7 @@ export class ActualBlocks {
   static async create(data) {
     const sql = `
       INSERT INTO actual_blocks
-      (actual_block_id, student_id, subfield_id, default_block_id, actual_block_name, space, speed, number_of_repeats, head_order, tail_order, start_day, end_day, created_at, updated_at)
+      (actual_block_id, student_id, subfield_id, default_block_id, actual_block_name, space, speed, number_of_laps, head_order, tail_order, start_day, end_day, created_at, updated_at)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())
     `;
     const [result] = await db.query(sql, [
@@ -15,7 +15,7 @@ export class ActualBlocks {
       data.actualBlockName,
       data.space,
       data.speed,
-      data.numberOfRepeats,
+      data.numberOfLaps,
       data.headOrder,
       data.tailOrder,
       data.startDay,

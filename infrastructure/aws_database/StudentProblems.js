@@ -1,15 +1,16 @@
-export class StudentProblems {
+export class StudentProblemsAWS {
   static async create(data) {
     const sql = `
       INSERT INTO student_problems
-      (student_problem_id, student_id, problem_id, actual_block_id, answer_status, is_difficult, understanding_level, try_count, difficult_count, wrong_count, review_level, review_count_down, created_at, updated_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())
+      (student_problem_id, student_id, problem_id, actual_block_id, notion_page_id, answer_status, is_difficult, understanding_level, try_count, difficult_count, wrong_count, review_level, review_count_down, created_at, updated_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())
     `;
     const [result] = await db.query(sql, [
       data.studentProblemId,
       data.studentId,
       data.problemId,
       data.actualBlockId,
+      data.notionPageId,
       data.answerStatus,
       data.isDifficult,
       data.understandingLevel,
@@ -39,6 +40,21 @@ export class StudentProblems {
     const [rows] = await db.query(
       'SELECT * FROM student_problems WHERE student_id = ?',
       [studentId]
+    );
+    return rows;
+  }
+  static async findByCompositeKey(studentId, subfieldId, problemOrder) {
+    const [rows] = await db.query(
+      'SELECT * FROM student_problems WHERE student_id =? AND subfield_id =? AND problem_order =?',
+      [studentId, subfieldId, problemOrder]
+    );
+    return rows || null;
+  }
+
+  static async findByNotionPageId(notionPageId) {
+    const [rows] = await db.query(
+      'SELECT * FROM student_problems WHERE notion_page_id =?',
+      [notionPageId]
     );
     return rows;
   }

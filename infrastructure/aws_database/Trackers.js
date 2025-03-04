@@ -24,6 +24,14 @@ export class Trackers {
     return rows[0] || null;
   }
 
+  static async findBystudentId(studentId) {
+    const [rows] = await db.query(
+      'SELECT * FROM trackers WHERE student_id =?',
+      [studentId]
+    );
+    return rows;
+  }
+
   static async update(trackerId, data) {
     if (!trackerId || !data || Object.keys(data).length === 0) {
       throw new Error("Invalid input: trackerId and data are required.");
@@ -44,15 +52,15 @@ export class Trackers {
   }
 
   static async updateRemainingSpace(trackerId, remainingSpace) {
-    return this.update(trackerId, { remaining_space: remainingSpace });
+    return update(trackerId, { remaining_space: remainingSpace });
   }
 
   static async updateLap(trackerId, lap) {
-    return this.update(trackerId, { lap });
+    return update(trackerId, { lap: lap });
   }
 
-  static async updateIsRest(trackerId, isRest) {
-    return this.update(trackerId, { is_rest: isRest });
+  static async updateIsRest(trackerId) {
+    return update(trackerId, { is_rest: 0 });
   }
 
   static async delete(trackerId) {
