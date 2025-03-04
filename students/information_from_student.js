@@ -4,7 +4,7 @@ import { StudentProblemsAWS } from "../infrastructure/aws_database/StudentProble
 import { Students } from "../infrastructure/aws_database/Students";
 import { TopProblems } from "../infrastructure/notion_database/student_only/TopProblems";
 
-export async function ansStatusChangeInStudentsProblems(studentId, studentProblemPageId, isTopProblem = false) {
+export async function ansStatusChange(studentId, studentProblemPageId, isTopProblem = false) {
   try {
     if (isTopProblem) {
       const topProblem = await TopProblems.getATopPageProblem(studentProblemPageId);

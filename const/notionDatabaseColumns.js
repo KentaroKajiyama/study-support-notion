@@ -110,4 +110,34 @@ export const todoCounters = {
   diffFromTarget: {
     name: '目標日との差', type: 'number'
   }
-}
+};
+
+export const studentInfoDetail = {
+  studentName: {
+    name: '氏名', type: 'title'
+  },
+  parentName: {
+    name: '保護者氏名', type: 'rich_text'
+  },
+  parentEmail: {
+    name: '保護者メール', type: 'email'
+  },
+  parentPhone: {
+    name: '保護者電話番号', type: 'phone_number'
+  },
+  goal: {
+    name: '最終目標', type: 'rich_text'
+  },
+  subfieldLevel: {
+    name: 'レベル', type: 'select'
+  },
+  subfieldGoal: {
+    name: '目標', type: 'rich_text'
+  },
+  subfieldGoalLevel: {
+    name: '目標レベル', type:'select'
+  },
+  subfieldModification: {
+    name: '変更', type: 'status'
+  }
+};

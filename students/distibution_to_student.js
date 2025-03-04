@@ -19,7 +19,8 @@ import NotionAPI from '../infrastructure/notionAPI';
 import { copyPageCreate } from '../utils/copyPage';
 import { probAnalysis } from '../const/problemAnalysis';
 import { Properties } from '../const/notionTemplate';
-import { propertyToNotion } from '../utils/propertyHandler';
+import { propertyFromNotion, propertyToNotion } from '../utils/propertyHandler';
+import { studentsOverviewsColumns } from '../const/notionDatabaseColumns';
 /**
  * Checks remaining distribution items for a student. This function handles the case where the system updates dbs in midnight.
  * @param {string} studentId The student identifier.
@@ -63,7 +64,7 @@ export async function distRemainingPerStudent(studentId) {
   };
 }
 
-export async function distRemainingToAllStudents(){
+export async function distRemainingToAllStudents() {
   try {
     // 1. fetch all the student IDs from database.
     const studentData = await Students.findOnlyTopProblemDBIds();
@@ -398,12 +399,6 @@ export async function dealWithWrongsForAllStudents() {
   }
 }
 
-/**
- * Sends textbook to students who find certain content difficult.
- * @param {Object} req - Express request object
- * @param {Object} res - Express response object
- * @param {Object} notionClient - Instance of the Notion client (optional)
- */
 export async function dealWithIsDifficultsPerStudent(studentId) {
   try {
     // 1. fetch all the items from the isDifficults database
@@ -548,12 +543,60 @@ export async function dealWithStudentProblemsForAllStudents() {
   }
 };
 
-export async function delayPlan(actualBlockId){
+export async function delayPlan(actualBlockId) {
   // TODO: Implement this 
 };
 
+export async function sendReviewAlertPerStudent(studentId, todoDatabaseId) {
+  try {
+    const studentOverviewPageId = await Students.findOnlyOverviewPageIdByStudentId(studentId);
+    const studentSubfieldInfo = await StudentSubfieldTraces.findOnlyReviewAlertByStudentId(studentId);
+    const todoDatabaseInfo = await NotionAPI.queryADatabase(todoDatabaseId, filter={
+      and: [
+        { property: probAnalysis.reviewLevel.name, [probAnalysis.reviewLevel.type]: { 'does_not_equal': probAnalysis.reviewLevel.level0 }},
+        { property: probAnalysis.reviewLevel.name, [probAnalysis.reviewLevel.type]: { 'does_not_equal': probAnalysis.reviewLevel.level1 }},
+      ]
+    });
+    const subfieldList = todoDatabaseInfo.results.map(result => propertyFromNotion(result.properties, '科目', 'select'));
+    const alertSubfieldList = [];
+    await Promise.all(studentSubfieldInfo.map(async infoRow => {
+      const subfieldName = infoRow.subfield_name;
+      const reviewAlert = infoRow.review_alert;
+      if (subfieldList.filter(element => element === subfieldName).length >= reviewAlert) {
+        alertSubfieldList.push(subfieldName);
+      }
+    }));
+    if (alertSubfieldList.length > 0) {
+      const response = await NotionAPI.updatePageProperties(studentOverviewPageId, Properties.getJSON(
+        [
+          propertyToNotion({
+            propertyName: studentsOverviewsColumns.alertSubfields.name,
+            propertyContent: alertSubfieldList,
+            propertyType: studentsOverviewsColumns.alertSubfields.type
+          })
+        ]
+      ));
+      if (response.status !== 200) {
+        throw new Error('Failed to update alert subfields in Notion for student', { studentId, alertSubfieldList });
+      }
+    }
+  } catch (error) {
+    logger.error('Error in sendReviewAlertPerStudent', error.message);
+    throw error;
+  }
+}
+export async function sendReviewAlertForAllStudents() {
+  try {
+    const studentInfo = await Students.findOnlyTopProblemDBIds();
+    await Promise.all(studentInfo.map(async infoRow => await sendReviewAlertPerStudent(infoRow.student_id, infoRow.todo_db_id)));
+  } catch (error) {
+    logger.error('Error in sendReviewAlertForAllStudents', error.message);
+    throw error;
+  }
+}
+
 // TODO: guarantee consistency
-export async function updateStudentProblemProperties(studentProblemAWSId, studentProblemIdNotion, subfieldName,  updates){
+export async function updateStudentProblemProperties(studentProblemAWSId, studentProblemIdNotion, subfieldName,  updates) {
   try {    
     // AWS
     const updateAWS = async () => await StudentProblemsAWS.update(studentProblemAWSId, convertToSnakeCase(updates));
@@ -566,7 +609,7 @@ export async function updateStudentProblemProperties(studentProblemAWSId, studen
 }
 
 // TODO: change the review frequency based on subfield?
-export async function updateReviewLevel(studentProblemAWSId, studentProblemPageId, isCorrect, isTodo){
+export async function updateReviewLevel(studentProblemAWSId, studentProblemPageId, isCorrect, isTodo) {
   try {
     const studentProblem = await NotionAPI.retrieveAPage(studentProblemPageId);
     if (isCorrect) {
