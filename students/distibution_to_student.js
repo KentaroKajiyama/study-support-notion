@@ -14,10 +14,12 @@ import { head } from 'lodash';
 import { Remaining } from '../infrastructure/notion_database/student_only/Remaining';
 import { addDays } from 'date-fns';
 import { Problems } from '../infrastructure/aws_database/Problems';
-import { TodoCounters } from '../infrastructure/notion_database/student_only/TodoCounters';
 import { StudentProblemsNotion } from '../infrastructure/notion_database/student_only/StudentProblems';
 import NotionAPI from '../infrastructure/notionAPI';
 import { copyPageCreate } from '../utils/copyPage';
+import { probAnalysis } from '../const/problemAnalysis';
+import { Properties } from '../const/notionTemplate';
+import { propertyToNotion } from '../utils/propertyHandler';
 /**
  * Checks remaining distribution items for a student. This function handles the case where the system updates dbs in midnight.
  * @param {string} studentId The student identifier.
@@ -64,25 +66,14 @@ export async function distRemainingPerStudent(studentId) {
 export async function distRemainingToAllStudents(){
   try {
     // 1. fetch all the student IDs from database.
-    const studentData = await Students.findAll();
-    const studentIds = studentData.map(student => student.Student_ID);
+    const studentData = await Students.findOnlyTopProblemDBIds();
+    const studentIds = studentData.map(student => student.student_id);
     await Promise.all(studentIds.map(async (studentId) => await distRemainingPerStudent(studentId)));
   } catch (error) {
     logger.error('Error in dist_remaining_to_all', error.message);
   };
 }
 
-/**
- * Sends textbook to students who have 'to-do' status.
- * I don't care about the corner case where a block size is so small that students can have the same problem in one distribution. 
- * I assume that you need at least two times distribution to have the same problem.
- * TODO: To keep the consistency of the status, we should record the data only every midnight. 
- * However, we change the status of understanding level and others whenever students change it.
- * TODO: When deleting todo items, we should change the status of understanding level from '正解' to '未回答'
- * TODO: When deleting todo items, we should check if the same item is manupulated multiple times at once.
- * @param {string} studentId
- * @param {string} databaseId
- */
 export async function sendTodoCountersPerStudent(studentId, databaseId) {
   try {
     // 1. fetch all the subfield ids of the student
@@ -222,6 +213,53 @@ export async function sendTodoCountersForAllStudents() {
   };
 }
 
+export async function sendReviewsPerStudent(studentId, todoDatabaseId) {
+  try {
+    const reviewInfo = await StudentSubfieldTraces.findByStudentId(studentId);
+    const promises = reviewInfo.map(async row => {
+      const traceId = row.trace_id;
+      const subfieldId = row.subfield_id;
+      const reviewSpeed = row.review_speed;
+      const reviewSpace = row.review_space;
+      const reviewRemainingSpace = row.review_remaining_space;
+      if (reviewRemainingSpace === 0){
+        const reviewProblems = await StudentProblemsAWS.findAllProblemsForReview(subfieldId, reviewSpeed);
+        await Promise.all(reviewProblems.map(async reviewProblem => {
+          try {
+            await copyPageCreate(reviewProblem.notion_page_id, todoDatabaseId);
+          } catch (error) {
+            logger.error('Error in copyPageCreate', error.message);
+            throw error;
+          }
+        }));
+        await StudentSubfieldTraces.update(traceId, 
+          convertToSnakeCase(
+            { reviewRemainingSpace: reviewSpace }
+          )
+        );
+      } else {
+        await StudentSubfieldTraces.update(traceId, 
+          convertToSnakeCase(
+            { reviewRemainingSpace: reviewRemainingSpace-1 }
+          )
+        );
+      }
+    });
+    await Promise.all(promises);
+  } catch (error) {
+    logger.error('Error in sendReviewsPersStudent', error.message);
+  }
+}
+
+export async function sendReviewsForAllStudents() {
+  try {
+    const studentInfo = await Students.findOnlyTopProblemDBIds();
+    await Promise.all(studentInfo.map(async row => await sendReviewsPerStudent(row.student_id, row.todo_db_id)));
+  } catch (error) {
+    logger.error('Error in sendReviewsForAllStudents', error.message);
+    throw error;
+  }
+}
 export async function dealWithTodosPerStudent(studentId) {
   try {
     // 1. fetch all the items from the todos database
@@ -242,29 +280,45 @@ export async function dealWithTodosPerStudent(studentId) {
         await copyPageCreate(data.notionPageId, studentInfoAWS.is_difficult_db_id);
       };
       if (data.ansStatus === '不正解') {
-        await updateStudentProblemProperties(
-          studentProblemAWS.student_problem_id,
-          data.notionPageId,
-          data.subfieldName,
-          {
-            answerStatus: '未回答',
-            tryCount: studentProblemAWS.try_count+1,
-            wrongCount: studentProblemAWS.wrong_count+1,
-          }
-        );
-        await NotionAPI.deleteAPage(data.topProblemPageId);
+        await Promise.all([
+          await updateStudentProblemProperties(
+            studentProblemAWS.student_problem_id,
+            data.notionPageId,
+            data.subfieldName,
+            {
+              answerStatus: '未回答',
+              tryCount: studentProblemAWS.try_count+1,
+              wrongCount: studentProblemAWS.wrong_count+1,
+            }
+          ),
+          await updateReviewLevel(
+            studentProblemAWS.student_problem_id, 
+            data.notionPageId,
+            false,
+            true
+          ),
+          await NotionAPI.deleteAPage(data.topProblemPageId)
+        ]);
         await copyPageCreate(data.notionPageId, studentProblemAWS.wrong_db_id);
       } else if (data.ansStatus === '正解') {
-        await updateStudentProblemProperties(
-          studentProblemAWS.student_problem_id,
-          data.notionPageId,
-          data.subfieldName,
-          {
-            answerStatus: '未回答',
-            tryCount: studentProblemAWS.try_count+1,
-          }
-        );
-        await NotionAPI.deleteAPage(data.topProblemPageId);
+        await Promise.all([
+          await updateStudentProblemProperties(
+            studentProblemAWS.student_problem_id,
+            data.notionPageId,
+            data.subfieldName,
+            {
+              answerStatus: '未回答',
+              tryCount: studentProblemAWS.try_count+1,
+            }
+          ),
+          await updateReviewLevel(
+            studentProblemAWS.student_problem_id, 
+            data.notionPageId,
+            true,
+            true
+          ),
+          await NotionAPI.deleteAPage(data.topProblemPageId)
+        ])
       };
     }));
   } catch(error) {
@@ -275,17 +329,14 @@ export async function dealWithTodosPerStudent(studentId) {
 export async function dealWithTodosForAllStudents() {
   try {
     // 1. fetch all the student IDs from database.
-    const studentData = await Students.findAll();
-    const studentIds = studentData.map(student => student.Student_ID);
+    const studentData = await Students.findOnlyTopProblemDBIds();
+    const studentIds = studentData.map(student => student.student_id);
     await Promise.all(studentIds.map(async (studentId) => await dealWithTodosPerStudent(studentId)));
   } catch (error) {
     logger.error('Error in deleteWithTodosForAllStudents', error.message);
   }
 }
-/**
- * Sends textbook to students who answered questions incorrectly.
- * @param 
- */
+
 export async function dealWithWrongsPerStudent(studentId) {
   try {
     // 1. fetch all the items from the wrongs database
@@ -306,16 +357,18 @@ export async function dealWithWrongsPerStudent(studentId) {
           }
         );
       } else if (data.ansStatus === '正解') {
-        await updateStudentProblemProperties(
-          studentProblemAWS.student_problem_id,
-          data.notionPageId,
-          data.subfieldName,
-          {
-            answerStatus: '未回答',
-            tryCount: studentProblemAWS.try_count+1,
-          }
-        );
-        await NotionAPI.deleteAPage(data.topProblemPageId);
+        await Promise.all([
+          await updateStudentProblemProperties(
+            studentProblemAWS.student_problem_id,
+            data.notionPageId,
+            data.subfieldName,
+            {
+              answerStatus: '未回答',
+              tryCount: studentProblemAWS.try_count+1,
+            }
+          ),
+          await NotionAPI.deleteAPage(data.topProblemPageId)
+        ])
       } 
       if (data.isDifficult) {
         await updateStudentProblemProperties(
@@ -337,8 +390,8 @@ export async function dealWithWrongsPerStudent(studentId) {
 export async function dealWithWrongsForAllStudents() {
   try {
     // 1. fetch all the student IDs from database.
-    const studentData = await Students.findAll();
-    const studentIds = studentData.map(student => student.Student_ID);
+    const studentData = await Students.findOnlyTopProblemDBIds();
+    const studentIds = studentData.map(student => student.student_id);
     await Promise.all(studentIds.map(async (studentId) => await dealWithWrongsPerStudent(studentId)));
   } catch (error) {
     logger.error('Error in deleteWithWrongsForAllStudents', error.message);
@@ -383,15 +436,17 @@ export async function dealWithIsDifficultsPerStudent(studentId) {
         );
       } 
       if (!data.isDifficult) {
-        await updateStudentProblemProperties(
-          studentProblemAWS.student_problem_id,
-          data.notionPageId,
-          data.subfieldName,
-          {
-            isDifficult: false
-          }
-        );
-        await NotionAPI.deleteAPage(data.topProblemPageId);
+        Promise.all([
+          await updateStudentProblemProperties(
+            studentProblemAWS.student_problem_id,
+            data.notionPageId,
+            data.subfieldName,
+            {
+              isDifficult: false
+            }
+          ),
+          await NotionAPI.deleteAPage(data.topProblemPageId)
+        ])
       }
     }));
   } catch(error) {
@@ -402,8 +457,8 @@ export async function dealWithIsDifficultsPerStudent(studentId) {
 export async function dealWithIsDifficultsForAllStudents() {
   try {
     // 1. fetch all the student IDs from database.
-    const studentData = await Students.findAll();
-    const studentIds = studentData.map(student => student.Student_ID);
+    const studentData = await Students.findOnlyTopProblemDBIds();
+    const studentIds = studentData.map(student => student.student_id);
     await Promise.all(studentIds.map(async (studentId) => await dealWithIsDifficultsPerStudent(studentId)));
   } catch (error) {
     logger.error('Error in deleteWithIsDifficultsForAllStudents', error.message);
@@ -423,28 +478,44 @@ export async function dealWithStudentProblemsPerStudent(studentId) {
       await Promise.all(studentProblems.map(async (problem) => {
         const studentProblemAWS = await StudentProblemsAWS.findByNotionPageId(problem.notionPageId)[0]
         if (data.ansStatus === '不正解') {
-          await updateStudentProblemProperties(
-            studentProblemAWS.student_problem_id,
-            problem.notionPageId,
-            problem.subfieldName,
-            {
-              answerStatus: '未回答',
-              tryCount: studentProblemAWS.try_count+1,
-              wrongCount: studentProblemAWS.wrong_count+1,
-            }
-          );
+          await Promise.all([
+            await updateStudentProblemProperties(
+              studentProblemAWS.student_problem_id,
+              problem.notionPageId,
+              problem.subfieldName,
+              {
+                answerStatus: '未回答',
+                tryCount: studentProblemAWS.try_count+1,
+                wrongCount: studentProblemAWS.wrong_count+1,
+              }
+            ),
+            await updateReviewLevel(
+              studentProblemAWS.student_problem_id,
+              problem.notionPageId,
+              false,
+              false
+            )
+          ]);
           await copyPageCreate(problem.notionPageId, studentInfoAWS.wrong_db_id);
         } else if (problem.ansStatus === '正解') {
-          await updateStudentProblemProperties(
-            studentProblemAWS.student_problem_id,
-            problem.notionPageId,
-            problem.subfieldName,
-            {
-              answerStatus: '未回答',
-              tryCount: studentProblemAWS.try_count+1,
-            }
-          );
-        } 
+          await Promise.all([
+            await updateStudentProblemProperties(
+              studentProblemAWS.student_problem_id,
+              problem.notionPageId,
+              problem.subfieldName,
+              {
+                answerStatus: '未回答',
+                tryCount: studentProblemAWS.try_count+1,
+              }
+            ), 
+            await updateReviewLevel(
+              studentProblemAWS.student_problem_id,
+              problem.notionPageId,
+              true,
+              false
+            )
+          ]);
+        };
         if (problem.isDifficult) {
           await updateStudentProblemProperties(
             studentProblemAWS.student_problem_id,
@@ -468,8 +539,8 @@ export async function dealWithStudentProblemsPerStudent(studentId) {
 export async function dealWithStudentProblemsForAllStudents() {
   try {
     // 1. fetch all the student IDs from database.
-    const studentData = await Students.findAll();
-    const studentIds = studentData.map(student => student.Student_ID);
+    const studentData = await Students.findOnlyTopProblemDBIds();
+    const studentIds = studentData.map(student => student.student_id);
     await Promise.all(studentIds.map(async (studentId) => await dealWithStudentProblemsPerStudent(studentId)));
   } catch (error) {
     logger.error('Error in dealWithStudentProblemsForAllStudents', error.message);
@@ -482,13 +553,218 @@ export async function delayPlan(actualBlockId){
 };
 
 // TODO: guarantee consistency
-export async function updateStudentProblemProperties(studentProblemIdAWS, studentProblemIdNotion, subfieldName,  updates){
+export async function updateStudentProblemProperties(studentProblemAWSId, studentProblemIdNotion, subfieldName,  updates){
   try {    
     // AWS
-    await StudentProblemsAWS.update(studentProblemIdAWS, convertToSnakeCase(updates));
+    const updateAWS = async () => await StudentProblemsAWS.update(studentProblemAWSId, convertToSnakeCase(updates));
     // Notion
-    await StudentProblemsNotion.update(studentProblemIdNotion, subfieldName, updates);
+    const updateNotion = async () => await StudentProblemsNotion.update(studentProblemIdNotion, subfieldName, updates);
+    await Promise.all([updateAWS(), updateNotion()]);
   } catch (error) {
     logger.error('Error in updateStudentProblemProperties', error.message);
+  }
+}
+
+// TODO: change the review frequency based on subfield?
+export async function updateReviewLevel(studentProblemAWSId, studentProblemPageId, isCorrect, isTodo){
+  try {
+    const studentProblem = await NotionAPI.retrieveAPage(studentProblemPageId);
+    if (isCorrect) {
+      switch (studentProblem[probAnalysis.reviewLevel.name]) {
+        case probAnalysis.reviewLevel.level0:
+          if (isTodo){
+            await Promise.all([
+              await NotionAPI.updatePageProperties(studentProblemPageId, Properties.getJSON([
+                propertyToNotion({
+                  propertyName: probAnalysis.reviewLevel.name,
+                  propertyContent: probAnalysis.reviewLevel.level1,
+                  propertyType: probAnalysis.reviewLevel.type
+                })
+              ])),
+              await StudentProblemsAWS.update(studentProblemAWSId, 
+                convertToSnakeCase({
+                  reviewLevel: probAnalysis.reviewLevel.level1
+                })
+              )
+            ])
+            ;
+          };
+          break;
+        case probAnalysis.reviewLevel.level1:
+          if (isTodo) {
+            await Promise.all([
+              await NotionAPI.updatePageProperties(studentProblemPageId, Properties.getJSON([
+                propertyToNotion({
+                  propertyName: probAnalysis.reviewLevel.name,
+                  propertyContent: probAnalysis.reviewLevel.level2,
+                  propertyType: probAnalysis.reviewLevel.type
+                })
+              ])),
+              await StudentProblemsAWS.update(studentProblemAWSId,
+                convertToSnakeCase({
+                  reviewLevel: probAnalysis.reviewLevel.level2,
+                  reviewCount: probAnalysis.reviewCount.level2
+                })
+              )
+            ])
+          };
+          break;
+        case probAnalysis.reviewLevel.level2:
+          await Promise.all([
+            await NotionAPI.updatePageProperties(studentProblemPageId, Properties.getJSON([
+              propertyToNotion({
+                propertyName: probAnalysis.reviewLevel.name,
+                propertyContent: probAnalysis.reviewLevel.level3,
+                propertyType: probAnalysis.reviewLevel.type
+              })
+            ])),
+            await StudentProblemsAWS.update(studentProblemAWSId,
+              convertToSnakeCase(
+                {
+                  reviewLevel: probAnalysis.reviewLevel.level3,
+                  reviewCount: probAnalysis.reviewCount.level3
+                }
+              )
+            )
+          ])
+          break;
+        case probAnalysis.reviewLevel.level3:
+          await Promise.all([
+            await NotionAPI.updatePageProperties(studentProblemPageId, Properties.getJSON([
+              propertyToNotion({
+                propertyName: probAnalysis.reviewLevel.name,
+                propertyContent: probAnalysis.reviewLevel.level4,
+                propertyType: probAnalysis.reviewLevel.type
+              })
+            ])),
+            await StudentProblemsAWS.update(studentProblemAWSId,
+              convertToSnakeCase(
+                {
+                  reviewLevel: probAnalysis.reviewLevel.level4,
+                  reviewCount: probAnalysis.reviewCount.level4
+                }
+              )
+            )
+          ])
+          break;
+        case probAnalysis.reviewLevel.level4:
+          await Promise.all([
+            await StudentProblemsAWS.update(studentProblemAWSId,
+              convertToSnakeCase(
+                {
+                  reviewCount: probAnalysis.reviewCount.level4
+                }
+              )
+            )
+          ])
+          break;
+        default:
+          throw new Error('Invalid review level. Review level should be one of'+ Object.values(probAnalysis.reviewLevel).join(', '));
+      }
+    } else {
+      switch (studentProblem[probAnalysis.reviewLevel.name]) {
+        case probAnalysis.reviewLevel.level0:
+          if (isTodo) {
+            await Promise.all([
+              await NotionAPI.updatePageProperties(studentProblemPageId, Properties.getJSON([
+                propertyToNotion({
+                  propertyName: probAnalysis.reviewLevel.name,
+                  propertyContent: probAnalysis.reviewLevel.level1,
+                  propertyType: probAnalysis.reviewLevel.type
+                })
+              ])),
+              await StudentProblemsAWS.update(studentProblemAWSId,
+                convertToSnakeCase(
+                  {
+                    reviewLevel: probAnalysis.reviewLevel.level1
+                  }
+                )
+              )
+            ])
+          }
+          break;
+        case probAnalysis.reviewLevel.level1:
+          if (isTodo) {
+            await Promise.all([
+              await NotionAPI.updatePageProperties(studentProblemPageId, Properties.getJSON([
+                propertyToNotion({
+                  propertyName: probAnalysis.reviewLevel.name,
+                  propertyContent: probAnalysis.reviewLevel.level2,
+                  propertyType: probAnalysis.reviewLevel.type
+                })
+              ])),
+              await StudentProblemsAWS.update(studentProblemAWSId,
+                convertToSnakeCase(
+                  {
+                    reviewLevel: probAnalysis.reviewLevel.level2
+                  }
+                )
+              )
+            ])
+          };
+          break;
+        case probAnalysis.reviewLevel.level2:
+          await Promise.all([
+            await NotionAPI.updatePageProperties(studentProblemPageId, Properties.getJSON([
+              propertyToNotion({
+                propertyName: probAnalysis.reviewLevel.name,
+                propertyContent: probAnalysis.reviewLevel.level2,
+                propertyType: probAnalysis.reviewLevel.type
+              })
+            ])),
+            await StudentProblemsAWS.update(studentProblemAWSId,
+              convertToSnakeCase(
+                {
+                  reviewLevel: probAnalysis.reviewLevel.level2
+                }
+              )
+            )
+          ])
+          break;
+        case probAnalysis.reviewLevel.level3:
+          await Promise.all([
+            await NotionAPI.updatePageProperties(studentProblemPageId, Properties.getJSON([
+              propertyToNotion({
+                propertyName: probAnalysis.reviewLevel.name,
+                propertyContent: probAnalysis.reviewLevel.level3,
+                propertyType: probAnalysis.reviewLevel.type
+              }),
+            ])),
+            await StudentProblemsAWS.update(studentProblemAWSId,
+              convertToSnakeCase(
+                {
+                  reviewLevel: probAnalysis.reviewLevel.level3,
+                  reviewCount: probAnalysis.reviewCount.level3
+                }
+              )
+            )
+          ])
+          break;
+        case probAnalysis.reviewLevel.level4:
+          await Promise.all([
+            await NotionAPI.updatePageProperties(studentProblemPageId, Properties.getJSON([
+              propertyToNotion({
+                propertyName: probAnalysis.reviewLevel.name,
+                propertyContent: probAnalysis.reviewLevel.level3,
+                propertyType: probAnalysis.reviewLevel.type
+              }),
+            ])),
+            await StudentProblemsAWS.update(studentProblemAWSId,
+              convertToSnakeCase(
+                {
+                  reviewLevel: probAnalysis.reviewLevel.level3,
+                  reviewCount: probAnalysis.reviewCount.level3
+                }
+              )
+            )
+          ])
+          break;
+        default:
+          throw new Error('Invalid review level. Review level should be one of'+ Object.values(probAnalysis.reviewLevel).join(', '));
+      };
+    }
+  } catch (error) {
+    logger.error('Error in updateReviewLevel', error.message);
+    throw error;
   }
 }

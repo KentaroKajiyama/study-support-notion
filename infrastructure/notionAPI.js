@@ -216,7 +216,7 @@ export default class NotionAPI {
       return await notionClient.databases.query({
         database_id: databaseId,
         sorts: sorts,
-        filter: filters
+        filter: filter
       });
     } catch(error) {
       logger.error("Error querying database from Notion with filter:", error.message);

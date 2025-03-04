@@ -24,6 +24,17 @@ export class StudentSubfieldTraces {
     return rows;
   }
 
+  static async findOnlySubfieldIdsByStudentId(studentId) {
+    const [rows] = await db.query(
+      `SELECT student_subfield_traces.subfield_id, subfields.subfield_name 
+      FROM student_subfield_traces 
+      INNER JOIN subfields ON student_subfield_traces.subfield_id = subfields.subfield_id
+      WHERE student_id = ?`,
+      [studentId]
+    );
+    return rows;
+  }
+
   static async findByCompositeKey(studentId, subfieldId) {
     const [rows] = await db.query(
       `SELECT * FROM student_subfield_traces WHERE student_id = ? AND subfield_id = ?`,

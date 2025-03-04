@@ -59,6 +59,39 @@ export class StudentProblemsAWS {
     return rows;
   }
 
+  /**
+   * @description Additionally returns subfield_id
+   * @date 04/03/2025
+   * @static
+   * @memberof StudentProblemsAWS
+   */
+  static async findAllProblemsForReview(subfieldId, reviewSpeed) {
+    const [rows] = await db.query(
+      `
+      SELECT *, problems.subfield_id, subfields.subfield_name
+      FROM student_problems 
+      INNER JOIN problems ON problems.problem_id = student_problems.problem_id
+      INNER JOIN subfields ON subfields.subfield_id = problems.subfield_id
+      WHERE student_problems.review_count_down = 0, problems.subfield_id = ?
+      ORDER BY student_problems.review_available_date ASC
+      LIMIT ?
+      `,
+      [subfieldId, reviewSpeed]
+    );
+    return rows;
+  }
+
+  static async updateReviewCountDown() {
+    await db.query(
+      `
+      UPDATE student_problems
+      SET review_count_down = GREATEST(review_count_down - 1, 0)
+      WHERE review_count_down > 0
+      `
+    );
+    return true;
+  }
+
   static async update(studentProblemId, updates) {
     if (!studentProblemId || !updates || Object.keys(updates).length === 0) {
       throw new Error("Invalid input: studentProblemId and updates are required.");

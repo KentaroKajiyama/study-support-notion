@@ -41,6 +41,16 @@ export class Students {
     return rows;
   }
 
+  static async findOnlyTopProblemDBIds() {
+    const [rows] = await db.query(
+      `
+        SELECT student_id, todo_db_id, wrong_db_id, is_difficult_db_id
+        FROM students
+      `
+    );
+    return rows;
+  }
+
   static async findByStudentId(studentId) {
     const [rows] = await db.query(
       `SELECT * FROM students WHERE student_id = ?`,
