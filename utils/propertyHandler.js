@@ -1,5 +1,6 @@
-import { richTextToInlineText } from "./convertRichText";
-import * as conv from "../const/notionTemplate";
+import { richTextToInlineText } from "./convertRichText.js";
+import * as conv from "../const/notionTemplate.js";
+import logger from "./logger.js";
 // TODO: Implement rollup.
 // TODO: Think other methods for icon and cover.
 /**
@@ -37,8 +38,11 @@ import * as conv from "../const/notionTemplate";
  *
  * @returns {DateProperty|FileProperty[]|PeopleProperty[]|RelationProperty[]|MultiSelectProperty|UniqueIdProperty} - The processed property value.
  */
-export const propertyFromNotion = (propertiesArray, propertyName, propertyType) => {
-  const property = propertiesArray[propertyName];
+export const propertyFromNotion = ({ propertiesObj, propertyName, propertyType }) => {
+  if(!propertiesObj ||!propertiesObj[propertyName]){
+    throw new Error(`Property ${propertyName} not found in ${JSON.stringify(propertiesObj)}`);
+  }
+  const property = propertiesObj[propertyName];
   if(propertyType === 'checkbox') {
     return property.checkbox;
   } else if(propertyType === 'date') {
