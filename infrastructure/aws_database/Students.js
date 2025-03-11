@@ -1,4 +1,5 @@
 import db from '../aws_db';
+import { convertToCamelCase } from '../../utils/lodash';  
 
 export class Students {
   static async create(data) {
@@ -38,7 +39,7 @@ export class Students {
 
   static async findAll() {
     const [rows] = await db.query(`SELECT * FROM students`);
-    return rows;
+    return convertToCamelCase(rows);
   }
 
   static async findOnlyTopProblemDBIds() {
@@ -48,7 +49,7 @@ export class Students {
         FROM students
       `
     );
-    return rows;
+    return convertToCamelCase(rows);
   }
 
   static async findByStudentId(studentId) {
@@ -56,7 +57,19 @@ export class Students {
       `SELECT * FROM students WHERE student_id = ?`,
       [studentId]
     );
-    return rows || null;
+    return convertToCamelCase(rows);
+  }
+
+  static async findByNotionUserId(notionUserId) {
+    const [rows] = await db.query(
+      `
+        SELECT *
+        FROM students
+        WHERE student_notion_user_id =?
+      `,
+      [notionUserId]
+    );
+    return convertToCamelCase(rows);
   }
 
   static async findOnlyOverviewPageIdByStudentId(studentId) {
@@ -68,7 +81,7 @@ export class Students {
       `,
       [studentId]
     );
-    return rows;
+    return convertToCamelCase(rows);
   }
 
   static async findForDetailRegistrationByStudentId(studentId) {
@@ -80,7 +93,7 @@ export class Students {
       `,
       [studentId]
     );
-    return rows;
+    return convertToCamelCase(rows);
   }
 
   static async update(studentId, updates) {
@@ -107,6 +120,6 @@ export class Students {
       `DELETE FROM students WHERE student_id = ?`,
       [id]
     );
-    return result.affectedRows;
+    return convertToCamelCase(result.affectedRows);
   }
 }
