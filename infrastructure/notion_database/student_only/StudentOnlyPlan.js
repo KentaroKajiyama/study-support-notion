@@ -2,6 +2,9 @@ import notionAPI from "../../notionAPI";
 import * as _ from "../../../const/notionTemplate";
 import { richTextToInlineText } from "../../../utils/convert_rich_text";
 import logger from "../../../utils/logger";
+import { propertyToNotion } from "../../../utils/propertyHandler";
+import { Properties } from "../../../const/notionTemplate";
+import { studentOnlyPlanColumns } from "../../../const/notionDatabaseColumns";
 
 export class StudentOnlyPlan{
   static async getStudentOnlyPlans(databaseId){
@@ -41,9 +44,10 @@ export class StudentOnlyPlan{
       Promise.all(promises);
     } catch(error) {
       logger.error("Error creating student only plan in Notion:", error.message);
+      throw error;
     }
   };
-  async updateAStudentOnlyPlan(studentOnlyPlan){
+  static async updateAStudentOnlyPlan(studentOnlyPlan){
     try {
       const title = _.Title.getJSON("項目", studentOnlyPlan.title);
       const subfield = _.Select.getJSON("科目", studentOnlyPlan.subfield);
@@ -55,9 +59,27 @@ export class StudentOnlyPlan{
       }
     } catch(error) {
       logger.error(`Error updating student only plan "${studentOnlyPlan.title}":`, error.message);
+      throw error;
     }
   };
-  async deleteAStudentOnlyPlan(studentOnlyPlanId){
+  static async updateAPeriod(studentOnlyPlanPageId, startDate, endDate) {
+    try {
+      const response = await notionAPI.updatePageProperties(studentOnlyPlanPageId, Properties([
+        propertyToNotion({
+          propertyName: studentOnlyPlanColumns.period.name,
+          propertyContent: {start: startDate, end: endDate},
+          propertyType: studentOnlyPlanColumns.period.type
+        })
+      ]));
+      if(response.status!== 200){
+        throw new Error(`Failed to update period in student only plan "${studentOnlyPlanPageId}"`);
+      }
+    } catch (error) {
+      logger.error("Error updating output date in Notion:", error.message);
+      throw error;
+    }
+  };
+  static async deleteAStudentOnlyPlan(studentOnlyPlanId){
     try{
       const response = await notionAPI.deleteAPage(studentOnlyPlanId);
       if(response.status!== 200){
@@ -65,6 +87,7 @@ export class StudentOnlyPlan{
       }
     } catch(error) {
       logger.error(`Error deleting student only plan "${studentOnlyPlanId}":`, error.message);
+      throw error;
     }
   };
 }

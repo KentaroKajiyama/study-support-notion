@@ -113,14 +113,7 @@ export class TopProblems {
       logger.error("Failed to create topProblem list:", error.message);
     }
   }
-
-  /**
-   * Updates a specific to-do in Notion by ID.
-   * @static
-   * @param {string} topProblemPageId - The ID of the to-do page in Notion.
-   * @param {Object} topProblem - The updated to-do data.
-   * @returns {Promise<Object|null>}
-   */
+  
   static async updateATopProblemAnsStatusById(topProblemPageId, topProblem) {
     try {
       // Build the JSON for properties by combining each property's JSON string.

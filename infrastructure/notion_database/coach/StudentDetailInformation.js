@@ -86,21 +86,14 @@ export class StudentDetailInformation {
     }
     return properties;
   }
-
-  /**
-   * Fetch all studentDetailInformations from the CoachStudentInformation database in Notion.
-   * @param {string} databaseId - The Notion database ID to query.
-   * @returns {Array} An array of parsed studentDetailInformations.
-   */
   static async getAStudentDetailInformation(databaseId) {
     try {
       const response = await notionAPI.queryADatabase(databaseId);
       if (response.status !== 200) {
         throw new Error(`Error fetching data from Notion: ${response.statusText}`);
       }
-      const data = response.results;
       // Convert each Notion result into a row object
-      return data.map(item => {
+      return response.results.map(item => {
         const studentDetailInformationId = item.id;
         const props = item.properties;
         let studentData = { studentDetailInformationId };

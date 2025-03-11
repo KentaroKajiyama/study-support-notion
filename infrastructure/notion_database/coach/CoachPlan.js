@@ -1,20 +1,13 @@
 import notionAPI from "../../notionAPI";
 import * as _ from "../../../const/notion_template";
 import { richTextToInlineText } from "../../../utils/convert_rich_text";
+import logger from "../../../utils/logger";
+import { coachPlanColumns } from "../../../const/notionDatabaseColumns";
+import { propertyToNotion } from "../../../utils/propertyHandler";
+import { Properties } from "../../../const/notionTemplate";
 
-/**
- * @description
- * @date 21/02/2025
- * @export
- * @class CoachPlan
- */
+
 export class CoachPlan {
-  /**
-   * @description
-   * @date 21/02/2025
-   * @returns {*} 
-   * @memberof coachPlan
-   */
   static async getCoachPlans(databaseId){
     try {
       const response = await notionAPI.queryADatabase(databaseId);
@@ -36,15 +29,10 @@ export class CoachPlan {
         }
       });
     } catch(error) {
-      console.error("Failed to fetch coachPlan list:", error.message);
-      return [];
+      logger.error("Failed to fetch coachPlan list:", error.message);
+      throw error;
     }
   };
-  /**
-   * @description
-   * @date 21/02/2025
-   * @memberof coachPlan
-   */
   static async createCoachPlans(databaseId, coachPlanList){
     try{
       const promises = coachPlanList.map(async coachPlan => {
@@ -64,13 +52,14 @@ export class CoachPlan {
           }
           return response;
         } catch(error) {
-          console.error(`Error creating coachPlan "${coachPlan.title}":`, error.message);
+          logger.error(`Error creating coachPlan "${coachPlan.title}":`, error.message);
           return null;
         }
       })
-      Promise.all(promises);
+      await Promise.all(promises);
     } catch(error) {
-      console.error("Failed to create coachPlan list:", error.message);
+      logger.error("Failed to create coachPlan list:", error.message);
+      throw error;
     }
   }
   /**
@@ -97,16 +86,29 @@ export class CoachPlan {
       }
       return response;
     } catch(error) {
-      console.error(`Error updating coachPlan "${coachPlan.title}":`, error.message);
+      logger.error(`Error updating coachPlan "${coachPlan.title}":`, error.message);
+      throw error;
     }
   }
-  /**
-   * @description
-   * @date 21/02/2025
-   * @param {*} coachPlanId
-   * @returns {*} 
-   * @memberof coachPlan
-   */
+  static async updateAnOutputDate(coachPlanPageId, startDate, endDate){
+    try {
+      const startEndDate = propertyToNotion({
+        propertyName: coachPlanColumns.outputPeriod.name,
+        propertyContent: { start: startDate, end: endDate },
+        propertyType: coachPlanColumns.outputPeriod.type
+      });
+      const response = await notionAPI.updateAPage(coachPlanPageId, Properties([
+        startEndDate,
+      ]));
+      if(response.status!== 200){
+        throw new Error(`Failed to update start and end date of coachPlan "${coachPlanPageId}"`);
+      }
+      return response;
+    } catch (error) {
+      logger.error(`Error updating start and end date of coachPlan "${coachPlanPageId}":`, error.message);
+      throw error;
+    }
+  }
   static async deleteACoachPlan(coachPlanId){
     try{
       const response = await notionAPI.deleteAPage(coachPlanId);
@@ -115,7 +117,8 @@ export class CoachPlan {
       }
       return response;
     } catch(error) {
-      console.error(`Error deleting coachPlan "${coachPlanId}":`, error.message);
+      logger.error(`Error deleting coachPlan "${coachPlanId}":`, error.message);
+      throw error;
     }
   }
 }
