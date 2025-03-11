@@ -59,6 +59,30 @@ export class Students {
     return rows || null;
   }
 
+  static async findOnlyOverviewPageIdByStudentId(studentId) {
+    const [rows] = await db.query(
+      `
+        SELECT student_overview_page_id
+        FROM students
+        WHERE student_id =?
+      `,
+      [studentId]
+    );
+    return rows;
+  }
+
+  static async findForDetailRegistrationByStudentId(studentId) {
+    const [rows] = await db.query(
+      `
+      SELECT coach_plan_db_id, student_detail_info_db_id
+      FROM students
+      WHERE student_id =?
+      `,
+      [studentId]
+    );
+    return rows;
+  }
+
   static async update(studentId, updates) {
     if (!studentId || !updates || Object.keys(updates).length === 0) {
       throw new Error("Invalid input: studentId and updates are required.");

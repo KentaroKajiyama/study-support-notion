@@ -1,4 +1,5 @@
 import db from '../aws_db';
+import { convertToCamelCase } from '../../utils/lodash';
 
 export class Problems {
   static async create(data) {
@@ -29,7 +30,7 @@ export class Problems {
 
   static async findAll() {
     const [rows] = await db.query('SELECT * FROM problems');
-    return rows;
+    return convertToCamelCase(rows);
   }
 
   static async findById(problemId) {
@@ -37,7 +38,7 @@ export class Problems {
       'SELECT * FROM problems WHERE problem_id = ?',
       [problemId]
     );
-    return rows[0] || null;
+    return convertToCamelCase(rows);
   }
 
   static async findBySubfieldId(subfieldId) {
@@ -45,7 +46,7 @@ export class Problems {
       'SELECT * FROM problems WHERE subfield_id = ?',
       [subfieldId]
     );
-    return rows;
+    return convertToCamelCase(rows);
   }
 
   static async update(problemId, updates) {
@@ -72,6 +73,6 @@ export class Problems {
       'DELETE FROM problems WHERE problem_id = ?',
       [problemId]
     );
-    return result.affectedRows;
+    return convertToCamelCase(result.affectedRows);
   }
 }

@@ -1,30 +1,7 @@
-import db from '../aws_db';
+import db from '../awsDB';
+import { convertToCamelCase } from '../../utils/lodash';
 
 export class DefaultBlocks {
-  constructor({
-    defaultBlockId,
-    subfieldId,
-    blockName,
-    blockOrder,
-    space,
-    speed,
-    size,
-    averageExpectedTime,
-    createdAt,
-    updatedAt
-  }) {
-    this.defaultBlockId = defaultBlockId;
-    this.subfieldId = subfieldId;
-    this.blockName = blockName;
-    this.blockOrder = blockOrder;
-    this.space = space;
-    this.speed = speed;
-    this.size = size;
-    this.averageExpectedTime = averageExpectedTime;
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
-  }
-
   static async create({
     defaultBlockId,
     subfieldId,
@@ -55,7 +32,7 @@ export class DefaultBlocks {
 
   static async findAll() {
     const [rows] = await db.query('SELECT * FROM default_blocks');
-    return rows;
+    return convertToCamelCase(rows);
   }
 
   static async findByDefaultBlockId(defaultBlockId) {
@@ -63,7 +40,7 @@ export class DefaultBlocks {
       'SELECT * FROM default_blocks WHERE default_block_id = ?',
       [defaultBlockId]
     );
-    return rows || null;
+    return convertToCamelCase(rows);
   }
 
   static async findBySubfieldId(subfieldId) {
@@ -71,7 +48,7 @@ export class DefaultBlocks {
       'SELECT * FROM default_blocks WHERE subfield_id = ?',
       [subfieldId]
     );
-    return rows;
+    return convertToCamelCase(rows);
   }
 
   static async findByCompositeKey(subfieldId, blockName) {
@@ -79,7 +56,15 @@ export class DefaultBlocks {
       'SELECT * FROM default_blocks WHERE subfield_id = ? AND block_name = ?',
       [subfieldId, blockName]
     );
-    return rows || null;
+    return convertToCamelCase(rows);
+  }
+
+  static async findBySubfieldIdUnderSpecificLevel(subfieldId, problemLevel) {
+    const [rows] = await db.query(
+      'SELECT * FROM default_blocks WHERE subfield_id =? AND problem_level <= ?',
+      [subfieldId, problemLevel]
+    );
+    return convertToCamelCase(rows);
   }
 
   static async update(id, { subfieldId, blockName, blockOrder, space, speed, size, averageExpectedTime }) {
@@ -106,7 +91,7 @@ export class DefaultBlocks {
       averageExpectedTime,
       id
     ]);
-    return result.affectedRows;
+    return convertToCamelCase(result.affectedRows);
   }
 
   static async delete(id) {
@@ -114,6 +99,6 @@ export class DefaultBlocks {
       'DELETE FROM default_blocks WHERE default_block_id = ?',
       [id]
     );
-    return result.affectedRows;
+    return convertToCamelCase(result.affectedRows);
   }
 }

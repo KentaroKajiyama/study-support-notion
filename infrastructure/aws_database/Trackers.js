@@ -1,4 +1,5 @@
 import db from '../aws_db';
+import { convertToCamelCase } from '../../utils/lodash';
 
 export class Trackers {
   static async create({ studentId, subfieldId, actualBlockId, studentProblemId, order, remainingSpace = 0, isRest = 0, lap }) {
@@ -13,7 +14,7 @@ export class Trackers {
 
   static async findAll() {
     const [rows] = await db.query('SELECT * FROM trackers');
-    return rows;
+    return convertToCamelCase(rows);
   }
 
   static async findById(trackerId) {
@@ -21,15 +22,31 @@ export class Trackers {
       'SELECT * FROM trackers WHERE tracker_id = ?',
       [trackerId]
     );
-    return rows[0] || null;
+    return convertToCamelCase(rows);
   }
 
-  static async findBystudentId(studentId) {
+  static async findByStudentId(studentId) {
     const [rows] = await db.query(
       'SELECT * FROM trackers WHERE student_id =?',
       [studentId]
     );
-    return rows;
+    return convertToCamelCase(rows);
+  }
+
+  static async findByCompositeKey(studentId, subfieldId) {
+    const [rows] = await db.query(
+      'SELECT * FROM trackers WHERE student_id =? AND subfield_id =?',
+      [studentId, subfieldId]
+    );
+    return convertToCamelCase(rows);
+  }
+
+  static async findByStudentProblemId(studentProblemId) {
+    const [rows] = await db.query(
+      'SELECT * FROM trackers WHERE student_problem_id =?',
+      [studentProblemId]
+    );
+    return convertToCamelCase(rows);
   }
 
   static async update(trackerId, data) {
@@ -63,11 +80,29 @@ export class Trackers {
     return update(trackerId, { is_rest: 0 });
   }
 
+  static async updateAllTrackersStatusByStudentId(studentId, isEnabled) {
+    try {
+      const sql = `
+      UPDATE trackers
+      SET is_enabled = ? 
+      WHERE student_id =?
+      `;
+      await db.beginTransaction();
+      await db.query(sql, [isEnabled ? 1 : 0, studentId]);
+      await db.commit();
+    } catch (error) {
+      await db.rollback();
+      throw error;
+    } finally {
+      db.end();
+    }
+  }
+
   static async delete(trackerId) {
     const [result] = await db.query(
       'DELETE FROM trackers WHERE tracker_id = ?',
       [trackerId]
     );
-    return result.affectedRows;
+    return convertToCamelCase(result.affectedRows);
   }
 }

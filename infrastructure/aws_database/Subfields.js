@@ -1,4 +1,4 @@
-import db from '../aws_db';
+import db from '../awsDB';
 
 export class Subfields {
   static async create({ subfieldId, subjectId, subfieldName }) {
@@ -12,7 +12,7 @@ export class Subfields {
 
   static async findAll() {
     const [rows] = await db.query(`SELECT * FROM subfields`);
-    return rows;
+    return convertToCamelCase(rows);
   }
 
   static async findBySubfieldId(subfieldId) {
@@ -20,7 +20,7 @@ export class Subfields {
       `SELECT * FROM subfields WHERE subfield_id = ?`,
       [subfieldId]
     );
-    return rows || null;
+    return convertToCamelCase(rows);
   }
 
   static async findBySubfieldName(subfieldName) {
@@ -28,7 +28,7 @@ export class Subfields {
       `SELECT * FROM subfields WHERE subfield_name = ?`,
       [subfieldName]
     );
-    return rows || null;
+    return convertToCamelCase(rows);
   }
   
   static async findBySubjectId(subjectId) {
@@ -36,7 +36,7 @@ export class Subfields {
       `SELECT * FROM subfields WHERE subject_id = ?`,
       [subjectId]
     );
-    return rows || null;
+    return convertToCamelCase(rows);
   }
 
   static async update(id, { subjectId, subfieldName }) {
@@ -46,7 +46,7 @@ export class Subfields {
        WHERE subfield_id = ?`,
       [subjectId, subfieldName, id]
     );
-    return result.affectedRows;
+    return convertToCamelCase(result.affectedRows);
   }
 
   static async delete(id) {
@@ -54,6 +54,6 @@ export class Subfields {
       `DELETE FROM subfields WHERE subfield_id = ?`,
       [id]
     );
-    return result.affectedRows;
+    return convertToCamelCase(result.affectedRows);
   }
 }

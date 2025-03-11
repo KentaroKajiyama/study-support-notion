@@ -1,6 +1,7 @@
-import db from '../aws_db';
+import db from '../awsDB';
+import { convertToCamelCase } from '../../utils/lodash';
 
-export class subjects {
+export class Subjects {
   static async create({ subjectId, subjectName }) {
     const [result] = await db.query(
       `INSERT INTO subjects (subject_id, subject_name, created_at, updated_at)
@@ -12,7 +13,12 @@ export class subjects {
 
   static async findAll() {
     const [rows] = await db.query(`SELECT * FROM subjects`);
-    return rows;
+    return convertToCamelCase(rows);
+  }
+
+  static async findAllSubjectNames() {
+    const [rows] = await db.query(`SELECT subject_name FROM subjects`);
+    return convertToCamelCase(rows);
   }
 
   static async findBysubjectId(subjectId) {
@@ -20,7 +26,7 @@ export class subjects {
       `SELECT * FROM subjects WHERE subject_id = ?`,
       [subjectId]
     );
-    return rows || null;
+    return convertToCamelCase(rows);
   }
 
   static async findBysubjectName(subjectName) {
@@ -28,7 +34,18 @@ export class subjects {
       `SELECT * FROM subjects WHERE subject_name = ?`,
       [subjectName]
     );
-    return rows || null;
+    return convertToCamelCase(rows);
+  }
+
+  static async findSubfieldAndSubjectBySubjectName(subjectName) {
+    const [rows] = await db.query(
+      `SELECT subjects.subject_id, subjects.subject_name, subfields.subfield_id, subfields.subfield_name
+       FROM subjects 
+       INNER JOIN subfields ON subjects.subject_id = subfields.subject_id
+       WHERE subjects.subject_name = ?`,
+      [subjectName]
+    );
+    return convertToCamelCase(rows);
   }
   
   static async findBySubjectId(subjectId) {
@@ -36,7 +53,7 @@ export class subjects {
       `SELECT * FROM subjects WHERE subject_id = ?`,
       [subjectId]
     );
-    return rows || null;
+    return convertToCamelCase(rows);
   }
 
   static async update(id, { subjectName }) {
@@ -46,7 +63,7 @@ export class subjects {
        WHERE subject_id = ?`,
       [subjectId, subjectName, id]
     );
-    return result.affectedRows;
+    return convertToCamelCase(result.affectedRows);
   }
 
   static async delete(id) {
@@ -54,6 +71,6 @@ export class subjects {
       `DELETE FROM subjects WHERE subject_id = ?`,
       [id]
     );
-    return result.affectedRows;
+    return convertToCamelCase(result.affectedRows);
   }
 }

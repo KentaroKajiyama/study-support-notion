@@ -1,4 +1,5 @@
-import db from '../aws_db';
+import db from '../awsDB';
+import { convertToCamelCase } from '../../utils/lodash';
 
 export class StudentSubjectInformation {
   static async create({ studentId, subjectId, subjectLevel, goalDescription, goalLevel, reviewSize, reviewSpace }) {
@@ -21,7 +22,7 @@ export class StudentSubjectInformation {
 
   static async findAll() {
     const [rows] = await db.query('SELECT * FROM student_subject_information');
-    return rows;
+    return convertToCamelCase(rows);
   }
 
   static async findByStudentId(studentId) {
@@ -29,7 +30,20 @@ export class StudentSubjectInformation {
       'SELECT * FROM student_subject_information WHERE student_id = ?',
       [studentId]
     );
-    return rows;
+    return convertToCamelCase(rows);
+  }
+
+  static async findIdAndSubjectNameByStudentId(studentId) {
+    const [rows] = await db.query(
+      `
+      SELECT student_subject_information.student_subject_information_id, subject.subject_name 
+      FROM student_subject_information 
+      INNER JOIN subjects ON student_subject_information.subject_id = subjects.subject_id 
+      WHERE student_id = ?
+      `,
+      [studentId]
+    );
+    return convertToCamelCase(rows);
   }
 
   static async findByCompositeKey(studentId, subjectId) {
@@ -37,7 +51,7 @@ export class StudentSubjectInformation {
       'SELECT * FROM student_subject_information WHERE student_id = ? AND subject_id = ?',
       [studentId, subjectId]
     );
-    return rows || null;
+    return convertToCamelCase(rows);
   }
 
   static async update(studentSubjectInformationId, updates) {

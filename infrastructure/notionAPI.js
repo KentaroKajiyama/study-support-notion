@@ -1,5 +1,5 @@
-import { getNotionClient } from "./notionClient"
-import logger from "../utils/logger";
+import { getNotionClient } from "./notionClient.js"
+import logger from "../utils/logger.js";
 
 const notionClient = getNotionClient();
 
@@ -185,7 +185,7 @@ export default class NotionAPI {
    * 
    * @throws {Error} If the Notion API request fails.
    */
-  static async queryADatabase(databaseId, sortProperties = [], filter = null) {
+  static async queryADatabase(databaseId, { sortProperties = [], filter = null }) {
     try {
       let results = [];
       let cursor = null;
@@ -197,7 +197,6 @@ export default class NotionAPI {
           filter: filter || undefined,
           start_cursor: cursor || undefined
         });
-
         results.push(...response.results);
         cursor = response.next_cursor; // Get the next cursor for pagination
 
@@ -205,7 +204,7 @@ export default class NotionAPI {
 
       return results;
     } catch (error) {
-      logger.error("Error querying database from Notion:", error.message);
+      logger.error("Error querying database from Notion: "+ error.message);
       throw error;
     }
   }

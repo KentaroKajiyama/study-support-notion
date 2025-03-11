@@ -1,4 +1,5 @@
 import db from '../aws_db';
+import { convertToCamelCase } from '../../utils/lodash';
 
 export class Rests {
 
@@ -14,7 +15,7 @@ export class Rests {
 
   static async findAll() {
     const [rows] = await db.query('SELECT * FROM rests');
-    return rows;
+    return convertToCamelCase(rows);
   }
 
   static async findByStudentId(studentId) {
@@ -22,7 +23,15 @@ export class Rests {
       'SELECT * FROM rests WHERE student_id = ?',
       [studentId]
     );
-    return rows;
+    return convertToCamelCase(rows);
+  }
+
+  static async findByNotionPageId(pageId) {
+    const [rows] = await db.query(
+      'SELECT * FROM rests WHERE notion_page_id = ?',
+      [pageId]
+    );
+    return convertToCamelCase(rows);
   }
 
   static async findByCompositeKey(studentId, subfieldId) {
@@ -30,7 +39,7 @@ export class Rests {
       'SELECT * FROM rests WHERE student_id = ? AND subfield_id = ?',
       [studentId, subfieldId]
     );
-    return rows[0] || null;
+    return convertToCamelCase(rows);
   }
 
   static async update(restId, { startDate, endDate }) {
@@ -40,7 +49,7 @@ export class Rests {
       WHERE rest_id = ?
     `;
     const [result] = await db.query(sql, [startDate, endDate, restId]);
-    return result.affectedRows;
+    return convertToCamelCase(result.affectedRows);
   }
 
   static async delete(restId) {
@@ -48,6 +57,6 @@ export class Rests {
       'DELETE FROM rests WHERE rest_id = ?',
       [restId]
     );
-    return result.affectedRows;
+    return convertToCamelCase(result.affectedRows);
   }
 }
