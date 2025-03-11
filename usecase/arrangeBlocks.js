@@ -1,4 +1,4 @@
-import { coachPlanColumns, coachRestColumns, studentsOverviewsColumns, studentOnlyScheduleColumns, studentActualBlocksColumns } from "../const/notionDatabaseColumns.js";
+import { coachPlanProperties, coachRestProperties, studentsOverviewsProperties, studentOnlyScheduleProperties, studentActualBlocksProperties } from "../const/notionDatabaseProperties.js";
 import NotionAPI from "../infrastructure/notionAPI.js";
 import { Properties } from "../const/notionTemplate.js";
 import { propertyFromNotion, propertyToNotion } from "../utils/propertyHandler.js";
@@ -33,18 +33,18 @@ export async function schedulePlan(studentId, planDBId, irregularDBId, isConfirm
       return {
         startDate: propertyFromNotion({
           propertiesArray: properties,
-          propertyName: coachRestColumns.period.name,
-          propertyType: coachRestColumns.period.type
+          propertyName: coachRestProperties.period.name,
+          propertyType: coachRestProperties.period.type
         }).start,
         endDate: propertyFromNotion({
           propertiesArray: properties,
-          propertyName: coachRestColumns.period.name,
-          propertyType: coachRestColumns.period.type
+          propertyName: coachRestProperties.period.name,
+          propertyType: coachRestProperties.period.type
         }).end,
         subfieldName: propertyFromNotion({
           propertiesArray: properties,
-          propertyName: coachRestColumns.subfieldName.name,
-          propertyType: coachRestColumns.subfieldName.type
+          propertyName: coachRestProperties.subfieldName.name,
+          propertyType: coachRestProperties.subfieldName.type
         })
       }
     });
@@ -58,14 +58,14 @@ export async function schedulePlan(studentId, planDBId, irregularDBId, isConfirm
       await Promise.all(blocksInfo.blocks.map(async (block) => {
         await NotionAPI.updatePageProperties(block.planDBPageId, Properties([
           propertyToNotion({
-            propertyName: coachPlanColumns.speed.name,
+            propertyName: coachPlanProperties.speed.name,
             propertyContent: block.speed,
-            propertyType: coachPlanColumns.speed.type
+            propertyType: coachPlanProperties.speed.type
           }),
           propertyToNotion({
-            propertyName: coachPlanColumns.outputPeriod.name,
+            propertyName: coachPlanProperties.outputPeriod.name,
             propertyContent: { start: block.startDate, end: block.endDate },
-            propertyType: coachPlanColumns.outputPeriod.type
+            propertyType: coachPlanProperties.outputPeriod.type
           })
         ]))
       }))
@@ -113,51 +113,51 @@ export async function schedulePlan(studentId, planDBId, irregularDBId, isConfirm
           await Promise.all([
             await NotionAPI.updatePageProperties(block.notionPageIdForStudentSchedule, Properties([
               propertyToNotion({
-                propertyName: studentOnlyScheduleColumns.title.name,
+                propertyName: studentOnlyScheduleProperties.title.name,
                 propertyContent: block.blockName,
-                propertyType: studentOnlyScheduleColumns.title.type
+                propertyType: studentOnlyScheduleProperties.title.type
               }),
               propertyToNotion({
-                propertyName: studentOnlyScheduleColumns.period,
+                propertyName: studentOnlyScheduleProperties.period,
                 propertyContent: { start: block.startDate, end: block.endDate },
-                propertyType: studentOnlyScheduleColumns.period.type
+                propertyType: studentOnlyScheduleProperties.period.type
               })
             ])),
             await NotionAPI.updatePageProperties(block.notionPageIdForStudentActualBlocks, Properties([
               propertyToNotion({
-                propertyName: studentActualBlocksColumns.blockName.name,
+                propertyName: studentActualBlocksProperties.blockName.name,
                 propertyContent: block.blockName,
-                propertyType: studentActualBlocksColumns.blockName.type
+                propertyType: studentActualBlocksProperties.blockName.type
               }),
               propertyToNotion({
-                propertyName: studentActualBlocksColumns.speed.name,
+                propertyName: studentActualBlocksProperties.speed.name,
                 propertyContent: block.speed,
-                propertyType: studentActualBlocksColumns.speed.type
+                propertyType: studentActualBlocksProperties.speed.type
               }),
               propertyToNotion({
-                propertyName: studentActualBlocksColumns.outputPeriod.name,
+                propertyName: studentActualBlocksProperties.outputPeriod.name,
                 propertyContent: { start: block.startDate, end: block.endDate },
-                propertyType: studentActualBlocksColumns.outputPeriod.type
+                propertyType: studentActualBlocksProperties.outputPeriod.type
               }),
               propertyToNotion({
-                propertyName: studentActualBlocksColumns.problemRelations.name,
+                propertyName: studentActualBlocksProperties.problemRelations.name,
                 propertyContent: relatedProblemsPageIdArray,
-                propertyType: studentActualBlocksColumns.problemRelations.type
+                propertyType: studentActualBlocksProperties.problemRelations.type
               }),
               propertyToNotion({
-                propertyName: studentActualBlocksColumns.space.name,
+                propertyName: studentActualBlocksProperties.space.name,
                 propertyContent: block.space,
-                propertyType: studentActualBlocksColumns.space.type
+                propertyType: studentActualBlocksProperties.space.type
               }),
               propertyToNotion({
-                propertyName: studentActualBlocksColumns.lap.name,
+                propertyName: studentActualBlocksProperties.lap.name,
                 propertyContent: block.lap,
-                propertyType: studentActualBlocksColumns.lap.type
+                propertyType: studentActualBlocksProperties.lap.type
               }),
               propertyToNotion({
-                propertyName: studentActualBlocksColumns.blockOrder.name,
+                propertyName: studentActualBlocksProperties.blockOrder.name,
                 propertyContent: block.blockOrder,
-                propertyType: studentActualBlocksColumns.blockOrder.type
+                propertyType: studentActualBlocksProperties.blockOrder.type
               })
             ]))
           ])
@@ -187,20 +187,20 @@ export async function schedulePlan(studentId, planDBId, irregularDBId, isConfirm
     const response = await NotionAPI.retrieveAPage(studentOverviewPageId);
     const existingModifiedSubfieldNames = propertyFromNotion({
       propertiesArray: response.properties,
-      propertyName: studentsOverviewsColumns.planModifiedSubfieldNames.name,
-      propertyType: studentsOverviewsColumns.planModifiedSubfieldNames.type
+      propertyName: studentsOverviewsProperties.planModifiedSubfieldNames.name,
+      propertyType: studentsOverviewsProperties.planModifiedSubfieldNames.type
     });
     const updatedModifiedSubfieldNames = [...new Set([...existingModifiedSubfieldNames,...changedSubjects])];
     await NotionAPI.updatePageProperties(studentOverviewPageId, Properties([
       propertyToNotion({
-        propertyName: studentsOverviewsColumns.planModifiedSubfieldNames.name,
+        propertyName: studentsOverviewsProperties.planModifiedSubfieldNames.name,
         propertyContent: isConfirmed ? updatedModifiedSubfieldNames : [],
-        propertyType: studentsOverviewsColumns.planModifiedSubfieldNames.type
+        propertyType: studentsOverviewsProperties.planModifiedSubfieldNames.type
       }),
       propertyToNotion({
-        propertyName: studentsOverviewsColumns.planStatus.name,
-        propertyContent: isConfirmed ? studentsOverviewsColumns.planStatus.completed : studentsOverviewsColumns.planStatus.uncompleted,
-        propertyType: studentsOverviewsColumns.planStatus.type
+        propertyName: studentsOverviewsProperties.planStatus.name,
+        propertyContent: isConfirmed ? studentsOverviewsProperties.planStatus.completed : studentsOverviewsProperties.planStatus.uncompleted,
+        propertyType: studentsOverviewsProperties.planStatus.type
       })
     ]))
   } catch (error) {

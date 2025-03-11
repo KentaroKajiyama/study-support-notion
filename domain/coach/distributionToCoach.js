@@ -9,7 +9,7 @@ import { Parent } from "../const/notion_template.js";
 import { ActualBlocks } from "../../infrastructure/aws_database/ActualBlocks.js";
 import { StudentsSubfields } from "../infrastructure/aws_database/StudentsSubfields.js";
 import { Rests } from "../infrastructure/aws_database/Rest.js";
-import { coachPlanColumns } from "../../const/notionDatabaseColumns.js";
+import { coachPlanProperties } from "../../const/notionDatabaseProperties.js";
 import { propertyToNotion } from '../../utils/propertyHandler.js';
 
 // TODO: Confirm whether the arugment should be subfield 'Id' or 'Name'.
@@ -18,7 +18,7 @@ export async function sendBlockDefault(studentId, planDBId, irregularDBId, subfi
     // 0. Delete all the existing blocks in the coach db & irregular db
     const subfieldName = await Subfields.findBySubfieldId(subfieldId)[0].subfield_name;
     const filter = {
-      property: coachPlanColumns.subfieldName.name,
+      property: coachPlanProperties.subfieldName.name,
       select: { 'equals': subfieldName },
     };
     const existingBlocksInCoachPlan = await NotionAPI.queryADatabase(planDBId, filter=filter).results;
@@ -37,34 +37,34 @@ export async function sendBlockDefault(studentId, planDBId, irregularDBId, subfi
         const parent = Parent('database_id', planDBId);
         const response = await NotionAPI.createAPage(parent=parent, properties=Properties([
           propertyToNotion({
-            propertyName: coachPlanColumns.blockName.name,
+            propertyName: coachPlanProperties.blockName.name,
             propertyContent: block.block_name,
-            propertyType: coachPlanColumns.blockName.type,
+            propertyType: coachPlanProperties.blockName.type,
           }),
           propertyToNotion({
-            propertyName: coachPlanColumns.speed.name,
+            propertyName: coachPlanProperties.speed.name,
             propertyContent: block.speed,
-            propertyType: coachPlanColumns.speed.type,
+            propertyType: coachPlanProperties.speed.type,
           }),
           propertyToNotion({
-            propertyName: coachPlanColumns.space.name,
+            propertyName: coachPlanProperties.space.name,
             propertyContent: block.space,
-            propertyType: coachPlanColumns.space.type,
+            propertyType: coachPlanProperties.space.type,
           }),
           propertyToNotion({
-            propertyName: coachPlanColumns.lap.name,
+            propertyName: coachPlanProperties.lap.name,
             propertyContent: block.lap,
-            propertyType: coachPlanColumns.lap.type,
+            propertyType: coachPlanProperties.lap.type,
           }),
           propertyToNotion({
-            propertyName: coachPlanColumns.subfieldName.name,
+            propertyName: coachPlanProperties.subfieldName.name,
             propertyContent: subfieldName,
-            propertyType: coachPlanColumns.subfieldName.type,
+            propertyType: coachPlanProperties.subfieldName.type,
           }),
           propertyToNotion({
-            propertyName: coachPlanColumns.blockOrder.name,
+            propertyName: coachPlanProperties.blockOrder.name,
             propertyContent: block.block_order,
-            propertyType: coachPlanColumns.blockOrder.type,
+            propertyType: coachPlanProperties.blockOrder.type,
           }),
         ]));
         if(acutalBlocks.length === 0) blockPageIdDict[block.default_block_id] = response.id;

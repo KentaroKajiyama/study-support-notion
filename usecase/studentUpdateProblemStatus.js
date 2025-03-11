@@ -8,7 +8,7 @@ import { StudentSubfieldTraces } from "../infrastructure/aws_database/StudentSub
 import NotionAPI from "../infrastructure/notionAPI.js";
 import { propertyToNotion } from '../utils/propertyHandler.js'
 import { Properties } from "../const/notionTemplate.js";
-import { todoRemainingCountersColumns, remainingDayColumns, studentsOverviewsColumns, returnSubfieldDelayKeyName } from "../const/notionDatabaseColumns.js";
+import { todoRemainingCountersProperties, remainingDayProperties, studentsOverviewsProperties, returnSubfieldDelayKeyName } from "../const/notionDatabaseProperties.js";
 import { copyPageCreate } from "../utils/copyPage.js";
 import { Trackers } from "../infrastructure/aws_database/Trackers.js";
 import { Subfields } from '../infrastructure/aws_database/Subfields.js';
@@ -72,28 +72,28 @@ export async function ansStatusChange(studentId, studentProblemPageId, isTodo = 
       await Promise.all([
         await NotionAPI.updatePageProperties(studentOverviewPageId, Properties.getJSON([
           propertyToNotion({
-            propertyName: studentsOverviewsColumns[subfieldDelayKeyName].name,
+            propertyName: studentsOverviewsProperties[subfieldDelayKeyName].name,
             propertyContent: studentSubfieldTrace.delay,
-            propertyType: studentsOverviewsColumns[subfieldDelayKeyName].type
+            propertyType: studentsOverviewsProperties[subfieldDelayKeyName].type
           })
         ])),
         await NotionAPI.updatePageProperties(studentSubfieldTrace.todoRemainingCounterNotionPageId, Properties.getJSON([
           propertyToNotion({
-            propertyName: todoRemainingCountersColumns.remainingProbNum.name,
+            propertyName: todoRemainingCountersProperties.remainingProbNum.name,
             propertyContent: studentSubfieldTrace.todoRemainingCounter,
-            propertyType: todoRemainingCountersColumns.remainingProbNum.type
+            propertyType: todoRemainingCountersProperties.remainingProbNum.type
           }),
           propertyToNotion({
-            propertyName: todoRemainingCountersColumns.delay.name,
+            propertyName: todoRemainingCountersProperties.delay.name,
             propertyContent: studentSubfieldTrace.delay,
-            propertyType: todoRemainingCountersColumns.delay.type
+            propertyType: todoRemainingCountersProperties.delay.type
           })
         ])),
         await NotionAPI.updatePageProperties(studentSubfieldTrace.remainingDayNotionPageId, Properties.getJSON([
           propertyToNotion({
-            propertyName: remainingDayColumns.remainingDay.name,
+            propertyName: remainingDayProperties.remainingDay.name,
             propertyContent: studentSubfieldTrace.remainingDay,
-            propertyType: remainingDayColumns.remainingDay.type
+            propertyType: remainingDayProperties.remainingDay.type
           })
         ]))
       ]);

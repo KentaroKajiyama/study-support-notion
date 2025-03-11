@@ -1,5 +1,5 @@
 import { isWithinInterval } from "date-fns";
-import { coachPlanColumns, coachIrregularColumns } from "../const/notionDatabaseColumns";
+import { coachPlanProperties, coachIrregularProperties } from "../const/notionDatabaseProperties";
 import { propertyFromNotion, propertyToNotion } from '../utils/propertyHandler';
 import { extractIdFromMention } from "../utils/extractId";
 import { ActualBlocks } from "../infrastructure/aws_database/ActualBlocks";
@@ -30,47 +30,47 @@ export async function applyIrregularChanges(studentId, subfieldInfoList, planBlo
   try {
     const plannedBlocks = planBlockArray.map(async blockProperties => {
       // TODO: This is vulnerable...
-      const actualBlockPageId = extractIdFromMention(propertyFromNotion(blockProperties, coachPlanColumns.blockName.name, coachPlanColumns.blockName.type));
+      const actualBlockPageId = extractIdFromMention(propertyFromNotion(blockProperties, coachPlanProperties.blockName.name, coachPlanProperties.blockName.type));
       const actualBlockAWSId = await ActualBlocks.findByNotionPageId(blockProperties.actualBlockPageId)[0].actual_block_id;
-      const blockOrder = propertyFromNotion(blockProperties, coachPlanColumns.blockOrder.name, coachPlanColumns.blockOrder.type);
+      const blockOrder = propertyFromNotion(blockProperties, coachPlanProperties.blockOrder.name, coachPlanProperties.blockOrder.type);
       if (!blockOrder){
-        throw new Error(`Block ${propertyFromNotion(blockProperties, coachPlanColumns.blockName.name, coachPlanColumns.blockName.type)}'s order must not be empty`);
+        throw new Error(`Block ${propertyFromNotion(blockProperties, coachPlanProperties.blockName.name, coachPlanProperties.blockName.type)}'s order must not be empty`);
       }
       return {
         actualBlockPageId: actualBlockPageId,
         actualBlockAWSId: actualBlockAWSId,
-        inputStartDate: propertyFromNotion(blockProperties, coachPlanColumns.startDate.name, coachPlanColumns.startDate.type).start,
-        inputEndDate: propertyFromNotion(blockProperties, coachPlanColumns.endDate.name, coachPlanColumns.endDate.type).start,
-        isIrregular: propertyFromNotion(blockProperties, coachPlanColumns.isIrregular.name, coachPlanColumns.isIrregular.type),
-        speed: propertyFromNotion(blockProperties, coachPlanColumns.speed.name, coachPlanColumns.speed.type) || 4,
-        space: propertyFromNotion(blockProperties, coachPlanColumns.space.name, coachPlanColumns.space.type) || 0,
-        lap: propertyFromNotion(blockProperties, coachPlanColumns.lap.name, coachPlanColumns.lap.type) || 0,
-        subfieldName: propertyFromNotion(blockProperties, coachPlanColumns.subfield.name, coachPlanColumns.subfield.type),
+        inputStartDate: propertyFromNotion(blockProperties, coachPlanProperties.startDate.name, coachPlanProperties.startDate.type).start,
+        inputEndDate: propertyFromNotion(blockProperties, coachPlanProperties.endDate.name, coachPlanProperties.endDate.type).start,
+        isIrregular: propertyFromNotion(blockProperties, coachPlanProperties.isIrregular.name, coachPlanProperties.isIrregular.type),
+        speed: propertyFromNotion(blockProperties, coachPlanProperties.speed.name, coachPlanProperties.speed.type) || 4,
+        space: propertyFromNotion(blockProperties, coachPlanProperties.space.name, coachPlanProperties.space.type) || 0,
+        lap: propertyFromNotion(blockProperties, coachPlanProperties.lap.name, coachPlanProperties.lap.type) || 0,
+        subfieldName: propertyFromNotion(blockProperties, coachPlanProperties.subfield.name, coachPlanProperties.subfield.type),
         blockOrder: blockOrder,
-        planDBPageId: propertyFromNotion(blockProperties, coachPlanColumns.planDBPageId.name, coachPlanColumns.planDBPageId.type),
-        outputPeriod: propertyFromNotion(blockProperties, coachPlanColumns.outputPeriod.name, coachPlanColumns.outputPeriod.type),
+        planDBPageId: propertyFromNotion(blockProperties, coachPlanProperties.planDBPageId.name, coachPlanProperties.planDBPageId.type),
+        outputPeriod: propertyFromNotion(blockProperties, coachPlanProperties.outputPeriod.name, coachPlanProperties.outputPeriod.type),
       }
     });
     const irregularProblems = irregularArray.map(blockProperties => {
-      const insertOrder = propertyFromNotion(blockProperties, coachIrregularColumns.insertNumber.name, coachIrregularColumns.insertNumber.type);
-      const irregularProbOrder = propertyFromNotion(blockProperties, coachIrregularColumns.irregularProbOrder.name, coachIrregularColumns.irregularProbOrder.type);
+      const insertOrder = propertyFromNotion(blockProperties, coachIrregularProperties.insertNumber.name, coachIrregularProperties.insertNumber.type);
+      const irregularProbOrder = propertyFromNotion(blockProperties, coachIrregularProperties.irregularProbOrder.name, coachIrregularProperties.irregularProbOrder.type);
       if (!insertOrder) {
-        throw new Error(`Irregular problem ${propertyFromNotion(blockProperties, coachIrregularColumns.problemName.name, coachIrregularColumns.problemName.type)}'s insert order must not be empty`);
+        throw new Error(`Irregular problem ${propertyFromNotion(blockProperties, coachIrregularProperties.problemName.name, coachIrregularProperties.problemName.type)}'s insert order must not be empty`);
       };
       if (!irregularProbOrder) {
-        throw new Error(`Irregular problem ${propertyFromNotion(blockProperties, coachIrregularColumns.problemName.name, coachIrregularColumns.problemName.type)}'s irregular problem order must not be empty`);
+        throw new Error(`Irregular problem ${propertyFromNotion(blockProperties, coachIrregularProperties.problemName.name, coachIrregularProperties.problemName.type)}'s irregular problem order must not be empty`);
       };
       return {
-        studentProblemPageId: extractIdFromMention(propertyFromNotion(blockProperties, coachIrregularColumns.problemName.name, coachIrregularColumns.problemName.type)),
-        isModified: propertyFromNotion(blockProperties, coachIrregularColumns.isModified.name, coachIrregularColumns.type),
+        studentProblemPageId: extractIdFromMention(propertyFromNotion(blockProperties, coachIrregularProperties.problemName.name, coachIrregularProperties.problemName.type)),
+        isModified: propertyFromNotion(blockProperties, coachIrregularProperties.isModified.name, coachIrregularProperties.type),
         insertOrder: insertOrder,
-        subfieldName: propertyFromNotion(blockProperties, coachIrregularColumns.subfield.name, coachIrregularColumns.subfield.type),
+        subfieldName: propertyFromNotion(blockProperties, coachIrregularProperties.subfield.name, coachIrregularProperties.subfield.type),
         irregularProbOrder: insertOrder,
-        formerBlockName: propertyFromNotion(blockProperties, coachIrregularColumns.formerBlock.name, coachIrregularColumns.formerBlock.type),
-        formerBlockPageId: extractIdFromMention(propertyFromNotion(blockProperties, coachIrregularColumns.formerBlock.name, coachIrregularColumns.formerBlock.type)),
-        insertBlockName: propertyFromNotion(blockProperties, coachIrregularColumns.insertBlock.name, coachIrregularColumns.insertBlock.type),
-        insertBlockPageId: extractIdFromMention(propertyFromNotion(blockProperties, coachIrregularColumns.insertBlock.name, coachIrregularColumns.insertBlock.type)),
-        irregularPageId: propertyFromNotion(blockProperties, coachIrregularColumns.irregularPageId.name, coachIrregularColumns.irregularPageId.type)
+        formerBlockName: propertyFromNotion(blockProperties, coachIrregularProperties.formerBlock.name, coachIrregularProperties.formerBlock.type),
+        formerBlockPageId: extractIdFromMention(propertyFromNotion(blockProperties, coachIrregularProperties.formerBlock.name, coachIrregularProperties.formerBlock.type)),
+        insertBlockName: propertyFromNotion(blockProperties, coachIrregularProperties.insertBlock.name, coachIrregularProperties.insertBlock.type),
+        insertBlockPageId: extractIdFromMention(propertyFromNotion(blockProperties, coachIrregularProperties.insertBlock.name, coachIrregularProperties.insertBlock.type)),
+        irregularPageId: propertyFromNotion(blockProperties, coachIrregularProperties.irregularPageId.name, coachIrregularProperties.irregularPageId.type)
       }
     });
     const studentProblems = await StudentProblemsAWS.findByStudentId(studentId);
@@ -126,9 +126,9 @@ export async function applyIrregularChanges(studentId, subfieldInfoList, planBlo
               await NotionAPI.updatePageProperties(irregularInfo.irregularPageId, Properties.getJSON([
                 propertyToNotion(
                   {
-                    propertyName: coachIrregularColumns.insertBlock.name,
+                    propertyName: coachIrregularProperties.insertBlock.name,
                     propertyContent: insertBlockName,
-                    propertyType: coachIrregularColumns.insertBlock.type
+                    propertyType: coachIrregularProperties.insertBlock.type
                   }
                 )
               ]));

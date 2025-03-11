@@ -1,6 +1,6 @@
 export const subfieldsList = ['現代文', '古文', '漢文', '数学', 'Reading', 'Listening&Speaking', 'Writing', '物理', '化学', '生物', '日本史', '世界史', '地理'];
 
-export const modernJapaneseColumns = {
+export const modernJapaneseProperties = {
   problemName: { name: '', type: 'title'},
   area: { name: '', type: 'rich_text'},
   answer: { name: '', type: 'rich_text'},
@@ -12,7 +12,7 @@ export const modernJapaneseColumns = {
   option3: null,
   option4: null,
 };
-export const ancientJapaneseColumns = {
+export const ancientJapaneseProperties = {
   problemName: { name: '', type: 'title'},
   area: { name: '', type: 'rich_text'},
   answer: { name: '', type: 'rich_text'},
@@ -24,7 +24,7 @@ export const ancientJapaneseColumns = {
   option3: null,
   option4: null,
 };
-export const ancientChineseColumns = {
+export const ancientChineseProperties = {
   problemName: { name: '', type: 'title'},
   area: { name: '', type: 'rich_text'},
   answer: { name: '', type: 'rich_text'},
@@ -36,7 +36,7 @@ export const ancientChineseColumns = {
   option3: null,
   option4: null,
 };
-export const mathColumns = {
+export const mathProperties = {
   problemName: { name: '', type: 'title'},
   area: { name: '', type: 'rich_text'},
   answer: { name: '', type: 'rich_text'},
@@ -48,7 +48,7 @@ export const mathColumns = {
   option3: null,
   option4: null,
 };
-export const readingColumns = {
+export const readingProperties = {
   problemName: { name: '', type: 'title'},
   area: { name: '', type: 'rich_text'},
   answer: { name: '', type: 'rich_text'},
@@ -60,7 +60,7 @@ export const readingColumns = {
   option3: null,
   option4: null,
 };
-export const listeningAndSpeakingColumns = {
+export const listeningAndSpeakingProperties = {
   problemName: { name: '', type: 'title'},
   area: { name: '', type: 'rich_text'},
   answer: { name: '', type: 'rich_text'},
@@ -72,7 +72,7 @@ export const listeningAndSpeakingColumns = {
   option3: null,
   option4: null,
 };
-export const writingColumns = {
+export const writingProperties = {
   problemName: { name: '', type: 'title'},
   area: { name: '', type: 'rich_text'},
   answer: { name: '', type: 'rich_text'},
@@ -84,7 +84,7 @@ export const writingColumns = {
   option3: null,
   option4: null,
 };
-export const physicsColumns = {
+export const physicsProperties = {
   problemName: { name: '', type: 'title'},
   area: { name: '', type: 'rich_text'},
   answer: { name: '', type: 'rich_text'},
@@ -96,7 +96,7 @@ export const physicsColumns = {
   option3: null,
   option4: null,
 };
-export const chemistryColumns = {
+export const chemistryProperties = {
   problemName: { name: '', type: 'title'},
   area: { name: '', type: 'rich_text'},
   answer: { name: '', type: 'rich_text'},
@@ -108,7 +108,7 @@ export const chemistryColumns = {
   option3: null,
   option4: null,
 };
-export const biologyColumns = {
+export const biologyProperties = {
   problemName: { name: '', type: 'title'},
   area: { name: '', type: 'rich_text'},
   answer: { name: '', type: 'rich_text'},
@@ -120,7 +120,7 @@ export const biologyColumns = {
   option3: null,
   option4: null,
 };
-export const japaneseHistoryColumns = {
+export const japaneseHistoryProperties = {
   problemName: { name: 'チェック項目', type: 'title'},
   area: { name: '時代区分', type: 'rich_text'},
   answer: { name: '解答', type: 'rich_text'},
@@ -132,7 +132,7 @@ export const japaneseHistoryColumns = {
   option3: null,
   option4: null,
 };
-export const worldHistoryColumns = {
+export const worldHistoryProperties = {
   problemName: { name: '', type: 'title'},
   area: { name: '', type: 'rich_text'},
   answer: { name: '', type: 'rich_text'},
@@ -144,7 +144,7 @@ export const worldHistoryColumns = {
   option3: null,
   option4: null,
 };
-export const geographyColumns = {
+export const geographyProperties = {
   problemName: { name: '', type: 'title'},
   area: { name: '', type: 'rich_text'},
   answer: { name: '', type: 'rich_text'},
@@ -157,34 +157,34 @@ export const geographyColumns = {
   option4: null,
 };
 
-export const returnSubfieldColumns = (subfieldName) => {
+export const returnSubfieldProperties = (subfieldName) => {
   switch (subfieldName) {
     case '国語':
-      return modernJapaneseColumns;
+      return modernJapaneseProperties;
     case '現代文':
-      return ancientJapaneseColumns;
+      return ancientJapaneseProperties;
     case '漢文':
-      return ancientChineseColumns;
+      return ancientChineseProperties;
     case '数学':
-      return mathColumns;
+      return mathProperties;
     case 'Reading':
-      return readingColumns;
+      return readingProperties;
     case 'Listening&Speaking':
-      return listeningAndSpeakingColumns;
+      return listeningAndSpeakingProperties;
     case 'Writing':
-      return writingColumns;
+      return writingProperties;
     case '物理':
-      return physicsColumns;
+      return physicsProperties;
     case '化学':
-      return chemistryColumns;
+      return chemistryProperties;
     case '生物':
-      return biologyColumns;
+      return biologyProperties;
     case '日本史':
-      return japaneseHistoryColumns;
+      return japaneseHistoryProperties;
     case '世界史':
-      return worldHistoryColumns;
+      return worldHistoryProperties;
     case '地理':
-      return geographyColumns;
+      return geographyProperties;
     default:
       throw new Error(`Invalid subfield: ${subfieldName}`);
   };

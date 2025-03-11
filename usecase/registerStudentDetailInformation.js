@@ -2,11 +2,11 @@ import { StudentDetailInformation } from '../../infrastructure/notion_database/c
 import { Students } from "../../infrastructure/aws_database/Students.js";
 import convertToSnakeCase from "../../utils/lodash.js";
 import { sendBlockDefault } from '../domain/coach/distributionToCoach.js';
-import { studentInfoDetail } from "../../const/notionDatabaseColumns.js";
+import { studentInfoDetail } from "../../const/notionDatabaseProperties.js";
 import { Subjects } from '../../infrastructure/aws_database/Subjects.js';
 import logger from '../utils/logger.js';
 import NotionAPI from '../infrastructure/notionAPI.js'
-import { studentsOverviewsColumns } from '../const/notionDatabaseColumns.js';
+import { studentsOverviewsProperties } from '../const/notionDatabaseProperties.js';
 import { propertyFromNotion, propertyToNotion } from '../utils/propertyHandler.js';
 import { Properties } from '../const/notionTemplate.js';
 import { StudentSubjectInformation } from '../../infrastructure/aws_database/StudentSubjectInformation.js';
@@ -117,20 +117,20 @@ export async function registerStudentDetailInfo(studentId) {
       const response = await NotionAPI.retrieveAPage(studentOverviewPageId);
       const existingModifiedSubfieldNames = propertyFromNotion({
         propertiesArray: response.properties,
-        propertyName: studentsOverviewsColumns.planModifiedSubfieldNames.name,
-        propertyType: studentsOverviewsColumns.planModifiedSubfieldNames.type
+        propertyName: studentsOverviewsProperties.planModifiedSubfieldNames.name,
+        propertyType: studentsOverviewsProperties.planModifiedSubfieldNames.type
       });
       const updatedModifiedSubfieldNames = [...new Set([...existingModifiedSubfieldNames,...changedSubjects])];
       await NotionAPI.updatePageProperties(studentOverviewPageId, Properties([
         propertyToNotion({
-          propertyName: studentsOverviewsColumns.planModifiedSubfieldNames.name,
+          propertyName: studentsOverviewsProperties.planModifiedSubfieldNames.name,
           propertyContent: updatedModifiedSubfieldNames,
-          propertyType: studentsOverviewsColumns.planModifiedSubfieldNames.type
+          propertyType: studentsOverviewsProperties.planModifiedSubfieldNames.type
         }),
         propertyToNotion({
-          propertyName: studentsOverviewsColumns.planStatus.name,
-          propertyContent: studentsOverviewsColumns.planStatus.uncompleted,
-          propertyType: studentsOverviewsColumns.planStatus.type
+          propertyName: studentsOverviewsProperties.planStatus.name,
+          propertyContent: studentsOverviewsProperties.planStatus.uncompleted,
+          propertyType: studentsOverviewsProperties.planStatus.type
         })
       ]))
     };

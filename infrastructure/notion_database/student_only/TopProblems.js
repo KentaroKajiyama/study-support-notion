@@ -1,7 +1,7 @@
 import NotionAPI from "../../notionAPI";
 import * as _ from "../../../const/notionTemplate";
 import { propertyFromNotion, propertyToNotion } from "../../../utils/propertyHandler";
-import { returnSubfieldColumns } from "../../../const/problemDatabase";
+import { returnSubfieldProperties } from "../../../const/problemDatabase";
 import { probAnalysis } from "../../../const/problemAnalysis";
 import logger from "../../../utils/logger";
 
@@ -17,23 +17,23 @@ export class TopProblems {
         const topProblemPageId = item.id;
         const properties = item.properties;
         const subfieldName = propertyFromNotion(properties, '科目', 'status')
-        const subfieldColumns = returnSubfieldColumns(subfieldName);
+        const subfieldProperties = returnSubfieldProperties(subfieldName);
         return {
           topProblemPageId: topProblemPageId, 
-          title: propertyFromNotion(properties, subfieldColumns.problemName.name, subfieldColumns.problemName.type), 
+          title: propertyFromNotion(properties, subfieldProperties.problemName.name, subfieldProperties.problemName.type), 
           subfieldName: subfieldName,
-          answer: propertyFromNotion(properties, subfieldColumns.answer.name, subfieldColumns.answer.type), 
+          answer: propertyFromNotion(properties, subfieldProperties.answer.name, subfieldProperties.answer.type), 
           ansStatus: propertyFromNotion(properties, probAnalysis.ansStatus.name, probAnalysis.ansStatus.type), 
           isDifficult: propertyFromNotion(properties, probAnalysis.isDifficult.name, probAnalysis.isDifficult.type),
           reviewLevel: propertyFromNotion(properties, probAnalysis.reviewLevel.name, probAnalysis.reviewLevel.type),
-          area: propertyFromNotion(properties, subfieldColumns.area.name, subfieldColumns.area.type),
-          section: propertyFromNotion(properties, subfieldColumns.section.name, subfieldColumns.section.type),
-          subsection: propertyFromNotion(properties, subfieldColumns.subsection.name, subfieldColumns.subsection.type),
-          optionLength: subfieldColumns.optionLength,
-          option1: propertyFromNotion(properties, subfieldColumns.option1.name, subfieldColumns.option1.type),
-          option2: propertyFromNotion(properties, subfieldColumns.option2.name, subfieldColumns.option2.type),
-          option3: propertyFromNotion(properties, subfieldColumns.option3.name, subfieldColumns.option3.type),
-          option4: propertyFromNotion(properties, subfieldColumns.option4.name, subfieldColumns.option4.type),
+          area: propertyFromNotion(properties, subfieldProperties.area.name, subfieldProperties.area.type),
+          section: propertyFromNotion(properties, subfieldProperties.section.name, subfieldProperties.section.type),
+          subsection: propertyFromNotion(properties, subfieldProperties.subsection.name, subfieldProperties.subsection.type),
+          optionLength: subfieldProperties.optionLength,
+          option1: propertyFromNotion(properties, subfieldProperties.option1.name, subfieldProperties.option1.type),
+          option2: propertyFromNotion(properties, subfieldProperties.option2.name, subfieldProperties.option2.type),
+          option3: propertyFromNotion(properties, subfieldProperties.option3.name, subfieldProperties.option3.type),
+          option4: propertyFromNotion(properties, subfieldProperties.option4.name, subfieldProperties.option4.type),
           notionPageId: propertyFromNotion(properties, probAnalysis.probId.name, probAnalysis.probId.type)
         }
       });
@@ -50,23 +50,23 @@ export class TopProblems {
       }
       const properties = response.properties;
       const subfieldName = propertyFromNotion(properties, '科目', 'status');
-      const subfieldColumns = returnSubfieldColumns(subfieldName);
+      const subfieldProperties = returnSubfieldProperties(subfieldName);
       return {
         topProblemPageId: topProblemPageId, 
-        title: propertyFromNotion(properties, subfieldColumns.problemName.name, subfieldColumns.problemName.type), 
+        title: propertyFromNotion(properties, subfieldProperties.problemName.name, subfieldProperties.problemName.type), 
         subfieldName: subfieldName,
-        answer: propertyFromNotion(properties, subfieldColumns.answer.name, subfieldColumns.answer.type), 
+        answer: propertyFromNotion(properties, subfieldProperties.answer.name, subfieldProperties.answer.type), 
         ansStatus: propertyFromNotion(properties, probAnalysis.ansStatus.name, probAnalysis.ansStatus.type), 
         isDifficult: propertyFromNotion(properties, probAnalysis.isDifficult.name, probAnalysis.isDifficult.type),
         reviewLevel: propertyFromNotion(properties, probAnalysis.reviewLevel.name, probAnalysis.reviewLevel.type),
-        area: propertyFromNotion(properties, subfieldColumns.area.name, subfieldColumns.area.type),
-        section: propertyFromNotion(properties, subfieldColumns.section.name, subfieldColumns.section.type),
-        subsection: propertyFromNotion(properties, subfieldColumns.subsection.name, subfieldColumns.subsection.type),
-        optionLength: subfieldColumns.optionLength,
-        option1: propertyFromNotion(properties, subfieldColumns.option1.name, subfieldColumns.option1.type),
-        option2: propertyFromNotion(properties, subfieldColumns.option2.name, subfieldColumns.option2.type),
-        option3: propertyFromNotion(properties, subfieldColumns.option3.name, subfieldColumns.option3.type),
-        option4: propertyFromNotion(properties, subfieldColumns.option4.name, subfieldColumns.option4.type),
+        area: propertyFromNotion(properties, subfieldProperties.area.name, subfieldProperties.area.type),
+        section: propertyFromNotion(properties, subfieldProperties.section.name, subfieldProperties.section.type),
+        subsection: propertyFromNotion(properties, subfieldProperties.subsection.name, subfieldProperties.subsection.type),
+        optionLength: subfieldProperties.optionLength,
+        option1: propertyFromNotion(properties, subfieldProperties.option1.name, subfieldProperties.option1.type),
+        option2: propertyFromNotion(properties, subfieldProperties.option2.name, subfieldProperties.option2.type),
+        option3: propertyFromNotion(properties, subfieldProperties.option3.name, subfieldProperties.option3.type),
+        option4: propertyFromNotion(properties, subfieldProperties.option4.name, subfieldProperties.option4.type),
         notionPageId: propertyFromNotion(properties, probAnalysis.probId.name, probAnalysis.probId.type)
       };
     } catch(error) {
@@ -78,19 +78,19 @@ export class TopProblems {
     try {
       const promises = topProblemList.map(async (topProblem) => {
         try {
-          const subfieldColumns = returnSubfieldColumns(topProblem.subfieldName);
+          const subfieldProperties = returnSubfieldProperties(topProblem.subfieldName);
           const propertiesNode = []
-          propertiesNode.push({ propertyName: subfieldColumns.problemName.name, propertyContent: topProblem.problemName, propertyType: subfieldColumns.problemName.type });
-          propertiesNode.push({ propertyName: subfieldColumns.answer.name, propertyContent: topProblem.answer, propertyType: subfieldColumns.answer.type });
+          propertiesNode.push({ propertyName: subfieldProperties.problemName.name, propertyContent: topProblem.problemName, propertyType: subfieldProperties.problemName.type });
+          propertiesNode.push({ propertyName: subfieldProperties.answer.name, propertyContent: topProblem.answer, propertyType: subfieldProperties.answer.type });
           propertiesNode.push({ propertyName: probAnalysis.ansStatus.name, propertyContent: topProblem.ansStatus, propertyType: probAnalysis.ansStatus.type });
           propertiesNode.push({ propertyName: probAnalysis.isDifficult.name, propertyContent: topProblem.isDifficult, propertyType: probAnalysis.isDifficult.type });
           propertiesNode.push({ propertyName: probAnalysis.reviewLevel.name, propertyContent: topProblem.reviewLevel, propertyType: probAnalysis.reviewLevel.type })
-          propertiesNode.push({ propertyName: subfieldColumns.area.name, propertyContent: topProblem.area, propertyType: subfieldColumns.area.type });
-          propertiesNode.push({ propertyName: subfieldColumns.section.name, propertyContent: topProblem.section, propertyType: subfieldColumns.section.type });
-          propertiesNode.push({ propertyName: subfieldColumns.subsection.name, propertyContent: topProblem.subsection, propertyType: subfieldColumns.subsection.type });
-          for (let i = 1; i <= subfieldColumns.optionLength;i++){
+          propertiesNode.push({ propertyName: subfieldProperties.area.name, propertyContent: topProblem.area, propertyType: subfieldProperties.area.type });
+          propertiesNode.push({ propertyName: subfieldProperties.section.name, propertyContent: topProblem.section, propertyType: subfieldProperties.section.type });
+          propertiesNode.push({ propertyName: subfieldProperties.subsection.name, propertyContent: topProblem.subsection, propertyType: subfieldProperties.subsection.type });
+          for (let i = 1; i <= subfieldProperties.optionLength;i++){
             const optionNum = `option${i}`;
-            propertiesNode.push({ propertyName: subfieldColumns[optionNum].name, propertyContent: topProblem[optionNum], propertyType: subfieldColumns[optionNum].type });
+            propertiesNode.push({ propertyName: subfieldProperties[optionNum].name, propertyContent: topProblem[optionNum], propertyType: subfieldProperties[optionNum].type });
           };
           const propertiesObj = propertiesNode.map(propertyNode => propertyToNotion(propertyNode));
           // Build the JSON for properties by combining each property's JSON string.

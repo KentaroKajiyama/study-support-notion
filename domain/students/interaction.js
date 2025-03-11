@@ -1,5 +1,3 @@
-import NotionAPI from "../../infrastructure/notionAPI.js";
-import { todoCountersColumns } from "../../const/notionDatabaseColumns.js";
 import { StudentProblemsAWS } from '../../infrastructure/aws_database/StudentProblems.js'
 import logger from "../../utils/logger.js";
 import { Trackers } from '../../infrastructure/aws_database/Trackers.js';

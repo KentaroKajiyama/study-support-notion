@@ -17,7 +17,7 @@ import { copyPageCreate } from '../utils/copyPage';
 import { probAnalysis } from '../const/problemAnalysis';
 import { Properties } from '../const/notionTemplate';
 import { propertyFromNotion, propertyToNotion } from '../utils/propertyHandler';
-import { studentsOverviewsColumns } from '../const/notionDatabaseColumns';
+import { studentsOverviewsProperties } from '../const/notionDatabaseProperties';
 import { calculateNextTrackerAndTodoRemainingCounter } from '../caluculation/scheduleForStudents';
 import { delaySchedule } from '../caluculation/scheduleForStudents';
 
@@ -495,9 +495,9 @@ export async function sendReviewAlertPerStudent(studentId, todoDatabaseId) {
       const response = await NotionAPI.updatePageProperties(studentOverviewPageId, Properties.getJSON(
         [
           propertyToNotion({
-            propertyName: studentsOverviewsColumns.alertSubfields.name,
+            propertyName: studentsOverviewsProperties.alertSubfields.name,
             propertyContent: alertSubfieldList,
-            propertyType: studentsOverviewsColumns.alertSubfields.type
+            propertyType: studentsOverviewsProperties.alertSubfields.type
           })
         ]
       ));

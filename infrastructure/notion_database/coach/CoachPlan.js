@@ -2,7 +2,7 @@ import notionAPI from "../../notionAPI";
 import * as _ from "../../../const/notion_template";
 import { richTextToInlineText } from "../../../utils/convert_rich_text";
 import logger from "../../../utils/logger";
-import { coachPlanColumns } from "../../../const/notionDatabaseColumns";
+import { coachPlanProperties } from "../../../const/notionDatabaseProperties";
 import { propertyToNotion } from "../../../utils/propertyHandler";
 import { Properties } from "../../../const/notionTemplate";
 
@@ -93,9 +93,9 @@ export class CoachPlan {
   static async updateAnOutputDate(coachPlanPageId, startDate, endDate){
     try {
       const startEndDate = propertyToNotion({
-        propertyName: coachPlanColumns.outputPeriod.name,
+        propertyName: coachPlanProperties.outputPeriod.name,
         propertyContent: { start: startDate, end: endDate },
-        propertyType: coachPlanColumns.outputPeriod.type
+        propertyType: coachPlanProperties.outputPeriod.type
       });
       const response = await notionAPI.updateAPage(coachPlanPageId, Properties([
         startEndDate,

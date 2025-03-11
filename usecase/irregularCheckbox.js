@@ -4,7 +4,7 @@ import { StudentProblemsAWS } from "../../infrastructure/aws_database/StudentPro
 import { copyPageCreate } from "../../utils/copyPage.js";
 import { Students } from '../../infrastructure/aws_database/Students.js';
 import NotionAPI from "../../infrastructure/notionAPI";
-import { coachIrregularColumns } from "../../const/notionDatabaseColumns";
+import { coachIrregularProperties } from "../../const/notionDatabaseProperties";
 
 export async function irregularChange(studentAWSId, irregularPageId, isChecked) {
   try {
@@ -16,8 +16,8 @@ export async function irregularChange(studentAWSId, irregularPageId, isChecked) 
     } else {
       const deleteProblemPageIds = await NotionAPI.queryADatabase(irregularDatabaseId, filter = {
         filter: {
-          property: coachIrregularColumns.formerBlock.name,
-          [coachIrregularColumns.formerBlock.type]: {
+          property: coachIrregularProperties.formerBlock.name,
+          [coachIrregularProperties.formerBlock.type]: {
             equals: actualBlockInfo.actual_block_id,
           }
         }
