@@ -4,7 +4,6 @@ import { Properties } from "../const/notionTemplate.js";
 import { propertyFromNotion, propertyToNotion } from "../utils/propertyHandler.js";
 import { logger } from "../utils/logger.js";
 import { StudentSubfieldTraces } from "../infrastructure/aws_database/StudentSubfieldTraces.js";
-import { Rests } from "../infrastructure/aws_database/Rests.js";
 import { applyIrregularChanges } from "../domain/caluculation/scheduleForStudents.js";
 import { StudentProblemsAWS } from '../infrastructure/aws_database/StudentProblems.js';
 import { convertToSnakeCase } from '../utils/lodash.js';
@@ -12,7 +11,6 @@ import { probAnalysis } from "../const/problemAnalysis.js";
 import { Students } from "../../infrastructure/aws_database/Students.js";
 import { ActualBlocks } from "../infrastructure/aws_database/ActualBlocks.js";
 import { Trackers } from "../infrastructure/aws_database/Trackers.js";
-import { isDate1EarlierThanOrSameWithDate2 } from "../utils/dateHandler.js";
 import { StudentSubfieldTraces } from "../infrastructure/aws_database/StudentSubfieldTraces.js";
 import { scheduleProblems } from "../domain/caluculation/scheduleForStudents.js";
 

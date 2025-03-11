@@ -1,4 +1,7 @@
 import logger from './logger';
+import { propertyFromNotion } from './propertyHandler';
+import { Students } from '../infrastructure/aws_database/Students.js';
+
 export const extractIdFromUrl = (url) => {
   try {
     if (typeof url !== 'string'){
@@ -31,5 +34,25 @@ export const extractIdFromMention = (richText) => {
   } catch(error) {
     logger.error(error.message);
     return null;
+  }
+}
+
+export const extractStudentInfoFromPeople = (peopleArray) => {
+  try {
+    const people = propertyFromNotion({
+      propertiesObj: peopleArray,
+      propertyName: '生徒',
+      propertyType: 'people'
+    });
+    if (!Array.isArray(people)){
+      throw new Error('Invalid input: People must be an array.');
+    }
+    return people.map(async (person) => {
+      const studentInfo = await Students.findByNotionUserId(person.id);
+      return studentInfo;
+    })
+  } catch (error) {
+    logger.error('Something went wrong in extractIdFromPeople', error.message);
+    throw error;
   }
 }
