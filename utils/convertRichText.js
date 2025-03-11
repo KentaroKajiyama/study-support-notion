@@ -1,6 +1,6 @@
 import MarkdownIt from "markdown-it";
 import dollarmathPlugin from "markdown-it-dollarmath";
-import mentionPlugin from "./mentionPlugin";
+import { mentionPlugin } from "./mentionPlugin.js";
 
 /**
  * Convert an array of rich_text objects from the Notion API
