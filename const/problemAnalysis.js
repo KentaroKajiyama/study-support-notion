@@ -1,6 +1,6 @@
 export const probAnalysis = {
   ansStatus: {
-    name: '回答', type: 'status', 
+    name: '回答', type: 'status', undone: '未回答', wrong: '不正解', correct: '正解'
   },
   isDifficult: {
     name: '理解できない', type: 'checkbox'
@@ -21,10 +21,16 @@ export const probAnalysis = {
     name: '復習レベル', type: 'status', level0: '初学', level1: 'レベル１', level2: 'レベル２', level3: 'レベル３', level4: 'レベル４'
   },
   lastAnswerDate: {
-    name: '最終回答日', type: 'date'
+    name: '最終回答日時', type: 'date' 
   },
   blockName: {
     name: 'ブロック', type: 'select'
+  },
+  probOverallOrder: {
+    name: '全体順番', type: 'number'
+  },
+  probInBlockOrder: {
+    name: 'ブロック内順番', type: 'number'
   },
   probId: {
     name: 'AWS Problem ID', type: 'number'

@@ -1,3 +1,5 @@
+export const subfieldsList = ['現代文', '古文', '漢文', '数学', 'Reading', 'Listening&Speaking', 'Writing', '物理', '化学', '生物', '日本史', '世界史', '地理'];
+
 export const modernJapaneseColumns = {
   problemName: { name: '', type: 'title'},
   area: { name: '', type: 'rich_text'},

@@ -1,6 +1,6 @@
-import { validator } from "../utils/errorHandler";
-import { getNotionClient } from "../infrastructure/notionClient";
-import { inlineTextToRichText } from "../utils/convertRichText";
+import { validator } from "../utils/errorHandler.js";
+import { getNotionClient } from "../infrastructure/notionClient.js";
+import { inlineTextToRichText } from "../utils/convertRichText.js";
 
 const notionClient = getNotionClient();
 
