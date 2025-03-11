@@ -5,15 +5,12 @@ import { Subfields } from '../infrastructure/aws_database/Subfields';
 import { Students } from '../infrastructure/aws_database/Students';
 import { TopProblems } from '../infrastructure/notion_database/student_only/TopProblems';
 import { Trackers } from '../infrastructure/aws_database/Trackers';
-import { ActualBlocks } from '../infrastructure/aws_database/ActualBlocks';
 import { StudentProblemsAWS } from '../infrastructure/aws_database/StudentProblems';
 import { Wrongs } from '../infrastructure/notion_database/student_only/Wrongs';
 import { Difficults } from '../infrastructure/aws_database/Difficults';
 import convertToSnakeCase from '../utils/lodash';
-import { head } from 'lodash';
 import { Remaining } from '../infrastructure/notion_database/student_only/Remaining';
 import { addDays } from 'date-fns';
-import { Problems } from '../infrastructure/aws_database/Problems';
 import { StudentProblemsNotion } from '../infrastructure/notion_database/student_only/StudentProblems';
 import NotionAPI from '../infrastructure/notionAPI';
 import { copyPageCreate } from '../utils/copyPage';
@@ -21,10 +18,9 @@ import { probAnalysis } from '../const/problemAnalysis';
 import { Properties } from '../const/notionTemplate';
 import { propertyFromNotion, propertyToNotion } from '../utils/propertyHandler';
 import { studentsOverviewsColumns } from '../const/notionDatabaseColumns';
-/**
- * Checks remaining distribution items for a student. This function handles the case where the system updates dbs in midnight.
- * @param {string} studentId The student identifier.
- */
+import { calculateNextTrackerAndTodoRemainingCounter } from '../caluculation/scheduleForStudents';
+import { delaySchedule } from '../caluculation/scheduleForStudents';
+
 export async function distRemainingPerStudent(studentId) {
   try {
     // 1. pick up the subfieldIDs from db
@@ -92,104 +88,37 @@ export async function sendTodoCountersPerStudent(studentId, databaseId) {
       await Difficults.createDifficult(difficultCurrentToDo);
       // 4. delete done items 
       const doneCurrentToDo = currentToDos.filter(toDo => toDo.subfieldId === subfieldId && toDo.understandingLevel !== '未回答');
-      await Promise.all(doneCurrentToDo.map(async (toDo) => await TopProblems.deleteATopProblemById(toDo.toDoId)));
+      await Promise.all(doneCurrentToDo.map(async (toDo) => await TopProblems.deleteATopProblemById(toDo.todoId)));
       // 5. check if the student already has a todo item (Don't check this because the item is already distributed when the student finished the former problem)
       const studentTrace = StudentSubfieldTraces.findByCompositeKey(studentId, subfieldId)[0];
-      const specificTrackingData = trackingData.filter(tracker => tracker.subfield_id === subfieldId);
-      const actualBlockId = specificTrackingData.actual_block_id;
-      if (studentTrace.todo_counter > 0) {
+      const currentTracker = trackingData.filter(tracker => tracker.subfield_id === subfieldId);
+      const actualBlockId = currentTracker.actual_block_id;
+      if (studentTrace.todoRemainingCounter > 0) {
         await StudentSubfieldTraces.update(studentTrace.tracker_id, {
           remaining_day: studentTrace.remaining_day-1,
           actual_end_date: addDays(new Date(studentTrace.actual_end_date), 1)
         })
-        // TODO: change appropriately syncrhonized with calculation program.
-        await delayPlan(actualBlockId);
+        await delaySchedule(studentId, actualBlockId, subfieldId);
         return null;
       }
       // 6. fetch the id and number of the subfield item for todo
-      const trackerId = specificTrackingData.tracker_id;
-      const remainingSpace = specificTrackingData.remaining_space;
-      const isRest = specificTrackingData.is_rest;
+      const trackerId = currentTracker.tracker_id;
+      const remainingSpace = currentTracker.remaining_space;
+      const isRest = currentTracker.is_rest;
       if (isRest) {
-        await Trackers.update(trackerId, {is_rest: 0});
+        await Trackers.update(trackerId, {isRest: 0});
         return null;
       } else if (remainingSpace > 0) {
-        await Trackers.update(trackerId, {remaining_space: remainingSpace-1});
+        await Trackers.update(trackerId, {remainingSpace: remainingSpace-1});
         return null;
       } else {
-        const problemOrder = specificTrackingData.present_order;
-        const actualBlock = ActualBlocks.findByCompositeKey(studentId, subfieldId, actualBlockId)[0];
-        const speed = actualBlock.speed;
-        const lap = specificTrackingData.lap;
-        const space = actualBlock.space;
-        const numberOfLaps = actualBlock.number_of_laps;
-        const headOrder = actualBlock.head_order;
-        const tailOrder = actualBlock.tail_order;
-        if (problemOrder+speed-1 < tailOrder) {
-          // TODO: I have to convert the problem list into todo list format.
-          const nextTimeProblem = await StudentProblemsAWS.findByCompositeKey(studentId, subfieldId, problemOrder+speed)[0];
-          const nextTracker = {
-            problemId: nextTimeProblem.student_problem_id,
-            presentOrder: nextTimeProblem.problem_order,
-            remainingSpace: space,
-          }
-          const data = convertToSnakeCase(nextTracker);
-          await Trackers.update(trackerId, data);
-        } else if (problemOrder+speed-1 === tailOrder && lap < numberOfLaps) {
-          const nextTimeProblem = await StudentProblemsAWS.findByCompositeKey(studentId, subfieldId, headOrder)[0];
-          if(!nextTimeProblem){ throw new Error(`Could not find next block in student record ${studentId}`); };
-          const nextTracker = {
-            problemId: nextTimeProblem.student_problem_id,
-            presentOrder: headOrder,
-            remainingSpace: space,
-            lap: lap+1,
-          }
-          const data = convertToSnakeCase(nextTracker);
-          await Trackers.update(trackerId, data);
-        } else if (problemOrder+speed-1 === tailOrder) {
-          const nextTimeProblem = await StudentProblemsAWS.findByCompositeKey(studentId, subfieldId, tailOrder+1)[0];
-          if(!nextTimeProblem){ throw new Error(`Could not find next problem in student record ${studentId}`); };
-          const nextActualBlock = await ActualBlocks.findByActualBlockId(nextTimeProblem.actual_block_id)[0];
-          if(!nextActualBlock){ throw new Error(`Could not find next actual block in student record ${studentId}`); };
-          const nextTracker = {
-            blockId: nextTimeProblem.actual_block_id,
-            problemId: nextTimeProblem.student_problem_id,
-            presentOrder: nextTimeProblem.problem_order,
-            remainingSpace: nextActualBlock.space,
-            lap: 1,
-          }
-          const data = convertToSnakeCase(nextTracker);
-          await Trackers.update(trackerId, data);
-        } else if (problemOrder+speed-1 > tailOrder && lap < numberOfLaps){
-          const secondEndOrder = speed - (tailOrder-problemOrder+1) + head-1
-          const nextTimeProblem = await StudentProblemsAWS.findByCompositeKey(studentId, subfieldId, secondEndOrder+1)[0];
-          if(!nextTimeProblem){ throw new Error(`Could not find next block in student record ${studentId}`); };
-          const nextTracker = {
-            problemId: nextTimeProblem.problem_id,
-            presentOrder: nextTimeProblem.problem_order,
-            remainingSpace: space,
-            lap: lap+1,
-          }
-          const data = convertToSnakeCase(nextTracker);
-          await Trackers.update(trackerId, data);
-        } else {
-          const secondGroupHeadProblem = await StudentProblemsAWSProblems.findByCompositeKey(studentId, subfieldId, tailOrder+1)[0];
-          const secondGroupActualBlock = await ActualBlocks.findByCompositeKey(studentId, subfieldId, secondGroupHeadProblem.block_id)[0];
-          const nextSpeed = secondGroupActualBlock.speed;
-          const nextHead = secondGroupActualBlock.head;
-          const secondEndOrder = Math.min(speed - (tailOrder-problemOrder+1) + nextHead-1, nextSpeed - (tailOrder-problemOrder+1) + nextHead-1);
-          const nextTimeProblem = await Problems.findByCompositeKey(studentId, subfieldId, secondEndOrder+1)[0];
-          if(!nextTimeProblem){ throw new Error(`Could not find next block in student record ${studentId}`); };
-          const nextTracker = {
-            blockId: nextTimeProblem.actual_block_id,
-            problemId: nextTimeProblem.problem_id,
-            presentOrder: nextTimeProblem.problem_order,
-            remainingSpace: secondGroupActualBlock.space,
-            lap: 0,
-          }
-          const data = convertToSnakeCase(nextTracker);
-          await Trackers.update(trackerId, data);
-        }
+        const result = await calculateNextTrackerAndTodoRemainingCounter(studentId, subfieldId, actualBlockId, currentTracker);
+        Promise.all([
+          await Trackers.update(trackerId, result.tracker),
+          await StudentSubfieldTraces.updateByCompositeKey(studentId, subfieldId, {
+            todoRemainingCounter: result.todoRemainingCounter
+          })
+        ]);
       }
     });
     await Promise.all(promises);
@@ -280,14 +209,14 @@ export async function dealWithTodosPerStudent(studentId) {
         );
         await copyPageCreate(data.notionPageId, studentInfoAWS.is_difficult_db_id);
       };
-      if (data.ansStatus === '不正解') {
+      if (data.ansStatus === probAnalysis.ansStatus.wrong) {
         await Promise.all([
           await updateStudentProblemProperties(
             studentProblemAWS.student_problem_id,
             data.notionPageId,
             data.subfieldName,
             {
-              answerStatus: '未回答',
+              answerStatus: probAnalysis.ansStatus.undone,
               tryCount: studentProblemAWS.try_count+1,
               wrongCount: studentProblemAWS.wrong_count+1,
             }
@@ -301,14 +230,14 @@ export async function dealWithTodosPerStudent(studentId) {
           await NotionAPI.deleteAPage(data.topProblemPageId)
         ]);
         await copyPageCreate(data.notionPageId, studentProblemAWS.wrong_db_id);
-      } else if (data.ansStatus === '正解') {
+      } else if (data.ansStatus === probAnalysis.ansStatus.correct) {
         await Promise.all([
           await updateStudentProblemProperties(
             studentProblemAWS.student_problem_id,
             data.notionPageId,
             data.subfieldName,
             {
-              answerStatus: '未回答',
+              answerStatus: probAnalysis.ansStatus.undone,
               tryCount: studentProblemAWS.try_count+1,
             }
           ),
@@ -346,25 +275,25 @@ export async function dealWithWrongsPerStudent(studentId) {
     // 3. delete the done items
     await Promise.all(wrongData.map(async (data) => {
       const studentProblemAWS = await StudentProblemsAWS.findByNotionPageId(data.notionPageId)[0]
-      if (data.ansStatus === '不正解') {
+      if (data.ansStatus === probAnalysis.ansStatus.wrong) {
         await updateStudentProblemProperties(
           studentProblemAWS.student_problem_id,
           data.notionPageId,
           data.subfieldName,
           {
-            answerStatus: '未回答',
+            answerStatus: probAnalysis.ansStatus.undone,
             tryCount: studentProblemAWS.try_count+1,
             wrongCount: studentProblemAWS.wrong_count+1,
           }
         );
-      } else if (data.ansStatus === '正解') {
+      } else if (data.ansStatus === probAnalysis.ansStatus.correct) {
         await Promise.all([
           await updateStudentProblemProperties(
             studentProblemAWS.student_problem_id,
             data.notionPageId,
             data.subfieldName,
             {
-              answerStatus: '未回答',
+              answerStatus: probAnalysis.ansStatus.undone,
               tryCount: studentProblemAWS.try_count+1,
             }
           ),
@@ -407,25 +336,25 @@ export async function dealWithIsDifficultsPerStudent(studentId) {
     // 3. delete the done items
     await Promise.all(isDifficultData.map(async (data) => {
       const studentProblemAWS = await StudentProblemsAWS.findByNotionPageId(data.notionPageId)[0]
-      if (data.ansStatus === '不正解') {
+      if (data.ansStatus === probAnalysis.ansStatus.wrong) {
         await updateStudentProblemProperties(
           studentProblemAWS.student_problem_id,
           data.notionPageId,
           data.subfieldName,
           {
-            answerStatus: '未回答',
+            answerStatus: probAnalysis.ansStatus.undone,
             tryCount: studentProblemAWS.try_count+1,
             wrongCount: studentProblemAWS.wrong_count+1,
           }
         );
         await copyPageCreate(data.notionPageId, studentInfoAWS.wrong_db_id);
-      } else if (data.ansStatus === '正解') {
+      } else if (data.ansStatus === probAnalysis.ansStatus.correct) {
         await updateStudentProblemProperties(
           studentProblemAWS.student_problem_id,
           data.notionPageId,
           data.subfieldName,
           {
-            answerStatus: '未回答',
+            answerStatus: probAnalysis.ansStatus.undone,
             tryCount: studentProblemAWS.try_count+1,
           }
         );
@@ -469,17 +398,17 @@ export async function dealWithStudentProblemsPerStudent(studentId) {
       const subfieldId = tmp.subfield_id;
       const databaseId = tmp.database_id;
       const subfieldName = await Subfields.findBySubfieldId(subfieldId)[0].subfield_name;
-      const studentProblems = await StudentsProblemsNotion.getStudentsProblems(databaseId, subfieldName);
+      const studentProblems = await StudentProblemsNotion.getStudentsProblems(databaseId, subfieldName);
       await Promise.all(studentProblems.map(async (problem) => {
         const studentProblemAWS = await StudentProblemsAWS.findByNotionPageId(problem.notionPageId)[0]
-        if (data.ansStatus === '不正解') {
+        if (data.ansStatus === probAnalysis.ansStatus.wrong) {
           await Promise.all([
             await updateStudentProblemProperties(
               studentProblemAWS.student_problem_id,
               problem.notionPageId,
               problem.subfieldName,
               {
-                answerStatus: '未回答',
+                answerStatus: probAnalysis.ansStatus.undone,
                 tryCount: studentProblemAWS.try_count+1,
                 wrongCount: studentProblemAWS.wrong_count+1,
               }
@@ -492,14 +421,14 @@ export async function dealWithStudentProblemsPerStudent(studentId) {
             )
           ]);
           await copyPageCreate(problem.notionPageId, studentInfoAWS.wrong_db_id);
-        } else if (problem.ansStatus === '正解') {
+        } else if (problem.ansStatus === probAnalysis.ansStatus.correct) {
           await Promise.all([
             await updateStudentProblemProperties(
               studentProblemAWS.student_problem_id,
               problem.notionPageId,
               problem.subfieldName,
               {
-                answerStatus: '未回答',
+                answerStatus: probAnalysis.ansStatus.undone,
                 tryCount: studentProblemAWS.try_count+1,
               }
             ), 
@@ -541,10 +470,6 @@ export async function dealWithStudentProblemsForAllStudents() {
     logger.error('Error in dealWithStudentProblemsForAllStudents', error.message);
     throw error;
   }
-};
-
-export async function delayPlan(actualBlockId) {
-  // TODO: Implement this 
 };
 
 export async function sendReviewAlertPerStudent(studentId, todoDatabaseId) {
