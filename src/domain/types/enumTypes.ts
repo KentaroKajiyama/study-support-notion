@@ -1,7 +1,6 @@
 // TODO: Automation
 // 🚀 Auto-generated from MySQL ENUM
 import { NotionPagePropertyType } from "./myNotionType.js";
-
 export type NotionDbPropertiesPropertyTypeEnum = NotionPagePropertyType;
 
 export function isValidNotionDbPropertiesPropertyType(value: string): value is NotionDbPropertiesPropertyTypeEnum {
@@ -11,6 +10,11 @@ export function isValidNotionDbPropertiesPropertyType(value: string): value is N
 export type StudentSubjectInformationSubjectLevelEnum = '基礎１'|'基礎２'|'基礎３';
 export function isValidStudentSubjectInformationSubjectLevelEnum(value: string): value is StudentSubjectInformationSubjectLevelEnum {
   return ['基礎１', '基礎２', '基礎３'].includes(value);
+}
+
+export type StudentSubjectInformationSubjectGoalLevelEnum = 48 | 50 | 52.5 | 55 | 57.5 | 60 | 62.5
+export function isStudentSubjectSubjectGoalLevelEnum(value: number): value is StudentSubjectInformationSubjectGoalLevelEnum {
+  return [48, 50, 52.5, 55, 57.5, 60, 62.5].includes(Number(value));
 }
 
 export type ProblemsProblemLevelEnum = '基礎１'|'基礎２'|'基礎３';
@@ -52,3 +56,25 @@ export type StudentProblemsReviewLevelEnum = '初学'|'レベル１'|'レベル�
 export function isValidStudentProblemsReviewLevelEnum(value: string): value is StudentProblemsReviewLevelEnum {
   return ['初学', 'レベル１', 'レベル２', 'レベル３', 'レベル４'].includes(value);
 }
+
+export type StudentsOverviewsAlertSubfieldEnum = SubfieldsSubfieldNameEnum;
+export function isValidStudentsOverviewsAlertSubfieldEnum(value: string): value is StudentsOverviewsAlertSubfieldEnum {
+  return ['現代文', '古文', '漢文', '数学', 'Reading', 'Listening&Speaking', 'Writing', '物理', '化学', '生物', '日本史', '世界史', '地理'].includes(value);
+}
+
+export type StudentsOverviewsChatStatusEnum = 'Chat' | 'Nope';
+export function isValidStudentsOverviewsChatStatusEnum(value: string): value is StudentsOverviewsChatStatusEnum {
+  return ['Chat', 'Nope'].includes(value);
+}
+
+export type StudentsOverviewsDistStatusEnum = '正常' | 'エラー発生';
+export function isValidStudentsOverviewsDistStatusEnum(value: string):value is StudentsOverviewsDistStatusEnum {
+  return ['正常', 'エラー発生'].includes(value);
+}
+
+export type StudentsOverviewsPlanStatusEnum = 'Not Started' | 'シミュレーション中' | '確定';
+export function isValidStudentsOverviewsPlanStatusEnum(value: string): value is StudentsOverviewsPlanStatusEnum {
+  return ['Not Started', 'シミュレーション中', '確定'].includes(value);
+}
+
+export type StudentsOverviewsModifiedPlanSubfieldEnum = SubfieldsSubfieldNameEnum;
