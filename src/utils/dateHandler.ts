@@ -1,21 +1,15 @@
 import { addDays, subDays } from "date-fns";
-import logger from "./logger.js";
+import { logger } from '@utils/index.js';
 import {
   MySQLDate,
   MySQLDateTime,
   MySQLTimestamp,
-  MySQLDateOrTime
-} from '../const/mysqlType.js';
+  MySQLDateOrTime,
+  NotionDate, 
+  NotionDateString, 
+  NotionDateTimeString
+} from '@domain/types/index.js';
 
-/** Defines Notion date formats */
-export type NotionDateString = `${number}-${number}-${number}`; // YYYY-MM-DD
-export type NotionDateTimeString = `${number}-${number}-${number}T${number}:${number}:${number}.${number}+09:00`; // YYYY-MM-DDTHH:MM:SS.sss+09:00
-
-export type NotionDate = NotionDateString | NotionDateTimeString;
-
-/**
- * Formats a Date object into an ISO string with optional time information.
- */
 export function formatDateWithOffset(dateObj: Date, includeTime: boolean = false, isTimestamp: boolean = false): NotionDate {
   const pad = (num: number): string => String(num).padStart(2, "0");
   const year = dateObj.getFullYear();
@@ -64,6 +58,9 @@ export function convertTimeMySQLToNotion(mysqlDateTime: MySQLDateOrTime | undefi
     } else {
       throw new Error("Invalid MySQL date format. Expected YYYY-MM-DD or YYYY-MM-DD HH:MM:SS.");
     }
+
+    if (coerceToDate) includeTime = false;
+    if (coerceToTime) includeTime = true;
 
     // Convert to Notion date format
     return formatDateWithOffset(dateObj, includeTime, isTimestamp);
@@ -120,11 +117,6 @@ export function convertTimeNotionToMySQL(notionDate: NotionDate | undefined | nu
   }
 }
 
-
-
-/**
- * Adds days to a Notion-style date string and returns the formatted result.
- */
 export function myAddDays(notionDateString: NotionDate, addDaysNumber: number): NotionDate {
   try {
     let includeTime = !isNotionDateTimeString(notionDateString);
@@ -140,9 +132,6 @@ export function myAddDays(notionDateString: NotionDate, addDaysNumber: number): 
   }
 }
 
-/**
- * Subtracts days from a Notion-style date string and returns the formatted result.
- */
 export function mySubDays(notionDateString: NotionDate, subDaysNumber: number): NotionDate {
   try {
     let includeTime = !isNotionDateTimeString(notionDateString);
@@ -158,9 +147,6 @@ export function mySubDays(notionDateString: NotionDate, subDaysNumber: number): 
   }
 }
 
-/**
- * Calculates the absolute difference in days between two Notion-style date strings.
- */
 export function date2MinusDate1(date1NotionString: NotionDate, date2NotionString: NotionDate): number {
   const normalizeDate = (dateString: NotionDate): Date => {
     if (dateString.length === 10) {
@@ -175,9 +161,6 @@ export function date2MinusDate1(date1NotionString: NotionDate, date2NotionString
   return Math.floor(Math.abs(date2.getTime() - date1.getTime()) / oneDay);
 }
 
-/**
- * Checks if date1 is earlier than or the same as date2.
- */
 export function isDate1EarlierThanOrSameWithDate2(date1NotionString: NotionDate, date2NotionString: NotionDate): boolean {
   const normalizeDate = (dateString: NotionDate): Date => {
     if (dateString.length === 10) {
@@ -191,9 +174,6 @@ export function isDate1EarlierThanOrSameWithDate2(date1NotionString: NotionDate,
   return date1 <= date2;
 }
 
-/**
- * Checks if a target date is between two other dates (inclusive).
- */
 export function isDateBetween(targetDateString: NotionDate, startDateString: NotionDate, endDateString: NotionDate): boolean {
   const normalizeDate = (dateString: NotionDate): Date => {
     if (dateString.length === 10) {

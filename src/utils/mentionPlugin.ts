@@ -6,8 +6,8 @@ import { Token } from "markdown-it/index.js";
 interface MentionPluginOptions {}
 
 // Define custom token type
-interface MentionTokenMeta {
-  mentionType: "user" | "page" | "database" | "date";
+export interface MentionTokenMeta {
+  mentionType: "user" | "page" | "database" | "date" | "custom_emoji";
   mentionValue: string;
 }
 

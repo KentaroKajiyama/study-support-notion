@@ -24,7 +24,7 @@ const winstonLogger = winston.createLogger({
 });
 
 // Unified logger
-const logger = {
+export const logger = {
   info: (...message: any[]) => {
     const msg = message.join(" ");
     if (process.env.NODE_ENV === "development") debugLog.info(msg);
@@ -52,4 +52,3 @@ const logger = {
   }
 };
 
-export default logger;

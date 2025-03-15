@@ -1,8 +1,8 @@
 import fs from 'fs';
-import { NotionDbProperties } from '../infrastructure/aws_database/NotionDbProperties.js';
-import { PropertyOptions } from '../infrastructure/aws_database/PropertyOptions.js';
-import logger from './logger.js';
-import { UintIDAWS } from '../const/mysqlType.js';
+import { NotionDbProperties } from '../infrastructure/aws_tables/NotionDbProperties.js';
+import { PropertyOptions } from '../infrastructure/aws_tables/PropertyOptions.js';
+import { logger } from '@utils/index.js';
+import { MySQLUintID } from '@domain/types/index.js';
 
 export const generatePropertiesTypes = async () => {
   try {
@@ -13,7 +13,7 @@ export const generatePropertiesTypes = async () => {
 
     const propertyTypeSet = new Set<string>();
     const propertyObject: Record<string, Record<string, { propertyName: string; propertyType: string; options?: Record<string, string> }>> = {};
-    const optionMap: Record<UintIDAWS, Record<string, string>> = {};
+    const optionMap: Record<MySQLUintID, Record<string, string>> = {};
 
     propertyOptions.forEach(({ notionDbPropertyId, optionKey, optionValue }) => {
       if (!optionMap[notionDbPropertyId]) optionMap[notionDbPropertyId] = {};

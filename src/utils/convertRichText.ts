@@ -1,7 +1,8 @@
 import MarkdownIt from "markdown-it";
 import dollarmathPlugin from "markdown-it-dollarmath";
-import { mentionPlugin } from "./mentionPlugin.js";
-import { RichTextItemRequest } from "@notionhq/client/build/src/api-endpoints.js";
+import { mentionPlugin, MentionTokenMeta } from "./mentionPlugin.js";
+import { MentionRichTextItemResponse, RichTextItemRequest, RichTextItemResponse, TextRichTextItemResponse } from "@notionhq/client/build/src/api-endpoints.js";
+import { RichTextMentionItemRequest } from "@domain/types/myNotionType.js";
 
 // Define the RichText structure based on Notion API documentation
 interface Annotations {
@@ -12,7 +13,7 @@ interface Annotations {
   code?: boolean;
 }
 
-export function richTextToInlineText(richTextArray: RichTextItemRequest[]): string {
+export function richTextToInlineText(richTextArray: RichTextItemResponse[]): string {
   if (!Array.isArray(richTextArray) || richTextArray.length === 0) {
     return "";
   }
@@ -20,7 +21,7 @@ export function richTextToInlineText(richTextArray: RichTextItemRequest[]): stri
   return richTextArray.map((rtItem) => convertRichTextItem(rtItem)).join("");
 }
 
-function convertRichTextItem(rtItem: RichTextItemRequest): string {
+function convertRichTextItem(rtItem: RichTextItemResponse): string {
   let segment = "";
 
   switch (rtItem.type) {
@@ -48,7 +49,7 @@ function convertRichTextItem(rtItem: RichTextItemRequest): string {
 /**
  * Extracts text content and link from a rich_text item.
  */
-function extractTextAndLink(rtItem: RichTextItemRequest): { content: string; link: string | null } {
+function extractTextAndLink(rtItem: TextRichTextItemResponse): { content: string; link: string | null } {
   const content = rtItem.text?.content ?? "";
   const link = rtItem.text?.link?.url ?? null;
   return { content, link };
@@ -74,8 +75,8 @@ function applyAnnotations(text: string, annotations: Annotations = {}, link: str
 /**
  * Formats Notion mention objects into markdown-style syntax.
  */
-function formatMention(rtItem: RichTextItemRequest): string {
-  const mentionBlock = rtItem.mention;
+function formatMention(rtItem: MentionRichTextItemResponse): string {
+  const mentionBlock = rtItem.mention ;
   const plainText = rtItem.plain_text || "";
   if (!mentionBlock) return applyAnnotations(plainText, rtItem.annotations);
 
@@ -114,7 +115,7 @@ export function inlineTextToRichText(
 ): RichTextItemRequest[] {
   if (!inlineText) return [];
 
-  const md = new MarkdownIt("gfm-like")
+  const md = new MarkdownIt("commonmark")
     .use(dollarmathPlugin, { allow_space: true, double_inline: true })
     .use(mentionPlugin);
 
@@ -171,8 +172,37 @@ export function inlineTextToRichText(
         richTextArray.push({
           type: "equation",
           equation: { expression: token.content },
-          annotations: { bold, italic, underline, strikethrough, code: false },
+          annotations: { bold: bold, italic: italic, underline: underline, strikethrough: strikethrough, code: false },
         });
+        break;
+      }
+      case "mention_token": { // ✅ Handle mention tokens
+        const mentionMeta = token.meta as MentionTokenMeta;
+        if (['user', 'person', 'bot', 'workspace', 'page', 'database'].includes(mentionMeta.mentionType)) {
+          richTextArray.push({
+            type: "mention",
+            mention: {
+              [mentionMeta.mentionType]: { id: mentionMeta.mentionValue },
+            },
+            annotations: { bold: bold, italic: italic, underline: underline, strikethrough: strikethrough, code: false },
+          } as RichTextMentionItemRequest);
+        } else if (mentionMeta.mentionType === 'date') {
+          const dateRegex = /start:\s?([\d-:T]+)(?:\s?end:\s?([\d-:T]+|null))?/;
+          const match = mentionMeta.mentionValue.match(dateRegex);
+
+          if (!match) throw new Error(`Invalid date value "${mentionMeta.mentionValue}".`);
+          if (match[1] === null) throw new Error(`Invalid date value "${mentionMeta.mentionValue}".`);
+
+          richTextArray.push({
+            type: "mention",
+            mention: {
+              date: { start: match[1], end: match[2] !== "null" ? match[2] : null },
+            },
+            annotations: { bold, italic, underline, strikethrough, code: false },
+          } as RichTextMentionItemRequest);
+        } else {
+          throw new Error(`Invalid mention type "${mentionMeta.mentionType}". Supported types: user, page, database, date.`);
+        }
         break;
       }
       case "text": {
