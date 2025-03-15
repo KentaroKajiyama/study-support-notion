@@ -38,7 +38,7 @@ export async function sendBlockDefault(studentId, planDBId, irregularDBId, subfi
         const response = await NotionAPI.createAPage(parent=parent, properties=Properties([
           propertyToNotion({
             propertyName: coachPlanProperties.blockName.name,
-            propertyContent: block.block_name,
+            propertyContent: block.blockName,
             propertyType: coachPlanProperties.blockName.type,
           }),
           propertyToNotion({

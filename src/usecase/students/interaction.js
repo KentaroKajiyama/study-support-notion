@@ -3,7 +3,7 @@ import logger from "../../utils/logger.js";
 import { Trackers } from '../../infrastructure/aws_database/Trackers.js';
 import { ActualBlocks } from '../../infrastructure/aws_database/ActualBlocks.js';
 import { StudentSubfieldTraces } from '../../infrastructure/aws_database/StudentSubfieldTraces.js';
-import { calculateNextTrackerAndTodoRemainingCounter } from "../caluculation/scheduleForStudents.js";
+import { calculateNextTrackerAndTodoRemainingCounter } from "../../domain/caluculation/scheduleForStudents.js";
 
 export async function updateTrackerAndTodoRemainingCounter(studentId, studentProblemAWSId) {
   try {

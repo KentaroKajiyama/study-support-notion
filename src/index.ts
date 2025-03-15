@@ -1,7 +1,6 @@
 import express from 'express';
 import { requestLogger, errorLogger } from './utils/loggerMiddleware.js';
 import logger from './utils/logger.js';
-import { errorHandler } from './utils/validation.js';
 import { regularHandler } from './presentation/students/distribution/regular.js';
 import { todoHandler } from './presentation/students/interaction/todo.js';
 import { studentProblemHandler } from './presentation/students/interaction/studentProblem.js';
@@ -14,7 +13,7 @@ import { irregularCheckHandler } from './presentation/coach/plan/irregularCheckH
 
 const app = express();
 app.use(express.json());
-app.use(errorHandler);
+app.use(requestLogger);
 
 // 1) Students daily distribution request
 app.get('/students/distribution/regular', async (req, res) => {
@@ -74,6 +73,8 @@ app.post('/page/add', async (req, res) => {
 // 12) When A Problem's Database Property is Updated.
 
 // 13) When Updateing A Student Page UI related to The Student Information. 
+
+app.use(errorLogger);
 
 // Start the server
 const PORT = process.env.PORT || 3000;
