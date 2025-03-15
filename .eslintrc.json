@@ -1,8 +1,82 @@
 {
   "parser": "@typescript-eslint/parser",
   "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "project": "./tsconfig.json"
+      }
+    }
+  },
   "rules": {
     "@typescript-eslint/no-unused-vars": "warn",
-    "no-console": "off"
+    "no-console": "off",
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [
+          "../domain/student/*",
+          "../../domain/student/*",
+          "../domain/coach/*",
+          "../../domain/coach/*",
+          "../domain/types/*",
+          "../../domain/types/*",
+          "src/domain/student/*",
+          "src/domain/coach/*",
+          "src/domain/types/*"
+        ],
+        "paths": [
+          {
+          "name": "@domain/student/ActualBlock.js",
+          "message": "Use import { NotionActualBlock } from '@domain/student/index.js'; instead."
+          }, 
+          {
+            "name": "@domain/student/Remaining.js",
+            "message": "Use import { NotionRemaining } from '@domain/student/index.js'; instead."
+          },
+          {
+            "name": "@domain/student/StudentProblems.js",
+            "message": "Use import { NotionStudentProblems } from '@domain/student/index.js'; instead."
+          },
+          {
+            "name": "@domain/student/StudentSchedule.js",
+            "message": "Use import { NotionStudentSchedule } from '@domain/student/index.js'; instead."
+          },
+          {
+            "name": "@domain/student/TodoCounter.js",
+            "message": "Use import { NotionTodoCounter } from '@domain/student/index.js'; instead."
+          },
+          {
+            "name": "@domain/student/TopProblem.js",
+            "message": "Use import { NotionTopProblem } from '@domain/student/index.js'; instead."
+          },
+          {
+            "name": "@domain/coach/CoachPlan.js",
+            "message": "Use import { NotionCoachPlan } from '@domain/coach/index.js'; instead."
+          },
+          {
+            "name": "@domain/coach/CoachIrregular.js",
+            "message": "Use import { NotionCoachIrregular } from '@domain/coach/index.js'; instead."
+          },
+          {
+            "name": "@domain/coach/CoachRest.js",
+            "message": "Use import { NotionCoachRest } from '@domain/coach/index.js'; instead."
+          },
+          {
+            "name": "@domain/coach/NecessaryStudyTime.js",
+            "message": "Use import { NotionNecessaryStudyTime } from '@domain/coach/index.js'; instead."
+          },
+          {
+            "name": "@domain/coach/StudentDetailInformation.js",
+            "message": "Use import { NotionStudentDetailInformation } from '@domain/coach/index.js'; instead."
+          },
+          {
+            "name": "@domain/coach/StudentsOverview.js", 
+            "message": "Use import { NotionStudentsOverview } from '@domain/coach/index.js'; instead."
+          },
+
+        ]
+      }
+    ]
   }
 }

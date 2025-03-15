@@ -4,8 +4,19 @@
     "moduleResolution": "NodeNext",
     "target": "ES2022",
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDirs": ["src", "tests"],
     "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@domain/*": ["src/domain/*"],
+      "@presentation/*": ["src/presentation/*"],
+      "@infrastructure/*": ["src/infrastructure/*"],
+      "@utils/*": ["src/utils/*"],
+      "@const/*": ["src/const/*"],
+      "@usecase/*": ["src/usecase/*"],
+      "@tests/*": ["tests/*"]
+    }
+
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
