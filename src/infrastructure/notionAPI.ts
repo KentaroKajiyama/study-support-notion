@@ -1,5 +1,5 @@
-import { getNotionClient } from "./notionClient.js";
-import logger from "../utils/logger.js";
+import { getNotionClient } from "@infrastructure/notionClient.js";
+import { logger } from "@utils/index.js";
 import { Client } from "@notionhq/client";
 import { 
   CreatePageParameters,
@@ -34,7 +34,6 @@ import {
   UnknownHTTPResponseError,
   RequestTimeoutError,
   APIErrorCode,
-  NotionClientError,
 } from "@notionhq/client/build/src/errors.js";
 
 const notionClient: Client = getNotionClient();
