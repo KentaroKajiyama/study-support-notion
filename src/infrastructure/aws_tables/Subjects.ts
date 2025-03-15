@@ -1,8 +1,16 @@
-import db from '../awsDB.js';
-import logger from '../../utils/logger.js';
-import { convertToCamelCase, convertToSnakeCase } from '../../utils/convertCase.js';
-import { MySQLTimestamp, MySQLUintID } from '../../const/mysqlType.js';
-import { SubjectsSubjectNameEnum, isValidSubjectsSubjectNameEnum } from '../../const/enumTypes.js';
+import db from "@infrastructure/awsDB.js";
+import { 
+  logger, 
+  convertToCamelCase, 
+  convertToSnakeCase,
+} from "@utils/index.js";
+import {
+  MySQLUintID,
+  MySQLTimestamp,
+  SubjectsSubjectNameEnum,
+  isValidSubjectsSubjectNameEnum
+} from '@domain/types/index.js';
+
 
 export interface MySQLSubject {
   subjectId?: MySQLUintID;

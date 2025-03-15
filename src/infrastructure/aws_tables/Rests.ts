@@ -1,22 +1,25 @@
-import db from '../awsDB.js';
+import db from "@infrastructure/awsDB.js";
+import { 
+  logger, 
+  convertToCamelCase, 
+  convertToSnakeCase,
+  convertTimeMySQLToNotion,
+  convertTimeNotionToMySQL,
+  isDate1EarlierThanOrSameWithDate2,
+  mySubDays
+} from "@utils/index.js";
 import {
+  isMySQLUintID,
+  MySQLUintID,
   MySQLTimestamp,
   MySQLDate,
-  MySQLUintID,
-  isMySQLUintID,
-} from '../../const/mysqlType.js';
-import { NotionUUID, toNotionUUID, isNotionUUID } from '../../const/myNotionType.js';
-import { 
-  convertTimeMySQLToNotion, 
-  NotionDate, 
-  convertTimeNotionToMySQL, 
-  isDate1EarlierThanOrSameWithDate2, 
-  mySubDays
-} from '../../utils/dateHandler.js';
-import logger from '../../utils/logger.js';
-import { ResultSetHeader, RowDataPacket } from 'mysql2';
-import { convertToCamelCase, convertToSnakeCase } from '../../utils/convertCase.js';
-import { log } from 'console';
+  isNotionUUID,
+  toNotionUUID,
+  NotionUUID,
+  NotionDate
+} from '@domain/types/index.js';
+import { RowDataPacket, ResultSetHeader } from "mysql2";
+
 
 export interface MySQLRest {
   restId?: MySQLUintID;

@@ -1,35 +1,28 @@
-import db from "../awsDB.js";
-import logger from "../../utils/logger.js";
-import { convertToCamelCase, convertToSnakeCase } from "../../utils/convertCase.js";
+import db from "@infrastructure/awsDB.js";
+import { 
+  logger, 
+  convertToCamelCase, 
+  convertToSnakeCase,
+  convertTimeMySQLToNotion,
+  convertTimeNotionToMySQL,
+  ensureValue
+} from "@utils/index.js";
 import {
   MySQLUintID,
   MySQLTimestamp,
   MySQLDate,
   MySQLBoolean,
   toBoolean,
-  toMySQLBoolean
-} from '../../const/mysqlType.js';
-import {
+  toMySQLBoolean,
   Uint,
   toUint,
-  Int,
-  toInt,
-} from '../../const/myTypes.js';
-import {
-  NotionDate,
-  convertTimeMySQLToNotion,
-  convertTimeNotionToMySQL
-} from '../../utils/dateHandler.js';
-import {
   toNotionUUID,
-  NotionUUID
-} from '../../const/myNotionType.js';
-import {
+  NotionUUID,
   ActualBlocksProblemLevelEnum,
-  isValidActualBlocksProblemLevelEnum
-} from '../../const/enumTypes.js'
+  dbEscape, 
+  NotionDate
+} from '@domain/types/index.js';
 import { RowDataPacket } from "mysql2";
-import { dbEscape } from "../../const/mysqlType.js";
 
 
 interface MySQLActualBlock {
@@ -38,14 +31,14 @@ interface MySQLActualBlock {
   subfieldId?: MySQLUintID;
   defaultBlockId?: MySQLUintID;
   actualBlockName?: string;
-  space?: Int;
-  speed?: Int;
-  lap?: Int;
+  space?: Uint;
+  speed?: Uint;
+  lap?: Uint;
   startDate?: MySQLDate | null | undefined;
   endDate?: MySQLDate | null | undefined;
   blockOrder?: Uint;
   isTail?: MySQLBoolean;
-  actualBlockSize?: Int;
+  actualBlockSize?: Uint;
   problemLevel?: ActualBlocksProblemLevelEnum;
   studentActualBlockDbNotionPageId?: string | null;  
   studentScheduleNotionPageId?: string | null;       
@@ -54,20 +47,20 @@ interface MySQLActualBlock {
   updatedAt?: MySQLTimestamp;
 }
 
-interface ActualBlock {
+export interface ActualBlock {
   actualBlockId?: MySQLUintID;
   studentId?: MySQLUintID;
   subfieldId?: MySQLUintID;
   defaultBlockId?: MySQLUintID;
   actualBlockName?: string;
-  space?: Int;
-  speed?: Int;
-  lap?: Int;
+  space?: Uint;
+  speed?: Uint;
+  lap?: Uint;
   startDate?: NotionDate | null;
   endDate?: NotionDate | null;
   blockOrder?: Uint;
   isTail?: boolean;
-  actualBlockSize?: Int;
+  actualBlockSize?: Uint;
   problemLevel?: ActualBlocksProblemLevelEnum;
   studentActualBlockDbNotionPageId?: NotionUUID | null;
   studentScheduleNotionPageId?: NotionUUID | null;
@@ -76,19 +69,21 @@ interface ActualBlock {
   updatedAt?: MySQLTimestamp;
 }
 
-interface UpdatesForCoachPlan {
+export interface UpdatesForCoachPlan {
   actualBlockId: MySQLUintID;
   actualBlockName?: string;
-  space: Int;
-  speed: Int;
-  lap: Int;
+  space: Uint;
+  speed: Uint;
+  lap: Uint;
   startDate: NotionDate | null;
   endDate: NotionDate | null;
   blockOrder: Uint;
   isTail: boolean;
-  actualBlockSize: Int;
+  actualBlockSize: Uint;
   problemLevel: ActualBlocksProblemLevelEnum;
 }
+
+export interface UpdatesForDelayOrExpedite extends Pick<UpdatesForCoachPlan, 'actualBlockId'| 'startDate' | 'endDate'> {};
 
 function toActualBlock(row: Partial<MySQLActualBlock>): ActualBlock {
   try {
@@ -98,15 +93,15 @@ function toActualBlock(row: Partial<MySQLActualBlock>): ActualBlock {
       subfieldId: row.subfieldId,
       defaultBlockId: row.defaultBlockId,
       actualBlockName: row.actualBlockName || "",
-      space: row.space !== undefined ? toInt(row.space) : undefined,
-      speed: row.speed !== undefined ? toInt(row.speed) : undefined,
-      lap: row.lap !== undefined ? toInt(row.lap) : undefined,
+      space: row.space !== undefined ? toUint(row.space) : undefined,
+      speed: row.speed !== undefined ? toUint(row.speed) : undefined,
+      lap: row.lap !== undefined ? toUint(row.lap) : undefined,
       startDate: row.startDate ? convertTimeMySQLToNotion(row.startDate) : null,
       endDate: row.endDate ? convertTimeMySQLToNotion(row.endDate) : null,
       blockOrder: row.blockOrder !== undefined ? toUint(row.blockOrder) : undefined,
       problemLevel: row.problemLevel,
       isTail: row.isTail !== undefined ? toBoolean(row.isTail) : undefined,
-      actualBlockSize: row.actualBlockSize !== undefined ? toInt(row.actualBlockSize) : undefined,
+      actualBlockSize: row.actualBlockSize !== undefined ? toUint(row.actualBlockSize) : undefined,
       studentActualBlockDbNotionPageId: row.studentActualBlockDbNotionPageId ? toNotionUUID(row.studentActualBlockDbNotionPageId) : null,
       studentScheduleNotionPageId: row.studentScheduleNotionPageId ? toNotionUUID(row.studentScheduleNotionPageId) : null,
       coachPlanNotionPageId: row.coachPlanNotionPageId ? toNotionUUID(row.coachPlanNotionPageId) : null,
@@ -375,6 +370,71 @@ export class ActualBlocks {
     }
   }
 
+  static async findByStudentSubfieldIdAndBlockOrder(
+    studentId: MySQLUintID,
+    subfieldId: MySQLUintID,
+    blockOrder: Uint
+  ): Promise<ActualBlock | null> {
+    try {
+      const ensuredStudentId = ensureValue(studentId, "Invalid studentId provided to findByStudentSubfieldIdAndBlockOrder.")
+      const ensuredSubfieldId = ensureValue(subfieldId, "Invalid subfieldId provided to findByStudentSubfieldIdAndBlockOrder.")
+      const ensuredBlockOrder = ensureValue(blockOrder, "Invalid blockOrder provided to findByStudentSubfieldIdAndBlockOrder.")
+      const [rows] = await db.query<RowDataPacket[]>(
+        "SELECT * FROM actual_blocks WHERE student_id = ? AND subfield_id = ? AND block_order = ?",
+        [ensuredStudentId, ensuredSubfieldId, ensuredBlockOrder]
+      );
+      if (!Array.isArray(rows)) {
+        logger.error(
+          "The result of 'findByStudentSubfieldIdAndBlockOrder' query was not an array."
+        );
+        throw new Error(
+          "The result of 'findByStudentSubfieldIdAndBlockOrder' query was not an array."
+        );
+      } else if (rows.length === 0) {
+        logger.warn(`No block found for studentId: ${studentId}, subfieldId: ${subfieldId}, and blockOrder: ${blockOrder}`);
+        return null;
+      }
+      return toActualBlock(convertToCamelCase(rows[0]) as MySQLActualBlock);
+    } catch (error) {
+      logger.error(
+        `Error finding actual block by studentId ${studentId}, subfieldId ${subfieldId}, and blockOrder ${blockOrder}`,
+        error
+      );
+      throw error;
+    }
+  }
+
+  static async findByStudentActualBlockDbNotionPageId(studentActualBlockDbNotionPageId: NotionUUID): Promise<ActualBlock | null> {
+    try {
+      if (!studentActualBlockDbNotionPageId) {
+        logger.error("No studentActualBlockDbNotionPageId provided to findByStudentActualBlockDbNotionPageId.");
+        throw new Error("No studentActualBlockDbNotionPageId provided to findByStudentActualBlockDbNotionPageId.");
+      }
+      const [rows] = await db.query<RowDataPacket[]>(
+        "SELECT * FROM actual_blocks WHERE student_actual_block_db_notion_page_id = ?",
+        [studentActualBlockDbNotionPageId]
+      );
+      if (!Array.isArray(rows)) {
+        logger.error(
+          "The result of 'findByStudentActualBlockDbNotionPageId' query was not an array."
+        );
+        throw new Error(
+          "The result of 'findByStudentActualBlockDbNotionPageId' query was not an array."
+        );
+      } else if (rows.length === 0) {
+        logger.warn(`No block found for studentActualBlockDbNotionPageId: ${studentActualBlockDbNotionPageId}`);
+        return null;
+      }
+      return toActualBlock(convertToCamelCase(rows[0]) as MySQLActualBlock);
+    } catch (error) {
+      logger.error(
+        `Error finding actual block by studentActualBlockDbNotionPageId: ${studentActualBlockDbNotionPageId}`,
+        error
+      );
+      throw error;
+    }
+  }
+
   static async updateByActualBlockId(
     actualBlockId: MySQLUintID,
     updates: Partial<ActualBlock>
@@ -489,8 +549,7 @@ export class ActualBlocks {
       const sql = `
         UPDATE actual_blocks
         SET 
-          ${cases.join(", ")},
-          updated_at = NOW()
+          ${cases.join(", ")}
         WHERE actual_block_id IN (${blockIds})
       `;
 
@@ -500,6 +559,69 @@ export class ActualBlocks {
     } catch (error) {
       logger.error("Error updating multiple actual blocks for coach plan", error);
       await db.rollback();
+      throw error;
+    }
+  }
+
+  static async updateForDelayOrExpidite(updates: UpdatesForDelayOrExpedite[]): Promise<void> {
+    try {
+      if (!updates || updates.length === 0) {
+        logger.error("Invalid input: updates are required for updateForCoachPlan.");
+        throw new Error("Invalid input: updates are required for updateForCoachPlan.");
+      }
+
+      // Example: We'll only handle columns known to exist in the DB
+      const updatableFields: (keyof MySQLActualBlock)[] = [
+        "actualBlockId",
+        "startDate",
+        "endDate",
+      ];
+
+      const cases: string[] = [];
+
+      for (const field of updatableFields) {
+        const columnName = convertTsKeyToColumn(field);
+        let caseStmt = `\`${columnName}\` = CASE`;
+
+        // Add WHEN ... THEN logic only if the update actually has a value for that field
+        let hasAnyChangeForThisField = false;
+
+        for (const u of updates) {
+          const newValue = (u as any)[field];
+          if (newValue !== undefined) {
+            hasAnyChangeForThisField = true;
+            const dbValue = toMySQLActualBlock({ [field]: newValue })[field];
+            caseStmt += ` WHEN actual_block_id = ${u.actualBlockId} THEN ${dbEscape(dbValue)}`;
+          }
+        }
+
+        caseStmt += ` ELSE \`${columnName}\` END`;
+
+        // Only push the case statement if there's at least one WHEN clause
+        if (hasAnyChangeForThisField) {
+          cases.push(caseStmt);
+        }
+      }
+
+      if (!cases.length) {
+        // means no real updates
+        logger.error("No valid fields to update in updateForCoachPlan");
+        return;
+      }
+
+      // Collect all block IDs to update
+      const blockIds = updates.map((update) => update.actualBlockId).join(",");
+
+      const sql = `
+        UPDATE actual_blocks
+        SET 
+          ${cases.join(", ")}
+        WHERE actual_block_id IN (${blockIds})
+      `;
+
+      await db.query(sql);
+    } catch (error) {
+      logger.error("Error updating multiple actual blocks for coach plan", error);
       throw error;
     }
   }
@@ -523,10 +645,6 @@ export class ActualBlocks {
   }
 }
 
-
-/**
- * Helper: convert our TypeScript property to actual DB column name.
- */
 function convertTsKeyToColumn(tsKey: keyof MySQLActualBlock): string {
   switch (tsKey) {
     case "actualBlockId":

@@ -1,14 +1,16 @@
-import db from '../awsDB.js';
-import logger from '../../utils/logger.js';
-import { convertToCamelCase, convertToSnakeCase } from '../../utils/convertCase.js';
+import db from "@infrastructure/awsDB.js";
+import { 
+  logger, 
+  convertToCamelCase, 
+  convertToSnakeCase,
+} from "@utils/index.js";
 import {
+  MySQLUintID,
   MySQLTimestamp,
-  MySQLUintID
-} from '../../const/mysqlType.js';
-import {
-  StudentSubjectInformationSubjectLevelEnum
-} from '../../const/enumTypes.js';
-import { RowDataPacket } from 'mysql2';
+  StudentSubjectInformationSubjectLevelEnum,
+} from '@domain/types/index.js';
+import { RowDataPacket } from "mysql2";
+
 
 export interface MySQLStudentSubjectInformation {
   studentSubjectInformationId?: MySQLUintID;

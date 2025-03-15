@@ -1,11 +1,18 @@
-import db from '../awsDB.js';
-import { convertToSnakeCase, convertToCamelCase } from '../../utils/convertCase.js';
-import { ProblemsProblemLevelEnum } from '../../const/enumTypes.js';
-import { MySQLTimestamp } from '../../const/mysqlType.js';
-import { MySQLUintID } from '../../const/mysqlType.js';
-import { NotionUUID } from '../../const/myNotionType.js';
-import logger from '../../utils/logger.js';
-import { ResultSetHeader, RowDataPacket } from 'mysql2';
+import db from "@infrastructure/awsDB.js";
+import { 
+  logger, 
+  convertToCamelCase, 
+  convertToSnakeCase,
+} from "@utils/index.js";
+import {
+  MySQLUintID,
+  MySQLTimestamp,
+  toNotionUUID,
+  NotionUUID,
+  ProblemsProblemLevelEnum
+} from '@domain/types/index.js';
+import { RowDataPacket, ResultSetHeader } from "mysql2";
+
 
 
 interface MySQLProblem {
@@ -37,7 +44,7 @@ function toProblem(row: MySQLProblem): Problem {
     problemId: row.problemId,
     subfieldId: row.subfieldId,
     defaultBlockId: row.defaultBlockId,
-    notionPageId: row.notionPageId,
+    notionPageId: row.notionPageId !== undefined ? toNotionUUID(row.notionPageId) : undefined,
     problemName: row.problemName,
     answer: row.answer,
     problemLevel: row.problemLevel,

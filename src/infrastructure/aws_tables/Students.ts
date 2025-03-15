@@ -1,27 +1,25 @@
-import db from '../awsDB.js';
-import logger from '../../utils/logger.js';
-import { convertToCamelCase, convertToSnakeCase } from '../../utils/convertCase.js';
+import db from "@infrastructure/awsDB.js";
+import { 
+  logger, 
+  convertToCamelCase, 
+  convertToSnakeCase,
+  convertTimeMySQLToNotion,
+  convertTimeNotionToMySQL
+} from "@utils/index.js";
 import {
-  MySQLDate,
-  MySQLTimestamp,
   MySQLUintID,
-} from '../../const/mysqlType.js';
-import {
+  MySQLTimestamp,
+  MySQLDate,
   PhoneNumber,
   toPhoneNumber,
   Email,
   toEmail,
-} from '../../const/myTypes.js';
-import {
-  NotionUUID,
   toNotionUUID,
-} from '../../const/myNotionType.js';
-import {
-  NotionDate,
-  convertTimeMySQLToNotion,
-  convertTimeNotionToMySQL
-} from '../../utils/dateHandler.js';
-import { RowDataPacket } from 'mysql2';
+  NotionUUID,
+  NotionDate
+} from '@domain/types/index.js';
+import { RowDataPacket } from "mysql2";
+
 
 export interface MySQLStudent {
   studentId?: MySQLUintID;

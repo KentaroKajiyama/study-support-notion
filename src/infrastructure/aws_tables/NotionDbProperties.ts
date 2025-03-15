@@ -1,9 +1,17 @@
-import db from '../awsDB.js'
-import { MySQLTimestamp, MySQLUintID } from '../../const/mysqlType.js';
-import { NotionDbPropertiesPropertyTypeEnum, isValidNotionDbPropertiesPropertyType } from '../../const/enumTypes.js';
-import logger from '../../utils/logger.js';
-import { convertToCamelCase, convertToSnakeCase } from '../../utils/convertCase.js';
-import { ResultSetHeader, RowDataPacket } from 'mysql2';
+import db from "@infrastructure/awsDB.js";
+import { 
+  logger, 
+  convertToCamelCase, 
+  convertToSnakeCase,
+} from "@utils/index.js";
+import {
+  MySQLUintID,
+  MySQLTimestamp,
+  NotionDbPropertiesPropertyTypeEnum,
+  isValidNotionDbPropertiesPropertyType
+} from '@domain/types/index.js';
+import { RowDataPacket, ResultSetHeader } from "mysql2";
+
 
 interface MySQLNotionDbProperty {
   notionDbPropertyId?: MySQLUintID;

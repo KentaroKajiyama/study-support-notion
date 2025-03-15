@@ -1,26 +1,24 @@
-import db from '../awsDB.js';
-import logger from '../../utils/logger.js';
-import { convertToCamelCase, convertToSnakeCase } from '../../utils/convertCase.js';
-import {
-  MySQLDate,
-  MySQLTimestamp,
-  MySQLUintID,
-} from '../../const/mysqlType.js';
-import {
-  Uint,
-  isUint,
-  Int,
-  isInt
-} from '../../const/myTypes.js';
-import {
-  NotionUUID,
-  toNotionUUID
-} from '../../const/myNotionType.js';
-import {
-  NotionDate,
+import db from "@infrastructure/awsDB.js";
+import { 
+  logger, 
+  convertToCamelCase, 
+  convertToSnakeCase,
   convertTimeMySQLToNotion,
   convertTimeNotionToMySQL
-} from '../../utils/dateHandler.js';
+} from "@utils/index.js";
+import {
+  MySQLUintID,
+  MySQLTimestamp,
+  MySQLDate,
+  isUint,
+  Uint,
+  isInt,
+  Int,
+  toNotionUUID,
+  NotionUUID,
+  NotionDate
+} from '@domain/types/index.js';
+
 
 export interface MySQLStudentSubfieldTrace {
   traceId?: MySQLUintID;

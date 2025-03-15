@@ -1,33 +1,32 @@
-import db from '../awsDB.js';
-import logger from '../../utils/logger.js';
+import db from "@infrastructure/awsDB.js";
+import { 
+  logger, 
+  convertToCamelCase, 
+  convertToSnakeCase,
+  convertTimeMySQLToNotion,
+  convertTimeNotionToMySQL
+} from "@utils/index.js";
 import {
-  MySQLUintID,
   isMySQLUintID,
-  MySQLBoolean,
-  toMySQLBoolean,
-  toBoolean,
-  MySQLDate,
-  MySQLTimestamp,
+  MySQLUintID,
   toMySQLUintID,
-} from '../../const/mysqlType.js';
-
-import {
+  MySQLTimestamp,
+  MySQLDate,
+  MySQLBoolean,
+  toBoolean,
+  toMySQLBoolean,
+  Uint,
+  toUint,
   StudentProblemsAnswerStatusEnum,
   isValidStudentProblemsAnswerStatusEnum,
   StudentProblemsReviewLevelEnum,
   isValidStudentProblemsReviewLevelEnum,
-} from '../../const/enumTypes.js';
-
-import { toUint, Uint } from '../../const/myTypes.js';
-import { NotionUUID, toNotionUUID, isNotionUUID } from '../../const/myNotionType.js';
-import {
-  NotionDate,
-  convertTimeMySQLToNotion,
-  convertTimeNotionToMySQL
-} from '../../utils/dateHandler.js';
-
-import { convertToCamelCase, convertToSnakeCase } from '../../utils/convertCase.js';  
-import { ResultSetHeader, RowDataPacket } from 'mysql2';
+  toNotionUUID,
+  NotionUUID,
+  isNotionUUID,
+  NotionDate
+} from '@domain/types/index.js';
+import { RowDataPacket, ResultSetHeader } from "mysql2";
 
 export interface MySQLStudentProblem {
   studentProblemId?: MySQLUintID;
@@ -71,7 +70,7 @@ export interface StudentProblem {
   updatedAt?: MySQLTimestamp;
 };
 
-export interface Subfield {
+interface Subfield {
   subfieldId?: MySQLUintID
   subfieldName?: string
 };
@@ -219,7 +218,7 @@ export function toMySQLStudentProblem(data: StudentProblem): MySQLStudentProblem
   }
 }
 
-export class StudentProblemsAWS {
+export class StudentProblems {
 
   static async create(data: StudentProblem): Promise<number> {
     try {
@@ -421,6 +420,30 @@ export class StudentProblemsAWS {
     }
   }
 
+  static async findByNotionPageId(notionPageId: NotionUUID): Promise<StudentProblem | null> {
+    try {
+      if (!notionPageId) {
+        logger.error("No notionPageId provided to findByNotionPageId.");
+        throw new Error("No notionPageId provided to findByNotionPageId.");
+      }
+      const [rows] = await db.query<RowDataPacket[]>(
+        'SELECT * FROM student_problems WHERE notion_page_id = ?',
+        [notionPageId]
+      );
+      if (!Array.isArray(rows)) {
+        logger.error("Invalid response from database in findByNotionPageId.");
+        throw new Error("Invalid response from database in findByNotionPageId.");
+      } else if (rows.length === 0) {
+        logger.warn('No student problem found with notionPageId in StudentProblem.ts')
+        return null;
+      }
+      return toStudentProblem(convertToCamelCase(rows[0]) as MySQLStudentProblem) as StudentProblem;
+      } catch (error) {
+      logger.error(`Error finding student problem by notionPageId: ${notionPageId}`, error);
+      throw error;
+    }
+  }
+
   static async findWithSubfieldIdByNotionPageId(
     notionPageId: NotionUUID
   ): Promise<StudentProblemWithSubfield[]> {
@@ -456,7 +479,7 @@ export class StudentProblemsAWS {
     studentId: MySQLUintID,
     actualBlockId: MySQLUintID,
     problemInBlockOrder: Uint
-  ): Promise<StudentProblem[]> {
+  ): Promise<StudentProblem | null> {
     try {
       const [rows] = await db.query<RowDataPacket[]>(
         `
@@ -467,10 +490,13 @@ export class StudentProblemsAWS {
       );
       if (rows.length === 0) {
         logger.warn("No student problems found by block info and student info in StudentProblems.ts")
-        return [];
+        return null;
+      } else if (rows.length >= 2) {
+        logger.error(`Found multiple student problems by block info and student info in StudentProblems.ts: ${studentId}, ${actualBlockId}, ${problemInBlockOrder}`);
+        throw new Error("Found multiple student problems by block info and student info in StudentProblems.ts");
       }
 
-      return rows.map(row => toStudentProblem(convertToCamelCase(row) as MySQLStudentProblem)) as StudentProblem[];
+      return toStudentProblem(convertToCamelCase(rows[0]) as MySQLStudentProblem);
     } catch (error) {
       logger.error(
         `Error finding student problem by block/student info: ${studentId}, ${actualBlockId}`,
@@ -547,7 +573,7 @@ export class StudentProblemsAWS {
 
   static async findWithSubfieldIdByStudentProblemId(
     studentProblemId: MySQLUintID
-  ): Promise<StudentProblemWithSubfield[]> {
+  ): Promise<StudentProblemWithSubfield | null> {
     try {
       const [rows] = await db.query<RowDataPacket[]>(
         `
@@ -559,12 +585,38 @@ export class StudentProblemsAWS {
         [studentProblemId]
       );
       if (rows.length === 0) {
+        logger.warn("No student problems found with student problem id in StudentProblems.ts")
+        return null;
+      }
+
+      return toStudentProblemWithSubfield(convertToCamelCase(rows[0]) as MySQLStudentProblemWithSubfield) as StudentProblemWithSubfield;
+    } catch (error) {
+      logger.error(`Error finding problem for review by studentProblemId: ${studentProblemId}`, error);
+      throw error;
+    }
+  };
+
+  static async findWithSubfieldIdByStudentId(
+    studentId: MySQLUintID
+  ): Promise<StudentProblemWithSubfield[]> {
+    try {
+      const [rows] = await db.query<RowDataPacket[]>(
+        `
+        SELECT student_problems.*, problems.subfield_id
+        FROM student_problems
+        INNER JOIN problems ON problems.problem_id = student_problems.problem_id
+        WHERE student_problems.student_id = ?
+        `,
+        [studentId]
+      );
+      if (rows.length === 0) {
+        logger.warn("No student problems found with student problem id in StudentProblems.ts")
         return [];
       }
 
       return rows.map(row => toStudentProblemWithSubfield(convertToCamelCase(row) as MySQLStudentProblemWithSubfield)) as StudentProblemWithSubfield[];
     } catch (error) {
-      logger.error(`Error finding problem for review by studentProblemId: ${studentProblemId}`, error);
+      logger.error(`Error finding problem for review by studentProblemId: ${studentId}`, error);
       throw error;
     }
   }
