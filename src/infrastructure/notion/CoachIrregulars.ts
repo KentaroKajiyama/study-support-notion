@@ -108,4 +108,20 @@ export class NotionCoachIrregulars extends NotionRepository<
   protected toNotion(domain: DomainCoachIrregular): NotionCoachIrregularRequest {
     return toNotion(domain);
   };
+  async queryADatabaseWithSubfieldFilter(
+    databaseId: NotionUUID, 
+    filterSubfieldName: SubfieldsSubfieldNameEnum
+  ): Promise<DomainCoachIrregular[]> {
+    try {
+      return await this.queryADatabase(databaseId, [], {
+        property: propertyInfo.SubfieldName.name,
+        select: {
+          equals: filterSubfieldName
+        }
+      })
+    } catch (error) {
+      logger.error('Error querying Notion database with subfield filter\n');
+      throw error;
+    }
+  } 
 }

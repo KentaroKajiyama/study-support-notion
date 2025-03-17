@@ -5,10 +5,12 @@ import {
   DatePropertyRequest, 
   DatePropertyResponse, 
   NotionPagePropertyType, 
+  NotionUUID, 
   NumberPropertyRequest, 
   NumberPropertyResponse, 
   SelectPropertyRequest, 
   SelectPropertyResponse, 
+  SubfieldsSubfieldNameEnum, 
   TitlePropertyRequest, 
   TitlePropertyResponse 
 } from "@domain/types/index.js";
@@ -16,7 +18,7 @@ import {
   propertyDomainToRequest,
   propertyResponseToDomain 
 } from "@infrastructure/notionProperty.js";
-import { 
+import {
   logger 
 } from "@utils/index.js";
 import {
@@ -139,11 +141,29 @@ export class NotionCoachPlans extends NotionRepository<
   DomainCoachPlan,
   NotionCoachPlanResponse,
   NotionCoachPlanRequest
-  > {
-    protected toDomain(response: NotionCoachPlanResponse): DomainCoachPlan {
-      return toDomain(response);
-    };
-    protected toNotion(data: DomainCoachPlan): NotionCoachPlanRequest {
-      return toNotion(data);
-    };
+> 
+{
+  protected toDomain(response: NotionCoachPlanResponse): DomainCoachPlan {
+    return toDomain(response);
+  };
+  protected toNotion(data: DomainCoachPlan): NotionCoachPlanRequest {
+    return toNotion(data);
+  };
+  async queryADatabaseWithSubfieldNameFilter(
+    databaseId: NotionUUID, 
+    filterSubfieldName: SubfieldsSubfieldNameEnum
+  ): Promise<DomainCoachPlan[]> {
+    try {
+      // TODO: How can I automatically deal with this?
+      // const propertyType = ensureValue(propertyInfo.SubfieldName.type) as NotionFilterPropertyType
+      return await this.queryADatabase(databaseId, [], {
+        property: propertyInfo.subfieldName.name,
+        select : { equals: filterSubfieldName },
+      })
+    } catch (error) {
+    logger.error('Failed to query a database with subfieldName filter', error);
+    throw error;
   }
+  };
+
+}
