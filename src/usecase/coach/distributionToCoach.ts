@@ -1,96 +1,116 @@
-import { Subfields } from "../../infrastructure/aws_database/Subfields.js";
 import NotionAPI from "../infrastructure/notionAPIotionAPI.js";
-import { DefaultBlocks } from "../../infrastructure/aws_database/DefaultBlocks.js";
 import { Title } from "../const/notion_template";
 import { Date } from "../const/notion_template";
 import { Number } from "../const/notion_template";
 import { Properties } from "../const/notion_template.js";
 import { Parent } from "../const/notion_template.js";
-import { ActualBlocks } from "../../infrastructure/aws_database/ActualBlocks.js";
 import { StudentsSubfields } from "../infrastructure/aws_database/StudentsSubfields.js";
 import { Rests } from "../infrastructure/aws_database/Rest.js";
-import { coachPlanProperties } from "../../const/notionDatabaseProperties.js";
-import { propertyToNotion } from '../../utils/propertyHandler.js';
+import {
+  MySQLUintID, 
+  NotionUUID,
+  ActualBlocksProblemLevelEnum, 
+  SubfieldsSubfieldNameEnum
+} from '@domain/types/index.js';
+import {
+  Subfields,
+  DefaultBlocks,
+  ActualBlocks,
+  ActualBlock,
+  StudentSubfieldTraces
+} from '@infrastructure/aws_tables/index.js';
+import { 
+  ensureValue,
+  logger
+} from "@utils/index.js";
+import { 
+  NotionCoachIrregulars,
+  NotionCoachPlans 
+} from "@infrastructure/notion/index.js";
+import { DomainCoachPlan } from "@domain/coach/CoachPlan.js";
 
 // TODO: Confirm whether the arugment should be subfield 'Id' or 'Name'.
-export async function sendBlockDefault(studentId, planDBId, irregularDBId, subfieldId, subfieldLevel) {
+export async function sendBlockDefault(
+  studentId: MySQLUintID,
+  planDBId: NotionUUID, 
+  irregularDBId: NotionUUID, 
+  subfieldId: MySQLUintID, 
+  subfieldLevel: ActualBlocksProblemLevelEnum
+) {
   try {
+    // Instatiation of notion database class.
+    const notionCoachPlans = new NotionCoachPlans();
+    const notionCoachIrregulars = new NotionCoachIrregulars();
     // 0. Delete all the existing blocks in the coach db & irregular db
-    const subfieldName = await Subfields.findBySubfieldId(subfieldId)[0].subfield_name;
-    const filter = {
-      property: coachPlanProperties.subfieldName.name,
-      select: { 'equals': subfieldName },
-    };
-    const existingBlocksInCoachPlan = await NotionAPI.queryADatabase(planDBId, filter=filter).results;
-    const promises = existingBlocksInCoachPlan.map(async block => await NotionAPI.deleteABlock(block.id));
-    const existingBlocksInIrregular = await NotionAPI.queryADatabase(irregularDBId, filter=filter).results;
-    promises.push(existingBlocksInIrregular.map(async block => await NotionAPI.deleteABlock(block.id)));
+    const subfieldName = ensureValue(
+      ensureValue(await Subfields.findBySubfieldId(subfieldId)).subfieldName
+    );
+    const existingBlocksInCoachPlan = await notionCoachPlans.queryADatabaseWithSubfieldNameFilter(planDBId, subfieldName);
+    const promises = existingBlocksInCoachPlan
+      .map(async block => await notionCoachPlans.deleteAPage(
+        ensureValue(
+          block.planPageId, 
+          'There is a problem in notionCoachPlans.queryWithSubfieldNameFilter because the elements of the result of the function has no plan page id attribute.'
+        )
+      )) as Promise<any>[];
+    const existingBlocksInIrregular = await notionCoachIrregulars.queryADatabaseWithSubfieldFilter(irregularDBId, subfieldName);
+    promises.push(
+      existingBlocksInIrregular
+      .map(async block => await notionCoachIrregulars.deleteAPage(
+        ensureValue(
+          block.irregularPageId,
+          'There is a problem in notionCoachIrregulars.queryWithSubfieldNameFilter because the elements of the result of the function has no irregular page id attribute.')
+      )) as unknown as Promise<any>
+    );
     // 1. fetch the information from aws
     const defaultBlocks = await DefaultBlocks.findBySubfieldIdUnderSpecificLevel(subfieldId, subfieldLevel);
     const acutalBlocks = await ActualBlocks.findByStudentIdAndSubfieldId(studentId, subfieldId);
     // 2. send the block to the coach db
     // sort in descending order
-    const blockPageIdDict = {};
-    defaultBlocks.sort((a, b) = b.block_order - a.block_order);
-    promises.push(async () => {
+    const blockPageIdDict: Record<MySQLUintID, NotionUUID> = {};
+    defaultBlocks.sort(
+      (a, b) => ensureValue(b.blockOrder) - ensureValue(a.blockOrder)
+    );
+    promises.push((async () => {
       for (const block of defaultBlocks) {
-        const parent = Parent('database_id', planDBId);
-        const response = await NotionAPI.createAPage(parent=parent, properties=Properties([
-          propertyToNotion({
-            propertyName: coachPlanProperties.blockName.name,
-            propertyContent: block.blockName,
-            propertyType: coachPlanProperties.blockName.type,
-          }),
-          propertyToNotion({
-            propertyName: coachPlanProperties.speed.name,
-            propertyContent: block.speed,
-            propertyType: coachPlanProperties.speed.type,
-          }),
-          propertyToNotion({
-            propertyName: coachPlanProperties.space.name,
-            propertyContent: block.space,
-            propertyType: coachPlanProperties.space.type,
-          }),
-          propertyToNotion({
-            propertyName: coachPlanProperties.lap.name,
-            propertyContent: block.lap,
-            propertyType: coachPlanProperties.lap.type,
-          }),
-          propertyToNotion({
-            propertyName: coachPlanProperties.subfieldName.name,
-            propertyContent: subfieldName,
-            propertyType: coachPlanProperties.subfieldName.type,
-          }),
-          propertyToNotion({
-            propertyName: coachPlanProperties.blockOrder.name,
-            propertyContent: block.block_order,
-            propertyType: coachPlanProperties.blockOrder.type,
-          }),
-        ]));
-        if(acutalBlocks.length === 0) blockPageIdDict[block.default_block_id] = response.id;
-        logger.info(`Created block "${block.block_name}" with properties "${properties}"`);
+        const domainProperties: DomainCoachPlan = {
+          blockName: ensureValue(block.blockName),
+          speed: ensureValue(block.speed),
+          space: ensureValue(block.space),
+          lap: ensureValue(block.lap),
+          blockOrder: ensureValue(block.blockOrder),
+          subfieldName: subfieldName,
+        }
+        const createdPageId = await notionCoachPlans.createAPageOnlyWithProperties(
+          planDBId,
+          "database_id",
+          domainProperties,
+        )
+        if(acutalBlocks.length === 0) blockPageIdDict[ensureValue(block.defaultBlockId)] = ensureValue(createdPageId);
+        logger.info(`Created block "${block.blockName}" with properties "${domainProperties}"`);
       }
-    })
+    })())
     await Promise.all(promises);
     // 3. Check if it's initialiezation or not
     if (acutalBlocks.length === 0) {
       // TODO: Add page id in student block page and plans.
-      await ActualBlocks.createMultiple(defaultBlocks.map(async block => {
-        return convertToSnakeCase({
+      const newActualBlocks: ActualBlock[] = defaultBlocks.map(block => {
+        return {
           studentId: studentId,
           subfieldId: subfieldId,
-          defaultBlockId: block.default_block_id,
-          actualBlockName: block.block_name,
-          blockOrder: block.block_order,
+          defaultBlockId: block.defaultBlockId,
+          actualBlockName: block.blockName,
+          blockOrder: block.blockOrder,
           space: block.space,
           speed: block.speed,
           lap: block.lap,
-          notionPageIdForCoachPlan: blockPageIdDict[block.default_block_id]
-        });
-      }))
+          coachPlanNotionPageId: blockPageIdDict[ensureValue(block.defaultBlockId)]
+        }
+      });
+      await ActualBlocks.createMultiple(newActualBlocks);
     }
   } catch(error) {
-    logger.error("Error in sendBlockDefault", error.message);
+    logger.error("Error in sendBlockDefault", error);
     throw error;
   }
 }
@@ -98,17 +118,24 @@ export async function sendBlockDefault(studentId, planDBId, irregularDBId, subfi
 
 
 // TODO: implement
-export async function sendNecessaryStudyTimes(studentId, databaseId){
+export async function sendNecessaryStudyTimes(
+  studentId: MySQLUintID,
+  databaseId: NotionUUID
+){
   // 0. fetch all problems the student has
-  const subfieldIds = await StudentsSubfields.findByStudentID(studentId);
-  const actualBlocks = {};
-  const subfieldNames = [];
+  const subfieldIds = (await StudentSubfieldTraces.findByStudentId(studentId))
+    .map(trace => trace.subfieldId)
+    .filter(subfieldId => subfieldId !== undefined);
+  const actualBlocks: Partial<Record<SubfieldsSubfieldNameEnum, any>> = {};
+  const subfieldNames: SubfieldsSubfieldNameEnum[] = [];
   Promise.all(subfieldIds.map(async subfieldId => {
     const actualBlocksInSubfield = await ActualBlocks.findByStudentIdAndSubfieldId(studentId, subfieldId);
-    const subfieldName = await Subfields.findBySubfieldId(subfieldId)[0].subfield_name;
+    const subfieldName = ensureValue(
+      ensureValue(await Subfields.findBySubfieldId(subfieldId)).subfieldName
+    );
     subfieldNames.push(subfieldName);
     // sort in ascending
-    actualBlocksInSubfield.sort((a,b) => a.head_order - b.head_order);
+    actualBlocksInSubfield.sort((a,b) => ensureValue(a.blockOrder) - ensureValue(b.blockOrder));
     actualBlocks[subfieldName] = actualBlocksInSubfield;
   }));
   // 1. explore the all patterns of the study times
