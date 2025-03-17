@@ -46,6 +46,15 @@ export type StudentProblemsAnswerStatusEnum = '未回答'|'不正解'|'正解'
 export function isValidStudentProblemsAnswerStatusEnum(value: string): value is StudentProblemsAnswerStatusEnum {
   return ['未回答', '不正解', '正解'].includes(value);
 }
+export function isUndoneAnswerStatus(status: StudentProblemsAnswerStatusEnum): boolean {
+  return status === '未回答';
+}
+export function isWrongAnswerStatus(status: StudentProblemsAnswerStatusEnum): boolean {
+  return status === '不正解';
+}
+export function isCorrectAnswerStatus(status:StudentProblemsAnswerStatusEnum): boolean {
+  return status === '正解';
+}
 
 export type StudentProblemsUnderstandingLevelEnum = 1 | 2 | 3 | 4 | 5 ;
 export function isValidStudentProblemsUnderstandingLevelEnum(value: number): value is StudentProblemsUnderstandingLevelEnum {
@@ -67,8 +76,8 @@ export function isValidStudentsOverviewsChatStatusEnum(value: string): value is 
   return ['Chat', 'Nope'].includes(value);
 }
 
-export type StudentsOverviewsDistStatusEnum = '正常' | 'エラー発生';
-export function isValidStudentsOverviewsDistStatusEnum(value: string):value is StudentsOverviewsDistStatusEnum {
+export type StudentsOverviewsDistributionStatusEnum = '正常' | 'エラー発生';
+export function isValidStudentsOverviewsDistributionStatusEnum(value: string):value is StudentsOverviewsDistributionStatusEnum {
   return ['正常', 'エラー発生'].includes(value);
 }
 
