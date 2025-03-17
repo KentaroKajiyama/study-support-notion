@@ -13,8 +13,6 @@ import {
 } from '@domain/types/index.js';
 import { RowDataPacket, ResultSetHeader } from "mysql2";
 
-
-
 interface MySQLProblem {
   problemId?: MySQLUintID;
   subfieldId?: MySQLUintID;

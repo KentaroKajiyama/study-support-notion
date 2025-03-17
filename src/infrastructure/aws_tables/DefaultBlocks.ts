@@ -16,6 +16,8 @@ import {
   toNotionUUID,
   NotionUUID,
   ActualBlocksProblemLevelEnum,
+  NotionMentionString,
+  fromStringToANotionMentionString,
 } from '@domain/types/index.js';
 import { RowDataPacket } from "mysql2";
 
@@ -25,12 +27,12 @@ export interface MySQLDefaultBlock {
   subfieldId?: MySQLUintID;
   notionPageId?: string;          
   blockName?: string;
-  space?: Int;
-  speed?: Int;
-  lap?: Int;
+  space?: Uint;
+  speed?: Uint;
+  lap?: Uint;
   blockOrder?: Uint;
   isTail?: MySQLBoolean | null;
-  blockSize?: Int;
+  blockSize?: Uint;
   problemLevel?: ActualBlocksProblemLevelEnum;
   averageExpectedTime?: Uint;
   createdAt?: MySQLTimestamp;
@@ -41,13 +43,13 @@ export interface DefaultBlock {
   defaultBlockId?: MySQLUintID;
   subfieldId?: MySQLUintID;
   notionPageId?: NotionUUID;
-  blockName?: string;
-  space?: Int;
-  speed?: Int;
-  lap?: Int;
+  blockName?: NotionMentionString;
+  space?: Uint;
+  speed?: Uint;
+  lap?: Uint;
   blockOrder?: Uint;
   isTail?: boolean | null;              
-  blockSize?: Int;
+  blockSize?: Uint;
   problemLevel?: ActualBlocksProblemLevelEnum;
   averageExpectedTime?: Uint;
   createdAt?: MySQLTimestamp;
@@ -62,15 +64,15 @@ function toDefaultBlock(row: Partial<MySQLDefaultBlock>): DefaultBlock {
     defaultBlockId: row.defaultBlockId,
     subfieldId: row.subfieldId,
     notionPageId: row.notionPageId ? toNotionUUID(row.notionPageId) : undefined,
-    blockName: row.blockName || "",
+    blockName: row.blockName !== undefined ? fromStringToANotionMentionString(row.blockName) : undefined,
     space: row.space,
     speed: row.speed,
     lap: row.lap,
-    blockOrder: row.blockOrder !== undefined ? toUint(row.blockOrder) : undefined,
+    blockOrder: row.blockOrder,
     isTail: row.isTail !== undefined ?( row.isTail !== null ? toBoolean(row.isTail) : null) : null,
-    blockSize: row.blockSize !== undefined ? toInt(row.blockSize) : undefined,
+    blockSize: row.blockSize,
     problemLevel: row.problemLevel,
-    averageExpectedTime: row.averageExpectedTime !== undefined ? toUint(row.averageExpectedTime) : undefined,
+    averageExpectedTime: row.averageExpectedTime,
     createdAt: row.createdAt,
     updatedAt: row.updatedAt,
   };

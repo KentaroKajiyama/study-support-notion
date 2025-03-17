@@ -82,19 +82,19 @@ export interface StudentProblemWithSubfield extends StudentProblem, Subfield {};
 export function toStudentProblem(row: Partial<MySQLStudentProblem>): StudentProblem {
   try {
     const transformed: StudentProblem = {
-      studentProblemId: isMySQLUintID(row.studentProblemId ?? 0)
-        ? row.studentProblemId
+      studentProblemId: row.studentProblemId !== undefined
+        ? toMySQLUintID(row.studentProblemId)
         : undefined,
-      studentId: isMySQLUintID(row.studentId ?? 0)
-        ? row.studentId
+      studentId: row.studentId !== undefined
+        ? toMySQLUintID(row.studentId)
         : undefined,
-      problemId: isMySQLUintID(row.problemId ?? 0)
-        ? row.problemId
+      problemId: row.problemId !== undefined
+        ? toMySQLUintID(row.problemId)
         : undefined,
-      actualBlockId: isMySQLUintID(row.actualBlockId ?? 0)
-        ? row.actualBlockId
+      actualBlockId: row.actualBlockId !== undefined
+        ? toMySQLUintID(row.actualBlockId)
         : undefined,
-      notionPageId: row.notionPageId ? toNotionUUID(row.notionPageId) : undefined,
+      notionPageId: row.notionPageId !== undefined ? ( row.notionPageId !== null? toNotionUUID(row.notionPageId): null ): undefined,
       answerStatus: row.answerStatus,
       isDifficult: row.isDifficult !== undefined ? toBoolean(row.isDifficult) : undefined,
       tryCount: row.tryCount,
@@ -105,7 +105,7 @@ export function toStudentProblem(row: Partial<MySQLStudentProblem>): StudentProb
       reviewAvailableDate: row.reviewAvailableDate && convertTimeMySQLToNotion(row.reviewAvailableDate),
       problemInBlockOrder: row.problemInBlockOrder,
       problemOverallOrder: row.problemOverallOrder,
-      lastAnsweredDate: row.lastAnsweredDate
+      lastAnsweredDate: row.lastAnsweredDate !== undefined
         ? convertTimeMySQLToNotion(row.lastAnsweredDate)
         : undefined,
       createdAt: row.createdAt,
@@ -125,17 +125,17 @@ export function toStudentProblem(row: Partial<MySQLStudentProblem>): StudentProb
 export function toStudentProblemWithSubfield(row: MySQLStudentProblemWithSubfield): StudentProblemWithSubfield {
   try {
     const transformed: StudentProblemWithSubfield = {
-      studentProblemId: isMySQLUintID(row.studentProblemId ?? 0)
-        ? row.studentProblemId
+      studentProblemId: row.studentProblemId !== undefined
+        ? toMySQLUintID(row.studentProblemId)
         : undefined,
-      studentId: isMySQLUintID(row.studentId ?? 0)
-        ? row.studentId
+      studentId: row.studentId !== undefined
+        ? toMySQLUintID(row.studentId)
         : undefined,
-      problemId: isMySQLUintID(row.problemId ?? 0)
-        ? row.problemId
+      problemId: row.problemId !== undefined
+        ? toMySQLUintID(row.problemId)
         : undefined,
-      actualBlockId: isMySQLUintID(row.actualBlockId ?? 0)
-        ? row.actualBlockId
+      actualBlockId: row.actualBlockId !== undefined
+        ? toMySQLUintID(row.actualBlockId)
         : undefined,
       subfieldId: isMySQLUintID(row.subfieldId ?? 0)
         ? row.subfieldId
@@ -623,7 +623,7 @@ export class StudentProblems {
 
   static async findAllProblemsForReview(
     subfieldId: MySQLUintID,
-    reviewSpeed: number
+    reviewSpeed: Uint
   ): Promise<StudentProblem[]> {
     try {
       const [rows] = await db.query<RowDataPacket[]>(

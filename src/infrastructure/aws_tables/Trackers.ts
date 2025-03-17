@@ -245,7 +245,7 @@ export class Trackers {
 
   static async findByStudentProblemId(
     studentProblemId: MySQLUintID
-  ): Promise<Tracker[]> {
+  ): Promise<Tracker | null> {
     try {
       if (!studentProblemId) {
         logger.error("No studentProblemId provided to findByStudentProblemId.");
@@ -261,10 +261,12 @@ export class Trackers {
         throw new Error("Result of 'findByStudentProblemId' query was not an array.");
       } else if (rows.length === 0) {
         logger.warn("No trackers were found by studentProblemId")
-        return [];
+        return null;
+      } else if (rows.length >= 2) {
+        logger.warn("Multiple trackers found by studentProblemId")
       }
 
-      return rows.map(row => toTracker(convertToCamelCase(row) as MySQLTracker));
+      return toTracker(convertToCamelCase(rows[0]) as MySQLTracker);
     } catch (error) {
       logger.error(
         `Error finding trackers by studentProblemId: ${studentProblemId}`,

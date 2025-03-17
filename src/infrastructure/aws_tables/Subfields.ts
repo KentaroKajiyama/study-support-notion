@@ -8,7 +8,8 @@ import {
   MySQLUintID,
   MySQLTimestamp,
   SubfieldsSubfieldNameEnum,
-  isValidSubfieldsSubfieldNameEnum
+  isValidSubfieldsSubfieldNameEnum,
+  SubjectsSubjectNameEnum
 } from '@domain/types/index.js';
 
 
@@ -28,6 +29,13 @@ export interface Subfield {
   updatedAt?: MySQLTimestamp;
 }
 
+interface SubjectName {
+  subjectName?: SubjectsSubjectNameEnum;
+}
+
+export interface MySQLSubfieldWithSubjectName extends MySQLSubfield, SubjectName {};
+export interface SubfieldWithSubjectName extends MySQLSubfield, SubjectName {};
+
 function toSubfield(row: MySQLSubfield): Subfield {
   try {
     const transformed: Subfield = {
@@ -46,6 +54,24 @@ function toSubfield(row: MySQLSubfield): Subfield {
   }
 }
 
+function toSubfieldWithSubjectName(row: MySQLSubfieldWithSubjectName): SubfieldWithSubjectName {
+  try {
+    const transformed: SubfieldWithSubjectName = {
+      subfieldId: row.subfieldId,
+      subjectId: row.subjectId,
+      subfieldName: row.subfieldName,
+      subjectName: row.subjectName,
+      createdAt: row.createdAt,
+      updatedAt: row.updatedAt,
+    };
+    return Object.fromEntries(
+      Object.entries(transformed).filter(([_, value]) => value !== undefined)
+    ) as Subfield;
+  } catch (error) {
+    logger.error(`Error converting MySQLSubfield to Subfield: ${error}`);
+    throw error;
+  }
+}
 function toMySQLSubfield(data: Subfield): MySQLSubfield {
   try {
     if (data.subfieldName && !isValidSubfieldsSubfieldNameEnum(data.subfieldName)){
@@ -194,6 +220,37 @@ export class Subfields {
       return rows.map((r) => toSubfield(convertToCamelCase(r) as MySQLSubfield) );
     } catch (error) {
       logger.error(`Error finding subfields by subjectId: ${subjectId}`, error);
+      throw error;
+    }
+  }
+
+  static async findWithSubjectNameBySubfieldId(subjectId: MySQLUintID): Promise<SubfieldWithSubjectName | null> {
+    try {
+      if (!subjectId) {
+        logger.error("No subjectId provided to findWithSubjectNameBySubfieldId.");
+        throw new Error("Invalid subjectId.");
+      }
+      const [rows] = await db.query(
+        `
+        SELECT s.*, su.subject_name
+        FROM subfields s
+        INNER JOIN subjects su ON s.subject_id = su.subject_id
+        WHERE s.subfield_id =?
+        `,
+        [subjectId]
+      );
+      if (!Array.isArray(rows)) {
+        logger.error("Result of 'findWithSubjectNameBySubfieldId' query was not an array.");
+        throw new Error("Result of 'findWithSubjectNameBySubfieldId' query was not an array.");
+      } else if (rows.length === 0) {
+        logger.warn('No subfields are found in findWithSubjectNameBySubfieldId Subfields.ts');
+        return null;
+      } else if (rows.length >= 2) {
+        logger.warn('Multiple subfields found in findWithSubjectNameBySubfieldId Subfields.ts');
+      };
+      return toSubfieldWithSubjectName(convertToCamelCase(rows[0]) as MySQLSubfieldWithSubjectName);
+    } catch (error) {
+      logger.error(`Error finding subfields with subject name by subfieldId: ${subjectId}`, error);
       throw error;
     }
   }

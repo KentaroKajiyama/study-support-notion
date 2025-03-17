@@ -32,7 +32,7 @@ export interface MySQLStudent {
   todoDbId?: string;
   remainingDbId?: string;
   wrongDbId?: string;
-  difficultDbId?: string;
+  isDifficultDbId?: string;
   studentProgressDbId?: string;
   studentScheduleDbId?: string;
   studentOverviewPageId?: string;
@@ -56,7 +56,7 @@ export interface Student {
   todoDbId?: NotionUUID;
   remainingDbId?: NotionUUID;
   wrongDbId?: NotionUUID;
-  difficultDbId?: NotionUUID;
+  isDifficultDbId?: NotionUUID;
   studentProgressDbId?: NotionUUID;
   studentScheduleDbId?: NotionUUID;
   studentOverviewPageId?: NotionUUID;
@@ -103,9 +103,9 @@ export function toStudent(row: MySQLStudent): Student {
         row.wrongDbId !== undefined
           ? toNotionUUID(row.wrongDbId)
           : undefined,
-      difficultDbId:
-        row.difficultDbId !== undefined
-          ? toNotionUUID(row.difficultDbId)
+      isDifficultDbId:
+        row.isDifficultDbId !== undefined
+          ? toNotionUUID(row.isDifficultDbId)
           : undefined,
       studentProgressDbId:
         row.studentProgressDbId !== undefined
@@ -165,7 +165,7 @@ export function toMySQLStudent(data: Student): MySQLStudent {
       todoDbId: data.todoDbId,
       remainingDbId: data.remainingDbId,
       wrongDbId: data.wrongDbId,
-      difficultDbId: data.difficultDbId,
+      isDifficultDbId: data.isDifficultDbId,
       studentProgressDbId: data.studentProgressDbId,
       studentScheduleDbId: data.studentScheduleDbId,
       studentOverviewPageId: data.studentOverviewPageId,
@@ -247,7 +247,7 @@ export class Students {
         payload.todoDbId ?? null,
         payload.remainingDbId ?? null,
         payload.wrongDbId ?? null,
-        payload.difficultDbId ?? null,
+        payload.isDifficultDbId ?? null,
         payload.studentProgressDbId ?? null,
         payload.studentScheduleDbId ?? null,
         payload.studentOverviewPageId ?? null,
@@ -283,13 +283,14 @@ export class Students {
 
   static async findOnlyTopProblemDBIds(): Promise<{
     studentId: MySQLUintID;
-    todoDbId: string | null;
-    wrongDbId: string | null;
-    difficultDbId: string | null;
+    remainingDbId: NotionUUID | null;
+    todoDbId: NotionUUID | null;
+    wrongDbId: NotionUUID | null;
+    isDifficultDbId: NotionUUID | null;
   }[]> {
     try {
       const [rows] = await db.query<RowDataPacket[]>(`
-        SELECT student_id, todo_db_id, wrong_db_id, difficult_db_id
+        SELECT student_id, remaining_db_id, todo_db_id, wrong_db_id, difficult_db_id
         FROM students
       `);
       if (rows.length === 0) {
@@ -299,9 +300,10 @@ export class Students {
 
       return rows.map(row => toStudent(convertToCamelCase(row) as MySQLStudent)) as {
                                                                                       studentId: MySQLUintID;
-                                                                                      todoDbId: string | null;
-                                                                                      wrongDbId: string | null;
-                                                                                      difficultDbId: string | null;
+                                                                                      remainingDbId: NotionUUID | null;
+                                                                                      todoDbId: NotionUUID | null;
+                                                                                      wrongDbId: NotionUUID | null;
+                                                                                      isDifficultDbId: NotionUUID | null;
                                                                                     }[]
     } catch (error) {
       logger.error("Error finding only top problem DB IDs:", error);

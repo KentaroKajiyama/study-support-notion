@@ -16,7 +16,8 @@ import {
   Int,
   toNotionUUID,
   NotionUUID,
-  NotionDate
+  NotionDate,
+  SubfieldsSubfieldNameEnum
 } from '@domain/types/index.js';
 
 
@@ -25,7 +26,7 @@ export interface MySQLStudentSubfieldTrace {
   studentId?: MySQLUintID;
   subfieldId?: MySQLUintID;
   todoRemainingCounter?: Uint;
-  todoRemainingCounterNotionPageId?: string;
+  todoRemainingCounterNotionPageId?: string | null;
   remainingDay?: Uint;
   remainingDayNotionPageId?: string;
   actualEndDate?: MySQLDate | null;
@@ -46,7 +47,7 @@ export interface StudentSubfieldTrace {
   studentId?: MySQLUintID;
   subfieldId?: MySQLUintID;
   todoRemainingCounter?: Uint;
-  todoRemainingCounterNotionPageId?: NotionUUID;
+  todoRemainingCounterNotionPageId?: NotionUUID | null;
   remainingDay?: Uint;
   remainingDayNotionPageId?: NotionUUID;
   actualEndDate?: NotionDate | null;
@@ -63,7 +64,7 @@ export interface StudentSubfieldTrace {
 }
 
 interface SubfieldName {
-  subfieldName?: string;
+  subfieldName?: SubfieldsSubfieldNameEnum;
 }
 
 export interface MySQLStudentSubfieldTraceWithSubfieldName extends MySQLStudentSubfieldTrace, SubfieldName {};
@@ -79,7 +80,7 @@ export function toStudentSubfieldTrace(
       subfieldId: row.subfieldId,
       todoRemainingCounter: row.todoRemainingCounter,
       todoRemainingCounterNotionPageId:
-        row.todoRemainingCounterNotionPageId !== undefined
+        row.todoRemainingCounterNotionPageId != undefined
           ? toNotionUUID(row.todoRemainingCounterNotionPageId)
           : undefined,
       remainingDay: row.remainingDay,
@@ -133,7 +134,7 @@ export function toStudentSubfieldTraceWithSubfieldName(
       subfieldName: row.subfieldName,
       todoRemainingCounter: row.todoRemainingCounter,
       todoRemainingCounterNotionPageId:
-        row.todoRemainingCounterNotionPageId !== undefined
+        row.todoRemainingCounterNotionPageId != undefined
           ? toNotionUUID(row.todoRemainingCounterNotionPageId)
           : undefined,
       remainingDay: row.remainingDay,
@@ -353,10 +354,10 @@ export class StudentSubfieldTraces {
     }
   }
   static async findOnlyReviewAlertByStudentId(studentId: MySQLUintID): Promise<{
-    studentId: MySQLUintID;
-    subfieldId: MySQLUintID;
-    reviewAlert: Uint;
-    subfieldName: string;
+    studentId?: MySQLUintID;
+    subfieldId?: MySQLUintID;
+    reviewAlert?: Uint;
+    subfieldName?: SubfieldsSubfieldNameEnum;
   }[]> {
     try {
       if (!studentId) {
@@ -384,17 +385,7 @@ export class StudentSubfieldTraces {
         logger.warn('No trace is found in findOnlyReviewAlertByStudentId StudentSubfieldTrace.ts')
         return [];
       }
-      return rows.map((r: StudentSubfieldTraceWithSubfieldName) => {
-        if(r.studentId === undefined || r.subfieldId === undefined || r.reviewAlert === undefined || r.subfieldName === undefined) {
-          throw new Error("Invalid row in findOnlyReviewAlertByStudentId StudentSubfieldTrace.ts");
-        }
-        return {
-          studentId: r.studentId,
-          subfieldId: r.subfieldId,
-          reviewAlert: r.reviewAlert,
-          subfieldName: r.subfieldName,
-        }
-      });
+      return rows.map((r: StudentSubfieldTraceWithSubfieldName) => toStudentSubfieldTrace(convertToCamelCase(r as MySQLStudentSubfieldTrace)));
     } catch (error) {
       logger.error(
         `Error finding reviewAlert by studentId: ${studentId}`,
