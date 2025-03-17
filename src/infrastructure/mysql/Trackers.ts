@@ -214,7 +214,7 @@ export class Trackers {
   static async findByCompositeKey(
     studentId: MySQLUintID,
     subfieldId: MySQLUintID
-  ): Promise<Tracker[]> {
+  ): Promise<Tracker | null> {
     try {
       if (!studentId || !subfieldId) {
         logger.error("Invalid input to findByCompositeKey: missing IDs.");
@@ -230,10 +230,12 @@ export class Trackers {
         throw new Error("Result of 'findByCompositeKey' query was not an array.");
       } else if (rows.length === 0) {
         logger.warn("No trackers were found by composite key")
-        return [];
+        return null;
+      } else if (rows.length >= 2) {
+        logger.warn("Multiple trackers found by composite key")
       }
 
-      return rows.map(row => toTracker(convertToCamelCase(row) as MySQLTracker));
+      return toTracker(convertToCamelCase(rows[0]) as MySQLTracker);
     } catch (error) {
       logger.error(
         `Error finding trackers by compositeKey (sId=${studentId}, sfId=${subfieldId}):`,
