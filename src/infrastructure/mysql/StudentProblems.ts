@@ -446,7 +446,7 @@ export class StudentProblems {
 
   static async findWithSubfieldIdByNotionPageId(
     notionPageId: NotionUUID
-  ): Promise<StudentProblemWithSubfield[]> {
+  ): Promise<StudentProblemWithSubfield|null> {
     try {
       if (!notionPageId) {
         logger.error("No notionPageId provided to findWithSubfieldIdByNotionPageId.");
@@ -465,10 +465,12 @@ export class StudentProblems {
       );
       if (rows.length === 0) {
         logger.warn("No student problems found with notion page id in StudentProblems.ts")
-        return [];
+        return null;
+      } else if (rows.length >= 2) {
+        logger.warn(`Found multiple student problems with subfieldId by notionPageId in StudentProblems.ts: ${notionPageId}`);
       }
 
-      return rows.map(row => toStudentProblemWithSubfield(convertToCamelCase(row) as MySQLStudentProblemWithSubfield)) as StudentProblemWithSubfield[];
+      return toStudentProblemWithSubfield(convertToCamelCase(rows[0]) as MySQLStudentProblemWithSubfield);
     } catch (error) {
       logger.error(`Error finding problem with subfieldId by notionPageId: ${notionPageId}`, error);
       throw error;
