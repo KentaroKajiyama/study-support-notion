@@ -13,7 +13,7 @@ import {
   Students,
   StudentSubfieldTraces,
   Tracker
-} from '@infrastructure/aws_tables/index.js';
+} from '@infrastructure/mysql/index.js';
 import {
   NotionCoachIrregulars,
   NotionCoachPlans,
@@ -755,7 +755,7 @@ export async function adjustSchedule(
 
     // Update delay in StudentSubfieldTraces
     const currentDelay = ensureValue(
-      ensureValue(await StudentSubfieldTraces.findByCompositeKey(studentId, subfieldId)).delay
+      ensureValue(await StudentSubfieldTraces.findWithSubfieldNameByCompositeKey(studentId, subfieldId)).delay
     );
     
     const delayAdjustment = mode === "delay" ? 1 : -adjustDays(0);
@@ -797,7 +797,7 @@ export async function adjustSchedule(
   }
 }
 
-export async function calculateNextTrackerAndTodoRemainingCounter(
+export async function calculateNextTrackerAndTodoCounter(
   studentId: MySQLUintID,
   subfieldId: MySQLUintID, 
   currentActualBlockId: MySQLUintID, 
@@ -828,10 +828,10 @@ export async function calculateNextTrackerAndTodoRemainingCounter(
         const nextTracker: Tracker = {
           isEnabled: false
         }
-        const todoRemainingCounter = toUint(0);
+        const todoCounter = toUint(0);
         return {
           tracker: nextTracker,
-          todoRemainingCounter: todoRemainingCounter
+          todoCounter: todoCounter
         }
       } else if (currentIsTail) {
         const nextStudentProblem = ensureValue(await StudentProblems.findByBlockInfoAndStudentInfo(studentId, currentActualBlockId, nextProblemInBlockOrder));
@@ -839,11 +839,11 @@ export async function calculateNextTrackerAndTodoRemainingCounter(
           studentProblemId: ensureValue(nextStudentProblem.studentProblemId),
           remainingSpace: currentSpace,
         }
-        const todoRemainingCounter = toUint(currentBlockSize - currentProblemInBlockOrder);
+        const todoCounter = toUint(currentBlockSize - currentProblemInBlockOrder);
         await adjustSchedule(studentId, currentActualBlockId, subfieldId, 'expedite', false);
         return {
           tracker: nextTracker,
-          todoRemainingCounter: todoRemainingCounter
+          todoCounter: todoCounter
         }
       } else {
         const nextBlock = ensureValue(
@@ -859,11 +859,11 @@ export async function calculateNextTrackerAndTodoRemainingCounter(
             remainingSpace: ensureValue(nextBlock.blockOrder),
             currentLap: toUint(1)
           }
-          const todoRemainingCounter = ensureValue(nextBlock.speed);
+          const todoCounter = ensureValue(nextBlock.speed);
           await adjustSchedule(studentId, currentActualBlockId, subfieldId, 'expedite', true);
           return {
             tracker: nextTracker,
-            todoRemainingCounter: todoRemainingCounter
+            todoCounter: todoCounter
           }
         } else {
           const nextStudentProblem = ensureValue(
@@ -874,7 +874,7 @@ export async function calculateNextTrackerAndTodoRemainingCounter(
             studentProblemId: ensureValue(nextStudentProblem.studentProblemId),
             remainingSpace: nextBlock.blockOrder,
           }
-          const todoRemainingCounter = toUint(
+          const todoCounter = toUint(
             Math.min(
               currentSpace- (currentBlockSize - currentProblemInBlockOrder), 
               ensureValue(nextBlock.space)) + (currentBlockSize - currentProblemInBlockOrder
@@ -883,7 +883,7 @@ export async function calculateNextTrackerAndTodoRemainingCounter(
           await adjustSchedule(studentId, currentActualBlockId, subfieldId, 'expedite', false);
           return {
             tracker: nextTracker,
-            todoRemainingCounter: todoRemainingCounter
+            todoCounter: todoCounter
           }
         }
       }
@@ -896,11 +896,11 @@ export async function calculateNextTrackerAndTodoRemainingCounter(
         remainingSpace: currentSpace,
         currentLap: toUint(currentLap + 1)
       };
-      const todoRemainingCounter = currentSpeed;
+      const todoCounter = currentSpeed;
       await adjustSchedule(studentId, currentActualBlockId, subfieldId, 'expedite', true);
       return {
         tracker: nextTracker,
-        todoRemainingCounter: todoRemainingCounter
+        todoCounter: todoCounter
       }
     } else {
       const nextStudentProblem = ensureValue(
@@ -910,11 +910,11 @@ export async function calculateNextTrackerAndTodoRemainingCounter(
         studentProblemId: ensureValue(nextStudentProblem.studentProblemId),
         remainingSpace: currentSpace,
       };
-      const todoRemainingCounter = currentSpeed;
+      const todoCounter = currentSpeed;
       await adjustSchedule(studentId, currentActualBlockId, subfieldId, 'expedite', false);
       return {
         tracker: nextTracker,
-        todoRemainingCounter: todoRemainingCounter
+        todoCounter: todoCounter
       }
     }
   } catch (error) {

@@ -5,7 +5,7 @@ import {
 } from "@domain/types/index.js";
 
 
-export interface DomainTodoCounter {
+export interface DomainStudentTodoCounter {
   subfieldName ?: SubfieldsSubfieldNameEnum;
   remainingProblemNumber ?: Uint;
   delay ?: Int;
