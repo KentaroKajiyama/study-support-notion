@@ -5,3 +5,6 @@ export * from './selectHandler.js';
 export * from './richTextHandler.js';
 export * from './formulaHandler.js';
 export * from './dateHandler.js';
+export * from './relationHandler.js';
+export * from './statusHandler.js';
+export * from './multiSelectHandler.js';

@@ -7,7 +7,10 @@ import {
   SelectPropertyResponse,
   FormulaPropertyResponse,
   NotionPropertyRequest,
-  DatePropertyResponse
+  DatePropertyResponse,
+  RelationPropertyResponse,
+  StatusPropertyResponse,
+  MultiSelectPropertyResponse
 } from "@domain/types/index.js";
 import {
   TitleResponseOption,
@@ -34,6 +37,18 @@ import {
   SelectRequestOption,
   selectRequestHandler,
   SelectRequestInputType,
+  MultiSelectResponseOption,
+  multiSelectResponseHandler,
+  MultiSelectResponseReturnType,
+  MultiSelectRequestOption,
+  multiSelectRequestHandler,
+  MultiSelectRequestInputType,
+  StatusResponseOption,
+  statusResponseHandler,
+  StatusResponseReturnType,
+  StatusRequestOption,
+  statusRequestHandler,
+  StatusRequestInputType,
   FormulaResponseOption,
   formulaResponseHandler,
   FormulaResponseReturnType,
@@ -43,6 +58,12 @@ import {
   dateRequestHandler,
   DateRequestInputType,
   DateRequestOption,
+  RelationRequestOption,
+  relationRequestHandler,
+  RelationRequestInputType,
+  RelationResponseOption,
+  relationResponseHandler,
+  RelationResponseReturnType,
 } from '@infrastructure/notion/property/index.js';
 
 // TODO: Specify the option and return type.
@@ -52,17 +73,23 @@ type ResponseReturnOption =
   | TitleResponseOption
   | NumberResponseOption
   | SelectResponseOption
+  | MultiSelectRequestOption
+  | StatusResponseOption
   | FormulaResponseOption
   | DateResponseOption
+  | RelationResponseOption
 
 type ResponseReturnType = 
   | undefined
   | TitleResponseReturnType
   | NumberResponseReturnType
   | SelectResponseReturnType
+  | MultiSelectResponseReturnType
+  | StatusResponseReturnType
   | FormulaResponseReturnType
   | CheckboxResponseReturnType
   | DateResponseReturnType
+  | RelationResponseReturnType
 
 export function propertyResponseToDomain(
   property: PagePropertyResponse,
@@ -84,8 +111,7 @@ export function propertyResponseToDomain(
         return selectResponseHandler(property as SelectPropertyResponse, returnOption as SelectResponseOption);
   
       case "multi_select":
-        // Handle multi-select properties (e.g., return an array of selected options)
-        break;
+        return multiSelectResponseHandler(property as MultiSelectPropertyResponse, returnOption as MultiSelectResponseOption);
   
       case "date":
         return dateResponseHandler(property as DatePropertyResponse, returnOption as DateResponseOption);
@@ -94,8 +120,7 @@ export function propertyResponseToDomain(
         return formulaResponseHandler(property as FormulaPropertyResponse, returnOption as FormulaResponseOption);
   
       case "relation":
-        // Handle relation properties (e.g., extract linked page IDs)
-        break;
+        return relationResponseHandler(property as RelationPropertyResponse, returnOption as RelationResponseOption);
   
       case "rollup":
         // Handle rollup properties (e.g., aggregate values from related records)
@@ -141,11 +166,9 @@ export function propertyResponseToDomain(
         break;
   
       case "status":
-        // Handle status properties (e.g., return status value or label)
-        break;
+        return statusResponseHandler(property as StatusPropertyResponse, returnOption as StatusResponseOption)
   
       case "unique_id":
-        // Handle unique_id properties (e.g., return the unique identifier)
         break;
   
       case "verification":
@@ -166,51 +189,55 @@ type RequestInputOption =
   | TitleRequestOption
   | NumberRequestOption
   | SelectRequestOption
+  | MultiSelectRequestOption
+  | StatusRequestOption
   | CheckboxRequestOption
   | DateRequestOption
+  | RelationRequestOption
 
 type RequestInputType =
   | undefined
   | TitleRequestInputType
   | NumberRequestInputType
   | SelectRequestInputType
+  | MultiSelectRequestInputType
+  | StatusRequestInputType
   | CheckboxRequestInputType
   | DateRequestInputType
+  | RelationRequestInputType
 
 export function propertyDomainToRequest(
   domainProperty: RequestInputType, // TODO: Specify the domain property shape
   propertyType: NotionPagePropertyType,
-  returnOption: RequestInputOption = ''
+  inputOption: RequestInputOption = ''
 ): NotionPropertyRequest | undefined {
   try {
     if (domainProperty === undefined) return undefined;
     switch (propertyType) {
       case "title":
-        return titleRequestHandler(domainProperty as TitleRequestInputType, returnOption as TitleRequestOption);
+        return titleRequestHandler(domainProperty as TitleRequestInputType, inputOption as TitleRequestOption);
 
       case "rich_text":
         // Handle rich text properties (e.g., convert to a readable string)
         break;
 
       case "number":
-        return numberRequestHandler(domainProperty as NumberRequestInputType, returnOption as NumberRequestOption);
+        return numberRequestHandler(domainProperty as NumberRequestInputType, inputOption as NumberRequestOption);
 
       case "select":
-        return selectRequestHandler(domainProperty as SelectRequestInputType, returnOption as SelectRequestOption);
+        return selectRequestHandler(domainProperty as SelectRequestInputType, inputOption as SelectRequestOption);
 
       case "multi_select":
-        // Handle multi-select properties (e.g., return an array of selected options)
-        break;
+        return multiSelectRequestHandler(domainProperty as MultiSelectRequestInputType, inputOption as MultiSelectRequestOption)
 
       case "date":
-        return dateRequestHandler(domainProperty as DateRequestInputType, returnOption as DateRequestOption);
+        return dateRequestHandler(domainProperty as DateRequestInputType, inputOption as DateRequestOption);
 
       case "formula":
         break
 
       case "relation":
-        // Handle relation properties (e.g., extract linked page IDs)
-        break;
+        return relationRequestHandler(domainProperty as RelationRequestInputType, inputOption as RelationRequestOption);
 
       case "rollup":
         // Handle rollup properties (e.g., aggregate values from related records)
@@ -225,7 +252,7 @@ export function propertyDomainToRequest(
         break;
 
       case "checkbox":
-        return checkboxRequestHandler(domainProperty as CheckboxRequestInputType, returnOption as CheckboxRequestOption);
+        return checkboxRequestHandler(domainProperty as CheckboxRequestInputType, inputOption as CheckboxRequestOption);
 
       case "url":
         // Handle URL properties (e.g., return the string URL)
@@ -256,8 +283,7 @@ export function propertyDomainToRequest(
         break;
 
       case "status":
-        // Handle status properties (e.g., return status value or label)
-        break;
+        return statusRequestHandler(domainProperty as StatusRequestInputType, inputOption as StatusRequestOption)
 
       case "unique_id":
         // Handle unique_id properties (e.g., return the unique identifier)

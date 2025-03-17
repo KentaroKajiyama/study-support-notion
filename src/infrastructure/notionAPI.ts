@@ -727,7 +727,7 @@ function exponentialBackoff(attempt: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, delay))
 }
 
-async function callNotionWithAdvancedErrorHandling<T>(
+export async function callNotionWithAdvancedErrorHandling<T>(
   notionCall: () => Promise<T>,
   maxRetries = 3
 ): Promise<T> {
