@@ -1,22 +1,23 @@
 import { 
   StudentsOverviewsAlertSubfieldEnum,
   StudentsOverviewsChatStatusEnum,
-  StudentsOverviewsDistStatusEnum,
+  StudentsOverviewsDistributionStatusEnum,
   StudentsOverviewsModifiedPlanSubfieldEnum,
   StudentsOverviewsPlanStatusEnum,
   NotionMentionString,
-  Int
+  Int,
+  NotionUUID
 } from "@domain/types/index.js";
 
 export interface DomainStudentOverview {
   studentName?: string;
   lineName?: string;
-  alertSubfields?: StudentsOverviewsAlertSubfieldEnum[];
+  alertSubfieldNames?: StudentsOverviewsAlertSubfieldEnum[];
   chatStatus?: StudentsOverviewsChatStatusEnum;
-  distStatus?: StudentsOverviewsDistStatusEnum;
+  distStatus?: StudentsOverviewsDistributionStatusEnum;
   studentPage?: NotionMentionString;
   planStatus?: StudentsOverviewsPlanStatusEnum;
-  modifiedPlanSubfieldNames?: StudentsOverviewsModifiedPlanSubfieldEnum;
+  modifiedPlanSubfieldNames?: StudentsOverviewsModifiedPlanSubfieldEnum[];
   modernJapaneseDelay?: Int;
   ancientJapaneseDelay?: Int;
   ancientChineseDelay?: Int;
@@ -30,4 +31,5 @@ export interface DomainStudentOverview {
   japaneseHistoryDelay?: Int;
   worldHistoryDelay?: Int;
   geographyDelay?: Int;
+  studentOverviewPageId?: NotionUUID;
 }
