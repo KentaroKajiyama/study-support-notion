@@ -113,7 +113,6 @@ export async function distRemainingToAllStudents() {
   };
 }
 
-// Refactoring this.
 export async function sendTodoCountersPerStudent(
   studentId: MySQLUintID, 
   databaseId: NotionUUID
