@@ -20,7 +20,10 @@ import {
   NotionUUID,
   ActualBlocksProblemLevelEnum,
   dbEscape, 
-  NotionDate
+  NotionDate,
+  NotionMentionString,
+  toNotionMentionString,
+  fromStringToANotionMentionString
 } from '@domain/types/index.js';
 import { RowDataPacket } from "mysql2";
 
@@ -52,7 +55,7 @@ export interface ActualBlock {
   studentId?: MySQLUintID;
   subfieldId?: MySQLUintID;
   defaultBlockId?: MySQLUintID;
-  actualBlockName?: string;
+  actualBlockName?: NotionMentionString;
   space?: Uint;
   speed?: Uint;
   lap?: Uint;
@@ -71,7 +74,7 @@ export interface ActualBlock {
 
 export interface UpdatesForCoachPlan {
   actualBlockId: MySQLUintID;
-  actualBlockName?: string;
+  actualBlockName?: NotionMentionString;
   space: Uint;
   speed: Uint;
   lap: Uint;
@@ -92,7 +95,7 @@ function toActualBlock(row: Partial<MySQLActualBlock>): ActualBlock {
       studentId: row.studentId,
       subfieldId: row.subfieldId,
       defaultBlockId: row.defaultBlockId,
-      actualBlockName: row.actualBlockName || "",
+      actualBlockName: row.actualBlockName !== undefined ? fromStringToANotionMentionString(row.actualBlockName): undefined,
       space: row.space !== undefined ? toUint(row.space) : undefined,
       speed: row.speed !== undefined ? toUint(row.speed) : undefined,
       lap: row.lap !== undefined ? toUint(row.lap) : undefined,
