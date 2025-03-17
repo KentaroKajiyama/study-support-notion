@@ -37,8 +37,9 @@ export interface MySQLStudent {
   studentScheduleDbId?: string;
   studentOverviewPageId?: string;
   studentInfoDetailDbId?: string;
-  coachRecordDbId?: string;
+  coachRestDbId?: string;
   coachPlanDbId?: string;
+  coachIrregularDbId?: string;
   coachStudentDbId?: string;
   goalDescription?: string;
   createdAt?: MySQLTimestamp;
@@ -61,8 +62,9 @@ export interface Student {
   studentScheduleDbId?: NotionUUID;
   studentOverviewPageId?: NotionUUID;
   studentInfoDetailDbId?: NotionUUID;
-  coachRecordDbId?: NotionUUID;
+  coachRestDbId?: NotionUUID;
   coachPlanDbId?: NotionUUID;
+  coachIrregularDbId?: NotionUUID;
   coachStudentDbId?: NotionUUID;
   goalDescription?: string;
   createdAt?: MySQLTimestamp;
@@ -123,13 +125,17 @@ export function toStudent(row: MySQLStudent): Student {
         row.studentInfoDetailDbId !== undefined
           ? toNotionUUID(row.studentInfoDetailDbId)
           : undefined,
-      coachRecordDbId:
-        row.coachRecordDbId !== undefined
-          ? toNotionUUID(row.coachRecordDbId)
+      coachRestDbId:
+        row.coachRestDbId !== undefined
+          ? toNotionUUID(row.coachRestDbId)
           : undefined,
       coachPlanDbId:
         row.coachPlanDbId !== undefined
           ? toNotionUUID(row.coachPlanDbId)
+          : undefined,
+      coachIrregularDbId:
+        row.coachIrregularDbId !== undefined
+          ? toNotionUUID(row.coachIrregularDbId)
           : undefined,
       coachStudentDbId:
         row.coachStudentDbId !== undefined
@@ -170,8 +176,9 @@ export function toMySQLStudent(data: Student): MySQLStudent {
       studentScheduleDbId: data.studentScheduleDbId,
       studentOverviewPageId: data.studentOverviewPageId,
       studentInfoDetailDbId: data.studentInfoDetailDbId,
-      coachRecordDbId: data.coachRecordDbId,
+      coachRestDbId: data.coachRestDbId,
       coachPlanDbId: data.coachPlanDbId,
+      coachIrregularDbId: data.coachIrregularDbId,
       coachStudentDbId: data.coachStudentDbId,
       goalDescription: data.goalDescription,
       createdAt: data.createdAt,
@@ -213,6 +220,7 @@ export class Students {
           student_overview_page_id,
           coach_record_db_id,
           coach_plan_db_id,
+          coach_irregular_db_id,
           coach_student_db_id,
           goal_description
         )
@@ -251,7 +259,7 @@ export class Students {
         payload.studentProgressDbId ?? null,
         payload.studentScheduleDbId ?? null,
         payload.studentOverviewPageId ?? null,
-        payload.coachRecordDbId ?? null,
+        payload.coachRestDbId ?? null,
         payload.coachPlanDbId ?? null,
         payload.coachStudentDbId ?? null,
         payload.goalDescription ?? null
