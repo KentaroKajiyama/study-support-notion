@@ -2,3 +2,6 @@ export * from './CoachIrregulars.js';
 export * from './CoachPlans.js';
 export * from './NotionRepository.js';
 export * from './StudentSchedules.js';
+export * from './StudentRemainings.js';
+export * from './StudentProblems.js';
+export * from './TopProblems.js';
