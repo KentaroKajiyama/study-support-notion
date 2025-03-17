@@ -1,20 +1,32 @@
 import { getNotionClient } from "@infrastructure/notionClient.js";
-import { logger } from "@utils/index.js";
+import { 
+  logger,
+  ensureValue 
+} from "@utils/index.js";
 import { Client } from "@notionhq/client";
 import { 
   UpdatePageParameters,
   QueryDatabaseResponse,
   PropertyFilter,
-  PageObjectResponse
+  PageObjectResponse,
+  EmojiRequest,
+  BlockObjectRequest,
+  CreatePageParameters
 } from "@notionhq/client/build/src/api-endpoints.js";
-import {
-  isNotionClientError,
-  APIResponseError,
-  UnknownHTTPResponseError,
-  RequestTimeoutError,
-  APIErrorCode,
-} from "@notionhq/client/build/src/errors.js";
-import { NotionUUID } from "@domain/types/myNotionType.js";
+import { 
+  CoverExternal,
+  IconUnion,
+  NotionUUID,
+  ParentRequest,
+  URLString,
+  isNotionUUID,
+  isValidURLRegex,
+  toNotionUUID,
+  toURLString,
+} from "@domain/types/index.js";
+import { 
+  callNotionWithAdvancedErrorHandling 
+} from "@infrastructure/notionAPI.js";
 
 const notionClient: Client = getNotionClient();
 
@@ -41,6 +53,99 @@ type filter =
 export abstract class NotionRepository<TDomain, TResponse, TRequest> {
   protected abstract toDomain(response: TResponse): TDomain;
   protected abstract toNotion(domain: TDomain): TRequest;
+
+  async createAPage(
+    domainParent: NotionUUID,
+    parentOption: 'page_id'|'database_id',
+    domainProperties: TDomain,
+    domainIcon: EmojiRequest | URLString | NotionUUID | null,
+    iconOption: 'emoji' | 'external' | 'custom_emoji' | null,
+    domainCover:  URLString | null,
+    coverOption: 'external' | null,
+    children: Array<BlockObjectRequest>,
+  ): Promise<NotionUUID | null> {
+    try {
+      const parent: ParentRequest = (() => {
+        switch (parentOption) {
+          case 'page_id':
+            return { page_id: ensureValue(domainParent, 'you cannot select the page_id option without providing domainParent with page_id') };
+          case 'database_id':
+            return { database_id: ensureValue(domainParent, 'you cannot select the database_id option without providing domainParent with database_id') };
+          default:
+            throw new Error("Invalid parent option, you must provide domainParent with page_id or database_id");
+        }
+      })();
+      const properties = this.toNotion(domainProperties) as CreatePageParameters["properties"];
+      const icon: IconUnion | null = (() => {
+        switch (iconOption) {
+          case 'emoji':
+            const ensuredIcon = ensureValue(domainIcon);
+            if (isValidURLRegex(ensuredIcon) || isNotionUUID(ensuredIcon)) throw new Error("Invalid combination of domainIcon and Icon option");
+            return { emoji: ensuredIcon };
+          case 'external':
+            return { external: { url: toURLString(ensureValue(domainIcon))} };
+          case 'custom_emoji':
+            return { custom_emoji: { id: toNotionUUID(ensureValue(domainIcon)) } };
+          default:
+            return null;
+        }
+      })();
+      const cover: CoverExternal | null = (() => {
+        if (coverOption === 'external') {
+          return { external: { url: ensureValue(domainCover) } };
+        }
+        return null;
+      })();
+      const payload: CreatePageParameters = {
+        parent: parent,
+        properties: properties,
+        icon: icon,
+        cover: cover,
+        children: children,
+      }
+      const response = await callNotionWithAdvancedErrorHandling(
+        async () => {
+          try {
+            return await notionClient.pages.create(payload);
+          } catch (error) {
+            logger.error("Error creating page in Notion\n");
+            throw error;
+          }
+        },
+        maxRetries
+      ) as PageObjectResponse;
+      if (!response) {
+        logger.warn('No response from Notion API for page creation');
+        return null;
+      }
+      return toNotionUUID(response.id);
+    } catch (error) {
+      logger.error("Error creating page in Notion\n");
+      throw error;
+    }
+  } 
+
+  async createAPageOnlyWithProperties(
+    domainParent: NotionUUID,
+    parentOption: 'page_id'|'database_id',
+    domainProperties: TDomain
+  ): Promise<NotionUUID|null> {
+    try {
+      return await this.createAPage(
+        domainParent,
+        parentOption,
+        domainProperties,
+        null,
+        null,
+        null,
+        null,
+        []
+      );
+    } catch(error) {
+      logger.error("Error creating page only with properties in Notion\n");
+      throw error;
+    }
+  };
 
   async retrieveAPage(
     pageId: NotionUUID
@@ -178,118 +283,3 @@ export abstract class NotionRepository<TDomain, TResponse, TRequest> {
   }
 }
 
-// Error handling
-function exponentialBackoff(attempt: number): Promise<void> {
-  // e.g. attempt=1 => 1000ms, attempt=2 => 2000ms, attempt=3 => 4000ms, ...
-  const delay = 1000 * 2 ** (attempt - 1)
-  return new Promise((resolve) => setTimeout(resolve, delay))
-}
-
-async function callNotionWithAdvancedErrorHandling<T>(
-  notionCall: () => Promise<T>,
-  maxRetries = 3
-): Promise<T> {
-  for (let attempt = 1; attempt <= maxRetries; attempt++) {
-    try {
-      // Make the actual Notion API call
-      const result = await notionCall()
-      return result
-    } catch (error: unknown) {
-      // 1. Check if it's a Notion error at all
-      if (isNotionClientError(error)) {
-        // 2. Narrow down further:
-        if (APIResponseError.isAPIResponseError(error)) {
-          // It's an APIResponseError => we can switch on the known API error codes
-          switch (error.code) {
-            // Some errors are "transient," so we might choose to retry
-            case APIErrorCode.RateLimited:
-            case APIErrorCode.InternalServerError:
-            case APIErrorCode.ServiceUnavailable:
-              // Retry logic with exponential backoff
-              if (attempt < maxRetries) {
-                logger.warn(
-                  `Attempt #${attempt} failed with transient error [${error.code}]. Retrying...`
-                )
-                await exponentialBackoff(attempt)
-                continue
-              } else {
-                // Exhausted all retries — rethrow
-                throw error
-              }
-
-            // For other API errors, handle them or just throw
-            case APIErrorCode.Unauthorized:
-              logger.error("Unauthorized. Check your Notion token.")
-              throw error
-
-            case APIErrorCode.ObjectNotFound:
-              logger.error("Notion object not found:", error.message)
-              throw error
-
-            case APIErrorCode.RestrictedResource:
-              logger.error("You do not have permission to access this resource.")
-              throw error
-
-            case APIErrorCode.InvalidJSON:
-              logger.error("Invalid JSON response from Notion:", error.message)
-              throw error
-            
-            case APIErrorCode.InvalidRequestURL:
-              logger.error("Invalid request URL:", error.message)
-              throw error
-
-            case APIErrorCode.InvalidRequest:
-              logger.error("Invalid request:", error.message)
-              throw error
-            
-            case APIErrorCode.ValidationError:
-              logger.error("Validation error:", error.message)
-              throw error
-
-            case APIErrorCode.ConflictError:
-              logger.error("Conflict error:", error.message)
-              throw error
-            
-            default:
-              // We use a default to catch unhandled codes
-              // If the SDK introduces a new code, TypeScript can warn here
-              const exhaustiveCheck: never = error.code
-              logger.error(
-                "Unhandled Notion API Error code:",
-                exhaustiveCheck,
-                error.message
-              )
-              throw error
-          }
-        } else if (RequestTimeoutError.isRequestTimeoutError(error)) {
-          // Specifically a request-timeout scenario
-          if (attempt < maxRetries) {
-            logger.warn(
-              `Notion request timed out on attempt #${attempt}. Retrying...`
-            )
-            await exponentialBackoff(attempt)
-            continue
-          } else {
-            throw error
-          }
-        } else if (UnknownHTTPResponseError.isUnknownHTTPResponseError(error)) {
-          // The SDK couldn't parse the error body into a known shape
-          // Decide if you want to retry or just throw
-          logger.error("Unknown HTTP Response Error from Notion:", error.message)
-          throw error
-        } else {
-          // Another Notion error that doesn't match the above checks
-          // Possibly a new type of NotionClientError
-          logger.error("Unexpected NotionClientError:", error)
-          throw error
-        }
-      } else {
-        // 3. Not a Notion error at all - e.g., a Node.js error, network error, etc.
-        logger.error("A non-Notion error occurred:", error)
-        throw error
-      }
-    }
-  }
-  // We only get here if we didn't return or throw during the loop (very unlikely)
-  throw new Error("Max retries exceeded.")
-}
