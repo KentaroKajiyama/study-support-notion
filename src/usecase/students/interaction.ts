@@ -7,7 +7,6 @@ import {
 } from '@utils/index.js'
 import { 
   MySQLUintID, 
-  NotionUUID, 
   toUint
 } from '@domain/types/index.js';
 import {

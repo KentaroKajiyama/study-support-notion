@@ -1,4 +1,3 @@
-import logger from "../utils/logger.js";
 import { StudentProblemsNotion } from "../../infrastructure/notion_database/student_only/StudentProblems";
 import { StudentProblemsAWS } from "../../infrastructure/aws_database/StudentProblems";
 import { Students } from "../../infrastructure/aws_database/Students";
@@ -9,15 +8,39 @@ import NotionAPI from "../infrastructure/notionAPI.js";
 import { propertyToNotion } from '../utils/propertyHandler.js'
 import { Properties } from "../const/notionTemplate.js";
 import { todoRemainingCountersProperties, remainingDayProperties, studentsOverviewsProperties, returnSubfieldDelayKeyName } from "../const/notionDatabaseProperties.js";
-import { copyPageCreate } from "../utils/copyPage.js";
-import { Trackers } from "../infrastructure/aws_database/Trackers.js";
-import { Subfields } from '../infrastructure/aws_database/Subfields.js';
+import {  } from "../utils/copyPage.js";
+import {  } from '../infrastructure/aws_database/Subfields.js';
+import {
+  Trackers,
+  Subfields
+} from '@infrastructure/aws_tables/index.js'
+import {
+  logger,
+  ensureValue,
+  copyPageCreate
+} from "@utils/index.js";
+import { 
+  NotionUUID,
+  MySQLUintID,
+} from "@domain/types/index.js";
+import {
+  NotionStudentProblems,
+  NotionTopProlems
+} from '@infrastructure/notion/index.js';
 
-export async function ansStatusChange(studentId, studentProblemPageId, isTodo = false, isWrong = false, isDifficult = false) {
+export async function ansStatusChange(
+  studentId: MySQLUintID,
+  studentProblemPageId: NotionUUID, 
+  isTodo = false, 
+  isWrong = false, 
+  isDifficult = false
+) {
   try {
+    const notionTopProblems = new NotionTopProlems();
+    const notionStudentProblems = new NotionStudentProblems();
     // Guarantee that the student problem status is updated
     if (isTodo || isWrong || isDifficult) {
-      const topProblem = await TopProblems.getATopPageProblem(studentProblemPageId);
+      const topProblem = (await notionTopProblems.retrieveAPage(studentProblemPageId));
       studentProblemPageId = topProblem.notionPageId;
       const subfieldName = topProblem.subfieldName;
       await StudentProblemsNotion.updateAStudentProblem(studentProblemPageId, subfieldName, {
