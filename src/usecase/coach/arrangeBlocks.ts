@@ -82,13 +82,14 @@ export async function schedulePlan(
           }
         );
       }));
-    }))
+    }));
+    // Update only the actual blocks database
+    promises.push(scheduledBlocks.map(async blocksInfo => await ActualBlocks.updateForCoachPlan(blocksInfo.blocks)));
+
     // 3.5 if you confirm the plan, then update the database and student page.
     if (isConfirmed) {
       // AWS: trace, actual block, student problem, and tracker
       promises.push(scheduledBlocks.map(async (blocksInfo) => {
-
-        await ActualBlocks.updateForCoachPlan(blocksInfo.blocks);
         const endBlockIndex = blocksInfo.blocks.findIndex(block => block.isTail === true);
         const actualEndDate = ensureValue(blocksInfo.blocks[endBlockIndex].outputEndDate);
         const subfieldName = blocksInfo.blocks[0].subfieldName;
@@ -161,7 +162,7 @@ export async function schedulePlan(
     const notionStudentOverviews = new NotionStudentOverviews();
     const studentDetailInfo = ensureValue(await Students.findForDetailRegistrationByStudentId(studentId));
     const studentOverviewPageId = ensureValue(studentDetailInfo.studentOverviewPageId);
-    const studentOverview = ensureValue(await notionStudentOverviews.retrieveAPage(studentOverviewPageId));
+    // const studentOverview = ensureValue(await notionStudentOverviews.retrieveAPage(studentOverviewPageId));
     // const existingModifiedSubfieldNames = ensureValue(studentOverview.modifiedPlanSubfieldNames);
     // const updatedModifiedSubfieldNames = [...new Set([...existingModifiedSubfieldNames,...changedSubjects])];
     await notionStudentOverviews.updatePlanStatus(studentOverviewPageId, isConfirmed);

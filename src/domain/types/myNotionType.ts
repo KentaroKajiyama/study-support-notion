@@ -71,7 +71,7 @@ export function toNotionMentionString(mentionDetail: MentionDetail): NotionMenti
       throw new Error(`Invalid mention type: ${mentionDetail.type}`);
   }
 }
-function extractMentionDetails(
+export function extractMentionDetails(
   mentionText: string
 ): MentionDetail | null 
 {

@@ -10,7 +10,7 @@ import {
   inlineTextToRichText
 } from "@utils/index.js"
 
-export type RichTextResponseOption = 'a mention string' | 'string';
+export type RichTextResponseOption = 'a mention string' | 'string' ;
 export type RichTextResponseReturnType = NotionMentionString | string;
 
 export function richTextResponseHandler(richTextProp: RichTextPropertyResponse, option: RichTextResponseOption): RichTextResponseReturnType {

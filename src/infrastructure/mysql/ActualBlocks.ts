@@ -441,6 +441,37 @@ export class ActualBlocks {
     }
   }
 
+  static async findByCoachPlanNotionPageId(coachPlanNotionPageId: NotionUUID): Promise<ActualBlock | null> {
+    try {
+      if (!coachPlanNotionPageId) {
+        logger.error("No coachPlanNotionPageId provided to findByCoachPlanNotionPageId.");
+        throw new Error("No coachPlanNotionPageId provided to findByCoachPlanNotionPageId.");
+      }
+      const [rows] = await db.query<RowDataPacket[]>(
+        "SELECT * FROM actual_blocks WHERE coach_plan_notion_page_id = ?",
+        [coachPlanNotionPageId]
+      );
+      if (!Array.isArray(rows)) {
+        logger.error(
+          "The result of 'findByCoachPlanNotionPageId' query was not an array."
+        );
+        throw new Error(
+          "The result of 'findByCoachPlanNotionPageId' query was not an array."
+        );
+      } else if (rows.length === 0) {
+        logger.warn(`No block found for coachPlanNotionPageId: ${coachPlanNotionPageId}`);
+        return null;
+      }
+      return toActualBlock(convertToCamelCase(rows[0]) as MySQLActualBlock);
+    } catch(error) {
+      logger.error(
+        `Error finding actual block by coachPlanNotionPageId: ${coachPlanNotionPageId}`,
+        error
+      );
+      throw error;
+    }
+  }
+
   static async updateByActualBlockId(
     actualBlockId: MySQLUintID,
     updates: Partial<ActualBlock>

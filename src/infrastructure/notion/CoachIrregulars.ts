@@ -18,6 +18,7 @@ import {
   Uint,
   SubfieldsSubfieldNameEnum,
   NotionUUID,
+  MySQLUintID,
 } from "@domain/types/index.js";
 import { NotionRepository } from "@infrastructure/notion/index.js";
 import { logger } from "@utils/logger.js";
@@ -31,6 +32,7 @@ interface NotionCoachIrregularRequest extends Record<string,any> {
   "Order"?: NumberPropertyRequest;
   "挿入先ブロック"?: RichTextPropertyRequest;
   "元ブロック"?: RichTextPropertyRequest;
+  "元ブロック ID"?: RichTextPropertyRequest;
 }
 
 interface NotionCoachIrregularResponse extends Record<string,any> {
@@ -42,6 +44,7 @@ interface NotionCoachIrregularResponse extends Record<string,any> {
   "挿入先ブロック": RichTextPropertyResponse;
   "元ブロック": RichTextPropertyResponse;
   "Irregular Page ID": FormulaPropertyResponse;
+  "元ブロック ID": RichTextPropertyResponse;
 }
 
 
@@ -54,11 +57,12 @@ const propertyInfo: Record<string, { type: NotionPagePropertyType, name: string 
   insertBlock: { type: 'rich_text', name: '挿入先ブロック' },
   formerBlock: { type: 'rich_text', name: '元ブロック' }, 
   irregularPageId: { type: 'formula', name: 'Irregular Page ID' },
+  formerBlockId: { type: 'rich_text', name: '元ブロック ID' },
 }
 
 function toDomain(res: NotionCoachIrregularResponse): DomainCoachIrregular {
   try {
-    const transformed = {
+    const transformed: DomainCoachIrregular = {
       problemName: propertyResponseToDomain(res["問題"], 'a mention string') as NotionMentionString,
       isModified: propertyResponseToDomain(res["変更"], '') as boolean,
       insertOrder: propertyResponseToDomain(res["挿入先ブロック内 Order"], 'uint') as Uint,
@@ -66,7 +70,7 @@ function toDomain(res: NotionCoachIrregularResponse): DomainCoachIrregular {
       irregularProblemOrder: propertyResponseToDomain(res["Order"], 'uint') as Uint,
       insertBlock: propertyResponseToDomain(res["挿入先ブロック"], 'a mention string') as NotionMentionString,
       formerBlock: propertyResponseToDomain(res["元ブロック"], 'a mention string') as NotionMentionString,
-      irregularPageId: propertyResponseToDomain(res["Irregular Page ID"], 'a page id') as NotionUUID
+      irregularPageId: propertyResponseToDomain(res["Irregular Page ID"], 'a page id') as NotionUUID,
     }
     return Object.fromEntries(
       Object.entries(transformed).filter(([_, value]) => value!== null)
@@ -124,4 +128,18 @@ export class NotionCoachIrregulars extends NotionRepository<
       throw error;
     }
   } 
+  async queryADatabaseWithFormerBlockId(databaseId: NotionUUID, formerBlockId: MySQLUintID): Promise<DomainCoachIrregular[]> {
+    try {
+      const filter = {
+        property: propertyInfo.formerBlockId.name,
+        rich_text: {
+          equals: String(formerBlockId)
+        }
+      };
+      return await this.queryADatabase(databaseId, [], filter);
+    } catch (error) {
+      logger.error('Error querying Notion database with former block ID filter\n');
+      throw error;
+    }
+  }
 }
