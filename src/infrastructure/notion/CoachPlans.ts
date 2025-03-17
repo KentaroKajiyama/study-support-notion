@@ -62,7 +62,7 @@ const propertyInfo: Record<string, { type: NotionPagePropertyType, name: string}
   space: { type: 'number', name: '配信間隔' },
   lap: { type: 'number', name: '周回数' },
   blockOrder: { type: 'number', name:'Order' },
-  subfieldLevel: { type:'select', name: 'レベル' },
+  problemLevel: { type:'select', name: 'レベル' },
   isIrregular: { type: 'checkbox', name: '例外' },
   outputDate: { type: 'date', name: '開始日/終了日' },
   subfieldName: { type: 'select', name: '科目' },
@@ -88,7 +88,7 @@ function toDomain(res: NotionCoachPlanResponse): DomainCoachPlan {
         res['Order']!== undefined? propertyResponseToDomain(res['Order'], 'uint'): undefined,
       isIrregular:
         res['例外']!== undefined? propertyResponseToDomain(res['例外'], ''): undefined,
-      subfieldLevel:
+      problemLevel:
         res['レベル']!== undefined? propertyResponseToDomain(res['レベル'], 'a problem level'): undefined,
       outputStartDate:
         res['開始日/終了日']!== undefined? propertyResponseToDomain(res['開始日/終了日'], 'start date'): undefined,
@@ -121,7 +121,7 @@ function toNotion(data: DomainCoachPlan): NotionCoachPlanRequest {
       [propertyInfo.space.name]: propertyDomainToRequest(data.space, propertyInfo.space.type, 'uint') as NumberPropertyRequest,
       [propertyInfo.lap.name]: propertyDomainToRequest(data.lap, propertyInfo.lap.type, 'uint') as NumberPropertyRequest,
       [propertyInfo.blockOrder.name]: propertyDomainToRequest(data.blockOrder, propertyInfo.blockOrder.type, 'uint') as NumberPropertyRequest,
-      [propertyInfo.subfieldLevel.name]: propertyDomainToRequest(data.subfieldLevel, propertyInfo.subfieldLevel.type, 'a problem level') as SelectPropertyRequest,
+      [propertyInfo.problemLevel.name]: propertyDomainToRequest(data.problemLevel, propertyInfo.problemLevel.type, 'a problem level') as SelectPropertyRequest,
       [propertyInfo.isIrregular.name]: propertyDomainToRequest(data.isIrregular, propertyInfo.isIrregular.type, '') as CheckboxPropertyRequest,
       [propertyInfo.outputDate.name]:
         data.outputStartDate!== undefined && data.outputEndDate? propertyDomainToRequest({start: data.outputStartDate, end: data.outputEndDate}, propertyInfo.outputStartDate.type, '') as DatePropertyRequest: undefined,

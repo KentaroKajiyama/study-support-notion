@@ -293,5 +293,17 @@ export class NotionStudentOverviews extends NotionRepository<
       throw error;
     }
   }
+  
+  async updatePlanStatus(studentOverviewPageId: NotionUUID, isConfirmed: boolean): Promise<void> {
+    try {
+      const data: DomainStudentOverview = {
+        planStatus: isConfirmed ? '確定': 'シミュレーション中',
+      };
+      await this.updatePageProperties(studentOverviewPageId, data);
+    } catch (error) {
+      logger.error(`Failed to update Notion Student Overview page with plan status: ${error}`);
+      throw error;
+    }
+  }
 }
   

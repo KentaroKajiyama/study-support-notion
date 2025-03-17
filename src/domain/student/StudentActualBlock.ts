@@ -1,17 +1,19 @@
 import { 
   Uint, 
   NotionDate, 
-  NotionUUID
+  NotionUUID,
+  ActualBlocksProblemLevelEnum
 } from '@domain/types/index.js'
 
-export interface DomainActualBlock {
+export interface DomainStudentActualBlock {
   blockName?: string;
   startDate?: NotionDate;
   endDate?: NotionDate;
-  studentProblemRelations: NotionUUID[];
+  studentProblemRelations?: NotionUUID[];
   speed?: Uint;
   space?: Uint;
   lap?: Uint;
+  problemLevel?: ActualBlocksProblemLevelEnum;
   blockOrder?: Uint;
   blockPageId?: NotionUUID;
 }

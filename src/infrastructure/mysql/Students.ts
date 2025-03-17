@@ -408,6 +408,7 @@ export class Students {
   static async findForDetailRegistrationByStudentId(
     studentId: MySQLUintID
   ): Promise<{
+    studentOverviewPageId: NotionUUID | null,
     coachPlanDbId: NotionUUID | null;
     studentDetailInfoDbId: NotionUUID | null;
   } | null> {
@@ -420,7 +421,7 @@ export class Students {
       // Adjust column names if they differ in your table
       const [rows] = await db.query(
         `
-          SELECT coach_plan_db_id, student_detail_info_db_id
+          SELECT student_overview_page_id, coach_plan_db_id, student_detail_info_db_id
           FROM students
           WHERE student_id = ?
         `,
@@ -435,6 +436,7 @@ export class Students {
 
       const rowCamel = convertToCamelCase(rows[0]) as Student;
       return {
+        studentOverviewPageId: rowCamel.studentOverviewPageId ?? null,
         coachPlanDbId: rowCamel.coachPlanDbId ?? null,
         studentDetailInfoDbId: rowCamel.studentInfoDetailDbId ?? null
       };

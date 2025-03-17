@@ -12,10 +12,12 @@ export interface DomainCoachPlan {
   inputStartDate?: NotionDate;
   inputEndDate?: NotionDate;
   speed?: Uint | null;
-  space?: Uint | null;
+  space?: Uint | null
   lap?: Uint | null;
-  blockOrder?: Uint
-  subfieldLevel?: ActualBlocksProblemLevelEnum;
+  blockOrder?: Uint;
+  isTail?: boolean;
+  actualBlockSize?: Uint;
+  problemLevel?: ActualBlocksProblemLevelEnum;
   isIrregular?: boolean;
   outputStartDate?: NotionDate;
   outputEndDate?: NotionDate;

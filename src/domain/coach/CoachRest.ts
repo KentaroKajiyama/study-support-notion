@@ -1,11 +1,13 @@
 import { 
   SubfieldsSubfieldNameEnum,
-  NotionDate
+  NotionDate,
+  NotionUUID
 } from "@domain/types/index.js";
 
 export interface DomainCoachRest {
   restName?: string;
   startDate?: NotionDate;
   endDate?: NotionDate;
-  subfieldList: SubfieldsSubfieldNameEnum[];
+  subfieldNames?: SubfieldsSubfieldNameEnum[];
+  restPageId?: NotionUUID;
 }

@@ -78,15 +78,18 @@ export interface UpdatesForCoachPlan {
   space: Uint;
   speed: Uint;
   lap: Uint;
-  startDate: NotionDate | null;
-  endDate: NotionDate | null;
+  outputStartDate: NotionDate | null;
+  outputEndDate: NotionDate | null;
   blockOrder: Uint;
   isTail: boolean;
   actualBlockSize: Uint;
   problemLevel: ActualBlocksProblemLevelEnum;
 }
 
-export interface UpdatesForDelayOrExpedite extends Pick<UpdatesForCoachPlan, 'actualBlockId'| 'startDate' | 'endDate'> {};
+export interface UpdatesForDelayOrExpedite extends Pick<UpdatesForCoachPlan, 'actualBlockId'> {
+  startDate: NotionDate | null;
+  endDate: NotionDate | null;
+};
 
 function toActualBlock(row: Partial<MySQLActualBlock>): ActualBlock {
   try {
@@ -524,12 +527,20 @@ export class ActualBlocks {
         let hasAnyChangeForThisField = false;
 
         for (const u of updates) {
-          const newValue = (u as any)[field];
+          let newValue;
+          if (field === 'startDate') {
+            newValue = (u as any).outputStartDate;
+          } else if (field === 'endDate') {
+            newValue = (u as any).outputEndDate;
+          } else {
+            newValue = (u as any)[field];
+          }
           if (newValue !== undefined) {
             hasAnyChangeForThisField = true;
             const dbValue = toMySQLActualBlock({ [field]: newValue })[field];
             caseStmt += ` WHEN actual_block_id = ${u.actualBlockId} THEN ${dbEscape(dbValue)}`;
           }
+          
         }
 
         caseStmt += ` ELSE \`${columnName}\` END`;

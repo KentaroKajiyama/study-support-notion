@@ -172,7 +172,7 @@ export class Subfields {
   }
 
   // subfield name column is given the unique key constraint, thus this function returns one value, not one array.
-  static async findBySubfieldName(subfieldName: string): Promise<Subfield | null> {
+  static async findBySubfieldName(subfieldName: SubfieldsSubfieldNameEnum): Promise<Subfield | null> {
     try {
       if (!subfieldName) {
         logger.error("No subfieldName provided to findBySubfieldName.");

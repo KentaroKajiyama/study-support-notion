@@ -310,7 +310,7 @@ export class StudentSubfieldTraces {
 
   static async findOnlySubfieldInfoByStudentId(studentId: MySQLUintID): Promise<{
     subfieldId: MySQLUintID;
-    subfieldName: string;
+    subfieldName: SubfieldsSubfieldNameEnum;
   }[]> {
     try {
       if (!studentId) {

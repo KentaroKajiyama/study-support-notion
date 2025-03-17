@@ -47,7 +47,7 @@ export function isHoliday(
   holidayArray: DomainCoachRest[], 
   subfieldName: SubfieldsSubfieldNameEnum
 ): boolean{
-  const subfieldHolidays = holidayArray.filter((hol) => hol.subfieldList.includes(subfieldName));
+  const subfieldHolidays = holidayArray.filter((hol) => ensureValue(hol.subfieldNames).includes(subfieldName));
   for (const row of subfieldHolidays) {
     if (row.startDate && row.endDate && isDateBetween(checkedDate, row.startDate, row.endDate)) {
       return true;
@@ -60,6 +60,7 @@ export function isHoliday(
 
 interface SpecificAssignedProblem {
   studentProblemId: MySQLUintID;
+  studentProblemPageId: NotionUUID;
   problemInBlockOrder: Uint;
   problemOverallOrder: Uint;
   actualBlockId: MySQLUintID;
@@ -78,7 +79,9 @@ interface BlockIdOrder {
 
 interface SpecificAssignedBlock extends Required<Omit<DomainCoachPlan, 'blockName' | 'outputStartDate' | 'outputEndDate'>>, Pick<DomainCoachPlan, 'outputStartDate'|'outputEndDate'> {
   idOrderArray: BlockIdOrder[];
-  actualBlockPageId: NotionUUID;
+  studentActualBlockDbNotionPageId: NotionUUID;
+  studentScheduleNotionPageId: NotionUUID;
+  coachPlanNotionPageId: NotionUUID;
   actualBlockId: MySQLUintID;
   isTail: boolean;
 }
@@ -90,7 +93,9 @@ interface AssignedBlocksInfo {
 }
 
 type PlannedBlock = {
-  actualBlockPageId: NotionUUID,
+  studentActualBlockDbNotionPageId: NotionUUID,
+  studentScheduleNotionPageId: NotionUUID,
+  coachPlanNotionPageId: NotionUUID,
   actualBlockId: MySQLUintID,
   inputStartDate: NotionDate,
   inputEndDate: NotionDate,
@@ -99,7 +104,7 @@ type PlannedBlock = {
   space: Uint,
   lap: Uint,
   subfieldName: SubfieldsSubfieldNameEnum,
-  subfieldLevel: ActualBlocksProblemLevelEnum,
+  problemLevel: ActualBlocksProblemLevelEnum,
   blockOrder: Uint,
   planPageId: NotionUUID,
   outputStartDate: NotionDate | null,
@@ -130,16 +135,18 @@ export async function applyIrregularChanges(
   try {
     const plannedBlocks: PlannedBlock[] = await Promise.all(domainCoachPlanArray.map(async domainCoachPlan => {
       if (!isNotionMentionString(domainCoachPlan.blockName as string)) throw new Error(`${domainCoachPlan.blockName} is not mention string`);
-      const actualBlockPageId = (getMentionDetailsArrayFromInlineText(domainCoachPlan.blockName as string)[0] as MentionDetailId).id;
+      const studentActualBlockDbNotionPageId = (getMentionDetailsArrayFromInlineText(domainCoachPlan.blockName as string)[0] as MentionDetailId).id;
       // TODO: More strict type checking for ActualBlocks
-      const actualBlockData = await ActualBlocks.findByStudentActualBlockDbNotionPageId(actualBlockPageId);
+      const actualBlockData = await ActualBlocks.findByStudentActualBlockDbNotionPageId(studentActualBlockDbNotionPageId);
       if (actualBlockData === null) throw new Error(`${domainCoachPlan.blockName}'s page id is not found in mysql`);
       const actualBlockId = actualBlockData.actualBlockId as MySQLUintID;
       if (!domainCoachPlan.blockOrder){
         throw new Error(`Block ${domainCoachPlan.blockName} 's order must not be empty`);
       }
       return {
-        actualBlockPageId: actualBlockPageId,
+        studentActualBlockDbNotionPageId: studentActualBlockDbNotionPageId,
+        studentScheduleNotionPageId: ensureValue(actualBlockData.studentScheduleNotionPageId),
+        coachPlanNotionPageId: ensureValue(actualBlockData.studentScheduleNotionPageId),
         actualBlockId: actualBlockId,
         inputStartDate: domainCoachPlan.inputStartDate as NotionDate,
         inputEndDate: domainCoachPlan.inputEndDate as NotionDate,
@@ -148,7 +155,7 @@ export async function applyIrregularChanges(
         space: domainCoachPlan.space !== null ? domainCoachPlan.space as Uint: actualBlockData.space as Uint,
         lap: domainCoachPlan.lap !== null ? domainCoachPlan.lap as Uint: actualBlockData.lap as Uint,
         subfieldName: domainCoachPlan.subfieldName as SubfieldsSubfieldNameEnum,
-        subfieldLevel: domainCoachPlan.subfieldLevel as ActualBlocksProblemLevelEnum,
+        problemLevel: domainCoachPlan.problemLevel as ActualBlocksProblemLevelEnum,
         blockOrder: domainCoachPlan.blockOrder as Uint,
         planPageId: domainCoachPlan.planPageId as NotionUUID,
         outputStartDate: domainCoachPlan.outputStartDate as NotionDate | null,
@@ -318,6 +325,7 @@ export async function applyIrregularChanges(
                             });
               return {
                 studentProblemId: studentProblemId,
+                studentProblemPageId: irregularInfo.studentProblemPageId,
                 irregularProblemOrder: irregularInfo.irregularProblemOrder
               }
               }))).sort((a,b) => a.irregularProblemOrder - b.irregularProblemOrder),
@@ -345,6 +353,7 @@ export async function applyIrregularChanges(
           if (problem.problemInBlockOrder === undefined) throw new Error("problem in block order must not be undefined in speccificBlockProblems");
           return {
             studentProblemId: problem.studentProblemId,
+            studentProblemPageId: problem.notionPageId,
             problemInBlockOrder: problem.problemInBlockOrder
           }
         });
@@ -368,6 +377,7 @@ export async function applyIrregularChanges(
             for (let i=1; i <= irregularBlockLength; i++) {
               specificBlock.idOrderArray.push({
                 studentProblemId: irregularBlock.idOrderArray[i-1].studentProblemId,
+                studentProblemPageId: irregularBlock.idOrderArray[i-1].studentProblemPageId,
                 problemInBlockOrder: toUint(insertOrder + i)
               })
             };
@@ -400,6 +410,7 @@ export async function applyIrregularChanges(
             block.idOrderArray[i-1].problemInBlockOrder = toUint(i);
             SpecifiAssignedProblems.push({
               studentProblemId: block.idOrderArray[i-1].studentProblemId,
+              studentProblemPageId: ensureValue(block.idOrderArray[i-1].studentProblemPageId),
               problemInBlockOrder: toUint(i),
               problemOverallOrder: index,
               actualBlockId: block.blockId
@@ -409,7 +420,9 @@ export async function applyIrregularChanges(
           // TODO: Can I set the output and start date to undefined?
           SpecificAssignedBlocks.push({
             idOrderArray: block.idOrderArray.sort((a,b) => a.problemInBlockOrder - b.problemInBlockOrder),
-            actualBlockPageId: plannedBlockInfo.actualBlockPageId,
+            studentActualBlockDbNotionPageId: plannedBlockInfo.studentActualBlockDbNotionPageId,
+            studentScheduleNotionPageId: plannedBlockInfo.studentScheduleNotionPageId,
+            coachPlanNotionPageId: plannedBlockInfo.coachPlanNotionPageId,
             actualBlockId: block.blockId,
             inputStartDate: plannedBlockInfo.inputStartDate,
             inputEndDate: plannedBlockInfo.inputEndDate,
@@ -418,12 +431,13 @@ export async function applyIrregularChanges(
             space: plannedBlockInfo.space,
             lap: plannedBlockInfo.lap,
             subfieldName: plannedBlockInfo.subfieldName,
-            subfieldLevel: plannedBlockInfo.subfieldLevel,
             blockOrder: plannedBlockInfo.blockOrder,
+            isTail: k === numOfBlocks -1 ? true : false,
+            actualBlockSize: toUint(block.idOrderArray.length),
+            problemLevel: plannedBlockInfo.problemLevel,
             planPageId: plannedBlockInfo.planPageId,
             outputStartDate: plannedBlockInfo.outputStartDate !== null ? plannedBlockInfo.outputStartDate : undefined,
             outputEndDate: plannedBlockInfo.outputEndDate !== null ? plannedBlockInfo.outputEndDate : undefined,
-            isTail: k === numOfBlocks ? true : false,
           });
         }
         return { 
@@ -449,20 +463,32 @@ export async function applyIrregularChanges(
     throw error;
   }
 };
-// TODO: If we had bad rest array???
-// restArray {startDate, endDate, subfieldName}
+
+interface SpecificScheduledBlock extends Required<Omit<DomainCoachPlan, 'speed'|'space'|'lap'>> {
+  idOrderArray: BlockIdOrder[];
+  studentActualBlockDbNotionPageId: NotionUUID;
+  studentScheduleNotionPageId: NotionUUID;
+  coachPlanNotionPageId: NotionUUID;
+  actualBlockId: MySQLUintID;
+  isTail: boolean;
+  speed: Uint;
+  space: Uint;
+  lap: Uint;
+};
+
+// TODO: Check here strictly.
 export async function scheduleProblems(
   studentId: MySQLUintID, 
   assignedBlocksArray: Array<AssignedBlocksInfo>, 
   restArray: Array<DomainCoachRest>
-): Promise<Array<{subfieldName: SubfieldsSubfieldNameEnum, blocks: SpecificAssignedBlock[]}>> {
+): Promise<Array<{subfieldName: SubfieldsSubfieldNameEnum, blocks: SpecificScheduledBlock[]}>> {
   const result = [];
   // TODO: Parallelize this.
   for (const specificAssignedBlocksData of assignedBlocksArray) {
     const specificAssignedBlocks = specificAssignedBlocksData.blocks;
     restArray = restArray.filter(e => e.startDate !== undefined);
     let specificRestArray = restArray
-                            .filter(row => row.subfieldList.includes(specificAssignedBlocksData.subfieldName ||'ALL'))
+                            .filter(row => ensureValue(row.subfieldNames).includes(specificAssignedBlocksData.subfieldName ||'ALL'))
                             .sort((a,b) => { 
                               if(isDate1EarlierThanOrSameWithDate2(a.startDate as NotionDate, b.startDate as NotionDate)) {
                                 return 1;
@@ -594,7 +620,7 @@ export async function scheduleProblems(
     }
     result.push({
       subfieldName: specificAssignedBlocks[0].subfieldName,
-      blocks: specificAssignedBlocks
+      blocks: specificAssignedBlocks  as unknown as SpecificScheduledBlock[]
     });
   }
   return result;
@@ -780,14 +806,20 @@ export async function adjustSchedule(
 
     await Promise.all(updatedBlocksForNotion.map(async (blockInfo) => {
       await Promise.all([
-        notionCoachPlans.updatePageProperties(blockInfo.coachPlanPageId as NotionUUID, {
-          outputStartDate: blockInfo.startDate as NotionDate,
-          outputEndDate: blockInfo.endDate as NotionDate
-        }),
-        notionStudentSchedules.updatePageProperties(blockInfo.studentSchedulePageId as NotionUUID, {
-          startDate: blockInfo.startDate as NotionDate,
-          endDate: blockInfo.endDate as NotionDate
-        })
+        notionCoachPlans.updatePageProperties(
+          blockInfo.coachPlanPageId as NotionUUID, 
+          {
+            outputStartDate: blockInfo.startDate as NotionDate,
+            outputEndDate: blockInfo.endDate as NotionDate
+          }
+        ),
+        notionStudentSchedules.updatePageProperties(
+          blockInfo.studentSchedulePageId as NotionUUID, 
+          {
+            startDate: blockInfo.startDate as NotionDate,
+            endDate: blockInfo.endDate as NotionDate
+          }
+        )
       ]);
     }));
 
