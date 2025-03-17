@@ -1,19 +1,12 @@
-import { StudentProblemsNotion } from "../../infrastructure/notion_database/student_only/StudentProblems";
-import { StudentProblemsAWS } from "../../infrastructure/aws_database/StudentProblems";
-import { Students } from "../../infrastructure/aws_database/Students";
-import { TopProblems } from "../../infrastructure/notion_database/student_only/TopProblems";
-import { updateTrackerAndTodoRemainingCounter } from "../domain/students/interaction";
-import { StudentSubfieldTraces } from "../infrastructure/aws_database/StudentSubfieldTraces";
-import NotionAPI from "../infrastructure/notionAPI.js";
-import { propertyToNotion } from '../utils/propertyHandler.js'
-import { Properties } from "../const/notionTemplate.js";
-import { todoRemainingCountersProperties, remainingDayProperties, studentsOverviewsProperties, returnSubfieldDelayKeyName } from "../const/notionDatabaseProperties.js";
-import {  } from "../utils/copyPage.js";
-import {  } from '../infrastructure/aws_database/Subfields.js';
+import {
+  updateTrackerAndTodoCounter
+} from '@usecase/index.js'
 import {
   Trackers,
-  Subfields
-} from '@infrastructure/aws_tables/index.js'
+  Students,
+  StudentProblems,
+  StudentSubfieldTraces,
+} from '@infrastructure/mysql/index.js'
 import {
   logger,
   ensureValue,
@@ -25,148 +18,204 @@ import {
 } from "@domain/types/index.js";
 import {
   NotionStudentProblems,
-  NotionTopProlems
+  NotionStudentRemainings,
+  NotionTopProblems
 } from '@infrastructure/notion/index.js';
+import { NotionStudentOverviews } from "@infrastructure/notion/StudentOverview.js";
+import { NotionStudentTodoCounters } from "@infrastructure/notion/StudentTodoCounters.js";
 
-export async function ansStatusChange(
+
+export async function answerStatusChange(
   studentId: MySQLUintID,
   studentProblemPageId: NotionUUID, 
   isTodo = false, 
   isWrong = false, 
   isDifficult = false
-) {
+): Promise<void> {
   try {
-    const notionTopProblems = new NotionTopProlems();
+    const notionTopProblems = new NotionTopProblems();
     const notionStudentProblems = new NotionStudentProblems();
+    const notionStudentOverviews = new NotionStudentOverviews();
     // Guarantee that the student problem status is updated
     if (isTodo || isWrong || isDifficult) {
-      const topProblem = (await notionTopProblems.retrieveAPage(studentProblemPageId));
-      studentProblemPageId = topProblem.notionPageId;
-      const subfieldName = topProblem.subfieldName;
-      await StudentProblemsNotion.updateAStudentProblem(studentProblemPageId, subfieldName, {
-        ansStatus: topProblem.ansStatus
-      });
+      const topProblem = ensureValue(await notionTopProblems.retrieveAPage(studentProblemPageId));
+      studentProblemPageId = ensureValue(topProblem.studentProblemPageId);
+      await notionStudentProblems.updatePageProperties(
+        studentProblemPageId, 
+        {
+          answerStatus: topProblem.answerStatus
+        }
+      );
     }
-    const studentInfoAWS = await Students.findByStudentId(studentId);
-    const studentProblemNotion = await StudentProblemsNotion.getAStudentProblem(studentProblemPageId);
-    const studentProblemAWS = await StudentProblemsAWS.findByNotionPageId(studentProblemPageId);
-    await StudentProblemsAWS.update(studentProblemAWS.student_problem_id, {
-      answer_status: studentProblemNotion.answerStatus,
-    });
+    const studentInfoAWS = ensureValue(await Students.findByStudentId(studentId));
+    const studentProblemNotion = ensureValue(await notionStudentProblems.retrieveAPage(studentProblemPageId));
+    const studentProblemAWS = ensureValue(await StudentProblems.findByNotionPageId(studentProblemPageId));
+    await StudentProblems.update(
+      ensureValue(studentProblemAWS.studentProblemId), 
+      {
+        answerStatus: studentProblemNotion.answerStatus,
+      }
+    );
     // updates Notion UI.
-    if (!isTodo){
-      const todoProblem = await TopProblems.getTopProblems(studentInfoAWS.todo_db_id).find(todo => todo.notionPageId === studentProblemPageId);
-      if (todoProblem) {
-        await TopProblems.updateATopProblemAnsStatusById(todoProblem.topProblemPageId, {
-          ansStatus: studentProblemNotion.answerStatus
-        });
-      };
+    
+    const todoProblem = ensureValue(
+      await notionTopProblems.queryADatabase(ensureValue(studentInfoAWS.todoDbId))
+    ).find(todo => todo.studentProblemPageId === studentProblemPageId);
+    if (todoProblem) {
+      await notionTopProblems.updatePageProperties(
+        ensureValue(todoProblem.topProblemPageId), 
+        {
+          answerStatus: studentProblemNotion.answerStatus
+        }
+      );
     };
-    if (!isWrong){
-      const wrongProblem = await TopProblems.getTopProblems(studentInfoAWS.wrong_db_id).find(wrong => wrong.notionPageId === studentProblemPageId);
-      if (wrongProblem) {
-        await TopProblems.updateATopProblemAnsStatusById(wrongProblem.topProblemPageId, {
-          ansStatus: studentProblemNotion.answerStatus
-        });
-      };
+  
+    
+    const wrongProblem = ensureValue(
+      await notionTopProblems.queryADatabase(ensureValue(studentInfoAWS.wrongDbId))
+    ).find(wrong => wrong.studentProblemPageId === studentProblemPageId);
+    if (wrongProblem) {
+      await notionTopProblems.updatePageProperties(
+        ensureValue(wrongProblem.topProblemPageId), 
+        {
+          answerStatus: studentProblemNotion.answerStatus
+        }
+      );
     };
-    if (!isDifficult){
-      const isDifficultProblem = await TopProblems.getTopProblems(studentInfoAWS.is_difficult_db_id).find(isDifficult => isDifficult.notionPageId === studentProblemPageId);
-      if (isDifficultProblem) {
-        await TopProblems.updateATopProblemAnsStatusById(isDifficultProblem.topProblemPageId, {
-          ansStatus: studentProblemNotion.answerStatus
-        });
-      };
-    }
+  
+    
+    const isDifficultProblem = ensureValue(
+      await notionTopProblems.queryADatabase(ensureValue(studentInfoAWS.isDifficultDbId))
+    ).find(isDifficult => isDifficult.studentProblemPageId === studentProblemPageId);
+    if (isDifficultProblem) {
+      await  notionTopProblems.updatePageProperties(
+        ensureValue(isDifficultProblem.topProblemPageId), 
+        {
+          answerStatus: studentProblemNotion.answerStatus
+        }
+      );
+    };
+    
     if (isTodo) {
-      const studentProblem = await StudentProblemsAWS.findWithSubfieldIdByNotionPageId(studentProblemPageId)[0];
-      const studentProbAWSId = studentProblem.studentProblemId;
-      const currentTracker = await Trackers.findByCompositeKey(studentId, studentProblem.subfieldId);
+      const notionStudentTodoCounters = new NotionStudentTodoCounters();
+      const notionStudentRemainings = new NotionStudentRemainings();
+      const studentProblem = ensureValue(await StudentProblems.findWithSubfieldIdByNotionPageId(studentProblemPageId));
+      const studentProbAWSId = ensureValue(studentProblem.studentProblemId);
+      const subfieldId = ensureValue(studentProblem.subfieldId);
+      const currentTracker = ensureValue(await Trackers.findByCompositeKey(studentId, subfieldId));
       
       // Just in case a student updates not latest problem status.
-      if (studentProbAWSId !== currentTracker.studentProblemId) return ;
+      if (studentProbAWSId !== currentTracker.studentProblemId) return;
 
-      const studentOverviewPageId = studentInfoAWS.studentOverviewPageId;
-      const nextTodoProbPageId = await updateTrackerAndTodoRemainingCounter(studentId, studentProbAWSId);
-      const studentSubfieldTrace = await StudentSubfieldTraces.findByCompositeKey(studentId, studentProblem.subfieldId);
-      const subfieldName = await Subfields.findBySubfieldId(studentProblem.subfieldId)[0].subfieldName;
-      const subfieldDelayKeyName = returnSubfieldDelayKeyName(subfieldName);
+      const studentOverviewPageId = ensureValue(studentInfoAWS.studentOverviewPageId);
+      const nextTodoProblemId = await updateTrackerAndTodoCounter(studentId, studentProbAWSId);
+      const studentSubfieldTrace = ensureValue(await StudentSubfieldTraces.findWithSubfieldNameByCompositeKey(studentId, subfieldId));
+      const subfieldName = ensureValue(studentSubfieldTrace.subfieldName)
+      const delay = ensureValue(studentSubfieldTrace.delay);
+      const todoCounter = ensureValue(studentSubfieldTrace.todoCounter);
+      const remainingDay = ensureValue(studentSubfieldTrace.remainingDay);
       // Notion UI updates
       await Promise.all([
-        await NotionAPI.updatePageProperties(studentOverviewPageId, Properties.getJSON([
-          propertyToNotion({
-            propertyName: studentsOverviewsProperties[subfieldDelayKeyName].name,
-            propertyContent: studentSubfieldTrace.delay,
-            propertyType: studentsOverviewsProperties[subfieldDelayKeyName].type
-          })
-        ])),
-        await NotionAPI.updatePageProperties(studentSubfieldTrace.todoRemainingCounterNotionPageId, Properties.getJSON([
-          propertyToNotion({
-            propertyName: todoRemainingCountersProperties.remainingProbNum.name,
-            propertyContent: studentSubfieldTrace.todoRemainingCounter,
-            propertyType: todoRemainingCountersProperties.remainingProbNum.type
-          }),
-          propertyToNotion({
-            propertyName: todoRemainingCountersProperties.delay.name,
-            propertyContent: studentSubfieldTrace.delay,
-            propertyType: todoRemainingCountersProperties.delay.type
-          })
-        ])),
-        await NotionAPI.updatePageProperties(studentSubfieldTrace.remainingDayNotionPageId, Properties.getJSON([
-          propertyToNotion({
-            propertyName: remainingDayProperties.remainingDay.name,
-            propertyContent: studentSubfieldTrace.remainingDay,
-            propertyType: remainingDayProperties.remainingDay.type
-          })
-        ]))
+        await notionStudentOverviews.updatePagePropertiesWithDelay(
+          studentOverviewPageId, 
+          subfieldName,
+          delay,
+          {}
+        ),
+        await notionStudentTodoCounters.updatePageProperties(
+          ensureValue(studentSubfieldTrace.todoCounterNotionPageId),
+          {
+            remainingProblemNumber: todoCounter,
+            delay: delay,
+          }
+        ),
+        await notionStudentRemainings.updatePageProperties(
+          ensureValue(studentSubfieldTrace.remainingDayNotionPageId), 
+          {
+            remainingDay: remainingDay
+          }
+        )
       ]);
-      // if nextTodoProbPageId is null, then the student might complete all todo tasks!
-      if (nextTodoProbPageId) {
-        const todoNotionDBId = studentInfoAWS.todoDbId;
-        await copyPageCreate(nextTodoProbPageId, todoNotionDBId);
+      // if nextTodoProblemId is null, then the student might complete all todo tasks!
+      if (nextTodoProblemId) {
+        const todoNotionDBId = ensureValue(studentInfoAWS.todoDbId);
+        const nextTodoProblemPageId = ensureValue(await StudentProblems.findNotionPageIdByStudentProblemId(nextTodoProblemId));
+        await copyPageCreate(nextTodoProblemPageId, todoNotionDBId);
+      } else if (nextTodoProblemId === null) {
+        logger.warn(`StudentId: ${studentId} has completed all tasks!`);
       }
     }
   } catch (error) {
-    logger.error("Error updating student problem in AWS:", error.message);
+    logger.error("Error updating student problem in AWS:", error);
     throw error;
   }
 }
-export async function isDifficultChange(studentId, studentProblemPageId, isTopProblem = false) {
+export async function isDifficultChange(
+  studentId: MySQLUintID, 
+  studentProblemPageId: NotionUUID, 
+  isTopProblem = false
+) {
   try {
+    const notionStudentProblems = new NotionStudentProblems();
+    const notionTopProblems = new NotionTopProblems();
     if (isTopProblem) {
-      const topProblem = await TopProblems.getATopPageProblem(studentProblemPageId);
-      studentProblemPageId = topProblem.notionPageId;
-      const subfieldName = topProblem.subfieldName;
-      await StudentProblemsNotion.updateAStudentProblem(studentProblemPageId, subfieldName, {
-        isDifficult:topProblem.isDifficult
-      })
+      const topProblem = ensureValue(await notionTopProblems.retrieveAPage(studentProblemPageId));
+      studentProblemPageId = ensureValue(topProblem.studentProblemPageId);
+      await notionStudentProblems.updatePageProperties(
+        studentProblemPageId, 
+        {
+          isDifficult: topProblem.isDifficult
+        }
+      );
     }
-    const studentInfoAWS = await Students.findByStudentId(studentId);
-    const studentProblemNotion = await StudentProblemsNotion.getAStudentProblem(studentProblemPageId);
-    const studentProblemAWS = await StudentProblemsAWS.findByNotionPageId(studentProblemPageId);
-    await StudentProblemsAWS.update(studentProblemAWS.student_problem_id, {
-      is_difficult: studentProblemNotion.isDifficult,
-    });
-    const todoProblem = await TopProblems.getTopProblems(studentInfoAWS.todo_db_id).filter(todo => todo.notionPageId === studentProblemPageId);
-    if (todoProblem.length > 0) {
-      await TopProblems.updateATopProblemIsDifficultById(todoProblem[0].topProblemPageId, {
-        is_difficult: studentProblemNotion.isDifficult,
-      });
+    const studentInfoAWS = ensureValue(await Students.findByStudentId(studentId));
+    const studentProblemNotion = ensureValue(await notionStudentProblems.retrieveAPage(studentProblemPageId));
+    const studentProblemAWS = ensureValue(await StudentProblems.findByNotionPageId(studentProblemPageId));
+    await StudentProblems.update(
+      ensureValue(studentProblemAWS.studentProblemId), 
+      {
+        isDifficult: studentProblemNotion.isDifficult,
+      }
+    );
+    // updates Notion UI.
+    
+    const todoProblem = ensureValue(
+      await notionTopProblems.queryADatabase(ensureValue(studentInfoAWS.todoDbId))
+    ).find(todo => todo.studentProblemPageId === studentProblemPageId);
+    if (todoProblem) {
+      await notionTopProblems.updatePageProperties(
+        ensureValue(todoProblem.topProblemPageId), 
+        {
+          isDifficult: studentProblemNotion.isDifficult
+        }
+      );
     };
-    const wrongProblem = await TopProblems.getTopProblems(studentInfoAWS.wrong_db_id).filter(todo => todo.notionPageId === studentProblemPageId);
-    if (wrongProblem.length > 0) {
-      await TopProblems.updateATopProblemIsDifficultById(wrongProblem[0].topProblemPageId, {
-        is_difficult: studentProblemNotion.isDifficult,
-      });
+    
+    const wrongProblem = ensureValue(
+      await notionTopProblems.queryADatabase(ensureValue(studentInfoAWS.wrongDbId))
+    ).find(wrong => wrong.studentProblemPageId === studentProblemPageId);
+    if (wrongProblem) {
+      await notionTopProblems.updatePageProperties(
+        ensureValue(wrongProblem.topProblemPageId), 
+        {
+          isDifficult: studentProblemNotion.isDifficult
+        }
+      );
     };
-    const isDifficultProblem = await TopProblems.getTopProblems(studentInfoAWS.is_difficult_db_id).filter(todo => todo.notionPageId === studentProblemPageId);
-    if (isDifficultProblem.length > 0) {
-      await TopProblems.updateATopProblemIsDifficultById(isDifficultProblem[0].topProblemPageId, {
-        is_difficult: studentProblemNotion.isDifficult,
-      });
+    
+    const isDifficultProblem = ensureValue(
+      await notionTopProblems.queryADatabase(ensureValue(studentInfoAWS.isDifficultDbId))
+    ).find(isDifficult => isDifficult.studentProblemPageId === studentProblemPageId);
+    if (isDifficultProblem) {
+      await  notionTopProblems.updatePageProperties(
+        ensureValue(isDifficultProblem.topProblemPageId), 
+        {
+          isDifficult: studentProblemNotion.isDifficult
+        }
+      );
     };
   } catch (error) {
-    logger.error("Error updating student problem in AWS:", error.message);
+    logger.error("Error updating student problem in AWS:", error);
     throw error;
   }
 }
