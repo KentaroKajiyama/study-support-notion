@@ -1,11 +1,12 @@
 import { 
   NotionDate,
+  SubfieldsSubfieldNameEnum,
   SubjectsSubjectNameEnum,
   Uint
 } from "@domain/types/index.js";
 
-export interface DomainRemaining {
-  subfieldName?: SubjectsSubjectNameEnum;
+export interface DomainStudentRemaining {
+  subfieldName?: SubfieldsSubfieldNameEnum;
   subjectName?: SubjectsSubjectNameEnum;
   remainingDay?: Uint;
   targetDate?: NotionDate;
