@@ -339,7 +339,7 @@ export class Students {
 
   static async findByNotionUserId(
     notionUserId: NotionUUID
-  ): Promise<Student[]> {
+  ): Promise<Student | null> {
     try {
       if (!notionUserId) {
         logger.error("No notionUserId provided to findByNotionUserId.");
@@ -354,10 +354,14 @@ export class Students {
         throw new Error("Invalid rows in findByNotionUserId");
       } else if (rows.length === 0) {
         logger.warn("No student was found in findByNotionUserId Students.ts")
-        return [];
+        return null;
+      } else if (rows.length >= 2) {
+        logger.warn(
+          "Multiple students found with the same notionUserId in findByNotionUserId Students.ts"
+        );
       }
 
-      return rows.map(row => toStudent(convertToCamelCase(row) as MySQLStudent)) as Student[];
+      return toStudent(convertToCamelCase(rows[0]) as MySQLStudent);
     } catch (error) {
       logger.error(
         `Error finding students by notionUserId: ${notionUserId}`,

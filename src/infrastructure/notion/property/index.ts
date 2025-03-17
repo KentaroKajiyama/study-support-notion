@@ -8,3 +8,4 @@ export * from './dateHandler.js';
 export * from './relationHandler.js';
 export * from './statusHandler.js';
 export * from './multiSelectHandler.js';
+export * from './peopleHandler.js';

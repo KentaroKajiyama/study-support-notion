@@ -6,3 +6,4 @@ export * from './logger.js';
 export * from './loggerMiddleware.js';
 export * from './mentionPlugin.js';
 export * from './ensureValue.js';
+export * from './extractId.js';

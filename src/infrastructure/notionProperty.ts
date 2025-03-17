@@ -10,7 +10,8 @@ import {
   DatePropertyResponse,
   RelationPropertyResponse,
   StatusPropertyResponse,
-  MultiSelectPropertyResponse
+  MultiSelectPropertyResponse,
+  PeoplePropertyResponse
 } from "@domain/types/index.js";
 import {
   TitleResponseOption,
@@ -64,6 +65,12 @@ import {
   RelationResponseOption,
   relationResponseHandler,
   RelationResponseReturnType,
+  PeopleRequestOption,
+  peopleRequestHandler,
+  PeopleRequestInputType,
+  PeopleResponseOption,
+  peopleResponseHandler,
+  PeopleResponseReturnType,
 } from '@infrastructure/notion/property/index.js';
 
 // TODO: Specify the option and return type.
@@ -78,6 +85,8 @@ type ResponseReturnOption =
   | FormulaResponseOption
   | DateResponseOption
   | RelationResponseOption
+  | PeopleResponseOption
+  | CheckboxResponseOption
 
 type ResponseReturnType = 
   | undefined
@@ -90,6 +99,7 @@ type ResponseReturnType =
   | CheckboxResponseReturnType
   | DateResponseReturnType
   | RelationResponseReturnType
+  | PeopleResponseReturnType
 
 export function propertyResponseToDomain(
   property: PagePropertyResponse,
@@ -127,8 +137,7 @@ export function propertyResponseToDomain(
         break;
   
       case "people":
-        // Handle people properties (e.g., return user IDs or names)
-        break;
+        return peopleResponseHandler(property as PeoplePropertyResponse, returnOption as PeopleResponseOption);
   
       case "files":
         // Handle files properties (e.g., return array of file URLs)
@@ -194,6 +203,7 @@ type RequestInputOption =
   | CheckboxRequestOption
   | DateRequestOption
   | RelationRequestOption
+  | PeopleRequestOption
 
 type RequestInputType =
   | undefined
@@ -205,6 +215,7 @@ type RequestInputType =
   | CheckboxRequestInputType
   | DateRequestInputType
   | RelationRequestInputType
+  | PeopleRequestInputType
 
 export function propertyDomainToRequest(
   domainProperty: RequestInputType, // TODO: Specify the domain property shape
@@ -244,8 +255,7 @@ export function propertyDomainToRequest(
         break;
 
       case "people":
-        // Handle people properties (e.g., return user IDs or names)
-        break;
+        return peopleRequestHandler(domainProperty as PeopleRequestInputType, inputOption as PeopleRequestOption);
 
       case "files":
         // Handle files properties (e.g., return array of file URLs)
