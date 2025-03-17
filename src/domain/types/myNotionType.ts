@@ -19,6 +19,7 @@ import {
 import MarkdownIt from "markdown-it";
 import dollarmathPlugin from "markdown-it-dollarmath";
 import { mentionPlugin, MentionTokenMeta, logger } from "@utils/index.js";
+import { URLString } from "./myTypes.js";
 
 
 /** ------------------------------------------------------------------
@@ -133,6 +134,17 @@ export function inlineTextToMentionStringArray(
 
   return resultArray;
 }
+
+export function fromStringToANotionMentionString(normalString: string): NotionMentionString {
+  const mentionStringArray: NotionMentionString[] = inlineTextToMentionStringArray(normalString);
+  if (mentionStringArray.length === 0) {
+    throw new Error('You must provide a mention string')
+  } else if (mentionStringArray.length >= 2) {
+    logger.warn('You provide more than one mention. Everything is ignored other than the first one.')
+  };
+  return mentionStringArray[0];
+};
+
 export type MentionDetailId =
 {
   displayText: string;
@@ -159,6 +171,29 @@ export function getMentionDetailsArrayFromInlineText(inlineText: string): Mentio
     throw error;
   }
 }
+
+export type NotionFilterPropertyType = 
+  | "title"
+  | "rich_text"
+  | "number"
+  | "select"
+  | "multi_select"
+  | "date"
+  | "formula"
+  | "relation"
+  | "rollup"
+  | "people"
+  | "files"
+  | "checkbox"
+  | "url"
+  | "email"
+  | "phone_number"
+  | "created_time"
+  | "created_by"
+  | "last_edited_time"
+  | "last_edited_by"
+  | "status"
+  | "unique_id"
 
 export type NotionPagePropertyType =
   | "title"
@@ -523,14 +558,14 @@ export type IconEmoji = {
 
 export type IconExternal = {
   external: {
-    url: TextRequest;
+    url: URLString;
   };
   type?: 'external';
 };
 
 export type IconCustomEmoji = {
   custom_emoji: {
-    id: IdRequest;
+    id: NotionUUID;
     name?: string;
     url?: string;
   };
