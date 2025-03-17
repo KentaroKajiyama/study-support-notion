@@ -117,7 +117,7 @@ function toNotion(data: DomainTopProblem): NotionStudentProblemRequest {
   }
 }
 
-export class NotionTopProlems extends NotionRepository<
+export class NotionTopProblems extends NotionRepository<
   DomainTopProblem,
   NotionTopProblemResponse,
   NotionTopProblemRequest

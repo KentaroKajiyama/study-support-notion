@@ -19,6 +19,7 @@ import {
   Int,
   FormulaPropertyResponse,
   NotionUUID,
+  SubfieldsSubfieldNameEnum,
 } from "@domain/types/index.js";
 import {
   logger
@@ -125,7 +126,7 @@ function toDomain(res: NotionStudentOverviewResponse): DomainStudentOverview  {
       ancientJapaneseDelay:
         res['古文遅れ日数']!== undefined? propertyResponseToDomain(res['古文遅れ日数'], 'int') as Int : undefined,
       ancientChineseDelay:
-        res['漢文遅れ日数']!== undefined? propertyResponseToDomain(res['��文遅れ日数'], 'int') as Int : undefined,
+        res['漢文遅れ日数']!== undefined? propertyResponseToDomain(res['漢文遅れ日数'], 'int') as Int : undefined,
       mathDelay:
         res['数学遅れ日数']!== undefined? propertyResponseToDomain(res['数学遅れ日数'], 'int') as Int : undefined,
       readingDelay:
@@ -223,6 +224,74 @@ export class NotionStudentOverviews extends NotionRepository<
   }
   protected toNotion(data: DomainStudentOverview ): NotionStudentOverviewRequest {
     return toNotion(data);
+  }
+  async updatePagePropertiesWithDelay(
+    studentOverviewPageId: NotionUUID,
+    subfieldName: SubfieldsSubfieldNameEnum,
+    delay: Int,
+    otherUpdates: DomainStudentOverview,
+  ) {
+    try {
+      switch(subfieldName) {
+        case '現代文':
+          otherUpdates.modernJapaneseDelay = delay; 
+          await this.updatePageProperties(studentOverviewPageId, otherUpdates);
+          break;
+        case '古文':
+          otherUpdates.ancientJapaneseDelay = delay;
+          await this.updatePageProperties(studentOverviewPageId, otherUpdates);
+          break;
+        case '漢文':
+          otherUpdates.ancientChineseDelay = delay;
+          await this.updatePageProperties(studentOverviewPageId, otherUpdates);
+          break;
+        case '数学':
+          otherUpdates.mathDelay = delay;
+          await this.updatePageProperties(studentOverviewPageId, otherUpdates);
+          break;
+        case 'Reading':
+          otherUpdates.readingDelay = delay;
+          await this.updatePageProperties(studentOverviewPageId, otherUpdates);
+          break;
+        case 'Listening&Speaking':
+          otherUpdates.listeningAndSpeakingDelay = delay;
+          await this.updatePageProperties(studentOverviewPageId, otherUpdates);
+          break;
+        case 'Writing':
+          otherUpdates.writingDelay = delay;
+          await this.updatePageProperties(studentOverviewPageId, otherUpdates);
+          break;
+        case '物理':
+          otherUpdates.physicsDelay = delay;
+          await this.updatePageProperties(studentOverviewPageId, otherUpdates);
+          break;
+        case '化学':
+          otherUpdates.chemistryDelay = delay;
+          await this.updatePageProperties(studentOverviewPageId, otherUpdates);
+          break;
+        case '生物':
+          otherUpdates.biologyDelay = delay;
+          await this.updatePageProperties(studentOverviewPageId, otherUpdates);
+          break;
+        case '日本史':
+          otherUpdates.japaneseHistoryDelay = delay;
+          await this.updatePageProperties(studentOverviewPageId, otherUpdates);
+          break;
+        case '世界史':
+          otherUpdates.worldHistoryDelay = delay;
+          await this.updatePageProperties(studentOverviewPageId, otherUpdates);
+          break;
+        case '地理':
+          otherUpdates.geographyDelay = delay;
+          await this.updatePageProperties(studentOverviewPageId, otherUpdates);
+          break;
+        default:
+          throw new Error(`Invalid subfieldName: ${subfieldName}`);
+      }
+    } catch (error) {
+      logger.error(`Failed to update Notion Student Overview page with delay for ${subfieldName}: ${error}`);
+      throw error;
+    }
   }
 }
   

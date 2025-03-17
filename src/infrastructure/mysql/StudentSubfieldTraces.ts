@@ -25,8 +25,8 @@ export interface MySQLStudentSubfieldTrace {
   traceId?: MySQLUintID;
   studentId?: MySQLUintID;
   subfieldId?: MySQLUintID;
-  todoRemainingCounter?: Uint;
-  todoRemainingCounterNotionPageId?: string | null;
+  todoCounter?: Uint;
+  todoCounterNotionPageId?: string | null;
   remainingDay?: Uint;
   remainingDayNotionPageId?: string;
   actualEndDate?: MySQLDate | null;
@@ -46,8 +46,8 @@ export interface StudentSubfieldTrace {
   traceId?: MySQLUintID;
   studentId?: MySQLUintID;
   subfieldId?: MySQLUintID;
-  todoRemainingCounter?: Uint;
-  todoRemainingCounterNotionPageId?: NotionUUID | null;
+  todoCounter?: Uint;
+  todoCounterNotionPageId?: NotionUUID | null;
   remainingDay?: Uint;
   remainingDayNotionPageId?: NotionUUID;
   actualEndDate?: NotionDate | null;
@@ -78,10 +78,10 @@ export function toStudentSubfieldTrace(
       traceId: row.traceId,
       studentId: row.studentId,
       subfieldId: row.subfieldId,
-      todoRemainingCounter: row.todoRemainingCounter,
-      todoRemainingCounterNotionPageId:
-        row.todoRemainingCounterNotionPageId != undefined
-          ? toNotionUUID(row.todoRemainingCounterNotionPageId)
+      todoCounter: row.todoCounter,
+      todoCounterNotionPageId:
+        row.todoCounterNotionPageId != undefined
+          ? toNotionUUID(row.todoCounterNotionPageId)
           : undefined,
       remainingDay: row.remainingDay,
       remainingDayNotionPageId:
@@ -132,10 +132,10 @@ export function toStudentSubfieldTraceWithSubfieldName(
       studentId: row.studentId,
       subfieldId: row.subfieldId,
       subfieldName: row.subfieldName,
-      todoRemainingCounter: row.todoRemainingCounter,
-      todoRemainingCounterNotionPageId:
-        row.todoRemainingCounterNotionPageId != undefined
-          ? toNotionUUID(row.todoRemainingCounterNotionPageId)
+      todoCounter: row.todoCounter,
+      todoCounterNotionPageId:
+        row.todoCounterNotionPageId != undefined
+          ? toNotionUUID(row.todoCounterNotionPageId)
           : undefined,
       remainingDay: row.remainingDay,
       remainingDayNotionPageId:
@@ -181,8 +181,8 @@ export function toMySQLStudentSubfieldTrace(
   data: StudentSubfieldTrace
 ): MySQLStudentSubfieldTrace {
   try {
-    if (data.todoRemainingCounter && !isUint(data.todoRemainingCounter)) {
-      throw new Error('Invalid todoRemainingCounter');
+    if (data.todoCounter && !isUint(data.todoCounter)) {
+      throw new Error('Invalid todoCounter');
     }
     if (data.remainingDay && !isUint(data.remainingDay)) {
       throw new Error('Invalid remainingDay');
@@ -195,8 +195,8 @@ export function toMySQLStudentSubfieldTrace(
       traceId: data.traceId,
       studentId: data.studentId,
       subfieldId: data.subfieldId,
-      todoRemainingCounter: data.todoRemainingCounter,
-      todoRemainingCounterNotionPageId: data.todoRemainingCounterNotionPageId,
+      todoCounter: data.todoCounter,
+      todoCounterNotionPageId: data.todoCounterNotionPageId,
       remainingDay: data.remainingDay,
       remainingDayNotionPageId: data.remainingDayNotionPageId,
       actualEndDate:
@@ -394,10 +394,10 @@ export class StudentSubfieldTraces {
       throw error;
     }
   }
-  static async findByCompositeKey(
+  static async findWithSubfieldNameByCompositeKey(
     studentId: MySQLUintID,
     subfieldId: MySQLUintID
-  ): Promise<StudentSubfieldTrace | null> {
+  ): Promise<StudentSubfieldTraceWithSubfieldName | null> {
     try {
       if (!studentId || !subfieldId) {
         logger.error("Invalid input to findByCompositeKey: missing IDs.");
@@ -406,9 +406,10 @@ export class StudentSubfieldTraces {
 
       const [rows] = await db.query(
         `
-          SELECT *
+          SELECT student_subfield_traces.*, subfields.subfield_name
           FROM student_subfield_traces
-          WHERE student_id = ? AND subfield_id = ?
+          INNER JOIN subfields ON student_subfield_traces.subfield_id = subfields.subfield_name
+          WHERE student_traces.student_id = ? AND student_traces.subfield_id = ?
         `,
         [studentId, subfieldId]
       );
@@ -431,13 +432,13 @@ export class StudentSubfieldTraces {
     }
   }
 
-  static async findOnlyTodoRemainingCounterByCompositeKey(
+  static async findOnlytodoCounterByCompositeKey(
     studentId: MySQLUintID,
     subfieldId: MySQLUintID
   ): Promise<number | null> {
     try {
       if (!studentId || !subfieldId) {
-        logger.error("Invalid input to findOnlyTodoRemainingCounterByCompositeKey: missing IDs.");
+        logger.error("Invalid input to findOnlytodoCounterByCompositeKey: missing IDs.");
         throw new Error("studentId and subfieldId are required.");
       }
 
@@ -450,17 +451,17 @@ export class StudentSubfieldTraces {
         [studentId, subfieldId]
       );
       if (!Array.isArray(rows)) {
-        throw new Error("rows must be an array in findOnlyTodoRemainingCounterByCompositeKey StudentSubfieldTrace.ts");
+        throw new Error("rows must be an array in findOnlytodoCounterByCompositeKey StudentSubfieldTrace.ts");
       } else if (rows.length === 0) {
-        logger.warn('No trace is found in findOnlyTodoRemainingCounterByCompositeKey StudentSubfieldTrace.ts')
+        logger.warn('No trace is found in findOnlytodoCounterByCompositeKey StudentSubfieldTrace.ts')
         return null;
       }
 
       const rowCamel = convertToCamelCase(rows[0]) as StudentSubfieldTrace;
-      return rowCamel.todoRemainingCounter ?? null;
+      return rowCamel.todoCounter ?? null;
     } catch (error) {
       logger.error(
-        `Error finding todoRemainingCounter by compositeKey (studentId=${studentId}, subfieldId=${subfieldId}):`,
+        `Error finding todoCounter by compositeKey (studentId=${studentId}, subfieldId=${subfieldId}):`,
         error
       );
       throw error;

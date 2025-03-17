@@ -18,7 +18,7 @@ import {
   ActualBlocks,
   ActualBlock,
   StudentSubfieldTraces
-} from '@infrastructure/aws_tables/index.js';
+} from '@infrastructure/mysql/index.js';
 import { 
   ensureValue,
   logger

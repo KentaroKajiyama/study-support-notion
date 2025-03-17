@@ -1,4 +1,4 @@
-import { calculateNextTrackerAndTodoRemainingCounter } from '../caluculation/scheduleForStudents.js';
+import { calculateNextTrackerAndTodoCounter } from '../caluculation/scheduleForStudents.js';
 import { adjustSchedule } from '../caluculation/scheduleForStudents.js';
 import { 
   logger,
@@ -11,7 +11,7 @@ import {
   Students,
   StudentProblems,
   Trackers,
-} from '@infrastructure/aws_tables/index.js'
+} from '@infrastructure/mysql/index.js'
 import { 
   MySQLUintID,
   Uint,
@@ -24,7 +24,7 @@ import {
 } from '@domain/types/index.js';
 import {
   NotionStudentRemainings,
-  NotionTopProlems,
+  NotionTopProblems,
   NotionStudentProblems
 } from '@infrastructure/notion/index.js';
 import { DomainStudentProblem } from '@domain/student/StudentProblem.js';
@@ -45,7 +45,7 @@ export async function distRemainingPerStudent(
         );
         // 2. pick up the student remaining data from Remaining Database
         const trace = ensureValue(
-          await StudentSubfieldTraces.findByCompositeKey(studentId, subfieldInfo.subfieldId),
+          await StudentSubfieldTraces.findWithSubfieldNameByCompositeKey(studentId, subfieldInfo.subfieldId),
           `No remaining data found for student ${studentId} and subfield ${subfieldInfo.subfieldId}`
         );
         // 3. convert the remaining data into a appropriate data structure for distribution
@@ -55,7 +55,7 @@ export async function distRemainingPerStudent(
           subfieldName: SubfieldsSubfieldNameEnum,
           remainingDay: Uint
         } = {
-          pageId: trace.todoRemainingCounterNotionPageId ?? null,
+          pageId: trace.todoCounterNotionPageId ?? null,
           subjectName: ensureValue(subfieldData.subjectName),
           subfieldName: ensureValue(subfieldData.subfieldName),
           remainingDay: ensureValue(trace.remainingDay)
@@ -119,7 +119,7 @@ export async function sendTodoCountersPerStudent(
 ): Promise<void> {
   try {
     // 0. instantiation.
-    const notionTopProblems = new NotionTopProlems();
+    const notionTopProblems = new NotionTopProblems();
     // 1. fetch all the subfield ids of the student
     const traces = await StudentSubfieldTraces.findByStudentId(studentId);
     // 2. fetch the content of the current todo db
@@ -139,10 +139,10 @@ export async function sendTodoCountersPerStudent(
       // const doneCurrentTodo = currentTodos.filter(todo => todo.subfieldId === subfieldId && todo.understandingLevel !== '未回答');
       // await Promise.all(doneCurrentTodo.map(async (todo) => await TopProblems.deleteATopProblemById(todo.todoId)));
       // 5. check if the student already has a todo item (Don't check this because the item is already distributed when the student finished the former problem)
-      const studentTrace = ensureValue(await StudentSubfieldTraces.findByCompositeKey(studentId, subfieldId));
+      const studentTrace = ensureValue(await StudentSubfieldTraces.findWithSubfieldNameByCompositeKey(studentId, subfieldId));
       const currentTracker = ensureValue(trackingData.find(tracker => tracker.subfieldId === subfieldId));
       const actualBlockId = ensureValue(currentTracker.actualBlockId)
-      if (ensureValue(studentTrace.todoRemainingCounter) > 0) {
+      if (ensureValue(studentTrace.todoCounter) > 0) {
         await adjustSchedule(studentId, actualBlockId, subfieldId, "delay", false);
       } else {
         // 6. fetch the id and number of the subfield item for todo
@@ -154,11 +154,11 @@ export async function sendTodoCountersPerStudent(
         } else if (remainingSpace > 0) {
           await Trackers.update(trackerId, { remainingSpace: toUint(remainingSpace-1) });
         } else {
-          const result = await calculateNextTrackerAndTodoRemainingCounter(studentId, subfieldId, actualBlockId, currentTracker);
+          const result = await calculateNextTrackerAndTodoCounter(studentId, subfieldId, actualBlockId, currentTracker);
           await Promise.all([
             await Trackers.update(trackerId, result.tracker),
             await StudentSubfieldTraces.updateByCompositeKey(studentId, subfieldId, {
-              todoRemainingCounter: result.todoRemainingCounter
+              todoCounter: result.todoCounter
             })
           ]);
         }
@@ -233,7 +233,7 @@ export async function dealWithTodosPerStudent(
 ) {
   try {
     // 0. instantiation.
-    const notionTopProblems = new NotionTopProlems();
+    const notionTopProblems = new NotionTopProblems();
     // 1. fetch all the items from the todos database
     const studentInfoAWS = ensureValue(await Students.findByStudentId(studentId));
     const todoData = await notionTopProblems.queryADatabase(ensureValue(studentInfoAWS.todoDbId));
@@ -308,7 +308,7 @@ export async function dealWithTodosForAllStudents() {
 
 export async function dealWithWrongsPerStudent(studentId: MySQLUintID) {
   try {
-    const notionTopProblems = new NotionTopProlems();
+    const notionTopProblems = new NotionTopProblems();
     // 1. fetch all the items from the wrongs database
     const studentInfoAWS = ensureValue(await Students.findByStudentId(studentId));
     const wrongData = await notionTopProblems.queryADatabase(ensureValue(studentInfoAWS.wrongDbId));
@@ -367,7 +367,7 @@ export async function dealWithWrongsForAllStudents() {
 
 export async function dealWithIsDifficultsPerStudent(studentId: MySQLUintID) {
   try {
-    const notionTopProblems = new NotionTopProlems();
+    const notionTopProblems = new NotionTopProblems();
     // 1. fetch all the items from the isDifficults database
     const studentInfoAWS = ensureValue(await Students.findByStudentId(studentId));
     const isDifficultData = await notionTopProblems.queryADatabase(ensureValue(studentInfoAWS.isDifficultDbId));
@@ -505,7 +505,7 @@ export async function dealWithStudentProblemsForAllStudents() {
 
 export async function sendReviewAlertPerStudent(studentId: MySQLUintID, todoDatabaseId: NotionUUID) {
   try {
-    const notionTopProblems = new NotionTopProlems();
+    const notionTopProblems = new NotionTopProblems();
     const studentOverviewPageId = ensureValue(await Students.findOnlyOverviewPageIdByStudentId(studentId));
     const studentSubfieldInfo = await StudentSubfieldTraces.findOnlyReviewAlertByStudentId(studentId);
     const reviewProblemsInTodo = await notionTopProblems.queryADatabaseWithOnlyReviews(todoDatabaseId);

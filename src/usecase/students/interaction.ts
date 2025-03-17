@@ -1,5 +1,5 @@
 import { 
-  calculateNextTrackerAndTodoRemainingCounter 
+  calculateNextTrackerAndTodoCounter 
 } from "@usecase/caluculation/scheduleForStudents.js";
 import {
   ensureValue,
@@ -15,9 +15,9 @@ import {
   Tracker,
   ActualBlocks,
   StudentSubfieldTraces
-} from '@infrastructure/aws_tables/index.js'
+} from '@infrastructure/mysql/index.js'
 
-export async function updateTrackerAndTodoRemainingCounter(
+export async function updateTrackerAndTodoCounter(
   studentId: MySQLUintID,
   studentProblemId: MySQLUintID
 ) : Promise<MySQLUintID | null>{
@@ -34,15 +34,15 @@ export async function updateTrackerAndTodoRemainingCounter(
       const currentActualBlockId = ensureValue(currentActualBlock.actualBlockId);
       const currentActualBlockSize = ensureValue(currentActualBlock.actualBlockSize);
       const currentActualBlockMaxLap = ensureValue(currentActualBlock.lap);
-      const todoRemainingCounter = ensureValue(
+      const todoCounter = ensureValue(
                                     ensureValue(
-                                      await StudentSubfieldTraces.findByCompositeKey(
+                                      await StudentSubfieldTraces.findWithSubfieldNameByCompositeKey(
                                         studentId, ensureValue(studentProblem.subfieldId)
                                       )
-                                    ).todoRemainingCounter
+                                    ).todoCounter
                                   );
-      if (todoRemainingCounter > 0) {
-        const nextTodoRemainingCounter = toUint(todoRemainingCounter - 1);
+      if (todoCounter > 0) {
+        const nexttodoCounter = toUint(todoCounter - 1);
         if (currentProbInBlockOrder < currentActualBlockSize) {
           const nextProbInBlockOrder = toUint(currentProbInBlockOrder + 1);
           const nextTodoProblem = ensureValue(
@@ -55,7 +55,7 @@ export async function updateTrackerAndTodoRemainingCounter(
           await Promise.all([
             await Trackers.update(currentTrackerId, trackerUpdates),
             await StudentSubfieldTraces.updateByCompositeKey(studentId, subfieldId, {
-              todoRemainingCounter: nextTodoRemainingCounter,
+              todoCounter: nexttodoCounter,
             })
           ]);
         } else if (currentProbInBlockOrder === currentActualBlockSize) {
@@ -72,7 +72,7 @@ export async function updateTrackerAndTodoRemainingCounter(
             await Promise.all([
               await Trackers.update(currentTrackerId, trackerUpdates),
               await StudentSubfieldTraces.updateByCompositeKey(studentId, subfieldId, {
-                todoRemainingCounter: nextTodoRemainingCounter,
+                todoCounter: nexttodoCounter,
               })
             ]);
           } else if (currentLap === currentActualBlockMaxLap) {
@@ -92,7 +92,7 @@ export async function updateTrackerAndTodoRemainingCounter(
             await Promise.all([
               await Trackers.update(currentTrackerId, trackerUpdates),
               await StudentSubfieldTraces.updateByCompositeKey(studentId, subfieldId, {
-                todoRemainingCounter: nextTodoRemainingCounter,
+                todoCounter: nexttodoCounter,
               })
             ]);
           } else {
@@ -101,14 +101,14 @@ export async function updateTrackerAndTodoRemainingCounter(
         } else {
           throw new Error('Current ProbInBlockOrder is too Big! currentProbInBlockOrder must be <= currentActualBlockSize in distNextTodo function.');
         }
-      } else if (todoRemainingCounter === 0) {
-        const result = await calculateNextTrackerAndTodoRemainingCounter(studentId, subfieldId, currentActualBlockId, currentTracker);
+      } else if (todoCounter === 0) {
+        const result = await calculateNextTrackerAndTodoCounter(studentId, subfieldId, currentActualBlockId, currentTracker);
         trackerUpdates = result.tracker;
-        const nextTodoRemainingCounter = result.todoRemainingCounter;
+        const nexttodoCounter = result.todoCounter;
         await Promise.all([
           await Trackers.update(currentTrackerId, trackerUpdates),
           await StudentSubfieldTraces.updateByCompositeKey(studentId, subfieldId, {
-            todoRemainingCounter: nextTodoRemainingCounter,
+            todoCounter: nexttodoCounter,
           })
         ]);
       }
@@ -119,7 +119,7 @@ export async function updateTrackerAndTodoRemainingCounter(
       return null;
     }
   } catch (error) {
-    logger.error('Error in updateTrackerAndTodoRemainingCounter', error);
+    logger.error('Error in updateTrackerAndtodoCounter', error);
     throw error;
   }
 }
