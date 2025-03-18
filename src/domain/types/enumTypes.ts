@@ -113,7 +113,7 @@ export const SubfieldsSubfieldNameEnum = {
   漢文: "漢文",
   数学: "数学",
   Reading: "Reading",
-  ListeningSpeaking: "Listening&Speaking",
+  "Listening&Speaking": "Listening&Speaking",
   Writing: "Writing",
   物理: "物理",
   化学: "化学",
