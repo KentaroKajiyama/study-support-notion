@@ -1,13 +1,18 @@
 import express from 'express';
-import { requestLogger, errorLogger } from './utils/loggerMiddleware.js';
-import logger from './utils/logger.js';
-import { regularHandler } from './presentation/students/distribution/regular.js';
-import { todoHandler } from './presentation/students/interaction/todo.js';
-import { studentProblemHandler } from './presentation/students/interaction/studentProblem.js';
-import { detailHandler } from './presentation/coach/student_info/detail.js';
-import { wrongHandler } from './presentation/students/interaction/wrong.js';
-import { isDifficultHandler } from './presentation/students/interaction/isDifficult.js';
-import { simulationHandler } from './presentation/coach/plan/simulationHandler.js';
+import { 
+  requestLogger, 
+  errorLogger,
+  logger
+} from './utils/index.js';
+import { 
+  regularHandler,
+  todoHandler,
+  studentProblemHandler,
+  detailHandler,
+  wrongHandler,
+  isDifficultHandler,
+  simulationHandler,
+} from './presentation/index.js';
 import { confirmationHandler } from './presentation/coach/plan/confirmationHandler.js';
 import { irregularCheckHandler } from './presentation/coach/plan/irregularCheckHandler.js';
 
