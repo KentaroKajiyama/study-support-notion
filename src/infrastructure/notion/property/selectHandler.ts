@@ -10,9 +10,18 @@ import {
   StudentProblemsAnswerStatusEnum,
   isValidStudentProblemsAnswerStatusEnum,
   StudentProblemsReviewLevelEnum,
+  StudentSubjectInformationSubjectGoalLevelEnum,
+  isValidStudentSubjectInformationSubjectGoalLevelEnum,
+  StudentSubjectInformationSubjectLevelEnum,
+  isValidStudentSubjectInformationSubjectLevelEnum,
 } from "@domain/types/index.js";
+import { 
+  logger
+} from "@utils/index.js";
 
 export type SelectResponseOption = 
+  | 'a subject level'
+  | 'a goal level'
   | 'a review level'
   | 'an answer status' 
   | 'a subject name' 
@@ -21,6 +30,9 @@ export type SelectResponseOption =
   | 'string' 
   | '';
 export type SelectResponseReturnType = 
+  | null
+  | StudentSubjectInformationSubjectGoalLevelEnum
+  | StudentSubjectInformationSubjectLevelEnum
   | StudentProblemsReviewLevelEnum
   | StudentProblemsAnswerStatusEnum 
   | ActualBlocksProblemLevelEnum 
@@ -58,6 +70,22 @@ export function selectResponseHandler(selectProp: SelectPropertyResponse, option
         throw new Error("Review level is missing.");
       }
       return selectProp.select.name;
+    case 'a subject level':
+      if (selectProp.select!==null &&!isValidStudentSubjectInformationSubjectLevelEnum) {
+        throw new Error("Invalid subject level: " + selectProp.select?.name);
+      } else if (selectProp.select === null) {
+        logger.warn("subject level is missing");
+        return null;
+      } 
+      return selectProp.select.name;
+    case 'a goal level':
+      if (selectProp.select !== null &&!isValidStudentSubjectInformationSubjectLevelEnum(selectProp.select.name)){
+        throw new Error("Invalid goal level: " + selectProp.select?.name);
+      } else if (selectProp.select === null) {
+        logger.warn("goal level is missing");
+        return null;
+      }
+      return selectProp.select.name;
     case 'a problem level':
       if (selectProp.select !== null && !isValidActualBlocksProblemLevelEnum(selectProp.select.name)){
         throw new Error("Invalid problem level: " + selectProp.select?.name);
@@ -65,7 +93,6 @@ export function selectResponseHandler(selectProp: SelectPropertyResponse, option
         throw new Error("Problem level is missing.");
       }
       return selectProp.select.name;
-    case '':
     case 'string':
     case '':
       return selectProp.select != null ? selectProp.select.name : "";
@@ -75,12 +102,16 @@ export function selectResponseHandler(selectProp: SelectPropertyResponse, option
 }
 
 export type SelectRequestOption = 
+  | 'a subject level'
+  | 'a goal level'  
   | 'a review level' 
   | 'an answer status' 
   | 'a subject name' 
   | 'a subfield name'
   | 'a problem level';
 export type SelectRequestInputType = 
+  | StudentSubjectInformationSubjectGoalLevelEnum
+  | StudentSubjectInformationSubjectLevelEnum
   | StudentProblemsReviewLevelEnum
   | StudentProblemsAnswerStatusEnum 
   | ActualBlocksProblemLevelEnum 
@@ -91,7 +122,8 @@ export type SelectRequestInputType =
 export function selectRequestHandler(input: SelectRequestInputType, option: SelectRequestOption): SelectPropertyRequest {
   switch (option) {
     case 'a subfield name':
-      if (!isValidSubfieldsSubfieldNameEnum(input)) throw new Error ("Invalid input for select property option:" + option + ". input : " + input);
+      if (typeof input === 'number') throw new Error('Number is not allowed as a subfield name');
+      else if (!isValidSubfieldsSubfieldNameEnum(input)) throw new Error ("Invalid input for select property option:" + option + ". input : " + input);
       return {
         type: "select",
         select: {
@@ -99,7 +131,8 @@ export function selectRequestHandler(input: SelectRequestInputType, option: Sele
         },
       };
     case 'a subject name':
-      if (!isValidSubjectsSubjectNameEnum(input)) throw new Error ("Invalid input for select property option:" + option + ". input : " + input);
+      if (typeof input === 'number') throw new Error('Number is not allowed as a subject name');
+      else if (!isValidSubjectsSubjectNameEnum(input)) throw new Error ("Invalid input for select property option:" + option + ". input : " + input);
       return {
         type: "select",
         select: {
@@ -107,7 +140,8 @@ export function selectRequestHandler(input: SelectRequestInputType, option: Sele
         },
       };
     case 'an answer status':
-      if (!isValidStudentProblemsAnswerStatusEnum(input)) throw new Error ("Invalid input for select property option:" + option + ". input : " + input);
+      if (typeof input === 'number') throw new Error('Number is not allowed as an answer status');
+      else if (!isValidStudentProblemsAnswerStatusEnum(input)) throw new Error ("Invalid input for select property option:" + option + ". input : " + input);
       return {
         type: "select",
         select: {
@@ -115,7 +149,8 @@ export function selectRequestHandler(input: SelectRequestInputType, option: Sele
         },
       };
     case 'a review level':
-      if (!isValidStudentProblemsAnswerStatusEnum(input)) throw new Error ("Invalid input for select property option:" + option + ". input : " + input);
+      if (typeof input === 'number') throw new Error('Number is not allowed as a review level');
+      else if (!isValidStudentProblemsAnswerStatusEnum(input)) throw new Error ("Invalid input for select property option:" + option + ". input : " + input);
       return {
         type: "select",
         select: {
@@ -123,11 +158,29 @@ export function selectRequestHandler(input: SelectRequestInputType, option: Sele
         },
       };
     case 'a problem level':
-      if (!isValidActualBlocksProblemLevelEnum(input)) throw new Error ("Invalid input for select property option:" + option + ". input : " + input);
+      if (typeof input === 'number') throw new Error('Number is not allowed as a problem level');
+      else if (!isValidActualBlocksProblemLevelEnum(input)) throw new Error ("Invalid input for select property option:" + option + ". input : " + input);
       return {
         type: "select",
         select: {
           name: input,
+        },
+      };
+    case 'a subject level':
+      if (typeof input === 'number') throw new Error('Number is not allowed as a subject level');
+      else if (!isValidStudentSubjectInformationSubjectLevelEnum(input)) throw new Error ("Invalid input for select property option:" + option + ". input : " + input);
+      return {
+        type: "select",
+        select: {
+          name: input,
+        },
+      };
+    case 'a goal level':
+      if (!isValidStudentSubjectInformationSubjectGoalLevelEnum(input)) throw new Error ("Invalid input for select property option:" + option + ". input : " + input);
+      return {
+        type: "select",
+        select: {
+          name: String(input),
         },
       };
     default:

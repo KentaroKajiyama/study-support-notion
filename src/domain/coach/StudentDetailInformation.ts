@@ -3,7 +3,9 @@ import {
   StudentSubjectInformationSubjectLevelEnum,
   Email, 
   PhoneNumber,
-  NotionDate
+  NotionDate,
+  StudentDetailInformationSubjectChangeEnum,
+  SubjectsSubjectNameEnum
 } from "@domain/types/index.js";
 
 
@@ -14,6 +16,8 @@ export interface DomainStudentDetailInformation {
   parentPhoneNumber?: PhoneNumber;
   examDate?: NotionDate
   goal?: string;
+  registeredSubjectNames?: SubjectsSubjectNameEnum[];
+  levelModifiedSubjectNames?: SubjectsSubjectNameEnum[];
   japaneseLevel?: StudentSubjectInformationSubjectLevelEnum;
   japaneseGoalDescription?: string;
   japaneseGoalLevel?: StudentSubjectInformationSubjectGoalLevelEnum;
@@ -32,13 +36,22 @@ export interface DomainStudentDetailInformation {
   biologyLevel?: StudentSubjectInformationSubjectLevelEnum;
   biologyGoalDescription?: string;
   biologyGoalLevel?: StudentSubjectInformationSubjectGoalLevelEnum;
-  japaneseHistoryLevel?: StudentSubjectInformationSubjectGoalLevelEnum;
+  japaneseHistoryLevel?: StudentSubjectInformationSubjectLevelEnum;
   japaneseHistoryGoalDescription?: string;
   japaneseHistoryGoalLevel?: StudentSubjectInformationSubjectGoalLevelEnum;
-  worldHistoryLevel?: StudentSubjectInformationSubjectGoalLevelEnum;
+  worldHistoryLevel?: StudentSubjectInformationSubjectLevelEnum;
   worldHistoryGoalDescription?: string;
   worldHistoryGoalLevel?: StudentSubjectInformationSubjectGoalLevelEnum;
-  geographyLevel?: StudentSubjectInformationSubjectGoalLevelEnum;
+  geographyLevel?: StudentSubjectInformationSubjectLevelEnum;
   geographyGoalDescription?: string;
   geographyGoalLevel?: StudentSubjectInformationSubjectGoalLevelEnum;
+  japaneseChange?: StudentDetailInformationSubjectChangeEnum;
+  mathChange?: StudentDetailInformationSubjectChangeEnum;
+  englishChange?: StudentDetailInformationSubjectChangeEnum;
+  physicsChange?: StudentDetailInformationSubjectChangeEnum;
+  chemistryChange?: StudentDetailInformationSubjectChangeEnum;
+  biologyChange?: StudentDetailInformationSubjectChangeEnum;
+  japaneseHistoryChange?: StudentDetailInformationSubjectChangeEnum;
+  worldHistoryChange?: StudentDetailInformationSubjectChangeEnum;
+  geographyChange?: StudentDetailInformationSubjectChangeEnum;
 }

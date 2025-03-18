@@ -419,6 +419,7 @@ export class Students {
     studentOverviewPageId: NotionUUID | null,
     coachPlanDbId: NotionUUID | null;
     studentDetailInfoDbId: NotionUUID | null;
+    coachIrregularDbId: NotionUUID | null;
   } | null> {
     try {
       if (!studentId) {
@@ -446,7 +447,8 @@ export class Students {
       return {
         studentOverviewPageId: rowCamel.studentOverviewPageId ?? null,
         coachPlanDbId: rowCamel.coachPlanDbId ?? null,
-        studentDetailInfoDbId: rowCamel.studentInfoDetailDbId ?? null
+        studentDetailInfoDbId: rowCamel.studentInfoDetailDbId ?? null,
+        coachIrregularDbId: rowCamel.coachIrregularDbId?? null,
       };
     } catch (error) {
       logger.error(

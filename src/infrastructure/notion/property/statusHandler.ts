@@ -16,9 +16,12 @@ import {
   isValidStudentsOverviewsChatStatusEnum,
   isValidStudentsOverviewsDistributionStatusEnum,
   isValidStudentsOverviewsPlanStatusEnum,
+  StudentDetailInformationSubjectChangeEnum,
+  isValidStudentDetailInformationSubfieldChangeEnum
 } from "@domain/types/index.js";
 
 export type StatusResponseOption = 
+  | 'a subject change'
   | 'a review level'
   | 'an answer status' 
   | 'a subject name' 
@@ -30,6 +33,7 @@ export type StatusResponseOption =
   | 'string' 
   | '';
 export type StatusResponseReturnType = 
+  | StudentDetailInformationSubjectChangeEnum
   | StudentProblemsReviewLevelEnum
   | StudentProblemsAnswerStatusEnum 
   | ActualBlocksProblemLevelEnum 
@@ -42,6 +46,14 @@ export type StatusResponseReturnType =
 
 export function statusResponseHandler(statusProp: StatusPropertyResponse, option: StatusResponseOption): StatusResponseReturnType {
   switch (option) {
+    case 'a subject change':
+      if (statusProp.status!== null &&!isValidActualBlocksProblemLevelEnum(statusProp.status.name)){
+        throw new Error("Invalid subject change: " + statusProp.status?.name);
+      } else if (statusProp.status === null) {
+        throw new Error("Subject change is missing.");
+      }
+      return statusProp.status.name;
+    case 'a chat status':
     case 'a subfield name':
       if (statusProp.status !== null && !isValidSubfieldsSubfieldNameEnum(statusProp.status?.name)){
         throw new Error("Invalid subfield name: " + statusProp.status?.name);
@@ -107,6 +119,7 @@ export function statusResponseHandler(statusProp: StatusPropertyResponse, option
 }
 
 export type StatusRequestOption = 
+  | 'a subject change'
   | 'a review level' 
   | 'an answer status' 
   | 'a subject name' 
@@ -117,6 +130,7 @@ export type StatusRequestOption =
   | 'a plan status';
 
 export type StatusRequestInputType = 
+  | StudentDetailInformationSubjectChangeEnum
   | StudentProblemsReviewLevelEnum
   | StudentProblemsAnswerStatusEnum 
   | ActualBlocksProblemLevelEnum 
@@ -129,6 +143,14 @@ export type StatusRequestInputType =
 
 export function statusRequestHandler(input: StatusRequestInputType, option: StatusRequestOption): StatusPropertyRequest {
   switch (option) {
+    case 'a subject change':
+      if (!isValidActualBlocksProblemLevelEnum(input)) throw new Error ("Invalid input for status property option:" + option + ". input : " + input);
+      return {
+        type: "status",
+        status: {
+          name: input,
+        },
+      };
     case 'a subfield name':
       if (!isValidSubfieldsSubfieldNameEnum(input)) throw new Error ("Invalid input for status property option:" + option + ". input : " + input);
       return {

@@ -8,6 +8,7 @@ import {
   MySQLUintID,
   MySQLTimestamp,
   StudentSubjectInformationSubjectLevelEnum,
+  StudentSubjectInformationSubjectGoalLevelEnum
 } from '@domain/types/index.js';
 import { RowDataPacket } from "mysql2";
 
@@ -18,7 +19,7 @@ export interface MySQLStudentSubjectInformation {
   subjectId?: MySQLUintID;
   subjectLevel?: StudentSubjectInformationSubjectLevelEnum;
   goalDescription?: string;
-  goalLevel?: string;
+  subjectGoalLevel?: StudentSubjectInformationSubjectGoalLevelEnum;
   createdAt?: MySQLTimestamp;
   updatedAt?: MySQLTimestamp;
 }
@@ -29,7 +30,7 @@ export interface StudentSubjectInformation {
   subjectId?: MySQLUintID;
   subjectLevel?: StudentSubjectInformationSubjectLevelEnum;
   goalDescription?: string;
-  goalLevel?: string;
+  subjectGoalLevel?: StudentSubjectInformationSubjectGoalLevelEnum;
   createdAt?: MySQLTimestamp;
   updatedAt?: MySQLTimestamp;
 }
@@ -55,7 +56,7 @@ function toStudentSubjectInformation(
       subjectId: row.subjectId,
       subjectLevel: row.subjectLevel,
       goalDescription: row.goalDescription,
-      goalLevel: row.goalLevel,
+      subjectGoalLevel: row.subjectGoalLevel,
       createdAt: row.createdAt,
       updatedAt: row.updatedAt,
     };
@@ -81,7 +82,7 @@ function toMySQLStudentSubjectInformation(
       subjectId: data.subjectId,
       subjectLevel: data.subjectLevel,
       goalDescription: data.goalDescription,
-      goalLevel: data.goalLevel,
+      subjectGoalLevel: data.subjectGoalLevel,
       createdAt: data.createdAt,
       updatedAt: data.updatedAt,
     };
@@ -97,7 +98,7 @@ function toMySQLStudentSubjectInformation(
   }
 }
 
-export class StudentSubjectInformations {
+export class StudentSubjectInformationData {
   static async create(data: StudentSubjectInformation): Promise<boolean> {
     try {
       if (!data || !data.studentId || !data.subjectId) {
@@ -125,7 +126,7 @@ export class StudentSubjectInformations {
         payload.subjectId,
         payload.subjectLevel ?? null,
         payload.goalDescription ?? null,
-        payload.goalLevel ?? null,
+        payload.subjectGoalLevel ?? null,
       ]);
 
       // If no rows were inserted, return false; otherwise true.
@@ -234,7 +235,7 @@ export class StudentSubjectInformations {
   static async findByCompositeKey(
     studentId: MySQLUintID,
     subjectId: MySQLUintID
-  ): Promise<StudentSubjectInformation[]> {
+  ): Promise<StudentSubjectInformation|null> {
     try {
       if (!studentId || !subjectId) {
         logger.error("Invalid input to findByCompositeKey: missing IDs.");
@@ -253,12 +254,10 @@ export class StudentSubjectInformations {
         throw new Error("Result of 'findByCompositeKey' query was not an array.");
       } else if (rows.length === 0) {
         logger.warn('No student subject information was found in findByCompositeKey StudentSubjectInformation.ts')
-        return [];
+        return null;
       }
 
-      return rows.map((row) =>
-        toStudentSubjectInformation(convertToCamelCase(row) as MySQLStudentSubjectInformation)
-      ) as StudentSubjectInformation[];
+      return toStudentSubjectInformation(convertToCamelCase(rows[0]) as MySQLStudentSubjectInformation);
     } catch (error) {
       logger.error(
         `Error finding StudentSubjectInformation by compositeKey (studentId=${studentId}, subjectId=${subjectId}):`,

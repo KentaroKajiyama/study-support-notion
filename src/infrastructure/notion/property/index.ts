@@ -9,3 +9,5 @@ export * from './relationHandler.js';
 export * from './statusHandler.js';
 export * from './multiSelectHandler.js';
 export * from './peopleHandler.js';
+export * from './emailHandler.js';
+export * from './phoneNumberHandler.js';

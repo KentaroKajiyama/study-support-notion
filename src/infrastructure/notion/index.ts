@@ -5,3 +5,5 @@ export * from './StudentSchedules.js';
 export * from './StudentRemainings.js';
 export * from './StudentProblems.js';
 export * from './TopProblems.js';
+export * from './StudentDetailInformation.js'
+export * from './StudentOverview.js';

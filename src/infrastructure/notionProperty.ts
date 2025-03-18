@@ -11,7 +11,9 @@ import {
   RelationPropertyResponse,
   StatusPropertyResponse,
   MultiSelectPropertyResponse,
-  PeoplePropertyResponse
+  PeoplePropertyResponse,
+  EmailPropertyResponse,
+  PhoneNumberPropertyResponse,
 } from "@domain/types/index.js";
 import {
   TitleResponseOption,
@@ -71,6 +73,18 @@ import {
   PeopleResponseOption,
   peopleResponseHandler,
   PeopleResponseReturnType,
+  EmailRequestOption,
+  emailRequestHandler,
+  EmailRequestInputType,
+  EmailResponseOption,
+  emailResponseHandler,
+  EmailResponseReturnType,
+  PhoneNumberRequestOption,
+  phoneNumberRequestHandler,
+  PhoneNumberRequestInputType,
+  PhoneNumberResponseOption,
+  phoneNumberResponseHandler,
+  PhoneNumberResponseReturnType,
 } from '@infrastructure/notion/property/index.js';
 
 // TODO: Specify the option and return type.
@@ -87,6 +101,8 @@ type ResponseReturnOption =
   | RelationResponseOption
   | PeopleResponseOption
   | CheckboxResponseOption
+  | EmailResponseOption
+  | PhoneNumberResponseOption
 
 type ResponseReturnType = 
   | undefined
@@ -100,6 +116,8 @@ type ResponseReturnType =
   | DateResponseReturnType
   | RelationResponseReturnType
   | PeopleResponseReturnType
+  | EmailResponseReturnType
+  | PhoneNumberResponseReturnType
 
 export function propertyResponseToDomain(
   property: PagePropertyResponse,
@@ -151,12 +169,10 @@ export function propertyResponseToDomain(
         break;
   
       case "email":
-        // Handle email properties (e.g., return email string)
-        break;
+        return emailResponseHandler(property as EmailPropertyResponse, returnOption as EmailResponseOption);
   
       case "phone_number":
-        // Handle phone number properties (e.g., return phone number string)
-        break;
+        return phoneNumberResponseHandler(property as PhoneNumberPropertyResponse, returnOption as PhoneNumberResponseOption);
   
       case "created_time":
         // Handle created_time properties (e.g., return timestamp or formatted date)
@@ -204,6 +220,8 @@ type RequestInputOption =
   | DateRequestOption
   | RelationRequestOption
   | PeopleRequestOption
+  | EmailRequestOption
+  | PhoneNumberRequestOption
 
 type RequestInputType =
   | undefined
@@ -216,6 +234,8 @@ type RequestInputType =
   | DateRequestInputType
   | RelationRequestInputType
   | PeopleRequestInputType
+  | EmailRequestInputType
+  | PhoneNumberRequestInputType
 
 export function propertyDomainToRequest(
   domainProperty: RequestInputType, // TODO: Specify the domain property shape
@@ -269,12 +289,10 @@ export function propertyDomainToRequest(
         break;
 
       case "email":
-        // Handle email properties (e.g., return email string)
-        break;
+        return emailRequestHandler(domainProperty as EmailRequestInputType, inputOption as EmailRequestOption);
 
       case "phone_number":
-        // Handle phone number properties (e.g., return phone number string)
-        break;
+        return phoneNumberRequestHandler(domainProperty as PhoneNumberRequestInputType, inputOption as PhoneNumberRequestOption);
 
       case "created_time":
         // Handle created_time properties (e.g., return timestamp or formatted date)

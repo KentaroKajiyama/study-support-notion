@@ -4,7 +4,6 @@ import { Date } from "../const/notion_template";
 import { Number } from "../const/notion_template";
 import { Properties } from "../const/notion_template.js";
 import { Parent } from "../const/notion_template.js";
-import { StudentsSubfields } from "../infrastructure/aws_database/StudentsSubfields.js";
 import { Rests } from "../infrastructure/aws_database/Rest.js";
 import {
   MySQLUintID, 

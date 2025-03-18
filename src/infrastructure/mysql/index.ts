@@ -10,4 +10,5 @@ export * from '@infrastructure/mysql/Students.js';
 export * from '@infrastructure/mysql/StudentSubfieldTraces.js';
 export * from '@infrastructure/mysql/StudentSubjectInformation.js';
 export * from '@infrastructure/mysql/Subfields.js';
-export * from '@infrastructure/mysql/Trackers.js'
+export * from '@infrastructure/mysql/Trackers.js';
+export * from '@infrastructure/mysql/Subjects.js';

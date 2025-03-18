@@ -13,7 +13,8 @@ export function isValidStudentSubjectInformationSubjectLevelEnum(value: string):
 }
 
 export type StudentSubjectInformationSubjectGoalLevelEnum = 48 | 50 | 52.5 | 55 | 57.5 | 60 | 62.5
-export function isStudentSubjectSubjectGoalLevelEnum(value: number): value is StudentSubjectInformationSubjectGoalLevelEnum {
+export function isValidStudentSubjectInformationSubjectGoalLevelEnum(value: string | number): value is StudentSubjectInformationSubjectGoalLevelEnum {
+  if (typeof value === 'string') value = Number(value)
   return [48, 50, 52.5, 55, 57.5, 60, 62.5].includes(Number(value));
 }
 
@@ -87,3 +88,8 @@ export function isValidStudentsOverviewsPlanStatusEnum(value: string): value is 
 }
 
 export type StudentsOverviewsModifiedPlanSubfieldEnum = SubfieldsSubfieldNameEnum;
+
+export type StudentDetailInformationSubjectChangeEnum = '変更なし' | '変更あり'
+export function isValidStudentDetailInformationSubfieldChangeEnum(value: string): value is StudentDetailInformationSubjectChangeEnum {
+  return ['変更なし', '変更あり'].includes(value);
+}
