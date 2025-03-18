@@ -73,8 +73,7 @@
           {
             "name": "@domain/coach/StudentsOverview.js", 
             "message": "Use import { NotionStudentsOverview } from '@domain/coach/index.js'; instead."
-          },
-
+          }
         ]
       }
     ]

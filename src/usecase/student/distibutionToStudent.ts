@@ -1,5 +1,5 @@
-import { calculateNextTrackerAndTodoCounter } from '../caluculation/scheduleForStudents.js';
-import { adjustSchedule } from '../caluculation/scheduleForStudents.js';
+import { calculateNextTrackerAndTodoCounter } from '../algorithm/scheduleForStudents.js';
+import { adjustSchedule } from '../algorithm/scheduleForStudents.js';
 import { 
   logger,
   copyPageCreate,

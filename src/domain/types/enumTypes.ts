@@ -1,95 +1,232 @@
-// TODO: Automation
-// 🚀 Auto-generated from MySQL ENUM
+// TODO: Automation - Auto-generate from MySQL ENUM 🚀
 import { NotionPagePropertyType } from "./myNotionType.js";
+
+/** ✅ Notion Page Property Types */
 export type NotionDbPropertiesPropertyTypeEnum = NotionPagePropertyType;
 
-export function isValidNotionDbPropertiesPropertyType(value: string): value is NotionDbPropertiesPropertyTypeEnum {
-  return ["title", "rich_text", "number", "select", "multi_select", "date", "formula", "relation", "rollup", "people", "files", "checkbox", "url", "email", "phone_number", "created_time", "created_by", "last_edited_time", "last_edited_by", "status", "unique_id", "verification"].includes(value);
+const NotionPropertyTypes = {
+  title: true,
+  rich_text: true,
+  number: true,
+  select: true,
+  multi_select: true,
+  date: true,
+  formula: true,
+  relation: true,
+  rollup: true,
+  people: true,
+  files: true,
+  checkbox: true,
+  url: true,
+  email: true,
+  phone_number: true,
+  created_time: true,
+  created_by: true,
+  last_edited_time: true,
+  last_edited_by: true,
+  status: true,
+  unique_id: true,
+  verification: true,
+} as const;
+
+export function isValidNotionDbPropertiesPropertyType(
+  value: string
+): value is NotionDbPropertiesPropertyTypeEnum {
+  return value in NotionPropertyTypes;
 }
 
-export type StudentSubjectInformationSubjectLevelEnum = '基礎１'|'基礎２'|'基礎３';
-export function isValidStudentSubjectInformationSubjectLevelEnum(value: string): value is StudentSubjectInformationSubjectLevelEnum {
-  return ['基礎１', '基礎２', '基礎３'].includes(value);
+/** ✅ Student Subject Levels */
+export const StudentSubjectInformationSubjectLevelEnum = {
+  基礎１: "基礎１",
+  基礎２: "基礎２",
+  基礎３: "基礎３",
+} as const;
+export type StudentSubjectInformationSubjectLevelEnum =
+  typeof StudentSubjectInformationSubjectLevelEnum[keyof typeof StudentSubjectInformationSubjectLevelEnum];
+
+export function isValidStudentSubjectInformationSubjectLevelEnum(
+  value: string
+): value is StudentSubjectInformationSubjectLevelEnum {
+  return value in StudentSubjectInformationSubjectLevelEnum;
 }
 
-export type StudentSubjectInformationSubjectGoalLevelEnum = 48 | 50 | 52.5 | 55 | 57.5 | 60 | 62.5
-export function isValidStudentSubjectInformationSubjectGoalLevelEnum(value: string | number): value is StudentSubjectInformationSubjectGoalLevelEnum {
-  if (typeof value === 'string') value = Number(value)
-  return [48, 50, 52.5, 55, 57.5, 60, 62.5].includes(Number(value));
+/** ✅ Student Subject Goal Levels (Numeric) */
+export enum StudentSubjectInformationSubjectGoalLevelEnum {
+  Lvl48 = 48,
+  Lvl50 = 50,
+  Lvl52_5 = 52.5,
+  Lvl55 = 55,
+  Lvl57_5 = 57.5,
+  Lvl60 = 60,
+  Lvl62_5 = 62.5,
 }
 
-export type ProblemsProblemLevelEnum = '基礎１'|'基礎２'|'基礎３';
-export function isValidProblemsProblemLevelEnum(value: string): value is ProblemsProblemLevelEnum {
-  return ['基礎１', '基礎２', '基礎３'].includes(value);
+export function isValidStudentSubjectInformationSubjectGoalLevelEnum(
+  value: string | number
+): value is StudentSubjectInformationSubjectGoalLevelEnum {
+  return Object.values(StudentSubjectInformationSubjectGoalLevelEnum).includes(Number(value));
+}
+
+/** ✅ Problems Problem Levels */
+export const ProblemsProblemLevelEnum = {
+  基礎１: "基礎１",
+  基礎２: "基礎２",
+  基礎３: "基礎３",
+} as const;
+export type ProblemsProblemLevelEnum =
+  typeof ProblemsProblemLevelEnum[keyof typeof ProblemsProblemLevelEnum];
+
+export function isValidProblemsProblemLevelEnum(
+  value: string
+): value is ProblemsProblemLevelEnum {
+  return value in ProblemsProblemLevelEnum;
 }
 
 export type ActualBlocksProblemLevelEnum = ProblemsProblemLevelEnum;
-export function isValidActualBlocksProblemLevelEnum(value: string): value is ActualBlocksProblemLevelEnum {
-  return ['基礎１', '基礎２', '基礎３'].includes(value);
-}
-
 export type DefaultBlocksProblemLevelEnum = ProblemsProblemLevelEnum;
-export function isValidDefaultBlocksProblemLevelEnum(value: string): value is DefaultBlocksProblemLevelEnum {
-  return ['基礎１', '基礎２', '基礎３'].includes(value);
+
+/** ✅ Subjects */
+export const SubjectsSubjectNameEnum = {
+  国語: "国語",
+  数学: "数学",
+  英語: "英語",
+  物理: "物理",
+  化学: "化学",
+  生物: "生物",
+  日本史: "日本史",
+  世界史: "世界史",
+  地理: "地理",
+} as const;
+export type SubjectsSubjectNameEnum =
+  typeof SubjectsSubjectNameEnum[keyof typeof SubjectsSubjectNameEnum];
+
+export function isValidSubjectsSubjectNameEnum(
+  value: string
+): value is SubjectsSubjectNameEnum {
+  return value in SubjectsSubjectNameEnum;
 }
 
-export type SubjectsSubjectNameEnum = '国語'|'数学'|'英語'|'物理'|'化学'|'生物'|'日本史'|'世界史'|'地理';
-export function isValidSubjectsSubjectNameEnum(value: string): value is SubjectsSubjectNameEnum {
-  return ['国語', '数学', '英語', '物理', '化学', '生物', '日本史', '世界史', '地理'].includes(value);
+/** ✅ Subfields */
+export const SubfieldsSubfieldNameEnum = {
+  現代文: "現代文",
+  古文: "古文",
+  漢文: "漢文",
+  数学: "数学",
+  Reading: "Reading",
+  ListeningSpeaking: "Listening&Speaking",
+  Writing: "Writing",
+  物理: "物理",
+  化学: "化学",
+  生物: "生物",
+  日本史: "日本史",
+  世界史: "世界史",
+  地理: "地理",
+} as const;
+export type SubfieldsSubfieldNameEnum =
+  typeof SubfieldsSubfieldNameEnum[keyof typeof SubfieldsSubfieldNameEnum];
+
+export function isValidSubfieldsSubfieldNameEnum(
+  value: string
+): value is SubfieldsSubfieldNameEnum {
+  return value in SubfieldsSubfieldNameEnum;
 }
 
-export type SubfieldsSubfieldNameEnum = '現代文'|'古文'|'漢文'|'数学'|'Reading'|'Listening&Speaking'|'Writing'|'物理'|'化学'|'生物'|'日本史'|'世界史'|'地理';
-export function isValidSubfieldsSubfieldNameEnum(value: string): value is SubfieldsSubfieldNameEnum {
-  return ['現代文', '古文', '漢文', '数学', 'Reading', 'Listening&Speaking', 'Writing', '物理', '化学', '生物', '日本史', '世界史', '地理'].includes(value);
+/** ✅ Answer Status */
+export const StudentProblemsAnswerStatusEnum = {
+  未回答: "未回答",
+  不正解: "不正解",
+  正解: "正解",
+} as const;
+export type StudentProblemsAnswerStatusEnum =
+  typeof StudentProblemsAnswerStatusEnum[keyof typeof StudentProblemsAnswerStatusEnum];
+
+export function isValidStudentProblemsAnswerStatusEnum(
+  value: string
+): value is StudentProblemsAnswerStatusEnum {
+  return value in StudentProblemsAnswerStatusEnum;
 }
 
-export type StudentProblemsAnswerStatusEnum = '未回答'|'不正解'|'正解'
-export function isValidStudentProblemsAnswerStatusEnum(value: string): value is StudentProblemsAnswerStatusEnum {
-  return ['未回答', '不正解', '正解'].includes(value);
-}
 export function isUndoneAnswerStatus(status: StudentProblemsAnswerStatusEnum): boolean {
-  return status === '未回答';
+  return status === "未回答";
 }
 export function isWrongAnswerStatus(status: StudentProblemsAnswerStatusEnum): boolean {
-  return status === '不正解';
+  return status === "不正解";
 }
-export function isCorrectAnswerStatus(status:StudentProblemsAnswerStatusEnum): boolean {
-  return status === '正解';
-}
-
-export type StudentProblemsUnderstandingLevelEnum = 1 | 2 | 3 | 4 | 5 ;
-export function isValidStudentProblemsUnderstandingLevelEnum(value: number): value is StudentProblemsUnderstandingLevelEnum {
-  return [1, 2, 3, 4, 5].includes(value);
+export function isCorrectAnswerStatus(status: StudentProblemsAnswerStatusEnum): boolean {
+  return status === "正解";
 }
 
-export type StudentProblemsReviewLevelEnum = '初学'|'レベル１'|'レベル２'|'レベル３'|'レベル４';
-export function isValidStudentProblemsReviewLevelEnum(value: string): value is StudentProblemsReviewLevelEnum {
-  return ['初学', 'レベル１', 'レベル２', 'レベル３', 'レベル４'].includes(value);
+/** ✅ Understanding Levels (Numeric) */
+export enum StudentProblemsUnderstandingLevelEnum {
+  Lvl1 = 1,
+  Lvl2 = 2,
+  Lvl3 = 3,
+  Lvl4 = 4,
+  Lvl5 = 5,
 }
 
-export type StudentsOverviewsAlertSubfieldEnum = SubfieldsSubfieldNameEnum;
-export function isValidStudentsOverviewsAlertSubfieldEnum(value: string): value is StudentsOverviewsAlertSubfieldEnum {
-  return ['現代文', '古文', '漢文', '数学', 'Reading', 'Listening&Speaking', 'Writing', '物理', '化学', '生物', '日本史', '世界史', '地理'].includes(value);
+export function isValidStudentProblemsUnderstandingLevelEnum(
+  value: number
+): value is StudentProblemsUnderstandingLevelEnum {
+  return Object.values(StudentProblemsUnderstandingLevelEnum).includes(value);
 }
 
-export type StudentsOverviewsChatStatusEnum = 'Chat' | 'Nope';
-export function isValidStudentsOverviewsChatStatusEnum(value: string): value is StudentsOverviewsChatStatusEnum {
-  return ['Chat', 'Nope'].includes(value);
+/** ✅ Review Levels */
+export const StudentProblemsReviewLevelEnum = {
+  初学: "初学",
+  レベル１: "レベル１",
+  レベル２: "レベル２",
+  レベル３: "レベル３",
+  レベル４: "レベル４",
+} as const;
+export type StudentProblemsReviewLevelEnum =
+  typeof StudentProblemsReviewLevelEnum[keyof typeof StudentProblemsReviewLevelEnum];
+
+export function isValidStudentProblemsReviewLevelEnum(
+  value: string
+): value is StudentProblemsReviewLevelEnum {
+  return value in StudentProblemsReviewLevelEnum;
 }
 
-export type StudentsOverviewsDistributionStatusEnum = '正常' | 'エラー発生';
-export function isValidStudentsOverviewsDistributionStatusEnum(value: string):value is StudentsOverviewsDistributionStatusEnum {
-  return ['正常', 'エラー発生'].includes(value);
+/** ✅ Overview Status */
+export const StudentsOverviewsChatStatusEnum = {
+  Chat: "Chat",
+  Nope: "Nope",
+} as const;
+export type StudentsOverviewsChatStatusEnum =
+  typeof StudentsOverviewsChatStatusEnum[keyof typeof StudentsOverviewsChatStatusEnum];
+
+export function isValidStudentsOverviewsChatStatusEnum(
+  value: string
+): value is StudentsOverviewsChatStatusEnum {
+  return value in StudentsOverviewsChatStatusEnum;
 }
 
-export type StudentsOverviewsPlanStatusEnum = 'Not Started' | 'シミュレーション中' | '確定';
-export function isValidStudentsOverviewsPlanStatusEnum(value: string): value is StudentsOverviewsPlanStatusEnum {
-  return ['Not Started', 'シミュレーション中', '確定'].includes(value);
+export const StudentsOverviewsDistributionStatusEnum = {
+  正常: "正常",
+  エラー発生: "エラー発生",
+} as const;
+
+export type StudentsOverviewsDistributionStatusEnum =
+  typeof StudentsOverviewsDistributionStatusEnum[keyof typeof StudentsOverviewsDistributionStatusEnum];
+
+export function isValidStudentsOverviewsDistributionStatusEnum(
+  value: string
+): value is StudentsOverviewsDistributionStatusEnum {
+  return value in StudentsOverviewsDistributionStatusEnum;
 }
 
-export type StudentsOverviewsModifiedPlanSubfieldEnum = SubfieldsSubfieldNameEnum;
+/** ✅ Plan Status */
+export const StudentsOverviewsPlanStatusEnum = {
+  NotStarted: "Not Started",
+  シミュレーション中: "シミュレーション中",
+  確定: "確定",
+} as const;
+export type StudentsOverviewsPlanStatusEnum =
+  typeof StudentsOverviewsPlanStatusEnum[keyof typeof StudentsOverviewsPlanStatusEnum];
 
-export type StudentDetailInformationSubjectChangeEnum = '変更なし' | '変更あり'
-export function isValidStudentDetailInformationSubfieldChangeEnum(value: string): value is StudentDetailInformationSubjectChangeEnum {
-  return ['変更なし', '変更あり'].includes(value);
+export function isValidStudentsOverviewsPlanStatusEnum(
+  value: string
+): value is StudentsOverviewsPlanStatusEnum {
+  return value in StudentsOverviewsPlanStatusEnum;
 }

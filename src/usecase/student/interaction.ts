@@ -1,6 +1,6 @@
 import { 
   calculateNextTrackerAndTodoCounter 
-} from "@usecase/caluculation/scheduleForStudents.js";
+} from "@usecase/algorithm/scheduleForStudents.js";
 import {
   ensureValue,
   logger,
