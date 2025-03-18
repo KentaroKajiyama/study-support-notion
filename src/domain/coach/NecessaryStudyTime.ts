@@ -1,4 +1,4 @@
-import { Uint } from "@domain/types/index.js";
+import { SubfieldsSubfieldNameEnum, Uint } from "@domain/types/index.js";
 
 export interface DomainNecessaryStudyTime {
   pattern?: string;
@@ -6,7 +6,7 @@ export interface DomainNecessaryStudyTime {
   ancientJapanese?: Uint;
   ancientChinese?: Uint;
   math?: Uint;
-  Reading?: Uint;
+  reading?: Uint;
   listeningAndSpeaking?: Uint;
   writing?: Uint;
   physics?: Uint;
@@ -15,7 +15,7 @@ export interface DomainNecessaryStudyTime {
   japaneseHistory?: Uint;
   worldHistory?: Uint;
   geography?: Uint;
-  opportunity?: Uint;
+  howManyTimes?: Uint;
   totalOpportunity?: Uint;
-  Order?: Uint;
+  order?: Uint;
 }

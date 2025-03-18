@@ -175,7 +175,7 @@ export class DefaultBlocks {
     }
   }
 
-  static async findByDefaultBlockId(defaultBlockId: MySQLUintID): Promise<DefaultBlock[]> {
+  static async findByDefaultBlockId(defaultBlockId: MySQLUintID): Promise<DefaultBlock|null> {
     try {
       if (!defaultBlockId) {
         logger.error("No defaultBlockId provided to findByDefaultBlockId.");
@@ -193,11 +193,10 @@ export class DefaultBlocks {
       }
       if (rows.length === 0) {
         logger.warn("No blocks were found in DefaultBlock.ts")
-        return [];
+        return null;
       }
 
-      const camelRows = convertToCamelCase(rows) as unknown as MySQLDefaultBlock[];
-      return camelRows.map((row) => toDefaultBlock(row));
+      return toDefaultBlock(rows[0] as MySQLDefaultBlock);
     } catch (error) {
       logger.error(`Error finding default block by ID: ${defaultBlockId}`, error);
       throw error;

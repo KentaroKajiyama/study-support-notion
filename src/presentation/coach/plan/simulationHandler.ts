@@ -3,7 +3,7 @@ import {
   extractStudentUserIdFromPeople,
   ensureValue
 } from "@utils/index.js";
-import { schedulePlan } from "@usecase/index.js";
+import { schedulePlan, sendNecessaryStudyTimes } from "@usecase/index.js";
 import {
   Students
 } from '@infrastructure/mysql/Students.js';
@@ -24,6 +24,10 @@ export const simulationHandler = async function (req: Request, res: Response) {
       ensureValue(studentInfo.coachRestDbId),
       false
     );
+    await sendNecessaryStudyTimes(
+      ensureValue(studentInfo.studentId),
+      ensureValue(studentInfo.necessaryStudyTimeDbId)
+    )
     res.status(200).json({ message: "Simulation has been scheduled successfully." });
   } catch (error) {
     logger.error(`Error in simulationHandler: ${error}`);

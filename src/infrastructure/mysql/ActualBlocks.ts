@@ -333,6 +333,31 @@ export class ActualBlocks {
     }
   }
 
+  static async findByStudentId(studentId: MySQLUintID): Promise<ActualBlock[]> {
+    try {
+      if (!studentId) {
+        logger.error("No studentId provided to findByStudentId.");
+        throw new Error("No studentId provided to findByStudentId.");
+      }
+      const [rows] = await db.query<RowDataPacket[]>(
+        "SELECT * FROM actual_blocks WHERE student_id = ?",
+        [studentId]
+      );
+      if (!Array.isArray(rows)) {
+        logger.error("The result of 'findByStudentId' query was not an array.");
+        throw new Error("The result of 'findByStudentId' query was not an array.");
+      }
+      if (rows.length === 0) {
+        logger.warn(`No blocks found for studentId: ${studentId}`);
+        return [];
+      }
+      return rows.map(row => toActualBlock(convertToCamelCase(row) as MySQLActualBlock));
+    } catch (error) {
+    logger.error(`Error finding actual blocks by studentId: ${studentId}`, error);
+    throw error;
+    }
+  }
+
   static async findByStudentIdAndSubfieldId(
     studentId: MySQLUintID,
     subfieldId: MySQLUintID

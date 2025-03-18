@@ -40,7 +40,7 @@ export interface MySQLStudent {
   coachRestDbId?: string;
   coachPlanDbId?: string;
   coachIrregularDbId?: string;
-  coachStudentDbId?: string;
+  necessaryStudyTimeDbId?: string;
   goalDescription?: string;
   createdAt?: MySQLTimestamp;
   updatedAt?: MySQLTimestamp;
@@ -65,7 +65,7 @@ export interface Student {
   coachRestDbId?: NotionUUID;
   coachPlanDbId?: NotionUUID;
   coachIrregularDbId?: NotionUUID;
-  coachStudentDbId?: NotionUUID;
+  necessaryStudyTimeDbId?: NotionUUID;
   goalDescription?: string;
   createdAt?: MySQLTimestamp;
   updatedAt?: MySQLTimestamp;
@@ -137,9 +137,9 @@ export function toStudent(row: MySQLStudent): Student {
         row.coachIrregularDbId !== undefined
           ? toNotionUUID(row.coachIrregularDbId)
           : undefined,
-      coachStudentDbId:
-        row.coachStudentDbId !== undefined
-          ? toNotionUUID(row.coachStudentDbId)
+      necessaryStudyTimeDbId:
+        row.necessaryStudyTimeDbId !== undefined
+          ? toNotionUUID(row.necessaryStudyTimeDbId)
           : undefined,
       goalDescription: row.goalDescription,
       createdAt: row.createdAt,
@@ -179,7 +179,7 @@ export function toMySQLStudent(data: Student): MySQLStudent {
       coachRestDbId: data.coachRestDbId,
       coachPlanDbId: data.coachPlanDbId,
       coachIrregularDbId: data.coachIrregularDbId,
-      coachStudentDbId: data.coachStudentDbId,
+      necessaryStudyTimeDbId: data.necessaryStudyTimeDbId,
       goalDescription: data.goalDescription,
       createdAt: data.createdAt,
       updatedAt: data.updatedAt,
@@ -261,7 +261,7 @@ export class Students {
         payload.studentOverviewPageId ?? null,
         payload.coachRestDbId ?? null,
         payload.coachPlanDbId ?? null,
-        payload.coachStudentDbId ?? null,
+        payload.necessaryStudyTimeDbId ?? null,
         payload.goalDescription ?? null
       ]);
 

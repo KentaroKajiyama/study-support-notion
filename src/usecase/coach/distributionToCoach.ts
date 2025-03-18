@@ -1,32 +1,36 @@
-import NotionAPI from "../infrastructure/notionAPIotionAPI.js";
-import { Title } from "../const/notion_template";
-import { Date } from "../const/notion_template";
-import { Number } from "../const/notion_template";
-import { Properties } from "../const/notion_template.js";
-import { Parent } from "../const/notion_template.js";
-import { Rests } from "../infrastructure/aws_database/Rest.js";
 import {
   MySQLUintID, 
   NotionUUID,
   ActualBlocksProblemLevelEnum, 
-  SubfieldsSubfieldNameEnum
+  SubfieldsSubfieldNameEnum,
+  Uint,
+  toUint,
+  NotionDate
 } from '@domain/types/index.js';
 import {
   Subfields,
   DefaultBlocks,
   ActualBlocks,
   ActualBlock,
-  StudentSubfieldTraces
+  StudentSubfieldTraces,
+  Rests,
 } from '@infrastructure/mysql/index.js';
 import { 
   ensureValue,
-  logger
+  logger, 
+  isDate1EarlierThanOrSameWithDate2,
+  isDateBetween,
+  formatDateWithOffset, 
+  myAddDays
 } from "@utils/index.js";
 import { 
   NotionCoachIrregulars,
   NotionCoachPlans 
 } from "@infrastructure/notion/index.js";
 import { DomainCoachPlan } from "@domain/coach/CoachPlan.js";
+import { DomainNecessaryStudyTime } from "@domain/coach/NecessaryStudyTime.js";
+import { sum } from "lodash";
+import { NotionNecessaryStudyTimes } from "@infrastructure/notion/NecessaryStudyTimes.js";
 
 // TODO: Confirm whether the arugment should be subfield 'Id' or 'Name'.
 export async function sendBlockDefault(
@@ -115,6 +119,36 @@ export async function sendBlockDefault(
 }
 
 
+type SpecifiecTmpTracker = {
+  defaultBlockId: MySQLUintID
+  averageExpectedTime: Uint
+  problemCussor: Uint
+  remainingSpace: Uint 
+  space: Uint 
+  blockCussor: Uint 
+  currentLap: Uint
+  lap: Uint
+  speed: Uint 
+  startDate: NotionDate
+  endDate: NotionDate
+  actualBlockSize: Uint
+  isTail: boolean
+  endFlag: number
+}
+
+type TmpTracker = Record<SubfieldsSubfieldNameEnum, SpecifiecTmpTracker>;
+
+type NecessaryStudyTimePattern = Record<SubfieldsSubfieldNameEnum, Uint> & {
+  howManyTimes?: Uint,
+  order?: Uint,
+};
+
+type RestRow = {
+  startDate: NotionDate;
+  endDate: NotionDate;
+}
+
+type RestData = Record<SubfieldsSubfieldNameEnum, RestRow[]>;
 
 // TODO: implement
 export async function sendNecessaryStudyTimes(
@@ -125,7 +159,7 @@ export async function sendNecessaryStudyTimes(
   const subfieldIds = (await StudentSubfieldTraces.findByStudentId(studentId))
     .map(trace => trace.subfieldId)
     .filter(subfieldId => subfieldId !== undefined);
-  const actualBlocks: Partial<Record<SubfieldsSubfieldNameEnum, any>> = {};
+  const actualBlocks: Partial<Record<SubfieldsSubfieldNameEnum, ActualBlock[]>> = {}
   const subfieldNames: SubfieldsSubfieldNameEnum[] = [];
   Promise.all(subfieldIds.map(async subfieldId => {
     const actualBlocksInSubfield = await ActualBlocks.findByStudentIdAndSubfieldId(studentId, subfieldId);
@@ -139,64 +173,89 @@ export async function sendNecessaryStudyTimes(
   }));
   // 1. explore the all patterns of the study times
   // TODO: You have to care about the rest of the students.
-  const isPatternExists = (pattern, table) => {
+  const isPatternExists = (pattern: NecessaryStudyTimePattern, table: NecessaryStudyTimePattern[]) => {
     const index = table.findIndex(row =>
-      Object.keys(pattern).every(key => row[key] === pattern[key])
+      Object.keys(pattern).every(key => row[key as SubfieldsSubfieldNameEnum] === pattern[key as SubfieldsSubfieldNameEnum])
     );
-    return { exists: index !== -1, index };
-};
-  const necessaryStudyTimes = [];
-  let date = addDays(new Date(), 1);
-  const tmpTracker = (async () => {
-    const result = {};
+    return { exists: index !== -1, index: index };
+  };
+  const necessaryStudyTimes: NecessaryStudyTimePattern[] = [];
+
+  let trackDate = formatDateWithOffset(new Date(), false, false);
+
+  const tmpTracker: TmpTracker = await (async () => {
+    const result: Partial<TmpTracker> = {};
     for (const subfieldName of subfieldNames) {
-      const defaultBlockId = actualBlocks[subfieldName][0].default_block_id;
-      const averageExpectedTime = await DefaultBlocks.findByDefaultBlockId(defaultBlockId)[0].average_expected_time;
-      const space = actualBlocks[subfieldName][0].space;
-      const speed = actualBlocks[subfieldName][0].speed;
-      const repeat = actualBlocks[subfieldName][0].number_of_repeats;
-      const tailOrder = actualBlocks[subfieldName][0].tail_order;
+      const specificActualBlocks = ensureValue(actualBlocks[subfieldName]);
+      const defaultBlockId = ensureValue(specificActualBlocks[0].defaultBlockId);
+      // TODO: Input default average expected time.
+      const averageExpectedTime = ensureValue(await DefaultBlocks.findByDefaultBlockId(defaultBlockId)).averageExpectedTime ?? toUint(15);
+      const space = ensureValue(specificActualBlocks[0].space);
+      const speed = ensureValue(specificActualBlocks[0].speed);
+      const lap = ensureValue(specificActualBlocks[0].lap);
+      const actualBlockSize = ensureValue(specificActualBlocks[0].actualBlockSize);
+      const startDate = ensureValue(specificActualBlocks[0].startDate);
+      const endDate = ensureValue(specificActualBlocks[0].endDate);
+      const isTail = ensureValue(specificActualBlocks[0].isTail);
       result[subfieldName] = {
         defaultBlockId: defaultBlockId,
         averageExpectedTime: averageExpectedTime,
-        problemCussor: 1, 
-        remainingSpace: 0, 
+        problemCussor: toUint(1), 
+        remainingSpace: toUint(0), 
         space: space, 
-        blockCussor: 0, 
-        lap: 1, 
-        repeat: repeat, 
+        blockCussor: toUint(0), 
+        currentLap: toUint(1),
+        lap: lap, 
         speed: speed, 
-        headOrder: 1, 
-        tailOrder: tailOrder,
-        endFlag: 0
+        startDate: startDate,
+        endDate: endDate, 
+        actualBlockSize: actualBlockSize,
+        isTail: isTail,
+        endFlag: 0,
       };
     }
-    return result;
+    return result as TmpTracker;
   })();
-  const rests = (async ()=>{
-    let result = {};
+  const restData: RestData = await (async ()=>{
+    let result: Partial<RestData> = {};
     for(const subfieldName of subfieldNames) {
-      const subfieldId = actualBlocks[subfieldName][0].subfieldId;
-      const restStartDate = await Rests.findByCompositeKey(studentId, subfieldId)[0].start_date;
-      const restEndDate = await Rests.findByCompositeKey(studentId, subfieldId)[0].end_date;
-      result[subfieldName] = []
-      for(let i=1; i<actualBlock.number_of_repeats; i++){
-        result[subfieldName].push(
-          { 
-            startDate: restStartDate,
-            endDate: restEndDate,
+      const specificActualBlocks = ensureValue(actualBlocks[subfieldName]);
+      const subfieldId = ensureValue(specificActualBlocks[0].subfieldId);
+      const specificRests = await Rests.findByCompositeKey(studentId, subfieldId)
+      if (specificRests.length === 0) {
+        result[subfieldName] = [];
+        continue;
+      } else {
+        specificRests.sort((a,b) => {
+          if (isDate1EarlierThanOrSameWithDate2(ensureValue(a.startDate), ensureValue(b.endDate))) {
+            return 1;
+          } else {
+            return -1;
           }
-        );
+        });
+        for (const restRow of specificRests) {
+          if (result[subfieldName] === undefined) {
+            result[subfieldName] = [{
+              startDate: ensureValue(restRow.startDate),
+              endDate: ensureValue(restRow.endDate)
+            }];
+          } else {
+            result[subfieldName].push({
+              startDate: ensureValue(restRow.startDate),
+              endDate: ensureValue(restRow.endDate)
+            })
+          }
+        }
       }
     }
-    return result;
+    return result as RestData;
   })();
-  const checkRest = (subfieldName, date) => {
+  const checkRest = (subfieldName: SubfieldsSubfieldNameEnum, date: NotionDate) => {
     let result = false;
-    for (let i=0; i<length.rests[subfieldName]; i++){
-      const restStartDate = rests[subfieldName][i]
-      const restEndDate = rests[subfieldName][i]
-      if (date >= restStartDate && date <= restEndDate) {
+    for (let i=0; i<restData[subfieldName].length; i++){
+      const restStartDate = restData[subfieldName][i].startDate;
+      const restEndDate = restData[subfieldName][i].endDate;
+      if (isDateBetween(date, restStartDate, restEndDate)) {
         result = true;
       }
     }
@@ -210,94 +269,107 @@ export async function sendNecessaryStudyTimes(
     });
     return result;
   })();
-  let order = 1;
+  let order = toUint(1);
   let totalNumber = 0
   while (!multipleEndFlag) {
     totalNumber++;
-    let candidate = (async () => {
-      let result = {};
+    const candidate = await (async () => {
+      let result: Partial<NecessaryStudyTimePattern> = {};
       for (const subfieldName of subfieldNames) {
         const tmpTrackerSub = tmpTracker[subfieldName]
+        const specificActualBlocks = ensureValue(actualBlocks[subfieldName]);
         if (tmpTrackerSub.endFlag){
-          result[subfieldName] = 0;
-        } else if(checkRest(date, subfieldName)){
-          result[subfieldName] = 0;
+          result[subfieldName] = toUint(0);
+        } else if (!isDate1EarlierThanOrSameWithDate2(tmpTrackerSub.startDate, trackDate)){
+          result[subfieldName] = toUint(0);
+        } else if(checkRest(subfieldName, trackDate)){
+          result[subfieldName] = toUint(0);
         } else if (tmpTrackerSub.remainingSpace > 0){
-          result[subfieldName] = 0;
-          tmpTrackerSub.remainingSpace -= 1;
-        } else if (tmpTrackerSub.problemCussor + tmpTrackerSub.speed -1 < tmpTrackerSub.tailOrder) {
-          result[subfieldName] = tmpTrackerSub.speed * tmpTrackerSub.averageExpectedTime;
-          tmpTrackerSub.problemCussor += tmpTrackerSub.speed;
+          result[subfieldName] = toUint(0);
+          tmpTrackerSub.remainingSpace = toUint(tmpTrackerSub.remainingSpace - 1);
+        } else if (tmpTrackerSub.problemCussor + tmpTrackerSub.speed -1 < tmpTrackerSub.actualBlockSize) {
+          result[subfieldName] = toUint(tmpTrackerSub.speed * tmpTrackerSub.averageExpectedTime);
+          tmpTrackerSub.problemCussor = toUint(tmpTrackerSub.problemCussor + tmpTrackerSub.speed);
           tmpTrackerSub.remainingSpace = tmpTrackerSub.space;
-        } else if (tmpTrackerSub.problemCussor + tmpTrackerSub.speed -1 === tmpTrackerSub.tailOrder && tmpTrackerSub.lap < tmpTrackerSub.repeat){
-          result[subfieldName] = tmpTrackerSub.speed * tmpTrackerSub.averageExpectedTime;
-          tmpTrackerSub.problemCussor = tmpTrackerSub.headOrder;
+        } else if (
+          tmpTrackerSub.problemCussor + tmpTrackerSub.speed -1 === tmpTrackerSub.actualBlockSize 
+          && tmpTrackerSub.currentLap < tmpTrackerSub.lap
+        ) {
+          result[subfieldName] = toUint(tmpTrackerSub.speed * tmpTrackerSub.averageExpectedTime);
+          tmpTrackerSub.problemCussor = toUint(1);
           tmpTrackerSub.remainingSpace = tmpTrackerSub.space;
-          tmpTrackerSub.lap += 1;
-        } else if (tmpTrackerSub.problemCussor + tmpTrackerSub.speed -1 === tmpTrackerSub.tailOrder){
-          if (tmpTrackerSub.blockCussor+1 === actualBlocks[subfieldName].length){
-            result[subfieldName] = tmpTrackerSub.averageExpectedTime*tmpTrackerSub.speed
+          tmpTrackerSub.currentLap = toUint(tmpTrackerSub.currentLap + 1);
+        } else if (tmpTrackerSub.problemCussor + tmpTrackerSub.speed -1 === tmpTrackerSub.actualBlockSize){
+          if (tmpTrackerSub.blockCussor+1 === specificActualBlocks.length){
+            result[subfieldName] = toUint(tmpTrackerSub.averageExpectedTime*tmpTrackerSub.speed)
             tmpTrackerSub.endFlag = 1;
           } else {
-            result[subfieldName] = tmpTrackerSub.speed * tmpTrackerSub.averageExpectedTime;
-            const nextActualBlock = actualBlocks[tmpTrackerSub.blockCussor+1]
-            const nextDefaultBlockId = nextActualBlock.default_block_id;
-            const nextAverageExpectedTime = await DefaultBlocks.findByDefaultBlockId(nextDefaultBlockId)[0].average_expected_time;
-            const nextProblemCussor = nextActualBlock.problemCussor+tmpTrackerSub.speed;
-            result[subfieldName] = tmpTrackerSub.spped * tmpTrackerSub.averageExpectedTime 
+            result[subfieldName] = toUint(tmpTrackerSub.speed * tmpTrackerSub.averageExpectedTime);
+            const nextActualBlock = specificActualBlocks[tmpTrackerSub.blockCussor+1]
+            const nextDefaultBlockId = ensureValue(nextActualBlock.defaultBlockId);
+            const nextAverageExpectedTime = ensureValue(
+              ensureValue(await DefaultBlocks.findByDefaultBlockId(nextDefaultBlockId)).averageExpectedTime
+            );
+            const nextProblemCussor = toUint(1);
+            result[subfieldName] = toUint(tmpTrackerSub.speed * tmpTrackerSub.averageExpectedTime)
             tmpTrackerSub.defaultBlockId = nextDefaultBlockId;
             tmpTrackerSub.averageExpectedTime = nextAverageExpectedTime;
             tmpTrackerSub.problemCussor = nextProblemCussor;
-            tmpTrackerSub.remainingSpace = nextActualBlock.space;
-            tmpTrackerSub.space = nextActualBlock.space;
-            tmpTrackerSub.blockCussor += 1;
-            tmpTrackerSub.lap = 0;
-            tmpTrackerSub.repeat = nextActualBlock.repeat;
-            tmpTrackerSub.speed = nextActualBlock.speed;
-            tmpTrackerSub.headOrder = nextActualBlock.headOrder;
-            tmpTrackerSub.tailOrder = nextActualBlock.tailOrder;
+            tmpTrackerSub.remainingSpace = ensureValue(nextActualBlock.space);
+            tmpTrackerSub.space = ensureValue(nextActualBlock.space);
+            tmpTrackerSub.blockCussor = toUint(tmpTrackerSub.blockCussor + 1);
+            tmpTrackerSub.currentLap = toUint(0);
+            tmpTrackerSub.lap = ensureValue(nextActualBlock.lap);
+            tmpTrackerSub.speed = ensureValue(nextActualBlock.speed);
+            tmpTrackerSub.actualBlockSize = ensureValue(nextActualBlock.actualBlockSize);
+            tmpTrackerSub.isTail = ensureValue(nextActualBlock.isTail);
           }
-        } else if (tmpTrackerSub.problemCussor + tmpTrackerSub.speed -1 > tmpTrackerSub.tailOrder && tmpTrackerSub.lap < tmpTrackerSub.repeat ){
-          result[subfieldName] = tmpTrackerSub.speed * tmpTrackerSub.averageExpectedTime;
-          tmpTrackerSub.problemCussor = tmpTrackerSub.headOrder + tmpTrackerSub.speed - (tmpTrackerSub.tailOrder - tmpTrackerSub.problemCussor + 1 );
+        } else if (
+          tmpTrackerSub.problemCussor + tmpTrackerSub.speed -1 > tmpTrackerSub.actualBlockSize 
+          && tmpTrackerSub.currentLap < tmpTrackerSub.lap 
+        ){
+          result[subfieldName] = toUint(tmpTrackerSub.speed * tmpTrackerSub.averageExpectedTime);
+          tmpTrackerSub.problemCussor = toUint(1 + tmpTrackerSub.speed - (tmpTrackerSub.actualBlockSize - tmpTrackerSub.problemCussor + 1 ));
           tmpTrackerSub.remainingSpace = tmpTrackerSub.space;
-          tmpTrackerSub.lap += 1;
+          tmpTrackerSub.lap = toUint(tmpTrackerSub.lap + 1);
         } else {
-          if (tmpTrackerSub.blockCussor+1 === actualBlocks[subfieldName].length){
-            result[subfieldName] = tmpTrackerSub.averageExpectedTime*(tmpTrackerSub.tailOrder - tmpTrackerSub.problemCussor + 1);
+          if (tmpTrackerSub.blockCussor+1 === specificActualBlocks.length){
+            result[subfieldName] = toUint(tmpTrackerSub.averageExpectedTime*(tmpTrackerSub.actualBlockSize - tmpTrackerSub.problemCussor + 1));
             tmpTrackerSub.endFlag = 1;
           } else {
-            const nextActualBlock = actualBlocks[tmpTrackerSub.blockCussor+1]
-            const nextSpeed = nextActualBlock.speed;
-            const secondDist = Math.min(tmpTracker.speed - (tmpTrackerSub.tailOrder-tmpTrackerSub.problemCussor+1), nextSpeed);
-            const nextDefaultBlockId = nextActualBlock.default_block_id;
-            const nextAverageExpectedTime = await DefaultBlocks.findByDefaultBlockId(nextDefaultBlockId)[0].average_expected_time;
-            const nextProblemCussor = nextActualBlock.problemCussor+secondDist+1;
-            result[subfieldName] = (tmpTrackerSub.tailOrder-tmpTrackerSub.problemCussor+1)*tmpTrackerSub.averageExpectedTime + nextDist*nextAverageExpectedTime;
+            const nextActualBlock = ensureValue(actualBlocks[subfieldName])[tmpTrackerSub.blockCussor+1]
+            const nextSpeed = ensureValue(nextActualBlock.speed);
+            const secondDist = Math.min(tmpTrackerSub.speed - (tmpTrackerSub.actualBlockSize-tmpTrackerSub.problemCussor+1), nextSpeed);
+            const nextDefaultBlockId = ensureValue(nextActualBlock.defaultBlockId);
+            const nextAverageExpectedTime = ensureValue(
+              ensureValue(await DefaultBlocks.findByDefaultBlockId(nextDefaultBlockId)).averageExpectedTime
+            );
+            const nextProblemCussor = toUint(secondDist+1);
+            result[subfieldName] = toUint((tmpTrackerSub.actualBlockSize-tmpTrackerSub.problemCussor+1)*tmpTrackerSub.averageExpectedTime + secondDist*nextAverageExpectedTime);
             tmpTrackerSub.defaultBlockId = nextDefaultBlockId;
             tmpTrackerSub.averageExpectedTime = nextAverageExpectedTime;
             tmpTrackerSub.problemCussor = nextProblemCussor;
-            tmpTrackerSub.remainingSpace = nextActualBlock.space;
-            tmpTrackerSub.space = nextActualBlock.space;
-            tmpTrackerSub.blockCussor += 1;
-            tmpTrackerSub.lap = 0;
-            tmpTrackerSub.repeat = nextActualBlock.repeat;
-            tmpTrackerSub.speed = nextActualBlock.speed;
-            tmpTrackerSub.headOrder = nextActualBlock.headOrder;
-            tmpTrackerSub.tailOrder = nextActualBlock.tailOrder;
+            tmpTrackerSub.remainingSpace = ensureValue(nextActualBlock.space);
+            tmpTrackerSub.space = ensureValue(nextActualBlock.space);
+            tmpTrackerSub.blockCussor = toUint(tmpTrackerSub.blockCussor + 1);
+            tmpTrackerSub.currentLap = toUint(0);
+            tmpTrackerSub.lap = ensureValue(nextActualBlock.lap);
+            tmpTrackerSub.speed = ensureValue(nextActualBlock.speed);
+            tmpTrackerSub.actualBlockSize = ensureValue(nextActualBlock.actualBlockSize);
+            tmpTrackerSub.isTail = ensureValue(nextActualBlock.isTail);
           }
         }
       }
-      return result;
+      return result as NecessaryStudyTimePattern;
     })();
-    const { exists, index} = isPatternExists(candidate, necessaryStudyTimes);
+    const { exists, index } = isPatternExists(candidate, necessaryStudyTimes);
     if (!exists){
-      candidate["回数"] = 1;
-      candidate["Order"] = order;
-      order++;
+      candidate.howManyTimes= toUint(1);
+      candidate.order = order;
+      order = toUint(order + 1);
       necessaryStudyTimes.push(candidate);
     } else {
-      necessaryStudyTimes[index]["回数"] += 1;
+      necessaryStudyTimes[index].howManyTimes = toUint(necessaryStudyTimes[index].howManyTimes as Uint + 1);
     }
     multipleEndFlag = (() => {
       let result = 1;
@@ -306,23 +378,85 @@ export async function sendNecessaryStudyTimes(
       });
       return result;
     })();
-    date = addDays(date, 1);
+    trackDate = myAddDays(trackDate, 1);
   }
   // 2. send necessary study time data
-  Promise.all(necessaryStudyTimes.map(async row => {
-    const properties = Properties()
-    Object.entries(row).forEach(
-      ([key, value]) => {
-        properties.addProperty(Number(key, value).getJSON());
-      }
-    );
-    const total = Number("合計日数", totalNumber).getJSON();
-    const title = Title("パターン", `パターン${row.Order}`);
-    properties.addProperty(total);
-    properties.addProperty(title);
-    const parent = Parent("database_id", databaseId);
-    await NotionAPI.createAPage(parent=parent, properties=properties);
-  }))
+  const notionNecessaryStudyTimes = new NotionNecessaryStudyTimes();
+  const domainNecessaryStudyTimes = necessaryStudyTimes
+                                    .map(subfieldAssignHelper)
+                                    .sort((a,b) => ensureValue(a.order) - ensureValue(b.order));
+  const totalOpportunity = sum(domainNecessaryStudyTimes.map(e => e.howManyTimes));
+  domainNecessaryStudyTimes.forEach(e => e.totalOpportunity = toUint(totalOpportunity));
+
+  await Promise.all(
+    domainNecessaryStudyTimes.map(async domain => await notionNecessaryStudyTimes
+      .createAPageOnlyWithProperties(
+        databaseId,
+        'database_id',
+        domain
+      ))
+  );
 }
 
+export function subfieldAssignHelper(necessaryStudyTimePattern: NecessaryStudyTimePattern): DomainNecessaryStudyTime{
+  try {
+    const result: Partial<DomainNecessaryStudyTime> = {};
+    for (const field in necessaryStudyTimePattern) {
+      switch (field) {
+        case "現代文":
+          result.modernJapanese = necessaryStudyTimePattern[field] ?? toUint(0);
+          break;
+        case "古文":
+          result.ancientJapanese = necessaryStudyTimePattern[field]?? toUint(0);
+          break;
+        case "漢文":
+          result.ancientChinese = necessaryStudyTimePattern[field]?? toUint(0);
+          break;
+        case "数学":
+          result.math = necessaryStudyTimePattern[field]?? toUint(0);
+          break;
+        case "Reading":
+          result.reading = necessaryStudyTimePattern[field]?? toUint(0);
+          break;
+        case "Listening&Speaking":
+          result.listeningAndSpeaking = necessaryStudyTimePattern[field]?? toUint(0);
+          break;
+        case "Writing":
+          result.writing = necessaryStudyTimePattern[field]?? toUint(0);
+          break;
+        case "物理":
+          result.physics = necessaryStudyTimePattern[field]?? toUint(0);
+          break;
+        case "化学":
+          result.chemistry = necessaryStudyTimePattern[field]?? toUint(0);
+          break;
+        case "生物":
+          result.biology = necessaryStudyTimePattern[field]?? toUint(0);
+          break;
+        case "日本史":
+          result.japaneseHistory = necessaryStudyTimePattern[field]?? toUint(0);
+          break;
+        case "世界史":
+          result.worldHistory = necessaryStudyTimePattern[field]?? toUint(0);
+          break;
+        case "地理":
+          result.geography = necessaryStudyTimePattern[field]?? toUint(0);
+          break;
+        case "howManyTimes":
+          result.howManyTimes = necessaryStudyTimePattern[field]?? toUint(0);
+          break;
+        case "order":
+          result.order = necessaryStudyTimePattern[field]?? toUint(0);
+          result.pattern = `パターン ${necessaryStudyTimePattern[field]?? toUint(0)}`
+          break;
+        default:
+          throw new Error(`Unknown field: ${field}`);
+      } 
+    };
+    return result as DomainNecessaryStudyTime;
+  } catch (error) {
+    logger.error(`Error in subfieldAssignHelper: ${error}`);
+    throw error;
+  }
+}
 
