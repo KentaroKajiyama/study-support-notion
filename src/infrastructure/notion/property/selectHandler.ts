@@ -3,7 +3,7 @@ import {
   SelectPropertyResponse,
   SubfieldsSubfieldNameEnum,
   ActualBlocksProblemLevelEnum,
-  isValidActualBlocksProblemLevelEnum,
+  isValidProblemsProblemLevelEnum,
   isValidSubfieldsSubfieldNameEnum,
   SubjectsSubjectNameEnum,
   isValidSubjectsSubjectNameEnum,
@@ -87,7 +87,7 @@ export function selectResponseHandler(selectProp: SelectPropertyResponse, option
       }
       return selectProp.select.name;
     case 'a problem level':
-      if (selectProp.select !== null && !isValidActualBlocksProblemLevelEnum(selectProp.select.name)){
+      if (selectProp.select !== null && !isValidProblemsProblemLevelEnum(selectProp.select.name)){
         throw new Error("Invalid problem level: " + selectProp.select?.name);
       } else if (selectProp.select === null) {
         throw new Error("Problem level is missing.");
@@ -159,7 +159,7 @@ export function selectRequestHandler(input: SelectRequestInputType, option: Sele
       };
     case 'a problem level':
       if (typeof input === 'number') throw new Error('Number is not allowed as a problem level');
-      else if (!isValidActualBlocksProblemLevelEnum(input)) throw new Error ("Invalid input for select property option:" + option + ". input : " + input);
+      else if (!isValidProblemsProblemLevelEnum(input)) throw new Error ("Invalid input for select property option:" + option + ". input : " + input);
       return {
         type: "select",
         select: {

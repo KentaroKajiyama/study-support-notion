@@ -1,4 +1,4 @@
-import { DatePropertyRequest, DatePropertyResponse, NotionDate, NotionDateString } from "@domain/types/index.js";
+import { DatePropertyRequest, DatePropertyResponse, NotionDate } from "@domain/types/index.js";
 import { logger } from "@utils/index.js";
 
 

@@ -34,7 +34,7 @@ function richTextPropertyResponseToOneMentionString(richTextProp: RichTextProper
     }
     return mentionStringArray[0];
   } catch (error) {
-    throw new Error('Error converting RichTextPropertyItemObjectResponse to NotionMentionString');
+    throw new Error('Error converting RichTextPropertyItemObjectResponse to NotionMentionString, '+ error);
   }
 }
 

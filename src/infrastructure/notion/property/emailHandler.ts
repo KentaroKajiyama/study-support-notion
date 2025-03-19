@@ -6,7 +6,7 @@ import {
 } from "@domain/types/index.js"
 import {
   logger
-} from '@utils/logger.js'
+} from '@utils/index.js'
 
 
 export type EmailResponseOption = 

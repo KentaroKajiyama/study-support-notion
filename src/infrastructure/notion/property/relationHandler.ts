@@ -26,6 +26,7 @@ export function relationResponseHandler(
     case 'a page id':
       if (relationProp.relation.length === 0) {
         logger.warn('Relation has no relation');
+        return null;
       } else if (relationProp.relation.length >= 2) {
         logger.error('Relation has more than one relation');
       };
