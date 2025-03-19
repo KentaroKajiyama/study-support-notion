@@ -40,7 +40,7 @@ export function mentionPlugin(md: MarkdownIt, options: MentionPluginOptions = {}
       token.content = match[1].trim(); // Extract the display text
       token.meta = {
         mentionType: match[2].trim(), // "user" | "page" | "database" | "date"
-        mentionValue: match[3].trim(), // Extracted ID or date
+        mentionValue: match[3], // Extracted ID or date
       } as MentionTokenMeta;
     }
 

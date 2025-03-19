@@ -1,5 +1,5 @@
 // TODO: Automation - Auto-generate from MySQL ENUM 🚀
-import { NotionPagePropertyType } from "./myNotionType.js";
+import { NotionPagePropertyType } from "./myNotionTypes.js";
 
 /** ✅ Notion Page Property Types */
 export type NotionDbPropertiesPropertyTypeEnum = NotionPagePropertyType;

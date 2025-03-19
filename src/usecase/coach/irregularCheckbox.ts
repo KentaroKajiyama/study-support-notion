@@ -8,8 +8,8 @@ import {
   StudentProblems,
   Students
 } from "@infrastructure/mysql/index.js";
-import { MySQLUintID } from "@domain/types/mysqlType.js";
-import { extractMentionDetails, MentionDetailId, NotionMentionString, NotionUUID, RichTextPropertyResponse } from "@domain/types/myNotionType.js";
+import { MySQLUintID } from "@domain/types/mysqlTypes.js";
+import { extractMentionDetails, MentionDetailId, NotionMentionString, NotionUUID, RichTextPropertyResponse } from "@domain/types/myNotionTypes.js";
 import { propertyResponseToDomain } from "@infrastructure/notionProperty.js";
 import { NotionCoachIrregulars } from "@infrastructure/notion/index.js";
 

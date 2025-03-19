@@ -1,4 +1,4 @@
-import { NotionUUID, PeoplePropertyResponse } from "@domain/types/myNotionType.js";
+import { NotionUUID, PeoplePropertyResponse } from "@domain/types/myNotionTypes.js";
 import { 
   answerStatusChange, 
   isDifficultChange 

@@ -124,7 +124,7 @@ export function inlineTextToMentionStringArray(
       case "mention_token": { // ✅ Handle mention tokens
         const mentionMeta = token.meta as MentionTokenMeta;
         const mentionDisplay = token.content
-        resultArray.push(`@[${mentionDisplay}(${mentionMeta.mentionType}:${mentionMeta.mentionValue})]`)
+        resultArray.push(`@[${mentionDisplay} (${mentionMeta.mentionType}:${mentionMeta.mentionValue})]`)
         break;
       }
       default: 

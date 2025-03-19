@@ -2,7 +2,7 @@ import MarkdownIt from "markdown-it";
 import dollarmathPlugin from "markdown-it-dollarmath";
 import { mentionPlugin, MentionTokenMeta } from "./mentionPlugin.js";
 import { MentionRichTextItemResponse, RichTextItemRequest, RichTextItemResponse, TextRichTextItemResponse } from "@notionhq/client/build/src/api-endpoints.js";
-import { RichTextMentionItemRequest } from "@domain/types/myNotionType.js";
+import { RichTextMentionItemRequest } from "@domain/types/myNotionTypes.js";
 
 // Define the RichText structure based on Notion API documentation
 interface Annotations {

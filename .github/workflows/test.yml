@@ -1,0 +1,33 @@
+name: Run Tests (Vitest)
+
+on:
+  push:
+    branches: [main, develop]  # ✅ Runs on push to main/develop branches
+  pull_request:
+    branches: [main, develop]  # ✅ Runs on PRs
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # ✅ Use latest Ubuntu runner
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4  # ✅ Fetches repo code
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"  # ✅ Use latest stable Node.js
+          cache: "npm"  # ✅ Cache dependencies
+
+      - name: Install Dependencies
+        run: npm ci  # ✅ Use `ci` for clean installs
+
+      - name: Run Tests with Coverage
+        run: npm run test:ci  # ✅ Run Vitest with coverage & changed files
+
+      - name: Upload Coverage Report
+        uses: codecov/codecov-action@v4  # ✅ Uploads test coverage to Codecov
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/clover.xml

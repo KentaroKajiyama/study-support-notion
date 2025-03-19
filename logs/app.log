@@ -1,0 +1,54 @@
+[2025-03-19T04:17:22.773Z] [WARN] You provide more than one mention. Everything is ignored other than the first one.
+[2025-03-19T04:19:16.279Z] [WARN] You provide more than one mention. Everything is ignored other than the first one.
+[2025-03-19T04:19:35.091Z] [WARN] You provide more than one mention. Everything is ignored other than the first one.
+[2025-03-19T04:20:09.028Z] [WARN] You provide more than one mention. Everything is ignored other than the first one.
+[2025-03-19T04:20:23.400Z] [WARN] You provide more than one mention. Everything is ignored other than the first one.
+[2025-03-19T04:23:02.898Z] [WARN] You provide more than one mention. Everything is ignored other than the first one.
+[2025-03-19T04:23:31.647Z] [WARN] You provide more than one mention. Everything is ignored other than the first one.
+[2025-03-19T04:23:34.390Z] [WARN] You provide more than one mention. Everything is ignored other than the first one.
+[2025-03-19T04:24:22.164Z] [WARN] You provide more than one mention. Everything is ignored other than the first one.
+[2025-03-19T04:26:48.797Z] [WARN] You provide more than one mention. Everything is ignored other than the first one.
+[2025-03-19T04:59:20.644Z] [DEBUG] 
+[2025-03-19T04:59:22.156Z] [DEBUG] 
+[2025-03-19T04:59:24.561Z] [DEBUG] invalid-uuid is not
+[2025-03-19T04:59:31.071Z] [DEBUG] invalid-uuid is not a valid
+[2025-03-19T04:59:32.923Z] [DEBUG] invalid-uuid is not a valid UUID [object Object]
+[2025-03-19T04:59:34.253Z] [DEBUG] invalid-uuid is not a valid UUID [object Object]
+[2025-03-19T04:59:37.162Z] [DEBUG] invalid-uuid is not a valid UUID
+[2025-03-19T05:00:35.805Z] [DEBUG] 
+[2025-03-19T05:00:35.808Z] [DEBUG] invalid-uuid is not a valid UUID
+[2025-03-19T05:00:37.635Z] [DEBUG] 
+[2025-03-19T05:00:37.637Z] [DEBUG] invalid-uuid is not a valid UUID
+[2025-03-19T05:00:40.917Z] [DEBUG] 550e8400-e29b-41d4-a716-446655440000
+[2025-03-19T05:00:40.920Z] [DEBUG] invalid-uuid is not a valid UUID
+[2025-03-19T05:00:46.580Z] [DEBUG] 550e8400-e29b-41d4-a716-446655440000 is a valid UUID
+[2025-03-19T05:00:46.582Z] [DEBUG] invalid-uuid is not a valid UUID
+[2025-03-19T05:01:17.080Z] [DEBUG] 550e8400-e29b-41d4-a716-446655440000 is a valid UUID
+[2025-03-19T05:01:17.083Z] [DEBUG] invalid-uuid is not a valid UUID
+[2025-03-19T05:01:25.545Z] [DEBUG] value: 550e8400-e29b-41d4-a716-446655440000
+[2025-03-19T05:01:25.547Z] [DEBUG] value: 550e8400-e29b-41d4-a716
+[2025-03-19T05:01:25.547Z] [DEBUG] value: invalid-uuid
+[2025-03-19T05:01:25.548Z] [DEBUG] value: 550e8400-e29b-41d4-a716-446655440000
+[2025-03-19T05:01:25.548Z] [DEBUG] 550e8400-e29b-41d4-a716-446655440000 is a valid UUID
+[2025-03-19T05:01:25.550Z] [DEBUG] value: invalid-uuid
+[2025-03-19T05:01:25.550Z] [DEBUG] invalid-uuid is not a valid UUID
+[2025-03-19T05:01:54.110Z] [DEBUG] 550e8400-e29b-41d4-a716-446655440000 is a valid UUID
+[2025-03-19T05:01:54.113Z] [DEBUG] invalid-uuid is not a valid UUID
+[2025-03-19T05:01:57.105Z] [DEBUG] 550e8400-e29b-41d4-a716-446655440000 is a valid UUID
+[2025-03-19T05:02:37.603Z] [DEBUG] url: https://example.com
+[2025-03-19T05:02:37.606Z] [DEBUG] url: http://www.example.com
+[2025-03-19T05:02:37.607Z] [DEBUG] url: invalid-url
+[2025-03-19T05:02:37.607Z] [DEBUG] url: www.example
+[2025-03-19T05:02:37.614Z] [DEBUG] url: https://example.com
+[2025-03-19T05:02:37.615Z] [DEBUG] url: http://example.com
+[2025-03-19T05:02:37.615Z] [DEBUG] url: ftp://example.com
+[2025-03-19T05:02:37.615Z] [DEBUG] url: invalid-url
+[2025-03-19T05:02:37.615Z] [DEBUG] url: www.example.com
+[2025-03-19T05:03:25.926Z] [DEBUG] ${value} is a valid URL
+[2025-03-19T05:03:25.927Z] [DEBUG] ${value} is a valid URL
+[2025-03-19T05:03:25.928Z] [DEBUG] ${value} is a valid URL
+[2025-03-19T05:03:42.876Z] [DEBUG] https://example.com is a valid URL
+[2025-03-19T05:03:42.877Z] [DEBUG] http://www.example.com is a valid URL
+[2025-03-19T05:03:42.878Z] [DEBUG] www.example is a valid URL
+[2025-03-19T05:05:06.807Z] [DEBUG] https://example.com is a valid URL
+[2025-03-19T05:05:06.808Z] [DEBUG] http://www.example.com is a valid URL

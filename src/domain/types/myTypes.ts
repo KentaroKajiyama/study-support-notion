@@ -1,3 +1,7 @@
+import {
+  logger
+} from '@utils/index.js';
+
 export type Uint = number & { __uint__: void }
 export function toUint(value: number): Uint {
   if (!isUint(value)) {
@@ -49,7 +53,7 @@ export function toEmail(value: string): Email {
 
 export type URLString = string & { __type: "URL" };
 
-const URL_REGEX = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(:\d+)?(\/\S*)?$/;
+const URL_REGEX = /^(https?:\/\/)([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(:\d+)?(\/\S*)?$/;
 
 export function isValidURLRegex(url: string): url is URLString {
   return URL_REGEX.test(url);
@@ -59,6 +63,7 @@ export function toURLString(value: string): URLString {
   if (!isValidURLRegex(value)) {
     throw new Error("Invalid URL format");
   }
+  logger.debug(`${value} is a valid URL`);
   return value as URLString;
 }
 

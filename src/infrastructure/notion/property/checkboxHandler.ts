@@ -1,4 +1,4 @@
-import { CheckboxPropertyRequest, CheckboxPropertyResponse } from "@domain/types/myNotionType.js";
+import { CheckboxPropertyRequest, CheckboxPropertyResponse } from "@domain/types/myNotionTypes.js";
 
 
 export type CheckboxResponseOption = '';

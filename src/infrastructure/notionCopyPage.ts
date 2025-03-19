@@ -7,7 +7,7 @@ import {
   UpdatePageParameters,
   BlockObjectResponse
 } from "@notionhq/client/build/src/api-endpoints.js";
-import { NotionPagePropertiesTypeArray, NotionUUID, ParentRequest, toNotionUUID } from "@domain/types/myNotionType.js";
+import { NotionPagePropertiesTypeArray, NotionUUID, ParentRequest, toNotionUUID } from "@domain/types/myNotionTypes.js";
 
 interface NotionBlock {
   id: string;
