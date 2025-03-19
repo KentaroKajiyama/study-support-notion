@@ -230,3 +230,17 @@ export function isValidStudentsOverviewsPlanStatusEnum(
 ): value is StudentsOverviewsPlanStatusEnum {
   return value in StudentsOverviewsPlanStatusEnum;
 }
+
+export const StudentDetailInformationSubjectChangeEnum = {
+  変更なし: "変更なし",
+  変更あり: "変更あり",
+} as const;
+
+export type StudentDetailInformationSubjectChangeEnum = 
+  typeof StudentDetailInformationSubjectChangeEnum[keyof typeof StudentDetailInformationSubjectChangeEnum];
+
+export function isValidStudentDetailInformationSubjectChangeEnum(
+  value: string
+): value is StudentDetailInformationSubjectChangeEnum {
+  return value in StudentDetailInformationSubjectChangeEnum;
+}

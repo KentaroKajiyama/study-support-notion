@@ -119,7 +119,7 @@ export function convertTimeNotionToMySQL(notionDate: NotionDate | undefined | nu
 
 export function myAddDays(notionDateString: NotionDate, addDaysNumber: number): NotionDate {
   try {
-    let includeTime = !isNotionDateTimeString(notionDateString);
+    let includeTime = isNotionDateTimeString(notionDateString);
     if (!includeTime) {
       notionDateString = `${notionDateString}T00:00:00.000+09:00` as NotionDateTimeString;
     }
@@ -134,7 +134,7 @@ export function myAddDays(notionDateString: NotionDate, addDaysNumber: number): 
 
 export function mySubDays(notionDateString: NotionDate, subDaysNumber: number): NotionDate {
   try {
-    let includeTime = !isNotionDateTimeString(notionDateString);
+    let includeTime = isNotionDateTimeString(notionDateString);
     if (!includeTime) {
       notionDateString = `${notionDateString}T00:00:00.000+09:00` as NotionDateTimeString;
     }

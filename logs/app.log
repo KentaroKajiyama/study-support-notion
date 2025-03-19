@@ -57,3 +57,1027 @@
 [2025-03-19T08:55:12.919Z] [DEBUG] {"id":"1234"} has a user property
 [2025-03-19T08:55:45.091Z] [DEBUG] {"id":"1234"} has a user property
 [2025-03-19T08:55:50.599Z] [DEBUG] {"id":"1234"} has a user property
+[2025-03-19T11:36:20.099Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T11:36:20.100Z] [ERROR] Validation error: Title is not a property that exists.
+[2025-03-19T11:36:21.810Z] [ERROR] Error creating page in Notion
+
+[2025-03-19T11:36:21.810Z] [ERROR] Validation error: Name is not a property that exists.
+[2025-03-19T11:36:23.132Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T11:36:23.135Z] [ERROR] Validation error: Title is not a property that exists.
+[2025-03-19T11:36:26.621Z] [ERROR] Error creating page in Notion
+
+[2025-03-19T11:36:26.621Z] [ERROR] Validation error: Name is not a property that exists.
+[2025-03-19T11:37:31.925Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T11:37:31.927Z] [ERROR] Validation error: Title is not a property that exists.
+[2025-03-19T11:37:32.852Z] [ERROR] Error creating page in Notion
+
+[2025-03-19T11:37:32.852Z] [ERROR] Validation error: Name is not a property that exists.
+[2025-03-19T11:37:35.377Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T11:37:35.381Z] [ERROR] Validation error: Title is not a property that exists.
+[2025-03-19T11:37:36.898Z] [ERROR] Error creating page in Notion
+
+[2025-03-19T11:37:36.899Z] [ERROR] Validation error: Name is not a property that exists.
+[2025-03-19T11:37:38.703Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T11:37:38.704Z] [ERROR] Validation error: Title is not a property that exists.
+[2025-03-19T11:37:39.555Z] [ERROR] Error creating page in Notion
+
+[2025-03-19T11:37:39.555Z] [ERROR] Validation error: Name is not a property that exists.
+[2025-03-19T11:37:40.676Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T11:37:40.679Z] [ERROR] Validation error: Title is not a property that exists.
+[2025-03-19T11:37:41.947Z] [ERROR] Error creating page in Notion
+
+[2025-03-19T11:37:41.948Z] [ERROR] Validation error: Name is not a property that exists.
+[2025-03-19T11:38:04.309Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T11:38:04.311Z] [ERROR] Validation error: Title is not a property that exists.
+[2025-03-19T11:38:05.367Z] [ERROR] Error creating page in Notion
+
+[2025-03-19T11:38:05.368Z] [ERROR] Validation error: Name is not a property that exists.
+[2025-03-19T11:38:09.586Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T11:38:09.589Z] [ERROR] Validation error: Title is not a property that exists.
+[2025-03-19T11:38:10.650Z] [ERROR] Error creating page in Notion
+
+[2025-03-19T11:38:10.651Z] [ERROR] Validation error: Name is not a property that exists.
+[2025-03-19T11:38:55.832Z] [ERROR] Error creating page in Notion
+
+[2025-03-19T11:38:55.834Z] [ERROR] Validation error: Name is not a property that exists.
+[2025-03-19T11:39:50.206Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T11:39:50.208Z] [ERROR] Validation error: Couldn't find editable properties for these identifiers: archived
+[2025-03-19T11:39:50.208Z] [ERROR] Error deleting page in Notion
+
+[2025-03-19T11:39:50.208Z] [ERROR] Validation error: Couldn't find editable properties for these identifiers: archived
+[2025-03-19T11:45:27.835Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T11:45:27.837Z] [ERROR] Validation error: Couldn't find editable properties for these identifiers: archived
+[2025-03-19T11:45:27.838Z] [ERROR] Error deleting page in Notion
+
+[2025-03-19T11:45:27.838Z] [ERROR] Validation error: Couldn't find editable properties for these identifiers: archived
+[2025-03-19T11:47:54.567Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T11:47:54.569Z] [ERROR] Validation error: Couldn't find editable properties for these identifiers: archived
+[2025-03-19T11:47:54.569Z] [ERROR] Error deleting page in Notion
+
+[2025-03-19T11:47:54.569Z] [ERROR] Validation error: Couldn't find editable properties for these identifiers: archived
+[2025-03-19T11:47:59.782Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T11:47:59.786Z] [ERROR] Validation error: Couldn't find editable properties for these identifiers: archived
+[2025-03-19T11:47:59.787Z] [ERROR] Error deleting page in Notion
+
+[2025-03-19T11:47:59.788Z] [ERROR] Validation error: Couldn't find editable properties for these identifiers: archived
+[2025-03-19T11:48:29.332Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T11:48:29.333Z] [ERROR] Invalid request URL: Invalid request URL.
+[2025-03-19T11:48:29.333Z] [ERROR] Error deleting page in Notion
+
+[2025-03-19T11:48:29.333Z] [ERROR] Invalid request URL: Invalid request URL.
+[2025-03-19T11:48:32.548Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T11:48:32.550Z] [ERROR] Validation error: Couldn't find editable properties for these identifiers: archived
+[2025-03-19T11:48:32.550Z] [ERROR] Error deleting page in Notion
+
+[2025-03-19T11:48:32.551Z] [ERROR] Validation error: Couldn't find editable properties for these identifiers: archived
+[2025-03-19T11:53:21.343Z] [DEBUG] {"id":"1234"} has a user property
+[2025-03-19T11:53:21.417Z] [DEBUG] https://example.com is a valid URL
+[2025-03-19T11:53:21.420Z] [DEBUG] http://www.example.com is a valid URL
+[2025-03-19T11:54:06.277Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T11:54:06.279Z] [ERROR] Validation error: Can't edit block that is archived. You must unarchive the block before editing.
+[2025-03-19T11:55:02.396Z] [DEBUG] https://example.com is a valid URL
+[2025-03-19T11:55:02.398Z] [DEBUG] http://www.example.com is a valid URL
+[2025-03-19T11:55:02.400Z] [DEBUG] {"id":"1234"} has a user property
+[2025-03-19T11:55:02.988Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T11:55:02.990Z] [ERROR] Validation error: Can't edit block that is archived. You must unarchive the block before editing.
+[2025-03-19T12:08:20.076Z] [DEBUG] https://example.com is a valid URL
+[2025-03-19T12:08:20.078Z] [DEBUG] http://www.example.com is a valid URL
+[2025-03-19T12:08:20.079Z] [DEBUG] {"id":"1234"} has a user property
+[2025-03-19T12:08:21.683Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T12:08:21.684Z] [ERROR] Validation error: Can't edit block that is archived. You must unarchive the block before editing.
+[2025-03-19T12:08:33.674Z] [DEBUG] {"id":"1234"} has a user property
+[2025-03-19T12:08:33.675Z] [DEBUG] https://example.com is a valid URL
+[2025-03-19T12:08:33.679Z] [DEBUG] http://www.example.com is a valid URL
+[2025-03-19T12:08:34.586Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T12:08:34.587Z] [ERROR] Validation error: Can't edit block that is archived. You must unarchive the block before editing.
+[2025-03-19T12:08:55.806Z] [DEBUG] https://example.com is a valid URL
+[2025-03-19T12:08:55.808Z] [DEBUG] http://www.example.com is a valid URL
+[2025-03-19T12:08:55.814Z] [DEBUG] {"id":"1234"} has a user property
+[2025-03-19T12:08:56.878Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T12:08:56.880Z] [ERROR] Validation error: Can't edit block that is archived. You must unarchive the block before editing.
+[2025-03-19T12:12:15.284Z] [DEBUG] https://example.com is a valid URL
+[2025-03-19T12:12:15.285Z] [DEBUG] {"id":"1234"} has a user property
+[2025-03-19T12:12:15.286Z] [DEBUG] http://www.example.com is a valid URL
+[2025-03-19T12:13:57.136Z] [DEBUG] https://example.com is a valid URL
+[2025-03-19T12:13:57.138Z] [DEBUG] http://www.example.com is a valid URL
+[2025-03-19T12:13:57.144Z] [DEBUG] {"id":"1234"} has a user property
+[2025-03-19T12:15:05.312Z] [DEBUG] https://example.com is a valid URL
+[2025-03-19T12:15:05.314Z] [DEBUG] http://www.example.com is a valid URL
+[2025-03-19T12:15:05.316Z] [DEBUG] {"id":"1234"} has a user property
+[2025-03-19T12:15:10.335Z] [DEBUG] {"id":"1234"} has a user property
+[2025-03-19T12:15:10.685Z] [DEBUG] https://example.com is a valid URL
+[2025-03-19T12:15:10.687Z] [DEBUG] http://www.example.com is a valid URL
+[2025-03-19T12:15:16.116Z] [DEBUG] {"id":"1234"} has a user property
+[2025-03-19T12:15:16.207Z] [DEBUG] https://example.com is a valid URL
+[2025-03-19T12:15:16.210Z] [DEBUG] http://www.example.com is a valid URL
+[2025-03-19T12:16:32.856Z] [DEBUG] https://example.com is a valid URL
+[2025-03-19T12:16:32.860Z] [DEBUG] http://www.example.com is a valid URL
+[2025-03-19T12:16:33.072Z] [DEBUG] {"id":"1234"} has a user property
+[2025-03-19T12:16:34.071Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T12:16:34.073Z] [ERROR] Validation error: Can't edit block that is archived. You must unarchive the block before editing.
+[2025-03-19T12:16:36.202Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T12:16:36.203Z] [ERROR] Validation error: Can't edit block that is archived. You must unarchive the block before editing.
+[2025-03-19T12:16:39.670Z] [DEBUG] {"id":"1234"} has a user property
+[2025-03-19T12:16:40.768Z] [DEBUG] https://example.com is a valid URL
+[2025-03-19T12:16:40.770Z] [DEBUG] http://www.example.com is a valid URL
+[2025-03-19T12:16:40.768Z] [DEBUG] {"id":"1234"} has a user property
+[2025-03-19T12:16:41.429Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T12:16:41.430Z] [ERROR] Validation error: Can't edit block that is archived. You must unarchive the block before editing.
+[2025-03-19T12:16:43.426Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T12:16:43.427Z] [ERROR] Validation error: Can't edit block that is archived. You must unarchive the block before editing.
+[2025-03-19T12:16:59.302Z] [DEBUG] {"id":"1234"} has a user property
+[2025-03-19T12:16:59.495Z] [DEBUG] https://example.com is a valid URL
+[2025-03-19T12:16:59.497Z] [DEBUG] http://www.example.com is a valid URL
+[2025-03-19T12:17:00.512Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T12:17:00.514Z] [ERROR] Validation error: Can't edit block that is archived. You must unarchive the block before editing.
+[2025-03-19T12:17:02.282Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T12:17:02.282Z] [ERROR] Validation error: Can't edit block that is archived. You must unarchive the block before editing.
+[2025-03-19T12:17:03.543Z] [DEBUG] {"id":"1234"} has a user property
+[2025-03-19T12:17:03.828Z] [DEBUG] https://example.com is a valid URL
+[2025-03-19T12:17:03.830Z] [DEBUG] http://www.example.com is a valid URL
+[2025-03-19T12:17:04.208Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T12:17:04.211Z] [ERROR] Validation error: Can't edit block that is archived. You must unarchive the block before editing.
+[2025-03-19T12:17:06.225Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T12:17:06.225Z] [ERROR] Validation error: Can't edit block that is archived. You must unarchive the block before editing.
+[2025-03-19T12:17:07.811Z] [DEBUG] {"id":"1234"} has a user property
+[2025-03-19T12:17:07.812Z] [DEBUG] https://example.com is a valid URL
+[2025-03-19T12:17:07.814Z] [DEBUG] http://www.example.com is a valid URL
+[2025-03-19T12:17:08.303Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T12:17:08.305Z] [ERROR] Validation error: Can't edit block that is archived. You must unarchive the block before editing.
+[2025-03-19T12:17:10.206Z] [ERROR] Error updating properties in Notion
+
+[2025-03-19T12:17:10.206Z] [ERROR] Validation error: Can't edit block that is archived. You must unarchive the block before editing.
+[2025-03-19T12:28:18.186Z] [ERROR] Error retrieving page from Notion
+
+[2025-03-19T12:28:18.188Z] [ERROR] Notion object not found: Could not find page with ID: 196b95a4-c619-815f-b5fc-e417a12af92d. Make sure the relevant pages and databases are shared with your integration.
+[2025-03-19T12:28:18.188Z] [ERROR] Error copying page "196b95a4c619815fb5fce417a12af92d" to "1a9b95a4c61980ef81f2f152d5e366b5": Could not find page with ID: 196b95a4-c619-815f-b5fc-e417a12af92d. Make sure the relevant pages and databases are shared with your integration.
+[2025-03-19T12:28:18.371Z] [ERROR] Error retrieving block children from Notion
+
+[2025-03-19T12:28:18.372Z] [ERROR] Invalid request URL: Invalid request URL.
+[2025-03-19T12:28:18.372Z] [ERROR] Error deleting all children from block "": Invalid request URL.
+[2025-03-19T12:29:27.775Z] [ERROR] Error appending block children to Notion
+
+[2025-03-19T12:29:27.777Z] [ERROR] Validation error: body failed validation. Fix one:
+body.children[0].embed should be defined, instead was `undefined`.
+body.children[0].bookmark should be defined, instead was `undefined`.
+body.children[0].image should be defined, instead was `undefined`.
+body.children[0].video should be defined, instead was `undefined`.
+body.children[0].pdf should be defined, instead was `undefined`.
+body.children[0].file should be defined, instead was `undefined`.
+body.children[0].audio should be defined, instead was `undefined`.
+body.children[0].code should be defined, instead was `undefined`.
+body.children[0].equation should be defined, instead was `undefined`.
+body.children[0].divider should be defined, instead was `undefined`.
+body.children[0].breadcrumb should be defined, instead was `undefined`.
+body.children[0].table_of_contents should be defined, instead was `undefined`.
+body.children[0].link_to_page should be defined, instead was `undefined`.
+body.children[0].table_row should be defined, instead was `undefined`.
+body.children[0].ai_block should be defined, instead was `undefined`.
+body.children[0].table should be defined, instead was `undefined`.
+body.children[0].column_list should be defined, instead was `undefined`.
+body.children[0].column should be defined, instead was `undefined`.
+body.children[0].heading_1 should be defined, instead was `undefined`.
+body.children[0].heading_2 should be defined, instead was `undefined`.
+body.children[0].heading_3 should be defined, instead was `undefined`.
+body.children[0].paragraph should be defined, instead was `undefined`.
+body.children[0].bulleted_list_item should be defined, instead was `undefined`.
+body.children[0].numbered_list_item should be defined, instead was `undefined`.
+body.children[0].quote should be defined, instead was `undefined`.
+body.children[0].to_do should be defined, instead was `undefined`.
+body.children[0].toggle should be defined, instead was `undefined`.
+body.children[0].template should be defined, instead was `undefined`.
+body.children[0].callout should be defined, instead was `undefined`.
+body.children[0].synced_block should be defined, instead was `undefined`.
+[2025-03-19T12:29:27.778Z] [ERROR] Error copying block children from "196b95a4c619815fb5fce417a12af92d" to "1bbb95a4-c619-81bd-8ee5-d68c41ca3c5d": body failed validation. Fix one:
+body.children[0].embed should be defined, instead was `undefined`.
+body.children[0].bookmark should be defined, instead was `undefined`.
+body.children[0].image should be defined, instead was `undefined`.
+body.children[0].video should be defined, instead was `undefined`.
+body.children[0].pdf should be defined, instead was `undefined`.
+body.children[0].file should be defined, instead was `undefined`.
+body.children[0].audio should be defined, instead was `undefined`.
+body.children[0].code should be defined, instead was `undefined`.
+body.children[0].equation should be defined, instead was `undefined`.
+body.children[0].divider should be defined, instead was `undefined`.
+body.children[0].breadcrumb should be defined, instead was `undefined`.
+body.children[0].table_of_contents should be defined, instead was `undefined`.
+body.children[0].link_to_page should be defined, instead was `undefined`.
+body.children[0].table_row should be defined, instead was `undefined`.
+body.children[0].ai_block should be defined, instead was `undefined`.
+body.children[0].table should be defined, instead was `undefined`.
+body.children[0].column_list should be defined, instead was `undefined`.
+body.children[0].column should be defined, instead was `undefined`.
+body.children[0].heading_1 should be defined, instead was `undefined`.
+body.children[0].heading_2 should be defined, instead was `undefined`.
+body.children[0].heading_3 should be defined, instead was `undefined`.
+body.children[0].paragraph should be defined, instead was `undefined`.
+body.children[0].bulleted_list_item should be defined, instead was `undefined`.
+body.children[0].numbered_list_item should be defined, instead was `undefined`.
+body.children[0].quote should be defined, instead was `undefined`.
+body.children[0].to_do should be defined, instead was `undefined`.
+body.children[0].toggle should be defined, instead was `undefined`.
+body.children[0].template should be defined, instead was `undefined`.
+body.children[0].callout should be defined, instead was `undefined`.
+body.children[0].synced_block should be defined, instead was `undefined`.
+[2025-03-19T12:29:27.778Z] [ERROR] Error copying page "196b95a4c619815fb5fce417a12af92d" to "1a9b95a4c61980ef81f2f152d5e366b5": body failed validation. Fix one:
+body.children[0].embed should be defined, instead was `undefined`.
+body.children[0].bookmark should be defined, instead was `undefined`.
+body.children[0].image should be defined, instead was `undefined`.
+body.children[0].video should be defined, instead was `undefined`.
+body.children[0].pdf should be defined, instead was `undefined`.
+body.children[0].file should be defined, instead was `undefined`.
+body.children[0].audio should be defined, instead was `undefined`.
+body.children[0].code should be defined, instead was `undefined`.
+body.children[0].equation should be defined, instead was `undefined`.
+body.children[0].divider should be defined, instead was `undefined`.
+body.children[0].breadcrumb should be defined, instead was `undefined`.
+body.children[0].table_of_contents should be defined, instead was `undefined`.
+body.children[0].link_to_page should be defined, instead was `undefined`.
+body.children[0].table_row should be defined, instead was `undefined`.
+body.children[0].ai_block should be defined, instead was `undefined`.
+body.children[0].table should be defined, instead was `undefined`.
+body.children[0].column_list should be defined, instead was `undefined`.
+body.children[0].column should be defined, instead was `undefined`.
+body.children[0].heading_1 should be defined, instead was `undefined`.
+body.children[0].heading_2 should be defined, instead was `undefined`.
+body.children[0].heading_3 should be defined, instead was `undefined`.
+body.children[0].paragraph should be defined, instead was `undefined`.
+body.children[0].bulleted_list_item should be defined, instead was `undefined`.
+body.children[0].numbered_list_item should be defined, instead was `undefined`.
+body.children[0].quote should be defined, instead was `undefined`.
+body.children[0].to_do should be defined, instead was `undefined`.
+body.children[0].toggle should be defined, instead was `undefined`.
+body.children[0].template should be defined, instead was `undefined`.
+body.children[0].callout should be defined, instead was `undefined`.
+body.children[0].synced_block should be defined, instead was `undefined`.
+[2025-03-19T12:29:27.952Z] [ERROR] Error retrieving block children from Notion
+
+[2025-03-19T12:29:27.953Z] [ERROR] Invalid request URL: Invalid request URL.
+[2025-03-19T12:29:27.953Z] [ERROR] Error deleting all children from block "": Invalid request URL.
+[2025-03-19T12:44:10.555Z] [DEBUG] Retrieved results: [{"object":"block","id":"196b95a4-c619-812f-8a12-f67e3d8bc06d","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"チェックの解答","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"チェックの解答","href":null}],"is_toggleable":false,"color":"pink_background"}},{"object":"block","id":"196b95a4-c619-8112-8739-fd5dc504d795","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"改新の詔","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":true,"code":false,"color":"default"},"plain_text":"改新の詔","href":null}],"is_toggleable":false,"color":"default"}},{"object":"block","id":"196b95a4-c619-81e2-9966-d19fd1ff9435","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"理解のポイント","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"理解のポイント","href":null}],"is_toggleable":false,"color":"yellow_background"}},{"object":"block","id":"196b95a4-c619-816a-bec9-c2114c6af663","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":false,"archived":false,"in_trash":false,"type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","href":null}],"color":"default"}},{"object":"block","id":"196b95a4-c619-810f-bb5b-fff1d6ce0ccd","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"これを抑えれば完璧！","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"これを抑えれば完璧！","href":null}],"is_toggleable":false,"color":"gray_background"}},{"object":"block","id":"196b95a4-c619-812f-89d9-f6ceb7655619","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":true,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","href":null}],"is_toggleable":true,"color":"default"}},{"object":"block","id":"196b95a4-c619-81ba-9d06-e5e580307569","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"練習問題","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"練習問題","href":null}],"is_toggleable":false,"color":"green_background"}},{"object":"block","id":"196b95a4-c619-8173-99eb-e767e4044d49","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":true,"archived":false,"in_trash":false,"type":"toggle","toggle":{"rich_text":[{"type":"text","text":{"content":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","link":null},"annotations":{"bold":true,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","href":null}],"color":"default"}},{"object":"block","id":"196b95a4-c619-81ee-be0a-f376be72c642","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":false,"archived":false,"in_trash":false,"type":"paragraph","paragraph":{"rich_text":[],"color":"default"}}]
+[2025-03-19T12:44:10.741Z] [ERROR] Error appending block children to Notion
+
+[2025-03-19T12:44:10.741Z] [ERROR] Validation error: body failed validation. Fix one:
+body.children[0].embed should be defined, instead was `undefined`.
+body.children[0].bookmark should be defined, instead was `undefined`.
+body.children[0].image should be defined, instead was `undefined`.
+body.children[0].video should be defined, instead was `undefined`.
+body.children[0].pdf should be defined, instead was `undefined`.
+body.children[0].file should be defined, instead was `undefined`.
+body.children[0].audio should be defined, instead was `undefined`.
+body.children[0].code should be defined, instead was `undefined`.
+body.children[0].equation should be defined, instead was `undefined`.
+body.children[0].divider should be defined, instead was `undefined`.
+body.children[0].breadcrumb should be defined, instead was `undefined`.
+body.children[0].table_of_contents should be defined, instead was `undefined`.
+body.children[0].link_to_page should be defined, instead was `undefined`.
+body.children[0].table_row should be defined, instead was `undefined`.
+body.children[0].ai_block should be defined, instead was `undefined`.
+body.children[0].table should be defined, instead was `undefined`.
+body.children[0].column_list should be defined, instead was `undefined`.
+body.children[0].column should be defined, instead was `undefined`.
+body.children[0].heading_1 should be defined, instead was `undefined`.
+body.children[0].heading_2 should be defined, instead was `undefined`.
+body.children[0].heading_3 should be defined, instead was `undefined`.
+body.children[0].paragraph should be defined, instead was `undefined`.
+body.children[0].bulleted_list_item should be defined, instead was `undefined`.
+body.children[0].numbered_list_item should be defined, instead was `undefined`.
+body.children[0].quote should be defined, instead was `undefined`.
+body.children[0].to_do should be defined, instead was `undefined`.
+body.children[0].toggle should be defined, instead was `undefined`.
+body.children[0].template should be defined, instead was `undefined`.
+body.children[0].callout should be defined, instead was `undefined`.
+body.children[0].synced_block should be defined, instead was `undefined`.
+[2025-03-19T12:44:10.742Z] [ERROR] Error copying block children from "196b95a4c619815fb5fce417a12af92d" to "1bbb95a4-c619-81e9-bd44-ffa33fd72a9f": body failed validation. Fix one:
+body.children[0].embed should be defined, instead was `undefined`.
+body.children[0].bookmark should be defined, instead was `undefined`.
+body.children[0].image should be defined, instead was `undefined`.
+body.children[0].video should be defined, instead was `undefined`.
+body.children[0].pdf should be defined, instead was `undefined`.
+body.children[0].file should be defined, instead was `undefined`.
+body.children[0].audio should be defined, instead was `undefined`.
+body.children[0].code should be defined, instead was `undefined`.
+body.children[0].equation should be defined, instead was `undefined`.
+body.children[0].divider should be defined, instead was `undefined`.
+body.children[0].breadcrumb should be defined, instead was `undefined`.
+body.children[0].table_of_contents should be defined, instead was `undefined`.
+body.children[0].link_to_page should be defined, instead was `undefined`.
+body.children[0].table_row should be defined, instead was `undefined`.
+body.children[0].ai_block should be defined, instead was `undefined`.
+body.children[0].table should be defined, instead was `undefined`.
+body.children[0].column_list should be defined, instead was `undefined`.
+body.children[0].column should be defined, instead was `undefined`.
+body.children[0].heading_1 should be defined, instead was `undefined`.
+body.children[0].heading_2 should be defined, instead was `undefined`.
+body.children[0].heading_3 should be defined, instead was `undefined`.
+body.children[0].paragraph should be defined, instead was `undefined`.
+body.children[0].bulleted_list_item should be defined, instead was `undefined`.
+body.children[0].numbered_list_item should be defined, instead was `undefined`.
+body.children[0].quote should be defined, instead was `undefined`.
+body.children[0].to_do should be defined, instead was `undefined`.
+body.children[0].toggle should be defined, instead was `undefined`.
+body.children[0].template should be defined, instead was `undefined`.
+body.children[0].callout should be defined, instead was `undefined`.
+body.children[0].synced_block should be defined, instead was `undefined`.
+[2025-03-19T12:44:10.742Z] [ERROR] Error copying page "196b95a4c619815fb5fce417a12af92d" to "1a9b95a4c61980ef81f2f152d5e366b5": body failed validation. Fix one:
+body.children[0].embed should be defined, instead was `undefined`.
+body.children[0].bookmark should be defined, instead was `undefined`.
+body.children[0].image should be defined, instead was `undefined`.
+body.children[0].video should be defined, instead was `undefined`.
+body.children[0].pdf should be defined, instead was `undefined`.
+body.children[0].file should be defined, instead was `undefined`.
+body.children[0].audio should be defined, instead was `undefined`.
+body.children[0].code should be defined, instead was `undefined`.
+body.children[0].equation should be defined, instead was `undefined`.
+body.children[0].divider should be defined, instead was `undefined`.
+body.children[0].breadcrumb should be defined, instead was `undefined`.
+body.children[0].table_of_contents should be defined, instead was `undefined`.
+body.children[0].link_to_page should be defined, instead was `undefined`.
+body.children[0].table_row should be defined, instead was `undefined`.
+body.children[0].ai_block should be defined, instead was `undefined`.
+body.children[0].table should be defined, instead was `undefined`.
+body.children[0].column_list should be defined, instead was `undefined`.
+body.children[0].column should be defined, instead was `undefined`.
+body.children[0].heading_1 should be defined, instead was `undefined`.
+body.children[0].heading_2 should be defined, instead was `undefined`.
+body.children[0].heading_3 should be defined, instead was `undefined`.
+body.children[0].paragraph should be defined, instead was `undefined`.
+body.children[0].bulleted_list_item should be defined, instead was `undefined`.
+body.children[0].numbered_list_item should be defined, instead was `undefined`.
+body.children[0].quote should be defined, instead was `undefined`.
+body.children[0].to_do should be defined, instead was `undefined`.
+body.children[0].toggle should be defined, instead was `undefined`.
+body.children[0].template should be defined, instead was `undefined`.
+body.children[0].callout should be defined, instead was `undefined`.
+body.children[0].synced_block should be defined, instead was `undefined`.
+[2025-03-19T12:45:25.710Z] [DEBUG] Retrieved results: [{"object":"block","id":"196b95a4-c619-812f-8a12-f67e3d8bc06d","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"チェックの解答","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"チェックの解答","href":null}],"is_toggleable":false,"color":"pink_background"}},{"object":"block","id":"196b95a4-c619-8112-8739-fd5dc504d795","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"改新の詔","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":true,"code":false,"color":"default"},"plain_text":"改新の詔","href":null}],"is_toggleable":false,"color":"default"}},{"object":"block","id":"196b95a4-c619-81e2-9966-d19fd1ff9435","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"理解のポイント","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"理解のポイント","href":null}],"is_toggleable":false,"color":"yellow_background"}},{"object":"block","id":"196b95a4-c619-816a-bec9-c2114c6af663","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":false,"archived":false,"in_trash":false,"type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","href":null}],"color":"default"}},{"object":"block","id":"196b95a4-c619-810f-bb5b-fff1d6ce0ccd","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"これを抑えれば完璧！","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"これを抑えれば完璧！","href":null}],"is_toggleable":false,"color":"gray_background"}},{"object":"block","id":"196b95a4-c619-812f-89d9-f6ceb7655619","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":true,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","href":null}],"is_toggleable":true,"color":"default"}},{"object":"block","id":"196b95a4-c619-81ba-9d06-e5e580307569","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"練習問題","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"練習問題","href":null}],"is_toggleable":false,"color":"green_background"}},{"object":"block","id":"196b95a4-c619-8173-99eb-e767e4044d49","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":true,"archived":false,"in_trash":false,"type":"toggle","toggle":{"rich_text":[{"type":"text","text":{"content":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","link":null},"annotations":{"bold":true,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","href":null}],"color":"default"}},{"object":"block","id":"196b95a4-c619-81ee-be0a-f376be72c642","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":false,"archived":false,"in_trash":false,"type":"paragraph","paragraph":{"rich_text":[],"color":"default"}}]
+[2025-03-19T12:45:26.267Z] [ERROR] Error appending block children to Notion
+
+[2025-03-19T12:45:32.596Z] [DEBUG] Retrieved results: [{"object":"block","id":"196b95a4-c619-812f-8a12-f67e3d8bc06d","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"チェックの解答","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"チェックの解答","href":null}],"is_toggleable":false,"color":"pink_background"}},{"object":"block","id":"196b95a4-c619-8112-8739-fd5dc504d795","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"改新の詔","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":true,"code":false,"color":"default"},"plain_text":"改新の詔","href":null}],"is_toggleable":false,"color":"default"}},{"object":"block","id":"196b95a4-c619-81e2-9966-d19fd1ff9435","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"理解のポイント","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"理解のポイント","href":null}],"is_toggleable":false,"color":"yellow_background"}},{"object":"block","id":"196b95a4-c619-816a-bec9-c2114c6af663","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":false,"archived":false,"in_trash":false,"type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","href":null}],"color":"default"}},{"object":"block","id":"196b95a4-c619-810f-bb5b-fff1d6ce0ccd","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"これを抑えれば完璧！","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"これを抑えれば完璧！","href":null}],"is_toggleable":false,"color":"gray_background"}},{"object":"block","id":"196b95a4-c619-812f-89d9-f6ceb7655619","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":true,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","href":null}],"is_toggleable":true,"color":"default"}},{"object":"block","id":"196b95a4-c619-81ba-9d06-e5e580307569","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"練習問題","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"練習問題","href":null}],"is_toggleable":false,"color":"green_background"}},{"object":"block","id":"196b95a4-c619-8173-99eb-e767e4044d49","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":true,"archived":false,"in_trash":false,"type":"toggle","toggle":{"rich_text":[{"type":"text","text":{"content":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","link":null},"annotations":{"bold":true,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","href":null}],"color":"default"}},{"object":"block","id":"196b95a4-c619-81ee-be0a-f376be72c642","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":false,"archived":false,"in_trash":false,"type":"paragraph","paragraph":{"rich_text":[],"color":"default"}}]
+[2025-03-19T12:45:32.598Z] [DEBUG] 
+[2025-03-19T12:45:32.783Z] [ERROR] Error appending block children to Notion
+
+[2025-03-19T12:45:32.784Z] [ERROR] Validation error: body failed validation. Fix one:
+body.children[0].embed should be defined, instead was `undefined`.
+body.children[0].bookmark should be defined, instead was `undefined`.
+body.children[0].image should be defined, instead was `undefined`.
+body.children[0].video should be defined, instead was `undefined`.
+body.children[0].pdf should be defined, instead was `undefined`.
+body.children[0].file should be defined, instead was `undefined`.
+body.children[0].audio should be defined, instead was `undefined`.
+body.children[0].code should be defined, instead was `undefined`.
+body.children[0].equation should be defined, instead was `undefined`.
+body.children[0].divider should be defined, instead was `undefined`.
+body.children[0].breadcrumb should be defined, instead was `undefined`.
+body.children[0].table_of_contents should be defined, instead was `undefined`.
+body.children[0].link_to_page should be defined, instead was `undefined`.
+body.children[0].table_row should be defined, instead was `undefined`.
+body.children[0].ai_block should be defined, instead was `undefined`.
+body.children[0].table should be defined, instead was `undefined`.
+body.children[0].column_list should be defined, instead was `undefined`.
+body.children[0].column should be defined, instead was `undefined`.
+body.children[0].heading_1 should be defined, instead was `undefined`.
+body.children[0].heading_2 should be defined, instead was `undefined`.
+body.children[0].heading_3 should be defined, instead was `undefined`.
+body.children[0].paragraph should be defined, instead was `undefined`.
+body.children[0].bulleted_list_item should be defined, instead was `undefined`.
+body.children[0].numbered_list_item should be defined, instead was `undefined`.
+body.children[0].quote should be defined, instead was `undefined`.
+body.children[0].to_do should be defined, instead was `undefined`.
+body.children[0].toggle should be defined, instead was `undefined`.
+body.children[0].template should be defined, instead was `undefined`.
+body.children[0].callout should be defined, instead was `undefined`.
+body.children[0].synced_block should be defined, instead was `undefined`.
+[2025-03-19T12:45:32.784Z] [ERROR] Error copying block children from "196b95a4c619815fb5fce417a12af92d" to "1bbb95a4-c619-8166-968f-fcf23e6775e6": body failed validation. Fix one:
+body.children[0].embed should be defined, instead was `undefined`.
+body.children[0].bookmark should be defined, instead was `undefined`.
+body.children[0].image should be defined, instead was `undefined`.
+body.children[0].video should be defined, instead was `undefined`.
+body.children[0].pdf should be defined, instead was `undefined`.
+body.children[0].file should be defined, instead was `undefined`.
+body.children[0].audio should be defined, instead was `undefined`.
+body.children[0].code should be defined, instead was `undefined`.
+body.children[0].equation should be defined, instead was `undefined`.
+body.children[0].divider should be defined, instead was `undefined`.
+body.children[0].breadcrumb should be defined, instead was `undefined`.
+body.children[0].table_of_contents should be defined, instead was `undefined`.
+body.children[0].link_to_page should be defined, instead was `undefined`.
+body.children[0].table_row should be defined, instead was `undefined`.
+body.children[0].ai_block should be defined, instead was `undefined`.
+body.children[0].table should be defined, instead was `undefined`.
+body.children[0].column_list should be defined, instead was `undefined`.
+body.children[0].column should be defined, instead was `undefined`.
+body.children[0].heading_1 should be defined, instead was `undefined`.
+body.children[0].heading_2 should be defined, instead was `undefined`.
+body.children[0].heading_3 should be defined, instead was `undefined`.
+body.children[0].paragraph should be defined, instead was `undefined`.
+body.children[0].bulleted_list_item should be defined, instead was `undefined`.
+body.children[0].numbered_list_item should be defined, instead was `undefined`.
+body.children[0].quote should be defined, instead was `undefined`.
+body.children[0].to_do should be defined, instead was `undefined`.
+body.children[0].toggle should be defined, instead was `undefined`.
+body.children[0].template should be defined, instead was `undefined`.
+body.children[0].callout should be defined, instead was `undefined`.
+body.children[0].synced_block should be defined, instead was `undefined`.
+[2025-03-19T12:45:32.784Z] [ERROR] Error copying page "196b95a4c619815fb5fce417a12af92d" to "1a9b95a4c61980ef81f2f152d5e366b5": body failed validation. Fix one:
+body.children[0].embed should be defined, instead was `undefined`.
+body.children[0].bookmark should be defined, instead was `undefined`.
+body.children[0].image should be defined, instead was `undefined`.
+body.children[0].video should be defined, instead was `undefined`.
+body.children[0].pdf should be defined, instead was `undefined`.
+body.children[0].file should be defined, instead was `undefined`.
+body.children[0].audio should be defined, instead was `undefined`.
+body.children[0].code should be defined, instead was `undefined`.
+body.children[0].equation should be defined, instead was `undefined`.
+body.children[0].divider should be defined, instead was `undefined`.
+body.children[0].breadcrumb should be defined, instead was `undefined`.
+body.children[0].table_of_contents should be defined, instead was `undefined`.
+body.children[0].link_to_page should be defined, instead was `undefined`.
+body.children[0].table_row should be defined, instead was `undefined`.
+body.children[0].ai_block should be defined, instead was `undefined`.
+body.children[0].table should be defined, instead was `undefined`.
+body.children[0].column_list should be defined, instead was `undefined`.
+body.children[0].column should be defined, instead was `undefined`.
+body.children[0].heading_1 should be defined, instead was `undefined`.
+body.children[0].heading_2 should be defined, instead was `undefined`.
+body.children[0].heading_3 should be defined, instead was `undefined`.
+body.children[0].paragraph should be defined, instead was `undefined`.
+body.children[0].bulleted_list_item should be defined, instead was `undefined`.
+body.children[0].numbered_list_item should be defined, instead was `undefined`.
+body.children[0].quote should be defined, instead was `undefined`.
+body.children[0].to_do should be defined, instead was `undefined`.
+body.children[0].toggle should be defined, instead was `undefined`.
+body.children[0].template should be defined, instead was `undefined`.
+body.children[0].callout should be defined, instead was `undefined`.
+body.children[0].synced_block should be defined, instead was `undefined`.
+[2025-03-19T12:45:43.721Z] [DEBUG] Retrieved results: [{"object":"block","id":"196b95a4-c619-812f-8a12-f67e3d8bc06d","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"チェックの解答","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"チェックの解答","href":null}],"is_toggleable":false,"color":"pink_background"}},{"object":"block","id":"196b95a4-c619-8112-8739-fd5dc504d795","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"改新の詔","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":true,"code":false,"color":"default"},"plain_text":"改新の詔","href":null}],"is_toggleable":false,"color":"default"}},{"object":"block","id":"196b95a4-c619-81e2-9966-d19fd1ff9435","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"理解のポイント","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"理解のポイント","href":null}],"is_toggleable":false,"color":"yellow_background"}},{"object":"block","id":"196b95a4-c619-816a-bec9-c2114c6af663","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":false,"archived":false,"in_trash":false,"type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","href":null}],"color":"default"}},{"object":"block","id":"196b95a4-c619-810f-bb5b-fff1d6ce0ccd","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"これを抑えれば完璧！","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"これを抑えれば完璧！","href":null}],"is_toggleable":false,"color":"gray_background"}},{"object":"block","id":"196b95a4-c619-812f-89d9-f6ceb7655619","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":true,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","href":null}],"is_toggleable":true,"color":"default"}},{"object":"block","id":"196b95a4-c619-81ba-9d06-e5e580307569","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"練習問題","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"練習問題","href":null}],"is_toggleable":false,"color":"green_background"}},{"object":"block","id":"196b95a4-c619-8173-99eb-e767e4044d49","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":true,"archived":false,"in_trash":false,"type":"toggle","toggle":{"rich_text":[{"type":"text","text":{"content":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","link":null},"annotations":{"bold":true,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","href":null}],"color":"default"}},{"object":"block","id":"196b95a4-c619-81ee-be0a-f376be72c642","parent":{"type":"page_id","page_id":"196b95a4-c619-815f-b5fc-e417a12af92d"},"created_time":"2025-02-10T15:50:00.000Z","last_edited_time":"2025-02-10T15:50:00.000Z","created_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"last_edited_by":{"object":"user","id":"ab77139c-fd94-425a-aa7a-6f3352c19995"},"has_children":false,"archived":false,"in_trash":false,"type":"paragraph","paragraph":{"rich_text":[],"color":"default"}}]
+[2025-03-19T12:45:43.724Z] [DEBUG] New children: [{"rich_text":[{"type":"text","text":{"content":"チェックの解答","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"チェックの解答","href":null}],"is_toggleable":false,"color":"pink_background"},{"rich_text":[{"type":"text","text":{"content":"改新の詔","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":true,"code":false,"color":"default"},"plain_text":"改新の詔","href":null}],"is_toggleable":false,"color":"default"},{"rich_text":[{"type":"text","text":{"content":"理解のポイント","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"理解のポイント","href":null}],"is_toggleable":false,"color":"yellow_background"},{"rich_text":[{"type":"text","text":{"content":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","href":null}],"color":"default"},{"rich_text":[{"type":"text","text":{"content":"これを抑えれば完璧！","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"これを抑えれば完璧！","href":null}],"is_toggleable":false,"color":"gray_background"},{"rich_text":[{"type":"text","text":{"content":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","href":null}],"is_toggleable":true,"color":"default"},{"rich_text":[{"type":"text","text":{"content":"練習問題","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"練習問題","href":null}],"is_toggleable":false,"color":"green_background"},{"rich_text":[{"type":"text","text":{"content":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","link":null},"annotations":{"bold":true,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","href":null}],"color":"default"},{"rich_text":[],"color":"default"}]
+[2025-03-19T12:45:43.945Z] [ERROR] Error appending block children to Notion
+
+[2025-03-19T12:45:43.946Z] [ERROR] Validation error: body failed validation. Fix one:
+body.children[0].embed should be defined, instead was `undefined`.
+body.children[0].bookmark should be defined, instead was `undefined`.
+body.children[0].image should be defined, instead was `undefined`.
+body.children[0].video should be defined, instead was `undefined`.
+body.children[0].pdf should be defined, instead was `undefined`.
+body.children[0].file should be defined, instead was `undefined`.
+body.children[0].audio should be defined, instead was `undefined`.
+body.children[0].code should be defined, instead was `undefined`.
+body.children[0].equation should be defined, instead was `undefined`.
+body.children[0].divider should be defined, instead was `undefined`.
+body.children[0].breadcrumb should be defined, instead was `undefined`.
+body.children[0].table_of_contents should be defined, instead was `undefined`.
+body.children[0].link_to_page should be defined, instead was `undefined`.
+body.children[0].table_row should be defined, instead was `undefined`.
+body.children[0].ai_block should be defined, instead was `undefined`.
+body.children[0].table should be defined, instead was `undefined`.
+body.children[0].column_list should be defined, instead was `undefined`.
+body.children[0].column should be defined, instead was `undefined`.
+body.children[0].heading_1 should be defined, instead was `undefined`.
+body.children[0].heading_2 should be defined, instead was `undefined`.
+body.children[0].heading_3 should be defined, instead was `undefined`.
+body.children[0].paragraph should be defined, instead was `undefined`.
+body.children[0].bulleted_list_item should be defined, instead was `undefined`.
+body.children[0].numbered_list_item should be defined, instead was `undefined`.
+body.children[0].quote should be defined, instead was `undefined`.
+body.children[0].to_do should be defined, instead was `undefined`.
+body.children[0].toggle should be defined, instead was `undefined`.
+body.children[0].template should be defined, instead was `undefined`.
+body.children[0].callout should be defined, instead was `undefined`.
+body.children[0].synced_block should be defined, instead was `undefined`.
+[2025-03-19T12:45:43.946Z] [ERROR] Error copying block children from "196b95a4c619815fb5fce417a12af92d" to "1bbb95a4-c619-81fa-87f4-ce47c6125f98": body failed validation. Fix one:
+body.children[0].embed should be defined, instead was `undefined`.
+body.children[0].bookmark should be defined, instead was `undefined`.
+body.children[0].image should be defined, instead was `undefined`.
+body.children[0].video should be defined, instead was `undefined`.
+body.children[0].pdf should be defined, instead was `undefined`.
+body.children[0].file should be defined, instead was `undefined`.
+body.children[0].audio should be defined, instead was `undefined`.
+body.children[0].code should be defined, instead was `undefined`.
+body.children[0].equation should be defined, instead was `undefined`.
+body.children[0].divider should be defined, instead was `undefined`.
+body.children[0].breadcrumb should be defined, instead was `undefined`.
+body.children[0].table_of_contents should be defined, instead was `undefined`.
+body.children[0].link_to_page should be defined, instead was `undefined`.
+body.children[0].table_row should be defined, instead was `undefined`.
+body.children[0].ai_block should be defined, instead was `undefined`.
+body.children[0].table should be defined, instead was `undefined`.
+body.children[0].column_list should be defined, instead was `undefined`.
+body.children[0].column should be defined, instead was `undefined`.
+body.children[0].heading_1 should be defined, instead was `undefined`.
+body.children[0].heading_2 should be defined, instead was `undefined`.
+body.children[0].heading_3 should be defined, instead was `undefined`.
+body.children[0].paragraph should be defined, instead was `undefined`.
+body.children[0].bulleted_list_item should be defined, instead was `undefined`.
+body.children[0].numbered_list_item should be defined, instead was `undefined`.
+body.children[0].quote should be defined, instead was `undefined`.
+body.children[0].to_do should be defined, instead was `undefined`.
+body.children[0].toggle should be defined, instead was `undefined`.
+body.children[0].template should be defined, instead was `undefined`.
+body.children[0].callout should be defined, instead was `undefined`.
+body.children[0].synced_block should be defined, instead was `undefined`.
+[2025-03-19T12:45:43.946Z] [ERROR] Error copying page "196b95a4c619815fb5fce417a12af92d" to "1a9b95a4c61980ef81f2f152d5e366b5": body failed validation. Fix one:
+body.children[0].embed should be defined, instead was `undefined`.
+body.children[0].bookmark should be defined, instead was `undefined`.
+body.children[0].image should be defined, instead was `undefined`.
+body.children[0].video should be defined, instead was `undefined`.
+body.children[0].pdf should be defined, instead was `undefined`.
+body.children[0].file should be defined, instead was `undefined`.
+body.children[0].audio should be defined, instead was `undefined`.
+body.children[0].code should be defined, instead was `undefined`.
+body.children[0].equation should be defined, instead was `undefined`.
+body.children[0].divider should be defined, instead was `undefined`.
+body.children[0].breadcrumb should be defined, instead was `undefined`.
+body.children[0].table_of_contents should be defined, instead was `undefined`.
+body.children[0].link_to_page should be defined, instead was `undefined`.
+body.children[0].table_row should be defined, instead was `undefined`.
+body.children[0].ai_block should be defined, instead was `undefined`.
+body.children[0].table should be defined, instead was `undefined`.
+body.children[0].column_list should be defined, instead was `undefined`.
+body.children[0].column should be defined, instead was `undefined`.
+body.children[0].heading_1 should be defined, instead was `undefined`.
+body.children[0].heading_2 should be defined, instead was `undefined`.
+body.children[0].heading_3 should be defined, instead was `undefined`.
+body.children[0].paragraph should be defined, instead was `undefined`.
+body.children[0].bulleted_list_item should be defined, instead was `undefined`.
+body.children[0].numbered_list_item should be defined, instead was `undefined`.
+body.children[0].quote should be defined, instead was `undefined`.
+body.children[0].to_do should be defined, instead was `undefined`.
+body.children[0].toggle should be defined, instead was `undefined`.
+body.children[0].template should be defined, instead was `undefined`.
+body.children[0].callout should be defined, instead was `undefined`.
+body.children[0].synced_block should be defined, instead was `undefined`.
+[2025-03-19T12:47:42.654Z] [DEBUG] New children: [{"rich_text":[{"type":"text","text":{"content":"チェックの解答","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"チェックの解答","href":null}],"is_toggleable":false,"color":"pink_background"},{"rich_text":[{"type":"text","text":{"content":"改新の詔","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":true,"code":false,"color":"default"},"plain_text":"改新の詔","href":null}],"is_toggleable":false,"color":"default"},{"rich_text":[{"type":"text","text":{"content":"理解のポイント","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"理解のポイント","href":null}],"is_toggleable":false,"color":"yellow_background"},{"rich_text":[{"type":"text","text":{"content":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","href":null}],"color":"default"},{"rich_text":[{"type":"text","text":{"content":"これを抑えれば完璧！","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"これを抑えれば完璧！","href":null}],"is_toggleable":false,"color":"gray_background"},{"rich_text":[{"type":"text","text":{"content":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","href":null}],"is_toggleable":true,"color":"default"},{"rich_text":[{"type":"text","text":{"content":"練習問題","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"練習問題","href":null}],"is_toggleable":false,"color":"green_background"},{"rich_text":[{"type":"text","text":{"content":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","link":null},"annotations":{"bold":true,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","href":null}],"color":"default"},{"rich_text":[],"color":"default"}]
+[2025-03-19T12:47:42.840Z] [ERROR] Error appending block children to Notion
+
+[2025-03-19T12:47:42.840Z] [ERROR] Validation error: body failed validation. Fix one:
+body.children[0].embed should be defined, instead was `undefined`.
+body.children[0].bookmark should be defined, instead was `undefined`.
+body.children[0].image should be defined, instead was `undefined`.
+body.children[0].video should be defined, instead was `undefined`.
+body.children[0].pdf should be defined, instead was `undefined`.
+body.children[0].file should be defined, instead was `undefined`.
+body.children[0].audio should be defined, instead was `undefined`.
+body.children[0].code should be defined, instead was `undefined`.
+body.children[0].equation should be defined, instead was `undefined`.
+body.children[0].divider should be defined, instead was `undefined`.
+body.children[0].breadcrumb should be defined, instead was `undefined`.
+body.children[0].table_of_contents should be defined, instead was `undefined`.
+body.children[0].link_to_page should be defined, instead was `undefined`.
+body.children[0].table_row should be defined, instead was `undefined`.
+body.children[0].ai_block should be defined, instead was `undefined`.
+body.children[0].table should be defined, instead was `undefined`.
+body.children[0].column_list should be defined, instead was `undefined`.
+body.children[0].column should be defined, instead was `undefined`.
+body.children[0].heading_1 should be defined, instead was `undefined`.
+body.children[0].heading_2 should be defined, instead was `undefined`.
+body.children[0].heading_3 should be defined, instead was `undefined`.
+body.children[0].paragraph should be defined, instead was `undefined`.
+body.children[0].bulleted_list_item should be defined, instead was `undefined`.
+body.children[0].numbered_list_item should be defined, instead was `undefined`.
+body.children[0].quote should be defined, instead was `undefined`.
+body.children[0].to_do should be defined, instead was `undefined`.
+body.children[0].toggle should be defined, instead was `undefined`.
+body.children[0].template should be defined, instead was `undefined`.
+body.children[0].callout should be defined, instead was `undefined`.
+body.children[0].synced_block should be defined, instead was `undefined`.
+[2025-03-19T12:47:42.840Z] [ERROR] Error copying block children from "196b95a4c619815fb5fce417a12af92d" to "1bbb95a4-c619-8192-adae-f610f2cab771": body failed validation. Fix one:
+body.children[0].embed should be defined, instead was `undefined`.
+body.children[0].bookmark should be defined, instead was `undefined`.
+body.children[0].image should be defined, instead was `undefined`.
+body.children[0].video should be defined, instead was `undefined`.
+body.children[0].pdf should be defined, instead was `undefined`.
+body.children[0].file should be defined, instead was `undefined`.
+body.children[0].audio should be defined, instead was `undefined`.
+body.children[0].code should be defined, instead was `undefined`.
+body.children[0].equation should be defined, instead was `undefined`.
+body.children[0].divider should be defined, instead was `undefined`.
+body.children[0].breadcrumb should be defined, instead was `undefined`.
+body.children[0].table_of_contents should be defined, instead was `undefined`.
+body.children[0].link_to_page should be defined, instead was `undefined`.
+body.children[0].table_row should be defined, instead was `undefined`.
+body.children[0].ai_block should be defined, instead was `undefined`.
+body.children[0].table should be defined, instead was `undefined`.
+body.children[0].column_list should be defined, instead was `undefined`.
+body.children[0].column should be defined, instead was `undefined`.
+body.children[0].heading_1 should be defined, instead was `undefined`.
+body.children[0].heading_2 should be defined, instead was `undefined`.
+body.children[0].heading_3 should be defined, instead was `undefined`.
+body.children[0].paragraph should be defined, instead was `undefined`.
+body.children[0].bulleted_list_item should be defined, instead was `undefined`.
+body.children[0].numbered_list_item should be defined, instead was `undefined`.
+body.children[0].quote should be defined, instead was `undefined`.
+body.children[0].to_do should be defined, instead was `undefined`.
+body.children[0].toggle should be defined, instead was `undefined`.
+body.children[0].template should be defined, instead was `undefined`.
+body.children[0].callout should be defined, instead was `undefined`.
+body.children[0].synced_block should be defined, instead was `undefined`.
+[2025-03-19T12:47:42.840Z] [ERROR] Error copying page "196b95a4c619815fb5fce417a12af92d" to "1a9b95a4c61980ef81f2f152d5e366b5": body failed validation. Fix one:
+body.children[0].embed should be defined, instead was `undefined`.
+body.children[0].bookmark should be defined, instead was `undefined`.
+body.children[0].image should be defined, instead was `undefined`.
+body.children[0].video should be defined, instead was `undefined`.
+body.children[0].pdf should be defined, instead was `undefined`.
+body.children[0].file should be defined, instead was `undefined`.
+body.children[0].audio should be defined, instead was `undefined`.
+body.children[0].code should be defined, instead was `undefined`.
+body.children[0].equation should be defined, instead was `undefined`.
+body.children[0].divider should be defined, instead was `undefined`.
+body.children[0].breadcrumb should be defined, instead was `undefined`.
+body.children[0].table_of_contents should be defined, instead was `undefined`.
+body.children[0].link_to_page should be defined, instead was `undefined`.
+body.children[0].table_row should be defined, instead was `undefined`.
+body.children[0].ai_block should be defined, instead was `undefined`.
+body.children[0].table should be defined, instead was `undefined`.
+body.children[0].column_list should be defined, instead was `undefined`.
+body.children[0].column should be defined, instead was `undefined`.
+body.children[0].heading_1 should be defined, instead was `undefined`.
+body.children[0].heading_2 should be defined, instead was `undefined`.
+body.children[0].heading_3 should be defined, instead was `undefined`.
+body.children[0].paragraph should be defined, instead was `undefined`.
+body.children[0].bulleted_list_item should be defined, instead was `undefined`.
+body.children[0].numbered_list_item should be defined, instead was `undefined`.
+body.children[0].quote should be defined, instead was `undefined`.
+body.children[0].to_do should be defined, instead was `undefined`.
+body.children[0].toggle should be defined, instead was `undefined`.
+body.children[0].template should be defined, instead was `undefined`.
+body.children[0].callout should be defined, instead was `undefined`.
+body.children[0].synced_block should be defined, instead was `undefined`.
+[2025-03-19T12:49:26.179Z] [DEBUG] New children: [{},{},{},{},{},{},{},{},{}]
+[2025-03-19T12:49:26.352Z] [ERROR] Error appending block children to Notion
+
+[2025-03-19T12:49:26.353Z] [ERROR] Validation error: body failed validation. Fix one:
+body.children[0].embed should be defined, instead was `undefined`.
+body.children[0].bookmark should be defined, instead was `undefined`.
+body.children[0].image should be defined, instead was `undefined`.
+body.children[0].video should be defined, instead was `undefined`.
+body.children[0].pdf should be defined, instead was `undefined`.
+body.children[0].file should be defined, instead was `undefined`.
+body.children[0].audio should be defined, instead was `undefined`.
+body.children[0].code should be defined, instead was `undefined`.
+body.children[0].equation should be defined, instead was `undefined`.
+body.children[0].divider should be defined, instead was `undefined`.
+body.children[0].breadcrumb should be defined, instead was `undefined`.
+body.children[0].table_of_contents should be defined, instead was `undefined`.
+body.children[0].link_to_page should be defined, instead was `undefined`.
+body.children[0].table_row should be defined, instead was `undefined`.
+body.children[0].ai_block should be defined, instead was `undefined`.
+body.children[0].table should be defined, instead was `undefined`.
+body.children[0].column_list should be defined, instead was `undefined`.
+body.children[0].column should be defined, instead was `undefined`.
+body.children[0].heading_1 should be defined, instead was `undefined`.
+body.children[0].heading_2 should be defined, instead was `undefined`.
+body.children[0].heading_3 should be defined, instead was `undefined`.
+body.children[0].paragraph should be defined, instead was `undefined`.
+body.children[0].bulleted_list_item should be defined, instead was `undefined`.
+body.children[0].numbered_list_item should be defined, instead was `undefined`.
+body.children[0].quote should be defined, instead was `undefined`.
+body.children[0].to_do should be defined, instead was `undefined`.
+body.children[0].toggle should be defined, instead was `undefined`.
+body.children[0].template should be defined, instead was `undefined`.
+body.children[0].callout should be defined, instead was `undefined`.
+body.children[0].synced_block should be defined, instead was `undefined`.
+[2025-03-19T12:49:26.354Z] [ERROR] Error copying block children from "196b95a4c619815fb5fce417a12af92d" to "1bbb95a4-c619-81dc-8681-ea1b752acd4b": body failed validation. Fix one:
+body.children[0].embed should be defined, instead was `undefined`.
+body.children[0].bookmark should be defined, instead was `undefined`.
+body.children[0].image should be defined, instead was `undefined`.
+body.children[0].video should be defined, instead was `undefined`.
+body.children[0].pdf should be defined, instead was `undefined`.
+body.children[0].file should be defined, instead was `undefined`.
+body.children[0].audio should be defined, instead was `undefined`.
+body.children[0].code should be defined, instead was `undefined`.
+body.children[0].equation should be defined, instead was `undefined`.
+body.children[0].divider should be defined, instead was `undefined`.
+body.children[0].breadcrumb should be defined, instead was `undefined`.
+body.children[0].table_of_contents should be defined, instead was `undefined`.
+body.children[0].link_to_page should be defined, instead was `undefined`.
+body.children[0].table_row should be defined, instead was `undefined`.
+body.children[0].ai_block should be defined, instead was `undefined`.
+body.children[0].table should be defined, instead was `undefined`.
+body.children[0].column_list should be defined, instead was `undefined`.
+body.children[0].column should be defined, instead was `undefined`.
+body.children[0].heading_1 should be defined, instead was `undefined`.
+body.children[0].heading_2 should be defined, instead was `undefined`.
+body.children[0].heading_3 should be defined, instead was `undefined`.
+body.children[0].paragraph should be defined, instead was `undefined`.
+body.children[0].bulleted_list_item should be defined, instead was `undefined`.
+body.children[0].numbered_list_item should be defined, instead was `undefined`.
+body.children[0].quote should be defined, instead was `undefined`.
+body.children[0].to_do should be defined, instead was `undefined`.
+body.children[0].toggle should be defined, instead was `undefined`.
+body.children[0].template should be defined, instead was `undefined`.
+body.children[0].callout should be defined, instead was `undefined`.
+body.children[0].synced_block should be defined, instead was `undefined`.
+[2025-03-19T12:49:26.355Z] [ERROR] Error copying page "196b95a4c619815fb5fce417a12af92d" to "1a9b95a4c61980ef81f2f152d5e366b5": body failed validation. Fix one:
+body.children[0].embed should be defined, instead was `undefined`.
+body.children[0].bookmark should be defined, instead was `undefined`.
+body.children[0].image should be defined, instead was `undefined`.
+body.children[0].video should be defined, instead was `undefined`.
+body.children[0].pdf should be defined, instead was `undefined`.
+body.children[0].file should be defined, instead was `undefined`.
+body.children[0].audio should be defined, instead was `undefined`.
+body.children[0].code should be defined, instead was `undefined`.
+body.children[0].equation should be defined, instead was `undefined`.
+body.children[0].divider should be defined, instead was `undefined`.
+body.children[0].breadcrumb should be defined, instead was `undefined`.
+body.children[0].table_of_contents should be defined, instead was `undefined`.
+body.children[0].link_to_page should be defined, instead was `undefined`.
+body.children[0].table_row should be defined, instead was `undefined`.
+body.children[0].ai_block should be defined, instead was `undefined`.
+body.children[0].table should be defined, instead was `undefined`.
+body.children[0].column_list should be defined, instead was `undefined`.
+body.children[0].column should be defined, instead was `undefined`.
+body.children[0].heading_1 should be defined, instead was `undefined`.
+body.children[0].heading_2 should be defined, instead was `undefined`.
+body.children[0].heading_3 should be defined, instead was `undefined`.
+body.children[0].paragraph should be defined, instead was `undefined`.
+body.children[0].bulleted_list_item should be defined, instead was `undefined`.
+body.children[0].numbered_list_item should be defined, instead was `undefined`.
+body.children[0].quote should be defined, instead was `undefined`.
+body.children[0].to_do should be defined, instead was `undefined`.
+body.children[0].toggle should be defined, instead was `undefined`.
+body.children[0].template should be defined, instead was `undefined`.
+body.children[0].callout should be defined, instead was `undefined`.
+body.children[0].synced_block should be defined, instead was `undefined`.
+[2025-03-19T12:49:32.831Z] [DEBUG] New children: [{"type":"heading_3"},{"type":"heading_3"},{"type":"heading_3"},{"type":"paragraph"},{"type":"heading_3"},{"type":"heading_3"},{"type":"heading_3"},{"type":"toggle"},{"type":"paragraph"}]
+[2025-03-19T12:49:33.000Z] [ERROR] Error appending block children to Notion
+
+[2025-03-19T12:49:33.001Z] [ERROR] Validation error: body failed validation. Fix one:
+body.children[0].embed should be defined, instead was `undefined`.
+body.children[0].bookmark should be defined, instead was `undefined`.
+body.children[0].image should be defined, instead was `undefined`.
+body.children[0].video should be defined, instead was `undefined`.
+body.children[0].pdf should be defined, instead was `undefined`.
+body.children[0].file should be defined, instead was `undefined`.
+body.children[0].audio should be defined, instead was `undefined`.
+body.children[0].code should be defined, instead was `undefined`.
+body.children[0].equation should be defined, instead was `undefined`.
+body.children[0].divider should be defined, instead was `undefined`.
+body.children[0].breadcrumb should be defined, instead was `undefined`.
+body.children[0].table_of_contents should be defined, instead was `undefined`.
+body.children[0].link_to_page should be defined, instead was `undefined`.
+body.children[0].table_row should be defined, instead was `undefined`.
+body.children[0].ai_block should be defined, instead was `undefined`.
+body.children[0].table should be defined, instead was `undefined`.
+body.children[0].column_list should be defined, instead was `undefined`.
+body.children[0].column should be defined, instead was `undefined`.
+body.children[0].heading_1 should be defined, instead was `undefined`.
+body.children[0].heading_2 should be defined, instead was `undefined`.
+body.children[0].heading_3 should be defined, instead was `undefined`.
+body.children[0].paragraph should be defined, instead was `undefined`.
+body.children[0].bulleted_list_item should be defined, instead was `undefined`.
+body.children[0].numbered_list_item should be defined, instead was `undefined`.
+body.children[0].quote should be defined, instead was `undefined`.
+body.children[0].to_do should be defined, instead was `undefined`.
+body.children[0].toggle should be defined, instead was `undefined`.
+body.children[0].template should be defined, instead was `undefined`.
+body.children[0].callout should be defined, instead was `undefined`.
+body.children[0].synced_block should be defined, instead was `undefined`.
+[2025-03-19T12:49:33.001Z] [ERROR] Error copying block children from "196b95a4c619815fb5fce417a12af92d" to "1bbb95a4-c619-812e-b732-f9152ceb341e": body failed validation. Fix one:
+body.children[0].embed should be defined, instead was `undefined`.
+body.children[0].bookmark should be defined, instead was `undefined`.
+body.children[0].image should be defined, instead was `undefined`.
+body.children[0].video should be defined, instead was `undefined`.
+body.children[0].pdf should be defined, instead was `undefined`.
+body.children[0].file should be defined, instead was `undefined`.
+body.children[0].audio should be defined, instead was `undefined`.
+body.children[0].code should be defined, instead was `undefined`.
+body.children[0].equation should be defined, instead was `undefined`.
+body.children[0].divider should be defined, instead was `undefined`.
+body.children[0].breadcrumb should be defined, instead was `undefined`.
+body.children[0].table_of_contents should be defined, instead was `undefined`.
+body.children[0].link_to_page should be defined, instead was `undefined`.
+body.children[0].table_row should be defined, instead was `undefined`.
+body.children[0].ai_block should be defined, instead was `undefined`.
+body.children[0].table should be defined, instead was `undefined`.
+body.children[0].column_list should be defined, instead was `undefined`.
+body.children[0].column should be defined, instead was `undefined`.
+body.children[0].heading_1 should be defined, instead was `undefined`.
+body.children[0].heading_2 should be defined, instead was `undefined`.
+body.children[0].heading_3 should be defined, instead was `undefined`.
+body.children[0].paragraph should be defined, instead was `undefined`.
+body.children[0].bulleted_list_item should be defined, instead was `undefined`.
+body.children[0].numbered_list_item should be defined, instead was `undefined`.
+body.children[0].quote should be defined, instead was `undefined`.
+body.children[0].to_do should be defined, instead was `undefined`.
+body.children[0].toggle should be defined, instead was `undefined`.
+body.children[0].template should be defined, instead was `undefined`.
+body.children[0].callout should be defined, instead was `undefined`.
+body.children[0].synced_block should be defined, instead was `undefined`.
+[2025-03-19T12:49:33.002Z] [ERROR] Error copying page "196b95a4c619815fb5fce417a12af92d" to "1a9b95a4c61980ef81f2f152d5e366b5": body failed validation. Fix one:
+body.children[0].embed should be defined, instead was `undefined`.
+body.children[0].bookmark should be defined, instead was `undefined`.
+body.children[0].image should be defined, instead was `undefined`.
+body.children[0].video should be defined, instead was `undefined`.
+body.children[0].pdf should be defined, instead was `undefined`.
+body.children[0].file should be defined, instead was `undefined`.
+body.children[0].audio should be defined, instead was `undefined`.
+body.children[0].code should be defined, instead was `undefined`.
+body.children[0].equation should be defined, instead was `undefined`.
+body.children[0].divider should be defined, instead was `undefined`.
+body.children[0].breadcrumb should be defined, instead was `undefined`.
+body.children[0].table_of_contents should be defined, instead was `undefined`.
+body.children[0].link_to_page should be defined, instead was `undefined`.
+body.children[0].table_row should be defined, instead was `undefined`.
+body.children[0].ai_block should be defined, instead was `undefined`.
+body.children[0].table should be defined, instead was `undefined`.
+body.children[0].column_list should be defined, instead was `undefined`.
+body.children[0].column should be defined, instead was `undefined`.
+body.children[0].heading_1 should be defined, instead was `undefined`.
+body.children[0].heading_2 should be defined, instead was `undefined`.
+body.children[0].heading_3 should be defined, instead was `undefined`.
+body.children[0].paragraph should be defined, instead was `undefined`.
+body.children[0].bulleted_list_item should be defined, instead was `undefined`.
+body.children[0].numbered_list_item should be defined, instead was `undefined`.
+body.children[0].quote should be defined, instead was `undefined`.
+body.children[0].to_do should be defined, instead was `undefined`.
+body.children[0].toggle should be defined, instead was `undefined`.
+body.children[0].template should be defined, instead was `undefined`.
+body.children[0].callout should be defined, instead was `undefined`.
+body.children[0].synced_block should be defined, instead was `undefined`.
+[2025-03-19T12:49:40.571Z] [DEBUG] New children: [{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"チェックの解答","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"チェックの解答","href":null}],"is_toggleable":false,"color":"pink_background"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"改新の詔","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":true,"code":false,"color":"default"},"plain_text":"改新の詔","href":null}],"is_toggleable":false,"color":"default"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"理解のポイント","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"理解のポイント","href":null}],"is_toggleable":false,"color":"yellow_background"}},{"type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","href":null}],"color":"default"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"これを抑えれば完璧！","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"これを抑えれば完璧！","href":null}],"is_toggleable":false,"color":"gray_background"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","href":null}],"is_toggleable":true,"color":"default"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"練習問題","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"練習問題","href":null}],"is_toggleable":false,"color":"green_background"}},{"type":"toggle","toggle":{"rich_text":[{"type":"text","text":{"content":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","link":null},"annotations":{"bold":true,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","href":null}],"color":"default"}},{"type":"paragraph","paragraph":{"rich_text":[],"color":"default"}}]
+[2025-03-19T12:49:41.769Z] [DEBUG] New children: [{"type":"paragraph","paragraph":{"rich_text":[],"color":"default"}}]
+[2025-03-19T12:49:42.145Z] [DEBUG] New children: [{"type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":"公地公民制","link":null},"annotations":{"bold":true,"italic":false,"strikethrough":false,"underline":true,"code":false,"color":"default"},"plain_text":"公地公民制","href":null}],"color":"default"}}]
+[2025-03-19T12:58:36.738Z] [DEBUG] New children: [{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"チェックの解答","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"チェックの解答","href":null}],"is_toggleable":false,"color":"pink_background"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"改新の詔","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":true,"code":false,"color":"default"},"plain_text":"改新の詔","href":null}],"is_toggleable":false,"color":"default"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"理解のポイント","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"理解のポイント","href":null}],"is_toggleable":false,"color":"yellow_background"}},{"type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","href":null}],"color":"default"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"これを抑えれば完璧！","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"これを抑えれば完璧！","href":null}],"is_toggleable":false,"color":"gray_background"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","href":null}],"is_toggleable":true,"color":"default"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"練習問題","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"練習問題","href":null}],"is_toggleable":false,"color":"green_background"}},{"type":"toggle","toggle":{"rich_text":[{"type":"text","text":{"content":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","link":null},"annotations":{"bold":true,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","href":null}],"color":"default"}},{"type":"paragraph","paragraph":{"rich_text":[],"color":"default"}}]
+[2025-03-19T12:58:37.811Z] [DEBUG] New children: [{"type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":"公地公民制","link":null},"annotations":{"bold":true,"italic":false,"strikethrough":false,"underline":true,"code":false,"color":"default"},"plain_text":"公地公民制","href":null}],"color":"default"}}]
+[2025-03-19T12:58:39.001Z] [DEBUG] New children: [{"type":"paragraph","paragraph":{"rich_text":[],"color":"default"}}]
+[2025-03-19T12:58:45.633Z] [DEBUG] New children: [{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"チェックの解答","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"チェックの解答","href":null}],"is_toggleable":false,"color":"pink_background"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"改新の詔","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":true,"code":false,"color":"default"},"plain_text":"改新の詔","href":null}],"is_toggleable":false,"color":"default"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"理解のポイント","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"理解のポイント","href":null}],"is_toggleable":false,"color":"yellow_background"}},{"type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","href":null}],"color":"default"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"これを抑えれば完璧！","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"これを抑えれば完璧！","href":null}],"is_toggleable":false,"color":"gray_background"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","href":null}],"is_toggleable":true,"color":"default"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"練習問題","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"練習問題","href":null}],"is_toggleable":false,"color":"green_background"}},{"type":"toggle","toggle":{"rich_text":[{"type":"text","text":{"content":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","link":null},"annotations":{"bold":true,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","href":null}],"color":"default"}},{"type":"paragraph","paragraph":{"rich_text":[],"color":"default"}}]
+[2025-03-19T12:58:47.164Z] [DEBUG] New children: [{"type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":"公地公民制","link":null},"annotations":{"bold":true,"italic":false,"strikethrough":false,"underline":true,"code":false,"color":"default"},"plain_text":"公地公民制","href":null}],"color":"default"}}]
+[2025-03-19T12:58:47.662Z] [DEBUG] New children: [{"type":"paragraph","paragraph":{"rich_text":[],"color":"default"}}]
+[2025-03-19T14:57:58.864Z] [DEBUG] New children: [{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"チェックの解答","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"チェックの解答","href":null}],"is_toggleable":false,"color":"pink_background"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"改新の詔","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":true,"code":false,"color":"default"},"plain_text":"改新の詔","href":null}],"is_toggleable":false,"color":"default"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"理解のポイント","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"理解のポイント","href":null}],"is_toggleable":false,"color":"yellow_background"}},{"type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","href":null}],"color":"default"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"これを抑えれば完璧！","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"これを抑えれば完璧！","href":null}],"is_toggleable":false,"color":"gray_background"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","href":null}],"is_toggleable":true,"color":"default"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"練習問題","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"練習問題","href":null}],"is_toggleable":false,"color":"green_background"}},{"type":"toggle","toggle":{"rich_text":[{"type":"text","text":{"content":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","link":null},"annotations":{"bold":true,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","href":null}],"color":"default"}},{"type":"paragraph","paragraph":{"rich_text":[],"color":"default"}}]
+[2025-03-19T14:58:02.539Z] [DEBUG] New children: [{"type":"paragraph","paragraph":{"rich_text":[],"color":"default"}}]
+[2025-03-19T14:58:02.592Z] [DEBUG] New children: [{"type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":"公地公民制","link":null},"annotations":{"bold":true,"italic":false,"strikethrough":false,"underline":true,"code":false,"color":"default"},"plain_text":"公地公民制","href":null}],"color":"default"}}]
+[2025-03-19T14:59:01.457Z] [DEBUG] New children: [{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"チェックの解答","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"チェックの解答","href":null}],"is_toggleable":false,"color":"pink_background"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"改新の詔","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":true,"code":false,"color":"default"},"plain_text":"改新の詔","href":null}],"is_toggleable":false,"color":"default"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"理解のポイント","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"理解のポイント","href":null}],"is_toggleable":false,"color":"yellow_background"}},{"type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","href":null}],"color":"default"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"これを抑えれば完璧！","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"これを抑えれば完璧！","href":null}],"is_toggleable":false,"color":"gray_background"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","href":null}],"is_toggleable":true,"color":"default"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"練習問題","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"練習問題","href":null}],"is_toggleable":false,"color":"green_background"}},{"type":"toggle","toggle":{"rich_text":[{"type":"text","text":{"content":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","link":null},"annotations":{"bold":true,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","href":null}],"color":"default"}},{"type":"paragraph","paragraph":{"rich_text":[],"color":"default"}}]
+[2025-03-19T14:59:05.172Z] [DEBUG] 
+[2025-03-19T14:59:05.643Z] [DEBUG] New children: [{"type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":"公地公民制","link":null},"annotations":{"bold":true,"italic":false,"strikethrough":false,"underline":true,"code":false,"color":"default"},"plain_text":"公地公民制","href":null}],"color":"default"}}]
+[2025-03-19T14:59:05.977Z] [DEBUG] New children: [{"type":"paragraph","paragraph":{"rich_text":[],"color":"default"}}]
+[2025-03-19T14:59:06.224Z] [DEBUG] 
+[2025-03-19T14:59:06.563Z] [DEBUG] 
+[2025-03-19T14:59:14.372Z] [DEBUG] New children: [{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"チェックの解答","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"チェックの解答","href":null}],"is_toggleable":false,"color":"pink_background"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"改新の詔","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":true,"code":false,"color":"default"},"plain_text":"改新の詔","href":null}],"is_toggleable":false,"color":"default"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"理解のポイント","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"理解のポイント","href":null}],"is_toggleable":false,"color":"yellow_background"}},{"type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","href":null}],"color":"default"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"これを抑えれば完璧！","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"これを抑えれば完璧！","href":null}],"is_toggleable":false,"color":"gray_background"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","href":null}],"is_toggleable":true,"color":"default"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"練習問題","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"練習問題","href":null}],"is_toggleable":false,"color":"green_background"}},{"type":"toggle","toggle":{"rich_text":[{"type":"text","text":{"content":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","link":null},"annotations":{"bold":true,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","href":null}],"color":"default"}},{"type":"paragraph","paragraph":{"rich_text":[],"color":"default"}}]
+[2025-03-19T14:59:15.172Z] [DEBUG] Appending children: {"object":"list","results":[{"object":"block","id":"1bbb95a4-c619-8198-912c-cf1c15c2d6a1","parent":{"type":"page_id","page_id":"1bbb95a4-c619-81ce-846a-e8bf7a5e5b0d"},"created_time":"2025-03-19T14:59:00.000Z","last_edited_time":"2025-03-19T14:59:00.000Z","created_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"last_edited_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"チェックの解答","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"チェックの解答","href":null}],"is_toggleable":false,"color":"pink_background"}},{"object":"block","id":"1bbb95a4-c619-8156-b307-f9041821ecf8","parent":{"type":"page_id","page_id":"1bbb95a4-c619-81ce-846a-e8bf7a5e5b0d"},"created_time":"2025-03-19T14:59:00.000Z","last_edited_time":"2025-03-19T14:59:00.000Z","created_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"last_edited_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"改新の詔","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":true,"code":false,"color":"default"},"plain_text":"改新の詔","href":null}],"is_toggleable":false,"color":"default"}},{"object":"block","id":"1bbb95a4-c619-813c-89b8-c40cce0efde1","parent":{"type":"page_id","page_id":"1bbb95a4-c619-81ce-846a-e8bf7a5e5b0d"},"created_time":"2025-03-19T14:59:00.000Z","last_edited_time":"2025-03-19T14:59:00.000Z","created_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"last_edited_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"理解のポイント","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"理解のポイント","href":null}],"is_toggleable":false,"color":"yellow_background"}},{"object":"block","id":"1bbb95a4-c619-816a-8a9e-c8912bda167f","parent":{"type":"page_id","page_id":"1bbb95a4-c619-81ce-846a-e8bf7a5e5b0d"},"created_time":"2025-03-19T14:59:00.000Z","last_edited_time":"2025-03-19T14:59:00.000Z","created_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"last_edited_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"has_children":false,"archived":false,"in_trash":false,"type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","href":null}],"color":"default"}},{"object":"block","id":"1bbb95a4-c619-81be-99be-da41afe98226","parent":{"type":"page_id","page_id":"1bbb95a4-c619-81ce-846a-e8bf7a5e5b0d"},"created_time":"2025-03-19T14:59:00.000Z","last_edited_time":"2025-03-19T14:59:00.000Z","created_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"last_edited_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"これを抑えれば完璧！","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"これを抑えれば完璧！","href":null}],"is_toggleable":false,"color":"gray_background"}},{"object":"block","id":"1bbb95a4-c619-814f-8484-e665e0c63459","parent":{"type":"page_id","page_id":"1bbb95a4-c619-81ce-846a-e8bf7a5e5b0d"},"created_time":"2025-03-19T14:59:00.000Z","last_edited_time":"2025-03-19T14:59:00.000Z","created_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"last_edited_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","href":null}],"is_toggleable":true,"color":"default"}},{"object":"block","id":"1bbb95a4-c619-810c-810c-e754a4cf8911","parent":{"type":"page_id","page_id":"1bbb95a4-c619-81ce-846a-e8bf7a5e5b0d"},"created_time":"2025-03-19T14:59:00.000Z","last_edited_time":"2025-03-19T14:59:00.000Z","created_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"last_edited_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"練習問題","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"練習問題","href":null}],"is_toggleable":false,"color":"green_background"}},{"object":"block","id":"1bbb95a4-c619-8198-bd90-e1a11eb5cc3b","parent":{"type":"page_id","page_id":"1bbb95a4-c619-81ce-846a-e8bf7a5e5b0d"},"created_time":"2025-03-19T14:59:00.000Z","last_edited_time":"2025-03-19T14:59:00.000Z","created_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"last_edited_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"has_children":false,"archived":false,"in_trash":false,"type":"toggle","toggle":{"rich_text":[{"type":"text","text":{"content":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","link":null},"annotations":{"bold":true,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","href":null}],"color":"default"}},{"object":"block","id":"1bbb95a4-c619-812e-95e6-d3c2364a66b7","parent":{"type":"page_id","page_id":"1bbb95a4-c619-81ce-846a-e8bf7a5e5b0d"},"created_time":"2025-03-19T14:59:00.000Z","last_edited_time":"2025-03-19T14:59:00.000Z","created_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"last_edited_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"has_children":false,"archived":false,"in_trash":false,"type":"paragraph","paragraph":{"rich_text":[],"color":"default"}}],"next_cursor":null,"has_more":false,"type":"block","block":{},"request_id":"70d46ecb-9ba4-4a0a-aeb9-0f2485abfa31"}
+[2025-03-19T14:59:15.751Z] [DEBUG] New children: [{"type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":"公地公民制","link":null},"annotations":{"bold":true,"italic":false,"strikethrough":false,"underline":true,"code":false,"color":"default"},"plain_text":"公地公民制","href":null}],"color":"default"}}]
+[2025-03-19T14:59:15.980Z] [DEBUG] New children: [{"type":"paragraph","paragraph":{"rich_text":[],"color":"default"}}]
+[2025-03-19T14:59:16.553Z] [DEBUG] Appending children: {"object":"list","results":[{"object":"block","id":"1bbb95a4-c619-8122-84df-c1cba43e8920","parent":{"type":"block_id","block_id":"1bbb95a4-c619-8198-bd90-e1a11eb5cc3b"},"created_time":"2025-03-19T14:59:00.000Z","last_edited_time":"2025-03-19T14:59:00.000Z","created_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"last_edited_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"has_children":false,"archived":false,"in_trash":false,"type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":"公地公民制","link":null},"annotations":{"bold":true,"italic":false,"strikethrough":false,"underline":true,"code":false,"color":"default"},"plain_text":"公地公民制","href":null}],"color":"default"}}],"next_cursor":null,"has_more":false,"type":"block","block":{},"request_id":"f03579e3-3d61-49e5-8f58-8ddbd6113de6"}
+[2025-03-19T14:59:17.929Z] [DEBUG] Appending children: {"object":"list","results":[{"object":"block","id":"1bbb95a4-c619-8145-95b4-f3e4cf7dcb1f","parent":{"type":"block_id","block_id":"1bbb95a4-c619-814f-8484-e665e0c63459"},"created_time":"2025-03-19T14:59:00.000Z","last_edited_time":"2025-03-19T14:59:00.000Z","created_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"last_edited_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"has_children":false,"archived":false,"in_trash":false,"type":"paragraph","paragraph":{"rich_text":[],"color":"default"}}],"next_cursor":null,"has_more":false,"type":"block","block":{},"request_id":"6c708cfd-4c9f-46be-aa49-b2f060520c15"}
+[2025-03-19T15:00:57.821Z] [DEBUG] New children: [{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"チェックの解答","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"チェックの解答","href":null}],"is_toggleable":false,"color":"pink_background"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"改新の詔","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":true,"code":false,"color":"default"},"plain_text":"改新の詔","href":null}],"is_toggleable":false,"color":"default"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"理解のポイント","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"理解のポイント","href":null}],"is_toggleable":false,"color":"yellow_background"}},{"type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","href":null}],"color":"default"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"これを抑えれば完璧！","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"これを抑えれば完璧！","href":null}],"is_toggleable":false,"color":"gray_background"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","href":null}],"is_toggleable":true,"color":"default"}},{"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"練習問題","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"練習問題","href":null}],"is_toggleable":false,"color":"green_background"}},{"type":"toggle","toggle":{"rich_text":[{"type":"text","text":{"content":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","link":null},"annotations":{"bold":true,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","href":null}],"color":"default"}},{"type":"paragraph","paragraph":{"rich_text":[],"color":"default"}}]
+[2025-03-19T15:00:59.376Z] [DEBUG] Appending children: {"object":"list","results":[{"object":"block","id":"1bbb95a4-c619-811e-8a80-c05e47962e7c","parent":{"type":"page_id","page_id":"1bbb95a4-c619-813a-8d44-f7b84faf512b"},"created_time":"2025-03-19T15:00:00.000Z","last_edited_time":"2025-03-19T15:00:00.000Z","created_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"last_edited_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"チェックの解答","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"チェックの解答","href":null}],"is_toggleable":false,"color":"pink_background"}},{"object":"block","id":"1bbb95a4-c619-819b-aba6-ec5ca6ae0368","parent":{"type":"page_id","page_id":"1bbb95a4-c619-813a-8d44-f7b84faf512b"},"created_time":"2025-03-19T15:00:00.000Z","last_edited_time":"2025-03-19T15:00:00.000Z","created_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"last_edited_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"改新の詔","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":true,"code":false,"color":"default"},"plain_text":"改新の詔","href":null}],"is_toggleable":false,"color":"default"}},{"object":"block","id":"1bbb95a4-c619-81ef-9a55-f6eb331e3c98","parent":{"type":"page_id","page_id":"1bbb95a4-c619-813a-8d44-f7b84faf512b"},"created_time":"2025-03-19T15:00:00.000Z","last_edited_time":"2025-03-19T15:00:00.000Z","created_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"last_edited_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"理解のポイント","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"理解のポイント","href":null}],"is_toggleable":false,"color":"yellow_background"}},{"object":"block","id":"1bbb95a4-c619-8161-961b-e2fa225fe7bc","parent":{"type":"page_id","page_id":"1bbb95a4-c619-813a-8d44-f7b84faf512b"},"created_time":"2025-03-19T15:00:00.000Z","last_edited_time":"2025-03-19T15:00:00.000Z","created_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"last_edited_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"has_children":false,"archived":false,"in_trash":false,"type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"646年に孝徳天皇が発布した改新の詔は、大化の改新における基本政策を示した。","href":null}],"color":"default"}},{"object":"block","id":"1bbb95a4-c619-8183-8953-e81cd91fa172","parent":{"type":"page_id","page_id":"1bbb95a4-c619-813a-8d44-f7b84faf512b"},"created_time":"2025-03-19T15:00:00.000Z","last_edited_time":"2025-03-19T15:00:00.000Z","created_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"last_edited_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"これを抑えれば完璧！","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"これを抑えれば完璧！","href":null}],"is_toggleable":false,"color":"gray_background"}},{"object":"block","id":"1bbb95a4-c619-8195-90d5-fc0898f4f3af","parent":{"type":"page_id","page_id":"1bbb95a4-c619-813a-8d44-f7b84faf512b"},"created_time":"2025-03-19T15:00:00.000Z","last_edited_time":"2025-03-19T15:00:00.000Z","created_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"last_edited_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"改新の詔の内容は、唐の制度に倣った中央集権的な国家体制の確立を目指すもので、具体的には公地公民制の採用、班田収授法の実施、租庸調による税制改革、国司の派遣、遣唐使の派遣などが含まれる。これらの政策によって、豪族の力を抑え、天皇を中心とした国家体制を確立しようとした。","href":null}],"is_toggleable":true,"color":"default"}},{"object":"block","id":"1bbb95a4-c619-8188-ab96-cb741b3cbe6e","parent":{"type":"page_id","page_id":"1bbb95a4-c619-813a-8d44-f7b84faf512b"},"created_time":"2025-03-19T15:00:00.000Z","last_edited_time":"2025-03-19T15:00:00.000Z","created_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"last_edited_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"has_children":false,"archived":false,"in_trash":false,"type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":"練習問題","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"練習問題","href":null}],"is_toggleable":false,"color":"green_background"}},{"object":"block","id":"1bbb95a4-c619-81de-9f2e-e6aa6716479e","parent":{"type":"page_id","page_id":"1bbb95a4-c619-813a-8d44-f7b84faf512b"},"created_time":"2025-03-19T15:00:00.000Z","last_edited_time":"2025-03-19T15:00:00.000Z","created_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"last_edited_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"has_children":false,"archived":false,"in_trash":false,"type":"toggle","toggle":{"rich_text":[{"type":"text","text":{"content":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","link":null},"annotations":{"bold":true,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"大化の改新において、豪族の私有地・私民を廃止し、土地・人民を国家が直接支配する制度を何というか。","href":null}],"color":"default"}},{"object":"block","id":"1bbb95a4-c619-81c0-bccf-d9062452f48b","parent":{"type":"page_id","page_id":"1bbb95a4-c619-813a-8d44-f7b84faf512b"},"created_time":"2025-03-19T15:00:00.000Z","last_edited_time":"2025-03-19T15:00:00.000Z","created_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"last_edited_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"has_children":false,"archived":false,"in_trash":false,"type":"paragraph","paragraph":{"rich_text":[],"color":"default"}}],"next_cursor":null,"has_more":false,"type":"block","block":{},"request_id":"349f7fa3-d55c-49f2-b387-87e112d57c35"}
+[2025-03-19T15:00:59.879Z] [DEBUG] New children: [{"type":"paragraph","paragraph":{"rich_text":[],"color":"default"}}]
+[2025-03-19T15:00:59.894Z] [DEBUG] New children: [{"type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":"公地公民制","link":null},"annotations":{"bold":true,"italic":false,"strikethrough":false,"underline":true,"code":false,"color":"default"},"plain_text":"公地公民制","href":null}],"color":"default"}}]
+[2025-03-19T15:01:01.891Z] [DEBUG] Appending children: {"object":"list","results":[{"object":"block","id":"1bbb95a4-c619-8144-825b-c75c86c0ba77","parent":{"type":"block_id","block_id":"1bbb95a4-c619-8195-90d5-fc0898f4f3af"},"created_time":"2025-03-19T15:00:00.000Z","last_edited_time":"2025-03-19T15:00:00.000Z","created_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"last_edited_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"has_children":false,"archived":false,"in_trash":false,"type":"paragraph","paragraph":{"rich_text":[],"color":"default"}}],"next_cursor":null,"has_more":false,"type":"block","block":{},"request_id":"91a10c1e-162c-4f47-8813-548289abf477"}
+[2025-03-19T15:01:03.344Z] [DEBUG] Appending children: {"object":"list","results":[{"object":"block","id":"1bbb95a4-c619-817f-910e-df6c5831f22d","parent":{"type":"block_id","block_id":"1bbb95a4-c619-81de-9f2e-e6aa6716479e"},"created_time":"2025-03-19T15:00:00.000Z","last_edited_time":"2025-03-19T15:00:00.000Z","created_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"last_edited_by":{"object":"user","id":"9a197c50-1a5c-4b6f-a680-e5bfbc4a0cb2"},"has_children":false,"archived":false,"in_trash":false,"type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":"公地公民制","link":null},"annotations":{"bold":true,"italic":false,"strikethrough":false,"underline":true,"code":false,"color":"default"},"plain_text":"公地公民制","href":null}],"color":"default"}}],"next_cursor":null,"has_more":false,"type":"block","block":{},"request_id":"015b0979-306f-4f8c-9727-a2d254d95e83"}
+[2025-03-19T15:21:37.448Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:21:37.452Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T15:21:37.452Z] [ERROR] Error deleting all children from block "1bbb95a4-c619-814e-8455-ccfa06f79da9": Conflict occurred while saving. Please try again.
+[2025-03-19T15:21:37.453Z] [ERROR] Error copying block children from "196b95a4c619815fb5fce417a12af92d" to "1bbb95a4-c619-814e-8455-ccfa06f79da9": Conflict occurred while saving. Please try again.
+[2025-03-19T15:21:37.453Z] [ERROR] Error copying page "196b95a4c619815fb5fce417a12af92d" to "1bbb95a4-c619-814e-8455-ccfa06f79da9": Conflict occurred while saving. Please try again.
+[2025-03-19T15:21:37.479Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:21:37.479Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T15:21:37.480Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:21:37.480Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T15:21:37.481Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:21:37.481Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T15:21:38.289Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:21:38.289Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T15:21:47.619Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:21:47.619Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T15:21:47.620Z] [ERROR] Error deleting all children from block "1bbb95a4-c619-814e-8455-ccfa06f79da9": Conflict occurred while saving. Please try again.
+[2025-03-19T15:53:36.738Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:53:36.741Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T15:53:36.741Z] [ERROR] Error deleting all children from block "1bbb95a4-c619-81d2-9711-efa843388703": Conflict occurred while saving. Please try again.
+[2025-03-19T15:53:36.741Z] [ERROR] Error copying block children from "196b95a4c619815fb5fce417a12af92d" to "1bbb95a4-c619-81d2-9711-efa843388703": Conflict occurred while saving. Please try again.
+[2025-03-19T15:53:36.742Z] [ERROR] Error copying page "196b95a4c619815fb5fce417a12af92d" to "1bbb95a4-c619-81d2-9711-efa843388703": Conflict occurred while saving. Please try again.
+[2025-03-19T15:53:36.750Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:53:36.750Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T15:53:36.763Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:53:36.763Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T15:53:36.769Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:53:36.769Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T15:53:36.787Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:53:36.787Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T15:53:37.532Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:53:37.533Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T15:53:42.957Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:53:42.958Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T15:53:42.958Z] [ERROR] Error deleting all children from block "1bbb95a4-c619-81d2-9711-efa843388703": Conflict occurred while saving. Please try again.
+[2025-03-19T15:53:42.997Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:55:32.895Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:55:32.896Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T15:55:32.896Z] [ERROR] Error deleting all children from block "1bbb95a4-c619-8197-a4d4-c4aed5d1e0ea": Conflict occurred while saving. Please try again.
+[2025-03-19T15:55:32.905Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:55:32.905Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T15:56:15.823Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:56:15.827Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T15:56:15.827Z] [ERROR] Error deleting all children from block "1bbb95a4-c619-8138-b0c5-c8f2c75bff53": Conflict occurred while saving. Please try again.
+[2025-03-19T15:56:15.827Z] [ERROR] Error copying block children from "196b95a4c619815fb5fce417a12af92d" to "1bbb95a4-c619-8138-b0c5-c8f2c75bff53": Conflict occurred while saving. Please try again.
+[2025-03-19T15:56:15.828Z] [ERROR] Error copying page "196b95a4c619815fb5fce417a12af92d" to "1bbb95a4-c619-8138-b0c5-c8f2c75bff53": Conflict occurred while saving. Please try again.
+[2025-03-19T15:56:15.882Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:56:15.882Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T15:56:15.904Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:56:15.904Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T15:56:16.291Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:56:16.292Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T15:56:20.098Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:56:20.098Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T15:56:20.098Z] [ERROR] Error deleting all children from block "1bbb95a4-c619-8138-b0c5-c8f2c75bff53": Conflict occurred while saving. Please try again.
+[2025-03-19T15:58:49.409Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:58:49.411Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T15:58:49.411Z] [ERROR] Error deleting all children from block "1bbb95a4-c619-816a-99f0-f3c71dbf12ba": Conflict occurred while saving. Please try again.
+[2025-03-19T15:58:49.411Z] [ERROR] Error copying block children from "196b95a4c619815fb5fce417a12af92d" to "1bbb95a4-c619-816a-99f0-f3c71dbf12ba": Conflict occurred while saving. Please try again.
+[2025-03-19T15:58:49.411Z] [ERROR] Error copying page "196b95a4c619815fb5fce417a12af92d" to "1bbb95a4-c619-816a-99f0-f3c71dbf12ba": Conflict occurred while saving. Please try again.
+[2025-03-19T15:58:49.422Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:58:49.423Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T15:58:49.426Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:58:49.426Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T15:58:49.462Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:58:49.462Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T15:58:49.573Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:58:49.573Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T15:58:51.012Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:58:51.012Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T15:58:51.370Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:58:51.370Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T15:58:51.370Z] [ERROR] Error deleting all children from block "1bbb95a4-c619-816a-99f0-f3c71dbf12ba": Conflict occurred while saving. Please try again.
+[2025-03-19T15:58:51.373Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:58:51.373Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T15:58:51.377Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T15:58:51.379Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T16:02:33.799Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T16:02:33.801Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T16:02:33.801Z] [ERROR] Error deleting all children from block "1bbb95a4c61980f89039c1c26ead3399": Conflict occurred while saving. Please try again.
+[2025-03-19T16:02:33.801Z] [ERROR] Error copying block children from "196b95a4c619815fb5fce417a12af92d" to "1bbb95a4c61980f89039c1c26ead3399": Conflict occurred while saving. Please try again.
+[2025-03-19T16:02:33.802Z] [ERROR] Error copying page "196b95a4c619815fb5fce417a12af92d" to "1bbb95a4c61980f89039c1c26ead3399": Conflict occurred while saving. Please try again.
+[2025-03-19T16:02:33.822Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T16:02:33.822Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T16:02:33.823Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T16:02:33.824Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T16:02:33.826Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T16:02:33.827Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T16:02:35.518Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T16:02:35.518Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-19T16:02:35.518Z] [ERROR] Error deleting all children from block "1bbb95a4c61980f89039c1c26ead3399": Conflict occurred while saving. Please try again.
+[2025-03-19T16:02:35.522Z] [ERROR] Error deleting block in Notion
+
+[2025-03-19T16:02:35.522Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.

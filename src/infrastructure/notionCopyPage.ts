@@ -7,7 +7,13 @@ import {
   UpdatePageParameters,
   BlockObjectResponse
 } from "@notionhq/client/build/src/api-endpoints.js";
-import { NotionPagePropertiesTypeArray, NotionUUID, ParentRequest, toNotionUUID } from "@domain/types/myNotionTypes.js";
+import { 
+  BlockObjectRequest, 
+  NotionPagePropertiesTypeArray, 
+  NotionUUID, 
+  ParentRequest, 
+  toNotionUUID 
+} from "@domain/types/myNotionTypes.js";
 
 interface NotionBlock {
   id: string;
@@ -53,8 +59,37 @@ export const copyPageCreate = async (sourcePageId: NotionUUID, targetDatabaseId:
       acc[key] = obj[key];
       return acc;
     }, {} as CreatePageParameters["properties"]);
+
     const parent: ParentRequest = {database_id: targetDatabaseId, type: "database_id"};
-    const responseToCreate = await NotionAPI.createAPage(parent, properties as CreatePageParameters["properties"]);
+
+    const icon:CreatePageParameters['icon'] = (() => {
+      if (responseToRetrieve.icon === null) return null;
+      switch (responseToRetrieve.icon.type) {
+        case 'emoji':
+          return { emoji: responseToRetrieve.icon.emoji, type: responseToRetrieve.icon.type }
+        case 'external':
+          return { external: { url: responseToRetrieve.icon.external.url }, type: responseToRetrieve.icon.type }
+        case 'custom_emoji':
+          return { custom_emoji: { id: responseToRetrieve.icon.custom_emoji.id, name: responseToRetrieve.icon.custom_emoji.name, url: responseToRetrieve.icon.custom_emoji.url }, type: responseToRetrieve.icon.type }
+        default:
+          throw new Error(`Unexpected icon type: ${responseToRetrieve.icon.type}`);
+      }
+    })();
+
+    const cover: CreatePageParameters['cover'] = (() => {
+      if (responseToRetrieve.cover === null) return null;
+      switch (responseToRetrieve.cover.type) {
+        case 'external':
+          return { external: { url: responseToRetrieve.cover.external.url }, type: responseToRetrieve.cover.type }
+        case 'file':
+          logger.warn("internal saved cover is not supported by Notion API.")
+          return null
+        default:
+          throw new Error(`Unexpected cover type: ${responseToRetrieve.cover}`);
+      }
+    })();
+
+    const responseToCreate = await NotionAPI.createAPage(parent, properties as CreatePageParameters["properties"], icon, cover);
 
     await copyBlockChildrenUpdate(sourcePageId, toNotionUUID(responseToCreate.id));
     return toNotionUUID(responseToCreate.id);
@@ -100,7 +135,35 @@ export const copyPageUpdate = async (sourcePageId: NotionUUID, targetPageId: Not
       acc[key] = obj[key];
       return acc;
     }, {} as  NonNullable<UpdatePageParameters["properties"]>);
-    await NotionAPI.updatePageProperties(targetPageId, properties as UpdatePageParameters["properties"]);
+
+    const icon:CreatePageParameters['icon'] = (() => {
+      if (responseToRetrieve.icon === null) return null;
+      switch (responseToRetrieve.icon.type) {
+        case 'emoji':
+          return { emoji: responseToRetrieve.icon.emoji, type: responseToRetrieve.icon.type }
+        case 'external':
+          return { external: { url: responseToRetrieve.icon.external.url }, type: responseToRetrieve.icon.type }
+        case 'custom_emoji':
+          return { custom_emoji: { id: responseToRetrieve.icon.custom_emoji.id, name: responseToRetrieve.icon.custom_emoji.name, url: responseToRetrieve.icon.custom_emoji.url }, type: responseToRetrieve.icon.type }
+        default:
+          throw new Error(`Unexpected icon type: ${responseToRetrieve.icon.type}`);
+      }
+    })();
+
+    const cover: CreatePageParameters['cover'] = (() => {
+      if (responseToRetrieve.cover === null) return null;
+      switch (responseToRetrieve.cover.type) {
+        case 'external':
+          return { external: { url: responseToRetrieve.cover.external.url }, type: responseToRetrieve.cover.type }
+        case 'file':
+          logger.warn("internal saved cover is not supported by Notion API.")
+          return null
+        default:
+          throw new Error(`Unexpected cover type: ${responseToRetrieve.cover}`);
+      }
+    })();
+
+    await NotionAPI.updatePageProperties(targetPageId, properties as UpdatePageParameters["properties"], icon, cover);
 
     await copyBlockChildrenUpdate(sourcePageId, targetPageId);
   } catch (error: any) {
@@ -115,6 +178,7 @@ export const copyBlockChildrenUpdate = async (sourceBlockId: NotionUUID, targetB
 
     const responseToRetrieve = await NotionAPI.retrieveBlockChildren(sourceBlockId);
     const nestedBlockIdObjs: { sourceBlockId: string; blockIndex: number }[] = [];
+    // logger.debug(`Retrieved results: ${JSON.stringify(responseToRetrieve.results)}`);
 
     const children = responseToRetrieve.results
     .filter((result): result is BlockObjectResponse => "type" in result)
@@ -122,7 +186,10 @@ export const copyBlockChildrenUpdate = async (sourceBlockId: NotionUUID, targetB
       if (result.has_children) {
         nestedBlockIdObjs.push({ sourceBlockId: result.id, blockIndex: index });
       }
-      return result[result.type];
+      return {
+        type: result.type,
+        [result.type]: result[result.type]
+      } as BlockObjectRequest
     });
 
     const responseToAppend = await NotionAPI.appendBlockChildren(targetBlockId, children);

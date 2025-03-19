@@ -35,6 +35,7 @@ import {
   RequestTimeoutError,
   APIErrorCode,
 } from "@notionhq/client/build/src/errors.js";
+import { NotionUUID } from "@domain/types/myNotionTypes.js";
 
 const notionClient: Client = getNotionClient();
 
@@ -84,11 +85,15 @@ export default class NotionAPI {
 
   static async updatePageProperties(
     pageId: IdRequest,
-    properties: UpdatePageParameters["properties"]
+    properties: UpdatePageParameters["properties"],
+    icon?: CreatePageParameters["icon"],
+    cover?: CreatePageParameters["cover"],
   ): Promise<UpdatePageResponse> {
     const payload: UpdatePageParameters = {
       page_id: pageId,
       properties: properties,
+      icon: icon,
+      cover: cover,
     };
     return await callNotionWithAdvancedErrorHandling(
       async () => {
@@ -103,32 +108,40 @@ export default class NotionAPI {
     )
   };
 
-  static async deleteAPage(pageId: IdRequest): Promise<UpdatePageResponse> {
+  static async deleteAPage(pageId: NotionUUID): Promise<UpdatePageResponse> {
+    const payload: UpdatePageParameters = {
+      page_id: pageId,
+      archived: true,
+    };
     return await callNotionWithAdvancedErrorHandling(
       async () => {
         try {
-          return await this.updatePageProperties(pageId, { archived: true });
+          return await notionClient.pages.update(payload);
         } catch (error) {
-          logger.error("Error deleting page in Notion\n");
+          logger.error("Error updating properties in Notion\n");
           throw error;
         }
       },
       maxRetries
-    );
+    )
   }
 
-  static async restoreAPage(pageId: string): Promise<UpdatePageResponse> {
+  static async restoreAPage(pageId: NotionUUID): Promise<UpdatePageResponse> {
+    const payload: UpdatePageParameters = {
+      page_id: pageId,
+      archived: false,
+    };
     return await callNotionWithAdvancedErrorHandling(
       async () => {
         try {
-          return await this.updatePageProperties(pageId, { archived: false });
+          return await notionClient.pages.update(payload);
         } catch (error) {
-          logger.error("Error restoring page in Notion\n");
+          logger.error("Error updating properties in Notion\n");
           throw error;
         }
       },
       maxRetries
-    );
+    )
   }
 
   static async appendBlockChildren(

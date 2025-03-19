@@ -5,6 +5,7 @@ export default defineConfig({
   test: {
     globals: true,
     watch: true,
+    testTimeout: 50000,
     includeSource: ["src/**/*.{ts.js}"]
   },
   plugins: [tsconfigPaths()],

@@ -209,12 +209,26 @@ export abstract class NotionRepository<TDomain, TResponse, TRequest> {
     pageId: NotionUUID
   ): Promise<TDomain|null> {
     try {
-      const response =  await this.updatePageProperties(pageId, this.toDomain({ archived: true } as unknown as TResponse));
+      const payload: UpdatePageParameters = {
+        page_id: pageId,
+        archived: true 
+      };
+      const response = await callNotionWithAdvancedErrorHandling(
+        async () => {
+          try {
+            return await notionClient.pages.update(payload);
+          } catch (error) {
+            logger.error("Error deleting a page in Notion\n");
+            throw error;
+          }
+        },
+        maxRetries
+      ) as PageObjectResponse;
       if (!response) {
         logger.warn(`No response from Notion API for page id: ${pageId}`);
         return null;
       }
-      return response
+      return this.toDomain(response.properties as TResponse);
     } catch (error) {
       logger.error("Error deleting page in Notion\n");
       throw error;
@@ -225,12 +239,26 @@ export abstract class NotionRepository<TDomain, TResponse, TRequest> {
     pageId: NotionUUID
   ): Promise<TDomain | null> {
     try {
-      const response = await this.updatePageProperties(pageId, this.toDomain({ archived: false } as unknown as TResponse));
+      const payload: UpdatePageParameters = {
+        page_id: pageId,
+        archived: false 
+      };
+      const response = await callNotionWithAdvancedErrorHandling(
+        async () => {
+          try {
+            return await notionClient.pages.update(payload);
+          } catch (error) {
+            logger.error("Error restoring a page in Notion\n");
+            throw error;
+          }
+        },
+        maxRetries
+      ) as PageObjectResponse;
       if (!response) {
         logger.warn(`No response from Notion API for page id: ${pageId}`);
         return null;
       }
-      return response
+      return this.toDomain(response.properties as TResponse);
     } catch (error) {
       logger.error("Error restoring page in Notion\n");
       throw error;

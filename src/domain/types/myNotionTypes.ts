@@ -14,7 +14,9 @@ import {
   RollupFunction,
   PartialSelectResponse,
   UserObjectResponse, 
-  RichTextItemResponse
+  RichTextItemResponse,
+  ApiColor, 
+  LanguageRequest
 } from "@notionhq/client/build/src/api-endpoints.js";
 import MarkdownIt from "markdown-it";
 import dollarmathPlugin from "markdown-it-dollarmath";
@@ -596,9 +598,692 @@ export type UpdatePageBodyParameters = {
 export type ParentRequest = 
   | { page_id: NotionUUID, type?: "page_id" }
   | { database_id: NotionUUID, type?: "database_id" }
+
+  export type EmbedBlockObjectRequest = {
+    embed: {
+      url: string
+      caption?: Array<RichTextItemRequest>
+    }
+    type?: 'embed'
+    object?: 'block'
+  }
+  
+  /** Bookmark Block */
+  export type BookmarkBlockObjectRequest = {
+    bookmark: {
+      url: string
+      caption?: Array<RichTextItemRequest>
+    }
+    type?: 'bookmark'
+    object?: 'block'
+  }
+  
+  /** Image Block */
+  export type ImageBlockObjectRequest = {
+    image: {
+      external: { url: TextRequest }
+      type?: 'external'
+      caption?: Array<RichTextItemRequest>
+    }
+    type?: 'image'
+    object?: 'block'
+  }
+  
+  /** Video Block */
+  export type VideoBlockObjectRequest = {
+    video: {
+      external: { url: TextRequest }
+      type?: 'external'
+      caption?: Array<RichTextItemRequest>
+    }
+    type?: 'video'
+    object?: 'block'
+  }
+  
+  /** PDF Block */
+  export type PdfBlockObjectRequest = {
+    pdf: {
+      external: { url: TextRequest }
+      type?: 'external'
+      caption?: Array<RichTextItemRequest>
+    }
+    type?: 'pdf'
+    object?: 'block'
+  }
+  
+  /** File Block */
+  export type FileBlockObjectRequest = {
+    file: {
+      external: { url: TextRequest }
+      type?: 'external'
+      caption?: Array<RichTextItemRequest>
+      name?: StringRequest
+    }
+    type?: 'file'
+    object?: 'block'
+  }
+  
+  /** Audio Block */
+  export type AudioBlockObjectRequest = {
+    audio: {
+      external: { url: TextRequest }
+      type?: 'external'
+      caption?: Array<RichTextItemRequest>
+    }
+    type?: 'audio'
+    object?: 'block'
+  }
+  
+  /** Code Block */
+  export type CodeBlockObjectRequest = {
+    code: {
+      rich_text: Array<RichTextItemRequest>
+      language: LanguageRequest
+      caption?: Array<RichTextItemRequest>
+    }
+    type?: 'code'
+    object?: 'block'
+  }
+  
+  /** Equation Block */
+  export type EquationBlockObjectRequest = {
+    equation: {
+      expression: string
+    }
+    type?: 'equation'
+    object?: 'block'
+  }
+  
+  /** Divider Block */
+  export type DividerBlockObjectRequest = {
+    divider: EmptyObject
+    type?: 'divider'
+    object?: 'block'
+  }
+  
+  /** Breadcrumb Block */
+  export type BreadcrumbBlockObjectRequest = {
+    breadcrumb: EmptyObject
+    type?: 'breadcrumb'
+    object?: 'block'
+  }
+  
+  /** Table of Contents Block */
+  export type TableOfContentsBlockObjectRequest = {
+    table_of_contents: {
+      color?: ApiColor
+    }
+    type?: 'table_of_contents'
+    object?: 'block'
+  }
+  
+  /** Link to Page Block */
+  export type LinkToPageBlockObjectRequest = {
+    link_to_page:
+      | { page_id: IdRequest; type?: 'page_id' }
+      | { database_id: IdRequest; type?: 'database_id' }
+      | { comment_id: IdRequest; type?: 'comment_id' }
+    type?: 'link_to_page'
+    object?: 'block'
+  }
+  
+  /** Table Row Block */
+  export type TableRowBlockObjectRequest = {
+    table_row: {
+      cells: Array<Array<RichTextItemRequest>>
+    }
+    type?: 'table_row'
+    object?: 'block'
+  }
+  
+  /** Table Block */
+  export type TableBlockObjectRequest = {
+    table: {
+      table_width: number
+      children: Array<{
+        table_row: {
+          cells: Array<Array<RichTextItemRequest>>
+        }
+        type?: 'table_row'
+        object?: 'block'
+      }>
+      has_column_header?: boolean
+      has_row_header?: boolean
+    }
+    type?: 'table'
+    object?: 'block'
+  }
+
+  /** Column List */
+  export type ColumnListBlockObjectRequest = {
+    column_list: {
+      children: Array<{
+        column: {
+          children: Array<ChildrenBlockObjectRequest>
+        }
+        type?: 'column'
+        object?: 'block'
+      }>
+    }
+    type?: 'column_list'
+    object?: 'block'
+  }
+
+  /** Column */
+  export type ColumnBlockObjectRequest = {
+    column: {
+      children: Array<ChildrenBlockObjectRequest>
+    }
+    type?: 'column'
+    object?: 'block'
+  }
+  
+  /** Heading 1 Block */
+  export type Heading1BlockObjectRequestWithoutChildren = {
+    heading_1: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+      is_toggleable?: boolean
+    }
+    type?: 'heading_1'
+    object?: 'block'
+  }
+
+  export type Heading1BlockObjectRequestForChildren = {
+    heading_1: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+      is_toggleable?: boolean
+      children?: Array<BlockObjectRequestWithoutChildren>
+    }
+    type?: 'heading_1'
+    object?: 'block'
+  }
+
+  export type Heading1BlockObjectRequest = {
+    heading_1: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+      is_toggleable?: boolean
+      children?: Array<ChildrenBlockObjectRequest>
+    }
+    type?: 'heading_1'
+    object?: 'block'
+  }
+  
+  /** Heading 2 Block */
+  export type Heading2BlockObjectRequestWithoutChildren = {
+    heading_2: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+      is_toggleable?: boolean
+    }
+    type?: 'heading_2'
+    object?: 'block'
+  }
+
+  export type Heading2BlockObjectRequestForChildren = {
+    heading_2: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+      is_toggleable?: boolean
+      children?: Array<BlockObjectRequestWithoutChildren>
+    }
+    type?: 'heading_2'
+    object?: 'block'
+  }
+
+  export type Heading2BlockObjectRequest = {
+    heading_2: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+      is_toggleable?: boolean
+      children?: Array<ChildrenBlockObjectRequest>
+    }
+    type?: 'heading_2'
+    object?: 'block'
+  }
+  
+  /** Heading 3 Block */
+  export type Heading3BlockObjectRequestWithoutChildren = {
+    heading_3: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+      is_toggleable?: boolean
+    }
+    type?: 'heading_3'
+    object?: 'block'
+  }
+
+  export type Heading3BlockObjectRequestForChildren = {
+    heading_3: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+      is_toggleable?: boolean
+      children?: Array<BlockObjectRequestWithoutChildren>
+    }
+    type?: 'heading_3'
+    object?: 'block'
+  }
+
+  export type Heading3BlockObjectRequest = {
+    heading_3: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+      is_toggleable?: boolean
+      children?: Array<ChildrenBlockObjectRequest>
+    }
+    type?: 'heading_3'
+    object?: 'block'
+  }
+  
+  /** Paragraph Block */
+  export type ParagraphBlockObjectRequestWithoutChildren = {
+    paragraph: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+    }
+    type?: 'paragraph'
+    object?: 'block'
+  }
+
+  export type ParagraphBlockObjectRequestForChildren = {
+    paragraph: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+      children?: Array<BlockObjectRequestWithoutChildren>
+    }
+    type?: 'paragraph'
+    object?: 'block'
+  }
+
+  export type ParagraphBlockObjectRequest = {
+    paragraph: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+      children?: Array<ChildrenBlockObjectRequest>
+    }
+    type?: 'paragraph'
+    object?: 'block'
+  }
+  
+  /** Bulleted List Item Block */
+  export type BulletedListItemBlockObjectRequestWithoutChildren = {
+    bulleted_list_item: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+    }
+    type?: 'bulleted_list_item'
+    object?: 'block'
+  }
+
+  export type BulletedListItemBlockObjectRequestForChildren = {
+    bulleted_list_item: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+      children?: Array<BlockObjectRequestWithoutChildren>
+    }
+    type?: 'bulleted_list_item'
+    object?: 'block'
+  }
+
+  export type BulletedListItemBlockObjectRequest = {
+    bulleted_list_item: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+      children?: Array<ChildrenBlockObjectRequest>
+    }
+    type?: 'bulleted_list_item'
+    object?: 'block'
+  }
+  
+  /** Numbered List Item Block */
+  export type NumberedListItemBlockObjectRequestWithoutChildren = {
+    numbered_list_item: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+      children?: Array<BlockObjectRequestWithoutChildren>
+    }
+    type?: 'numbered_list_item'
+    object?: 'block'
+  }
+
+  export type NumberedListItemBlockObjectRequestForChildren = {
+    numbered_list_item: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+      children?: Array<BlockObjectRequestWithoutChildren>
+    }
+    type?: 'numbered_list_item'
+    object?: 'block'
+  }
+
+  export type NumberedListItemBlockObjectRequest = {
+    numbered_list_item: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+      children?: Array<ChildrenBlockObjectRequest>
+    }
+    type?: 'numbered_list_item'
+    object?: 'block'
+  }
+  
+  /** Quote Block */
+  export type QuoteBlockObjectRequestWithoutChildren = {
+    quote: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+    }
+    type?: 'quote'
+    object?: 'block'
+  }
+
+  export type QuoteBlockObjectRequestForChildren = {
+    quote: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+      children?: Array<BlockObjectRequestWithoutChildren>
+    }
+    type?: 'quote'
+    object?: 'block'
+  }
+
+  export type QuoteBlockObjectRequest = {
+    quote: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+      children?: Array<ChildrenBlockObjectRequest>
+    }
+    type?: 'quote'
+    object?: 'block'
+  }
+  
+  /** To Do Block */
+  export type ToDoBlockObjectRequestWithoutChildren = {
+    to_do: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+      checked?: boolean
+    }
+    type?: 'to_do'
+    object?: 'block'
+  }
+
+  export type ToDoBlockObjectRequestForChildren = {
+    to_do: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+      children?: Array<BlockObjectRequestWithoutChildren>
+      checked?: boolean
+    }
+    type?: 'to_do'
+    object?: 'block'
+  }
+
+  export type ToDoBlockObjectRequest = {
+    to_do: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+      children?: Array<ChildrenBlockObjectRequest>
+      checked?: boolean
+    }
+    type?: 'to_do'
+    object?: 'block'
+  }
+  
+  /** Toggle Block */
+  export type ToggleBlockObjectRequestWithoutChildren = {
+    toggle: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+    }
+    type?: 'toggle'
+    object?: 'block'
+  }
+
+  export type ToggleBlockObjectRequestForChildren = {
+    toggle: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+      children?: Array<BlockObjectRequestWithoutChildren>
+    }
+    type?: 'toggle'
+    object?: 'block'
+  }
+
+  export type ToggleBlockObjectRequest = {
+    toggle: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+      children?: Array<ChildrenBlockObjectRequest>
+    }
+    type?: 'toggle'
+    object?: 'block'
+  }
+  
+  /** Template Block */
+  export type TemplateBlockObjectRequestWithoutChildren = {
+    template: {
+      rich_text: Array<RichTextItemRequest>
+    }
+    type?: 'template'
+    object?: 'block'
+  }
+
+  export type TemplateBlockObjectRequestForChildren = {
+    template: {
+      rich_text: Array<RichTextItemRequest>
+      children?: Array<BlockObjectRequestWithoutChildren>
+    }
+    type?: 'template'
+    object?: 'block'
+  }
+
+  export type TemplateBlockObjectRequest = {
+    template: {
+      rich_text: Array<RichTextItemRequest>
+      children?: Array<ChildrenBlockObjectRequest>
+    }
+    type?: 'template'
+    object?: 'block'
+  }
+  
+  /** Callout Block */
+  export type CalloutBlockObjectRequestWithoutChildren = {
+    callout: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+      children?: Array<BlockObjectRequestWithoutChildren>
+      icon?:
+        | { emoji: EmojiRequest; type?: 'emoji' }
+        | { external: { url: TextRequest }; type?: 'external' }
+        | {
+            custom_emoji: {
+              id: IdRequest
+              name?: string
+              url?: string
+            }
+            type?: 'custom_emoji'
+          }
+    }
+    type?: 'callout'
+    object?: 'block'
+  }
+
+  export type CalloutBlockObjectRequestForChildren = {
+    callout: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+      children?: Array<BlockObjectRequestWithoutChildren>
+      icon?:
+        | { emoji: EmojiRequest; type?: 'emoji' }
+        | { external: { url: TextRequest }; type?: 'external' }
+        | {
+            custom_emoji: {
+              id: IdRequest
+              name?: string
+              url?: string
+            }
+            type?: 'custom_emoji'
+          }
+    }
+    type?: 'callout'
+    object?: 'block'
+  }
+
+  export type CalloutBlockObjectRequest = {
+    callout: {
+      rich_text: Array<RichTextItemRequest>
+      color?: ApiColor
+      children?: Array<ChildrenBlockObjectRequest>
+      icon?:
+        | { emoji: EmojiRequest; type?: 'emoji' }
+        | { external: { url: TextRequest }; type?: 'external' }
+        | {
+            custom_emoji: {
+              id: IdRequest
+              name?: string
+              url?: string
+            }
+            type?: 'custom_emoji'
+          }
+    }
+    type?: 'callout'
+    object?: 'block'
+  }
+  
+  /** Synced Block */
+  export type SyncedBlockObjectRequestWithoutChildren = {
+    synced_block: {
+      synced_from:
+        | {
+            block_id: IdRequest
+            type?: 'block_id'
+          }
+        | null
+    }
+    type?: 'synced_block'
+    object?: 'block'
+  }
+
+  export type SyncedBlockObjectRequestForChildren = {
+    synced_block: {
+      synced_from:
+        | {
+            block_id: IdRequest
+            type?: 'block_id'
+          }
+        | null
+      children?: Array<BlockObjectRequestWithoutChildren>
+    }
+    type?: 'synced_block'
+    object?: 'block'
+  }
+
+  export type SyncedBlockObjectRequest = {
+    synced_block: {
+      synced_from:
+        | {
+            block_id: IdRequest
+            type?: 'block_id'
+          }
+        | null
+      children?: Array<ChildrenBlockObjectRequest>
+    }
+    type?: 'synced_block'
+    object?: 'block'
+  }
+  
+  
+  export type BlockObjectRequestWithoutChildren =
+    | EmbedBlockObjectRequest
+    | BookmarkBlockObjectRequest
+    | ImageBlockObjectRequest
+    | VideoBlockObjectRequest
+    | PdfBlockObjectRequest
+    | FileBlockObjectRequest
+    | AudioBlockObjectRequest
+    | CodeBlockObjectRequest
+    | EquationBlockObjectRequest
+    | DividerBlockObjectRequest
+    | BreadcrumbBlockObjectRequest
+    | TableOfContentsBlockObjectRequest
+    | LinkToPageBlockObjectRequest
+    | TableRowBlockObjectRequest
+    | Heading1BlockObjectRequestWithoutChildren
+    | Heading2BlockObjectRequestWithoutChildren
+    | Heading3BlockObjectRequestWithoutChildren
+    | ParagraphBlockObjectRequestWithoutChildren
+    | BulletedListItemBlockObjectRequestWithoutChildren
+    | NumberedListItemBlockObjectRequestWithoutChildren
+    | QuoteBlockObjectRequestWithoutChildren
+    | ToDoBlockObjectRequestWithoutChildren
+    | ToggleBlockObjectRequestWithoutChildren
+    | TemplateBlockObjectRequestWithoutChildren
+    | CalloutBlockObjectRequestWithoutChildren
+    | SyncedBlockObjectRequestWithoutChildren
+
+  export type ChildrenBlockObjectRequest =
+    | EmbedBlockObjectRequest
+    | BookmarkBlockObjectRequest
+    | ImageBlockObjectRequest
+    | VideoBlockObjectRequest
+    | PdfBlockObjectRequest
+    | FileBlockObjectRequest
+    | AudioBlockObjectRequest
+    | CodeBlockObjectRequest
+    | EquationBlockObjectRequest
+    | DividerBlockObjectRequest
+    | BreadcrumbBlockObjectRequest
+    | TableOfContentsBlockObjectRequest
+    | LinkToPageBlockObjectRequest
+    | TableRowBlockObjectRequest
+    | Heading1BlockObjectRequestForChildren
+    | Heading2BlockObjectRequestForChildren
+    | Heading3BlockObjectRequestForChildren
+    | ParagraphBlockObjectRequestForChildren
+    | BulletedListItemBlockObjectRequestForChildren
+    | NumberedListItemBlockObjectRequestForChildren
+    | QuoteBlockObjectRequestForChildren
+    | TableBlockObjectRequest
+    | ToDoBlockObjectRequestForChildren
+    | ToggleBlockObjectRequestForChildren
+    | TemplateBlockObjectRequestForChildren
+    | CalloutBlockObjectRequestForChildren
+    | SyncedBlockObjectRequestForChildren
+  
+  export type BlockObjectRequest =
+    | EmbedBlockObjectRequest
+    | BookmarkBlockObjectRequest
+    | ImageBlockObjectRequest
+    | VideoBlockObjectRequest
+    | PdfBlockObjectRequest
+    | FileBlockObjectRequest
+    | AudioBlockObjectRequest
+    | CodeBlockObjectRequest
+    | EquationBlockObjectRequest
+    | DividerBlockObjectRequest
+    | BreadcrumbBlockObjectRequest
+    | TableOfContentsBlockObjectRequest
+    | LinkToPageBlockObjectRequest
+    | TableRowBlockObjectRequest
+    | TableBlockObjectRequest
+    | ColumnListBlockObjectRequest
+    | ColumnBlockObjectRequest
+    | Heading1BlockObjectRequest
+    | Heading2BlockObjectRequest
+    | Heading3BlockObjectRequest
+    | ParagraphBlockObjectRequest
+    | BulletedListItemBlockObjectRequest
+    | NumberedListItemBlockObjectRequest
+    | QuoteBlockObjectRequest
+    | ToDoBlockObjectRequest
+    | ToggleBlockObjectRequest
+    | TemplateBlockObjectRequest
+    | CalloutBlockObjectRequest
+    | SyncedBlockObjectRequest
+
 // For Response
-
-
 
 /** ------------------------------------------------------------------
  *  Individual page property types (response side)
