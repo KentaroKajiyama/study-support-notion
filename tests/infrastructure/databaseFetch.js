@@ -1,5 +1,5 @@
 import NotionAPI from "../infrastructure/notionAPI.js";
-import logger from "../src/utils/logger.js";
+import logger from "../../src/utils/logger.js";
 import { japaneseHistoryColumns } from "../src/const/problemDatabase.js";
 import dotenv from "dotenv";
 import path from "path";

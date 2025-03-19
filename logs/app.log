@@ -52,3 +52,8 @@
 [2025-03-19T05:03:42.878Z] [DEBUG] www.example is a valid URL
 [2025-03-19T05:05:06.807Z] [DEBUG] https://example.com is a valid URL
 [2025-03-19T05:05:06.808Z] [DEBUG] http://www.example.com is a valid URL
+[2025-03-19T08:54:54.040Z] [DEBUG] [object Object] has a user property
+[2025-03-19T08:55:08.117Z] [DEBUG] [object Object] has a user property
+[2025-03-19T08:55:12.919Z] [DEBUG] {"id":"1234"} has a user property
+[2025-03-19T08:55:45.091Z] [DEBUG] {"id":"1234"} has a user property
+[2025-03-19T08:55:50.599Z] [DEBUG] {"id":"1234"} has a user property

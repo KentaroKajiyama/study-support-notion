@@ -19,8 +19,8 @@ export interface DomainCoachPlan {
   actualBlockSize?: Uint;
   problemLevel?: ActualBlocksProblemLevelEnum;
   isIrregular?: boolean;
-  outputStartDate?: NotionDate;
-  outputEndDate?: NotionDate;
+  outputStartDate?: NotionDate|null;
+  outputEndDate?: NotionDate|null;
   subfieldName?: SubfieldsSubfieldNameEnum;
   planPageId?: NotionUUID;
 }
