@@ -3,7 +3,7 @@ import {
   StatusPropertyResponse,
   SubfieldsSubfieldNameEnum,
   ActualBlocksProblemLevelEnum,
-  isValidActualBlocksProblemLevelEnum,
+  isValidProblemsProblemLevelEnum,
   isValidSubfieldsSubfieldNameEnum,
   SubjectsSubjectNameEnum,
   isValidSubjectsSubjectNameEnum,
@@ -17,7 +17,6 @@ import {
   isValidStudentsOverviewsDistributionStatusEnum,
   isValidStudentsOverviewsPlanStatusEnum,
   StudentDetailInformationSubjectChangeEnum,
-  isValidStudentDetailInformationSubfieldChangeEnum
 } from "@domain/types/index.js";
 
 export type StatusResponseOption = 
@@ -47,13 +46,12 @@ export type StatusResponseReturnType =
 export function statusResponseHandler(statusProp: StatusPropertyResponse, option: StatusResponseOption): StatusResponseReturnType {
   switch (option) {
     case 'a subject change':
-      if (statusProp.status!== null &&!isValidActualBlocksProblemLevelEnum(statusProp.status.name)){
+      if (statusProp.status!== null &&!isValidProblemsProblemLevelEnum(statusProp.status.name)){
         throw new Error("Invalid subject change: " + statusProp.status?.name);
       } else if (statusProp.status === null) {
         throw new Error("Subject change is missing.");
       }
       return statusProp.status.name;
-    case 'a chat status':
     case 'a subfield name':
       if (statusProp.status !== null && !isValidSubfieldsSubfieldNameEnum(statusProp.status?.name)){
         throw new Error("Invalid subfield name: " + statusProp.status?.name);
@@ -83,7 +81,7 @@ export function statusResponseHandler(statusProp: StatusPropertyResponse, option
       }
       return statusProp.status.name;
     case 'a problem level':
-      if (statusProp.status !== null && !isValidActualBlocksProblemLevelEnum(statusProp.status.name)){
+      if (statusProp.status !== null && !isValidProblemsProblemLevelEnum(statusProp.status.name)){
         throw new Error("Invalid problem level: " + statusProp.status?.name);
       } else if (statusProp.status === null) {
         throw new Error("Problem level is missing.");
@@ -144,7 +142,7 @@ export type StatusRequestInputType =
 export function statusRequestHandler(input: StatusRequestInputType, option: StatusRequestOption): StatusPropertyRequest {
   switch (option) {
     case 'a subject change':
-      if (!isValidActualBlocksProblemLevelEnum(input)) throw new Error ("Invalid input for status property option:" + option + ". input : " + input);
+      if (!isValidProblemsProblemLevelEnum(input)) throw new Error ("Invalid input for status property option:" + option + ". input : " + input);
       return {
         type: "status",
         status: {
@@ -184,7 +182,7 @@ export function statusRequestHandler(input: StatusRequestInputType, option: Stat
         },
       };
     case 'a problem level':
-      if (!isValidActualBlocksProblemLevelEnum(input)) throw new Error ("Invalid input for status property option:" + option + ". input : " + input);
+      if (!isValidProblemsProblemLevelEnum(input)) throw new Error ("Invalid input for status property option:" + option + ". input : " + input);
       return {
         type: "status",
         status: {
