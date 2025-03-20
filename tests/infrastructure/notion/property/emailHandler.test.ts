@@ -22,7 +22,7 @@ describe("Email Handlers", () => {
     });
 
     it("should throw an error if email property is invalid", () => {
-      vi.spyOn(isEmail, "default").mockReturnValue(false); // Mock isEmail to return false
+      // vi.spyOn(isEmail, "default").mockReturnValue(false); // Mock isEmail to return false
       const mockResponse: EmailPropertyResponse = { id: "mock", type: "email", email: "invalid-email" };
 
       expect(() => emailResponseHandler(mockResponse, "email")).toThrowError("Invalid email property response");
@@ -50,7 +50,7 @@ describe("Email Handlers", () => {
     });
 
     it("should throw an error if given an invalid email", () => {
-      vi.spyOn(isEmail, "default").mockReturnValue(false); // Mock isEmail to return false
+      // vi.spyOn(isEmail, "default").mockReturnValue(false); // Mock isEmail to return false
 
       expect(() => emailRequestHandler("invalid-email" as Email, "email")).toThrowError("Invalid email input");
     });

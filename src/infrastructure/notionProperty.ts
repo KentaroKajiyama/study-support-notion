@@ -14,6 +14,7 @@ import {
   PeoplePropertyResponse,
   EmailPropertyResponse,
   PhoneNumberPropertyResponse,
+  RichTextPropertyResponse,
 } from "@domain/types/index.js";
 import {
   TitleResponseOption,
@@ -85,6 +86,12 @@ import {
   PhoneNumberResponseOption,
   phoneNumberResponseHandler,
   PhoneNumberResponseReturnType,
+  richTextResponseHandler,
+  RichTextResponseOption,
+  RichTextResponseReturnType,
+  RichTextRequestInputType,
+  RichTextRequestOption,
+  richTextRequestHandler,
 } from '@infrastructure/notion/property/index.js';
 
 // TODO: Specify the option and return type.
@@ -103,6 +110,7 @@ type ResponseReturnOption =
   | CheckboxResponseOption
   | EmailResponseOption
   | PhoneNumberResponseOption
+  | RichTextResponseOption;
 
 type ResponseReturnType = 
   | undefined
@@ -118,6 +126,7 @@ type ResponseReturnType =
   | PeopleResponseReturnType
   | EmailResponseReturnType
   | PhoneNumberResponseReturnType
+  | RichTextResponseReturnType;
 
 export function propertyResponseToDomain(
   property: PagePropertyResponse,
@@ -129,8 +138,7 @@ export function propertyResponseToDomain(
         return titleResponseHandler(property as TitlePropertyResponse, returnOption as TitleResponseOption);
   
       case "rich_text":
-        // Handle rich text properties (e.g., convert to a readable string)
-        break;
+        return richTextResponseHandler(property as RichTextPropertyResponse, returnOption as RichTextResponseOption);
   
       case "number":
         return numberResponseHandler(property as NumberPropertyResponse, returnOption as NumberResponseOption);
@@ -222,6 +230,7 @@ type RequestInputOption =
   | PeopleRequestOption
   | EmailRequestOption
   | PhoneNumberRequestOption
+  | RichTextRequestOption;
 
 type RequestInputType =
   | undefined
@@ -236,6 +245,7 @@ type RequestInputType =
   | PeopleRequestInputType
   | EmailRequestInputType
   | PhoneNumberRequestInputType
+  | RichTextRequestInputType;
 
 export function propertyDomainToRequest(
   domainProperty: RequestInputType, // TODO: Specify the domain property shape
@@ -249,8 +259,7 @@ export function propertyDomainToRequest(
         return titleRequestHandler(domainProperty as TitleRequestInputType, inputOption as TitleRequestOption);
 
       case "rich_text":
-        // Handle rich text properties (e.g., convert to a readable string)
-        break;
+        return richTextRequestHandler(domainProperty as RichTextRequestInputType, inputOption as RichTextRequestOption);
 
       case "number":
         return numberRequestHandler(domainProperty as NumberRequestInputType, inputOption as NumberRequestOption);

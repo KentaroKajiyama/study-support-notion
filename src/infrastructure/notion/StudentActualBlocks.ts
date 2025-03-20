@@ -25,7 +25,7 @@ import {
 } from "@utils/index.js";
 import {
   NotionRepository
-} from "@infrastructure/notion/index.js";
+} from "@infrastructure/notion/NotionRepository.js";
 
 interface NotionStudentActualBlockResponse extends Record<string, any> {
   'ブロック名'?: TitlePropertyResponse;

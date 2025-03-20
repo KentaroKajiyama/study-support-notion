@@ -25,7 +25,9 @@ import {
 } from "@domain/types/index.js";
 import { propertyDomainToRequest, propertyResponseToDomain } from "@infrastructure/notionProperty.js";
 import { logger } from '@utils/index.js';
-import { NotionRepository } from "./NotionRepository.js";
+import {
+  NotionRepository
+} from "@infrastructure/notion/NotionRepository.js";
 
 export interface NotionStudentDetailInformationResponse extends Record<string, any> {
   '氏名'?: TitlePropertyResponse;
@@ -159,7 +161,7 @@ const propertyInfo: Record<string, { type: NotionPagePropertyType, name: string 
   examDate: { type: 'date', name: '試験日' },
 }
 
-export function toDomain(res: NotionStudentDetailInformationResponse): DomainStudentDetailInformation {
+function toDomain(res: NotionStudentDetailInformationResponse): DomainStudentDetailInformation {
   try {
     const transformed: DomainStudentDetailInformation = {
       studentName:
@@ -260,7 +262,7 @@ export function toDomain(res: NotionStudentDetailInformationResponse): DomainStu
   }
 }
 
-export function toNotion(data: DomainStudentDetailInformation): NotionStudentDetailInformationRequest {
+function toNotion(data: DomainStudentDetailInformation): NotionStudentDetailInformationRequest {
   try {
     const transformed: NotionStudentDetailInformationRequest = {
       [propertyInfo.studentName.name]:

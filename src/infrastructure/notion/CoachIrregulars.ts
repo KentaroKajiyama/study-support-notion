@@ -1,3 +1,4 @@
+import 'module-alias/register.js';
 import { 
   DomainCoachIrregular,
 } from "@domain/coach/CoachIrregular.js";
@@ -9,7 +10,6 @@ import {
   TitlePropertyRequest,
   NotionMentionString,
   TitlePropertyResponse,
-  CheckboxPropertyResponse,
   NumberPropertyResponse,
   SelectPropertyResponse,
   RichTextPropertyResponse,
@@ -19,14 +19,18 @@ import {
   SubfieldsSubfieldNameEnum,
   NotionUUID,
   MySQLUintID,
+  StatusPropertyRequest,
+  StatusPropertyResponse,
 } from "@domain/types/index.js";
-import { NotionRepository } from "@infrastructure/notion/index.js";
+import {
+  NotionRepository
+} from "@infrastructure/notion/NotionRepository.js";
 import { logger } from "@utils/logger.js";
 import { propertyResponseToDomain, propertyDomainToRequest } from "@infrastructure/notionProperty.js";
 
 interface NotionCoachIrregularRequest extends Record<string,any> {
   "問題"?: TitlePropertyRequest;
-  "変更"?: CheckboxPropertyRequest;
+  "変更"?: StatusPropertyRequest;
   "挿入先ブロック内 Order"?: NumberPropertyRequest;
   "科目"?: SelectPropertyRequest;
   "Order"?: NumberPropertyRequest;
@@ -37,7 +41,7 @@ interface NotionCoachIrregularRequest extends Record<string,any> {
 
 interface NotionCoachIrregularResponse extends Record<string,any> {
   "問題": TitlePropertyResponse;
-  "変更": CheckboxPropertyResponse;
+  "変更": StatusPropertyResponse;
   "挿入先ブロック内 Order": NumberPropertyResponse;
   "科目": SelectPropertyResponse;
   "Order": NumberPropertyResponse;
@@ -50,7 +54,7 @@ interface NotionCoachIrregularResponse extends Record<string,any> {
 
 const propertyInfo: Record<string, { type: NotionPagePropertyType, name: string }> = {
   problem: { type: 'title', name: '問題'},
-  isModified: { type: 'checkbox', name: '変更' },
+  isModified: { type: 'status', name: '変更' },
   insertOrder: { type: 'number', name: '挿入先ブロック内 Order' },
   subfieldName: { type:'select', name: '科目' },
   irregularProblemOrder: { type: 'number', name: 'Order' },
@@ -62,13 +66,14 @@ const propertyInfo: Record<string, { type: NotionPagePropertyType, name: string 
 
 function toDomain(res: NotionCoachIrregularResponse): DomainCoachIrregular {
   try {
+    const insertBlockMentionString =  propertyResponseToDomain(res["挿入先ブロック"], 'a mention string');
     const transformed: DomainCoachIrregular = {
       problemName: propertyResponseToDomain(res["問題"], 'a mention string') as NotionMentionString,
-      isModified: propertyResponseToDomain(res["変更"], '') as boolean,
+      isModified: propertyResponseToDomain(res["変更"], 'an irregular status') as boolean,
       insertOrder: propertyResponseToDomain(res["挿入先ブロック内 Order"], 'uint') as Uint,
       subfieldName: propertyResponseToDomain(res["科目"], 'string') as SubfieldsSubfieldNameEnum,
       irregularProblemOrder: propertyResponseToDomain(res["Order"], 'uint') as Uint,
-      insertBlock: propertyResponseToDomain(res["挿入先ブロック"], 'a mention string') as NotionMentionString,
+      insertBlock: insertBlockMentionString == null ? undefined : insertBlockMentionString as NotionMentionString,  
       formerBlock: propertyResponseToDomain(res["元ブロック"], 'a mention string') as NotionMentionString,
       irregularPageId: propertyResponseToDomain(res["Irregular Page ID"], 'a page id') as NotionUUID,
     }
@@ -85,13 +90,15 @@ function toNotion(data: DomainCoachIrregular): NotionCoachIrregularRequest {
   try {
     const transformed = {
       [propertyInfo.problem.name]: propertyDomainToRequest(data.problemName, propertyInfo.problem.type, 'a mention string') as TitlePropertyRequest,
-      [propertyInfo.isModified.name]: propertyDomainToRequest(data.isModified, propertyInfo.isModified.type, '') as CheckboxPropertyRequest,
+      [propertyInfo.isModified.name]: propertyDomainToRequest(data.isModified, propertyInfo.isModified.type, 'an irregular boolean') as CheckboxPropertyRequest,
       [propertyInfo.insertOrder.name]: propertyDomainToRequest(data.insertOrder, propertyInfo.insertOrder.type, 'uint') as NumberPropertyRequest,
       [propertyInfo.subfieldName.name]: propertyDomainToRequest(data.subfieldName, propertyInfo.subfieldName.type, 'a subfield name') as SelectPropertyRequest,
       [propertyInfo.irregularProblemOrder.name]: propertyDomainToRequest(data.irregularProblemOrder, propertyInfo.irregularProblemOrder.type, 'uint') as NumberPropertyRequest,
       [propertyInfo.insertBlock.name]: propertyDomainToRequest(data.insertBlock, propertyInfo.insertBlock.type, 'a mention string') as RichTextPropertyRequest,
       [propertyInfo.formerBlock.name]: propertyDomainToRequest(data.formerBlock, propertyInfo.formerBlock.type, 'a mention string') as RichTextPropertyRequest,
+      [propertyInfo.formerBlockId.name]: propertyDomainToRequest(data.formerBlock, propertyInfo.formerBlockId.type, 'an extracted id from a mention string') as RichTextPropertyRequest,
     }
+    logger.debug(`Transformed properties: ${JSON.stringify(transformed)}`)
     return Object.fromEntries(
       Object.entries(transformed).filter(([_, value]) => value!== null && value!== undefined)
     ) as NotionCoachIrregularRequest
@@ -118,7 +125,7 @@ export class NotionCoachIrregulars extends NotionRepository<
   ): Promise<DomainCoachIrregular[]> {
     try {
       return await this.queryADatabase(databaseId, [], {
-        property: propertyInfo.SubfieldName.name,
+        property: propertyInfo.subfieldName.name,
         select: {
           equals: filterSubfieldName
         }
@@ -128,7 +135,7 @@ export class NotionCoachIrregulars extends NotionRepository<
       throw error;
     }
   } 
-  async queryADatabaseWithFormerBlockId(databaseId: NotionUUID, formerBlockId: MySQLUintID): Promise<DomainCoachIrregular[]> {
+  async queryADatabaseWithFormerBlockId(databaseId: NotionUUID, formerBlockId: NotionUUID): Promise<DomainCoachIrregular[]> {
     try {
       const filter = {
         property: propertyInfo.formerBlockId.name,

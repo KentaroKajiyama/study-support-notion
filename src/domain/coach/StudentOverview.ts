@@ -1,23 +1,22 @@
 import { 
-  StudentsOverviewsAlertSubfieldEnum,
   StudentsOverviewsChatStatusEnum,
   StudentsOverviewsDistributionStatusEnum,
-  StudentsOverviewsModifiedPlanSubfieldEnum,
   StudentsOverviewsPlanStatusEnum,
   NotionMentionString,
   Int,
-  NotionUUID
+  NotionUUID,
+  SubfieldsSubfieldNameEnum
 } from "@domain/types/index.js";
 
 export interface DomainStudentOverview {
   studentName?: string;
   lineName?: string;
-  alertSubfieldNames?: StudentsOverviewsAlertSubfieldEnum[];
+  alertSubfieldNames?: SubfieldsSubfieldNameEnum[];
   chatStatus?: StudentsOverviewsChatStatusEnum;
   distStatus?: StudentsOverviewsDistributionStatusEnum;
   studentPage?: NotionMentionString;
   planStatus?: StudentsOverviewsPlanStatusEnum;
-  modifiedPlanSubfieldNames?: StudentsOverviewsModifiedPlanSubfieldEnum[];
+  modifiedPlanSubfieldNames?: SubfieldsSubfieldNameEnum[];
   modernJapaneseDelay?: Int;
   ancientJapaneseDelay?: Int;
   ancientChineseDelay?: Int;

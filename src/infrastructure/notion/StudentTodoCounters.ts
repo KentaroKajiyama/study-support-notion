@@ -12,7 +12,9 @@ import {
   Uint
 } from "@domain/types/index.js";
 import { propertyDomainToRequest, propertyResponseToDomain } from "@infrastructure/notionProperty.js";
-import { NotionRepository } from "./NotionRepository.js";
+import {
+  NotionRepository
+} from "@infrastructure/notion/NotionRepository.js";
 
 
 export interface NotionStudentTodoCounterResponse extends Record<string, any> {
@@ -35,7 +37,7 @@ const propertyInfo: Record<string, { type: NotionPagePropertyType, name: string}
   pageId: { type: 'formula', name: 'Student Todo Counter Page ID' },
 }
 
-export function toDomain(res: NotionStudentTodoCounterResponse): DomainStudentTodoCounter {
+function toDomain(res: NotionStudentTodoCounterResponse): DomainStudentTodoCounter {
   try {
     const transformed: DomainStudentTodoCounter = {
       subfieldName:
@@ -46,7 +48,7 @@ export function toDomain(res: NotionStudentTodoCounterResponse): DomainStudentTo
         res['目標日との差']!== undefined? propertyResponseToDomain(res['目標日との差'], 'int') as Int: undefined,
     };
     return Object.fromEntries(
-      Object.entries(transformed).filter(([key]) => propertyInfo[key]!== undefined)
+      Object.entries(transformed).filter(([_, value]) => value!== undefined)
     )
   } catch (error) {
     logger.error(`Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : ${error}`);
@@ -54,7 +56,7 @@ export function toDomain(res: NotionStudentTodoCounterResponse): DomainStudentTo
   }
 };
 
-export function toNotion(data: DomainStudentTodoCounter): NotionStudentTodoCounterRequest {
+function toNotion(data: DomainStudentTodoCounter): NotionStudentTodoCounterRequest {
   try {
     const transformed: NotionStudentTodoCounterRequest = {
       [propertyInfo.subfieldName.name]:
@@ -64,9 +66,10 @@ export function toNotion(data: DomainStudentTodoCounter): NotionStudentTodoCount
       [propertyInfo.delay.name]:
         data.delay!== undefined? propertyDomainToRequest(data.delay, propertyInfo.delay.type, 'int') : undefined,
     };
+    logger.debug(`transformed: ${JSON.stringify(transformed)}`);
     return Object.fromEntries(
-      Object.entries(transformed).filter(([key]) => propertyInfo[key]!== undefined)
-    );
+      Object.entries(transformed).filter(([_, value]) => value!== undefined)
+    )
   } catch (error) {
     logger.error(`Failed to transform DomainStudentTodoCounter to NotionStudentTodoCounterRequest : ${error}`);
     throw error;
@@ -82,6 +85,7 @@ export class NotionStudentTodoCounters extends NotionRepository<
     return toDomain(response);
   }
   protected toNotion(data: DomainStudentTodoCounter): NotionStudentTodoCounterRequest  {
+    logger.debug(`toNotion: ${JSON.stringify(toNotion(data))}`);
     return toNotion(data);
   }
 }

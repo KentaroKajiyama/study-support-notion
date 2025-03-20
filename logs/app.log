@@ -1081,3 +1081,998 @@ body.children[0].synced_block should be defined, instead was `undefined`.
 [2025-03-19T16:02:35.522Z] [ERROR] Error deleting block in Notion
 
 [2025-03-19T16:02:35.522Z] [ERROR] Conflict error: Conflict occurred while saving. Please try again.
+[2025-03-20T08:40:58.258Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:40:58.261Z] [ERROR] Notion object not found: Could not find page with ID: 19bb95a4-c619-8097-8b53-e913977b3246. Make sure the relevant pages and databases are shared with your integration.
+[2025-03-20T08:40:58.261Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:40:58.262Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T08:40:58.295Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T08:41:00.176Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T08:42:58.664Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:42:58.666Z] [ERROR] Validation error: 変更 is expected to be status.
+[2025-03-20T08:42:58.666Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:42:58.666Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T08:42:58.677Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T08:42:58.918Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T08:43:25.124Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:43:25.127Z] [ERROR] Validation error: body failed validation. Fix one:
+body.properties.変更.title should be defined, instead was `undefined`.
+body.properties.変更.rich_text should be defined, instead was `undefined`.
+body.properties.変更.number should be defined, instead was `undefined`.
+body.properties.変更.url should be defined, instead was `undefined`.
+body.properties.変更.select should be defined, instead was `undefined`.
+body.properties.変更.multi_select should be defined, instead was `undefined`.
+body.properties.変更.people should be defined, instead was `undefined`.
+body.properties.変更.email should be defined, instead was `undefined`.
+body.properties.変更.phone_number should be defined, instead was `undefined`.
+body.properties.変更.date should be defined, instead was `undefined`.
+body.properties.変更.checkbox should be a boolean, instead was `""`.
+body.properties.変更.relation should be defined, instead was `undefined`.
+body.properties.変更.files should be defined, instead was `undefined`.
+body.properties.変更.status should be defined, instead was `undefined`.
+body.properties.問題.id should be defined, instead was `undefined`.
+body.properties.問題.name should be defined, instead was `undefined`.
+body.properties.問題.start should be defined, instead was `undefined`.
+[2025-03-20T08:43:25.127Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:43:25.128Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T08:43:25.142Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T08:43:25.372Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T08:43:36.028Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:43:36.030Z] [ERROR] Validation error: body failed validation. Fix one:
+body.properties.変更.title should be defined, instead was `undefined`.
+body.properties.変更.rich_text should be defined, instead was `undefined`.
+body.properties.変更.number should be defined, instead was `undefined`.
+body.properties.変更.url should be defined, instead was `undefined`.
+body.properties.変更.select should be defined, instead was `undefined`.
+body.properties.変更.multi_select should be defined, instead was `undefined`.
+body.properties.変更.people should be defined, instead was `undefined`.
+body.properties.変更.email should be defined, instead was `undefined`.
+body.properties.変更.phone_number should be defined, instead was `undefined`.
+body.properties.変更.date should be defined, instead was `undefined`.
+body.properties.変更.checkbox should be a boolean, instead was `""`.
+body.properties.変更.relation should be defined, instead was `undefined`.
+body.properties.変更.files should be defined, instead was `undefined`.
+body.properties.変更.status should be defined, instead was `undefined`.
+body.properties.問題.id should be defined, instead was `undefined`.
+body.properties.問題.name should be defined, instead was `undefined`.
+body.properties.問題.start should be defined, instead was `undefined`.
+[2025-03-20T08:43:36.030Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:43:36.030Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T08:43:36.043Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T08:43:36.384Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T08:44:44.116Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:44:44.118Z] [ERROR] Validation error: body failed validation. Fix one:
+body.properties.変更.title should be defined, instead was `undefined`.
+body.properties.変更.rich_text should be defined, instead was `undefined`.
+body.properties.変更.number should be defined, instead was `undefined`.
+body.properties.変更.url should be defined, instead was `undefined`.
+body.properties.変更.select should be defined, instead was `undefined`.
+body.properties.変更.multi_select should be defined, instead was `undefined`.
+body.properties.変更.people should be defined, instead was `undefined`.
+body.properties.変更.email should be defined, instead was `undefined`.
+body.properties.変更.phone_number should be defined, instead was `undefined`.
+body.properties.変更.date should be defined, instead was `undefined`.
+body.properties.変更.checkbox should be a boolean, instead was `"変更なし"`.
+body.properties.変更.relation should be defined, instead was `undefined`.
+body.properties.変更.files should be defined, instead was `undefined`.
+body.properties.変更.status should be defined, instead was `undefined`.
+body.properties.問題.id should be defined, instead was `undefined`.
+body.properties.問題.name should be defined, instead was `undefined`.
+body.properties.問題.start should be defined, instead was `undefined`.
+[2025-03-20T08:44:44.118Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:44:44.118Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T08:44:44.128Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T08:44:44.488Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T08:45:07.450Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:45:07.453Z] [ERROR] Validation error: 変更 is expected to be status.
+[2025-03-20T08:45:07.454Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:45:07.454Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T08:45:07.464Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T08:45:08.786Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T08:46:21.666Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:46:21.669Z] [ERROR] Validation error: 変更 is expected to be status.
+[2025-03-20T08:46:21.669Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:46:21.670Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T08:46:21.679Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T08:46:21.917Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T08:46:26.117Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:46:26.119Z] [ERROR] Validation error: 変更 is expected to be status.
+[2025-03-20T08:46:26.119Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:46:26.119Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T08:46:26.127Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T08:46:26.342Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T08:46:32.061Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:46:32.064Z] [ERROR] Validation error: 変更 is expected to be status.
+[2025-03-20T08:46:32.064Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:46:32.065Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T08:46:32.078Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T08:46:33.536Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T08:46:38.099Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:46:38.100Z] [ERROR] Validation error: 変更 is expected to be status.
+[2025-03-20T08:46:38.101Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:46:38.101Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T08:46:38.109Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T08:46:38.333Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T08:46:42.409Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:46:42.412Z] [ERROR] Validation error: 変更 is expected to be status.
+[2025-03-20T08:46:42.413Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:46:42.413Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T08:46:42.424Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T08:46:42.629Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T08:46:44.841Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:46:44.843Z] [ERROR] Validation error: 変更 is expected to be status.
+[2025-03-20T08:46:44.843Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:46:44.843Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T08:46:44.853Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T08:46:45.082Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T08:51:47.290Z] [ERROR] Error converting DomainCoachIrregular to NotionCoachIrregularRequest
+
+[2025-03-20T08:51:47.291Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:51:47.292Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T08:51:47.299Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T08:51:48.085Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T08:51:58.470Z] [ERROR] Error converting DomainCoachIrregular to NotionCoachIrregularRequest
+
+[2025-03-20T08:51:58.471Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:51:58.472Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T08:51:58.478Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T08:51:58.906Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T08:52:04.221Z] [ERROR] Error converting DomainCoachIrregular to NotionCoachIrregularRequest
+
+[2025-03-20T08:52:04.222Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:52:04.223Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T08:52:04.231Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T08:52:04.546Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T08:52:12.105Z] [ERROR] Error converting DomainCoachIrregular to NotionCoachIrregularRequest
+
+[2025-03-20T08:52:12.107Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:52:12.107Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T08:52:12.114Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T08:52:12.777Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T08:55:29.188Z] [ERROR] Error converting DomainCoachIrregular to NotionCoachIrregularRequest
+
+[2025-03-20T08:55:29.190Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:55:29.190Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T08:55:29.197Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T08:55:29.941Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T08:55:37.768Z] [ERROR] Error converting DomainCoachIrregular to NotionCoachIrregularRequest
+
+[2025-03-20T08:55:37.770Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:55:37.771Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T08:55:37.784Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T08:55:38.102Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T08:55:47.225Z] [ERROR] Error converting DomainCoachIrregular to NotionCoachIrregularRequest
+
+[2025-03-20T08:55:47.227Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:55:47.228Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T08:55:47.236Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T08:55:47.555Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T08:55:59.435Z] [ERROR] Error converting DomainCoachIrregular to NotionCoachIrregularRequest
+
+[2025-03-20T08:55:59.437Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:55:59.438Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T08:55:59.446Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T08:55:59.785Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T08:56:07.232Z] [ERROR] Error converting DomainCoachIrregular to NotionCoachIrregularRequest
+
+[2025-03-20T08:56:07.234Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:56:07.234Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T08:56:07.240Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T08:56:07.534Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T08:56:14.912Z] [ERROR] Error converting DomainCoachIrregular to NotionCoachIrregularRequest
+
+[2025-03-20T08:56:14.915Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:56:14.916Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T08:56:14.927Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T08:56:15.244Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T08:56:23.139Z] [ERROR] Error converting DomainCoachIrregular to NotionCoachIrregularRequest
+
+[2025-03-20T08:56:23.141Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:56:23.142Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T08:56:23.155Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T08:56:25.213Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T08:57:21.833Z] [ERROR] Error converting DomainCoachIrregular to NotionCoachIrregularRequest
+
+[2025-03-20T08:57:21.834Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:57:21.834Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T08:57:21.845Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T08:57:22.742Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T08:57:28.675Z] [ERROR] Error converting DomainCoachIrregular to NotionCoachIrregularRequest
+
+[2025-03-20T08:57:28.676Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:57:28.677Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T08:57:28.685Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T08:57:29.164Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T08:57:45.020Z] [ERROR] Error converting DomainCoachIrregular to NotionCoachIrregularRequest
+
+[2025-03-20T08:57:45.022Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:57:45.022Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T08:57:45.029Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T08:57:45.756Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T08:57:50.844Z] [ERROR] Error converting DomainCoachIrregular to NotionCoachIrregularRequest
+
+[2025-03-20T08:57:50.846Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T08:57:50.846Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T08:57:50.858Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T08:57:51.159Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T08:58:41.054Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T08:58:41.294Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T09:01:29.593Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T09:01:29.808Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T09:01:43.380Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T09:01:44.526Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T09:04:55.865Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T09:04:56.140Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T09:06:03.454Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T09:06:03.735Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T09:06:04.529Z] [DEBUG] 
+[2025-03-20T09:06:05.393Z] [DEBUG] 
+[2025-03-20T09:06:08.696Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T09:06:09.311Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T09:06:10.095Z] [DEBUG] Transformed properties: 
+[2025-03-20T09:06:12.463Z] [DEBUG] Transformed properties: 
+[2025-03-20T09:06:16.321Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T09:06:17.587Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T09:06:18.351Z] [ERROR] Error converting DomainCoachIrregular to NotionCoachIrregularRequest
+
+[2025-03-20T09:06:18.353Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T09:06:18.353Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T09:06:18.359Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T09:06:19.665Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T09:06:20.437Z] [DEBUG] Transformed properties: {"問題":{"title":[{"type":"mention","mention":{"page":{"id":"1a9b95a4c619814b96b6f95df6cf2f65"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"変更":{"type":"status","status":{"name":"変更なし"}},"挿入先ブロック内 Order":{"number":1,"type":"number"},"科目":{"type":"select","select":{"name":"日本史"}},"Order":{"number":1,"type":"number"}}
+[2025-03-20T09:06:21.289Z] [DEBUG] Transformed properties: {"問題":{"title":[{"type":"mention","mention":{"page":{"id":"1a9b95a4c6198147b168d6b3e47a419d"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"変更":{"type":"status","status":{"name":"変更なし"}},"挿入先ブロック内 Order":{"number":1,"type":"number"},"科目":{"type":"select","select":{"name":"日本史"}},"Order":{"number":1,"type":"number"}}
+[2025-03-20T09:06:22.510Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T09:06:22.731Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T09:08:33.694Z] [DEBUG] Transformed properties: {"問題":{"title":[{"type":"mention","mention":{"page":{"id":"1a9b95a4c619814b96b6f95df6cf2f65"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"変更":{"type":"status","status":{"name":"変更なし"}},"挿入先ブロック内 Order":{"number":1,"type":"number"},"科目":{"type":"select","select":{"name":"日本史"}},"Order":{"number":1,"type":"number"}}
+[2025-03-20T09:08:37.458Z] [ERROR] Error converting NotionCoachIrregularResponse to DomainCoachIrregular
+
+[2025-03-20T09:08:37.458Z] [ERROR] Error retrieving page from Notion
+
+[2025-03-20T09:08:37.464Z] [DEBUG] Transformed properties: {"問題":{"title":[{"type":"mention","mention":{"page":{"id":"1a9b95a4c6198147b168d6b3e47a419d"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"変更":{"type":"status","status":{"name":"変更なし"}},"挿入先ブロック内 Order":{"number":1,"type":"number"},"科目":{"type":"select","select":{"name":"日本史"}},"Order":{"number":1,"type":"number"}}
+[2025-03-20T09:08:38.304Z] [ERROR] Error converting NotionCoachIrregularResponse to DomainCoachIrregular
+
+[2025-03-20T09:08:38.305Z] [ERROR] Error updating Notion page properties, pageId: ${pageId}
+
+[2025-03-20T09:08:40.080Z] [ERROR] Error converting NotionCoachIrregularResponse to DomainCoachIrregular
+
+[2025-03-20T09:08:40.081Z] [ERROR] Error deleting page in Notion
+
+[2025-03-20T09:10:02.070Z] [DEBUG] Transformed properties: {"問題":{"title":[{"type":"mention","mention":{"page":{"id":"1a9b95a4c619814b96b6f95df6cf2f65"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"変更":{"type":"status","status":{"name":"変更なし"}},"挿入先ブロック内 Order":{"number":1,"type":"number"},"科目":{"type":"select","select":{"name":"日本史"}},"Order":{"number":1,"type":"number"},"挿入先ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980528a4fd74dab6d8b67"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980b999cfe7bac574200c"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"}}
+[2025-03-20T09:10:06.135Z] [DEBUG] Transformed properties: {"問題":{"title":[{"type":"mention","mention":{"page":{"id":"1a9b95a4c6198147b168d6b3e47a419d"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"変更":{"type":"status","status":{"name":"変更なし"}},"挿入先ブロック内 Order":{"number":1,"type":"number"},"科目":{"type":"select","select":{"name":"日本史"}},"Order":{"number":1,"type":"number"},"挿入先ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980528a4fd74dab6d8b67"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980b999cfe7bac574200c"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"}}
+[2025-03-20T09:10:09.802Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T09:10:10.050Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T09:27:58.222Z] [ERROR] Error converting DomainCoachIrregular to NotionCoachIrregularRequest
+
+[2025-03-20T09:27:58.223Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T09:27:58.224Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T09:27:58.673Z] [ERROR] Error converting NotionCoachIrregularResponse to DomainCoachIrregular
+
+[2025-03-20T09:27:58.673Z] [ERROR] Error querying database from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T09:27:58.674Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T09:27:58.886Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T09:29:26.463Z] [DEBUG] Transformed properties: {"問題":{"title":[{"type":"mention","mention":{"page":{"id":"1a9b95a4c619814b96b6f95df6cf2f65"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"変更":{"type":"status","status":{"name":"変更なし"}},"挿入先ブロック内 Order":{"number":1,"type":"number"},"科目":{"type":"select","select":{"name":"日本史"}},"Order":{"number":1,"type":"number"},"挿入先ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980528a4fd74dab6d8b67"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980b999cfe7bac574200c"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック ID":{"rich_text":[{"type":"mention","mention":{"type":"page","page":{"id":"1bbb95a4c61980b999cfe7bac574200c"}}}],"type":"rich_text"}}
+[2025-03-20T09:29:27.580Z] [DEBUG] Transformed properties: {"問題":{"title":[{"type":"mention","mention":{"page":{"id":"1a9b95a4c6198147b168d6b3e47a419d"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"変更":{"type":"status","status":{"name":"変更なし"}},"挿入先ブロック内 Order":{"number":1,"type":"number"},"科目":{"type":"select","select":{"name":"日本史"}},"Order":{"number":1,"type":"number"},"挿入先ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980528a4fd74dab6d8b67"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980b999cfe7bac574200c"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック ID":{"rich_text":[{"type":"mention","mention":{"type":"page","page":{"id":"1bbb95a4c61980b999cfe7bac574200c"}}}],"type":"rich_text"}}
+[2025-03-20T09:29:30.730Z] [ERROR] Error converting NotionCoachIrregularResponse to DomainCoachIrregular
+
+[2025-03-20T09:29:30.730Z] [ERROR] Error querying database from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T09:29:30.730Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T09:29:31.855Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T09:29:32.941Z] [DEBUG] Transformed properties: {"問題":{"title":[{"type":"mention","mention":{"page":{"id":"1a9b95a4c619814b96b6f95df6cf2f65"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"変更":{"type":"status","status":{"name":"変更なし"}},"挿入先ブロック内 Order":{"number":1,"type":"number"},"科目":{"type":"select","select":{"name":"日本史"}},"Order":{"number":1,"type":"number"},"挿入先ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980528a4fd74dab6d8b67"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980b999cfe7bac574200c"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック ID":{"rich_text":[{"type":"mention","mention":{"type":"page","page":{"id":"1bbb95a4c61980b999cfe7bac574200c"}}}],"type":"rich_text"}}
+[2025-03-20T09:29:33.770Z] [DEBUG] Transformed properties: {"問題":{"title":[{"type":"mention","mention":{"page":{"id":"1a9b95a4c6198147b168d6b3e47a419d"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"変更":{"type":"status","status":{"name":"変更なし"}},"挿入先ブロック内 Order":{"number":1,"type":"number"},"科目":{"type":"select","select":{"name":"日本史"}},"Order":{"number":1,"type":"number"},"挿入先ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980528a4fd74dab6d8b67"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980b999cfe7bac574200c"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック ID":{"rich_text":[{"type":"mention","mention":{"type":"page","page":{"id":"1bbb95a4c61980b999cfe7bac574200c"}}}],"type":"rich_text"}}
+[2025-03-20T09:29:36.200Z] [ERROR] Error converting NotionCoachIrregularResponse to DomainCoachIrregular
+
+[2025-03-20T09:29:36.201Z] [ERROR] Error querying database from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T09:29:36.201Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T09:29:36.501Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T09:30:38.334Z] [DEBUG] Transformed properties: {"問題":{"title":[{"type":"mention","mention":{"page":{"id":"1a9b95a4c619814b96b6f95df6cf2f65"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"変更":{"type":"status","status":{"name":"変更なし"}},"挿入先ブロック内 Order":{"number":1,"type":"number"},"科目":{"type":"select","select":{"name":"日本史"}},"Order":{"number":1,"type":"number"},"挿入先ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980528a4fd74dab6d8b67"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980b999cfe7bac574200c"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック ID":{"rich_text":[{"type":"","mention":{"type":"page","page":{"id":"1bbb95a4c61980b999cfe7bac574200c"}}}],"type":"rich_text"}}
+[2025-03-20T09:30:38.746Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T09:30:38.746Z] [ERROR] Validation error: body failed validation. Fix one:
+body.properties.元ブロック ID.rich_text[0].text should be defined, instead was `undefined`.
+body.properties.元ブロック ID.rich_text[0].type should be `"mention"` or `undefined`, instead was `""`.
+body.properties.元ブロック ID.rich_text[0].equation should be defined, instead was `undefined`.
+[2025-03-20T09:30:38.746Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T09:30:38.746Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T09:30:40.860Z] [ERROR] Error converting NotionCoachIrregularResponse to DomainCoachIrregular
+
+[2025-03-20T09:30:40.861Z] [ERROR] Error querying database from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T09:30:40.861Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T09:30:41.097Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T09:30:42.416Z] [DEBUG] Transformed properties: {"問題":{"title":[{"type":"mention","mention":{"page":{"id":"1a9b95a4c619814b96b6f95df6cf2f65"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"変更":{"type":"status","status":{"name":"変更なし"}},"挿入先ブロック内 Order":{"number":1,"type":"number"},"科目":{"type":"select","select":{"name":"日本史"}},"Order":{"number":1,"type":"number"},"挿入先ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980528a4fd74dab6d8b67"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980b999cfe7bac574200c"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック ID":{"rich_text":[{"type":"text","mention":{"type":"page","page":{"id":"1bbb95a4c61980b999cfe7bac574200c"}}}],"type":"rich_text"}}
+[2025-03-20T09:30:43.508Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T09:30:43.508Z] [ERROR] Validation error: body failed validation. Fix one:
+body.properties.元ブロック ID.rich_text[0].text should be defined, instead was `undefined`.
+body.properties.元ブロック ID.rich_text[0].type should be `"mention"` or `undefined`, instead was `"text"`.
+body.properties.元ブロック ID.rich_text[0].equation should be defined, instead was `undefined`.
+[2025-03-20T09:30:43.509Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T09:30:43.509Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T09:30:43.952Z] [ERROR] Error converting NotionCoachIrregularResponse to DomainCoachIrregular
+
+[2025-03-20T09:30:43.953Z] [ERROR] Error querying database from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T09:30:43.953Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T09:30:44.200Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T09:30:45.504Z] [DEBUG] Transformed properties: {"問題":{"title":[{"type":"mention","mention":{"page":{"id":"1a9b95a4c619814b96b6f95df6cf2f65"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"変更":{"type":"status","status":{"name":"変更なし"}},"挿入先ブロック内 Order":{"number":1,"type":"number"},"科目":{"type":"select","select":{"name":"日本史"}},"Order":{"number":1,"type":"number"},"挿入先ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980528a4fd74dab6d8b67"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980b999cfe7bac574200c"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック ID":{"rich_text":[{"type":"text","text":{"type":"page","page":{"id":"1bbb95a4c61980b999cfe7bac574200c"}}}],"type":"rich_text"}}
+[2025-03-20T09:30:45.856Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T09:30:45.856Z] [ERROR] Validation error: body failed validation: body.properties.元ブロック ID.rich_text[0].text.content should be defined, instead was `undefined`.
+[2025-03-20T09:30:45.857Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T09:30:45.857Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T09:30:47.845Z] [ERROR] Error converting NotionCoachIrregularResponse to DomainCoachIrregular
+
+[2025-03-20T09:30:47.845Z] [ERROR] Error querying database from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T09:30:47.846Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T09:30:48.683Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T09:30:49.837Z] [DEBUG] Transformed properties: {"問題":{"title":[{"type":"mention","mention":{"page":{"id":"1a9b95a4c619814b96b6f95df6cf2f65"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"変更":{"type":"status","status":{"name":"変更なし"}},"挿入先ブロック内 Order":{"number":1,"type":"number"},"科目":{"type":"select","select":{"name":"日本史"}},"Order":{"number":1,"type":"number"},"挿入先ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980528a4fd74dab6d8b67"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980b999cfe7bac574200c"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック ID":{"rich_text":[{"type":"text","text":{"type":"page","page":{"id":"1bbb95a4c61980b999cfe7bac574200c"}}}],"type":"rich_text"}}
+[2025-03-20T09:30:50.162Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T09:30:50.162Z] [ERROR] Validation error: body failed validation: body.properties.元ブロック ID.rich_text[0].text.content should be defined, instead was `undefined`.
+[2025-03-20T09:30:50.163Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T09:30:50.163Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T09:30:51.694Z] [ERROR] Error converting NotionCoachIrregularResponse to DomainCoachIrregular
+
+[2025-03-20T09:30:51.694Z] [ERROR] Error querying database from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T09:30:51.695Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T09:30:51.968Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T09:31:48.152Z] [DEBUG] Transformed properties: {"問題":{"title":[{"type":"mention","mention":{"page":{"id":"1a9b95a4c619814b96b6f95df6cf2f65"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"変更":{"type":"status","status":{"name":"変更なし"}},"挿入先ブロック内 Order":{"number":1,"type":"number"},"科目":{"type":"select","select":{"name":"日本史"}},"Order":{"number":1,"type":"number"},"挿入先ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980528a4fd74dab6d8b67"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980b999cfe7bac574200c"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック ID":{"rich_text":[{"type":"text","text":{"content":"1bbb95a4c61980b999cfe7bac574200c"}}],"type":"rich_text"}}
+[2025-03-20T09:31:49.701Z] [DEBUG] Transformed properties: {"問題":{"title":[{"type":"mention","mention":{"page":{"id":"1a9b95a4c6198147b168d6b3e47a419d"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"変更":{"type":"status","status":{"name":"変更なし"}},"挿入先ブロック内 Order":{"number":1,"type":"number"},"科目":{"type":"select","select":{"name":"日本史"}},"Order":{"number":1,"type":"number"},"挿入先ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980528a4fd74dab6d8b67"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980b999cfe7bac574200c"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック ID":{"rich_text":[{"type":"text","text":{"content":"1bbb95a4c61980b999cfe7bac574200c"}}],"type":"rich_text"}}
+[2025-03-20T09:31:58.209Z] [ERROR] Error converting NotionCoachIrregularResponse to DomainCoachIrregular
+
+[2025-03-20T09:31:58.209Z] [ERROR] Error querying database from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T09:31:58.209Z] [ERROR] Error querying Notion database with subfield filter
+
+[2025-03-20T09:31:58.802Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T09:34:34.144Z] [DEBUG] Transformed properties: {"問題":{"title":[{"type":"mention","mention":{"page":{"id":"1a9b95a4c619814b96b6f95df6cf2f65"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"変更":{"type":"status","status":{"name":"変更なし"}},"挿入先ブロック内 Order":{"number":1,"type":"number"},"科目":{"type":"select","select":{"name":"日本史"}},"Order":{"number":1,"type":"number"},"挿入先ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980528a4fd74dab6d8b67"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980b999cfe7bac574200c"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック ID":{"rich_text":[{"type":"text","text":{"content":"1bbb95a4c61980b999cfe7bac574200c"}}],"type":"rich_text"}}
+[2025-03-20T09:34:35.339Z] [DEBUG] Transformed properties: {"問題":{"title":[{"type":"mention","mention":{"page":{"id":"1a9b95a4c6198147b168d6b3e47a419d"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"変更":{"type":"status","status":{"name":"変更なし"}},"挿入先ブロック内 Order":{"number":1,"type":"number"},"科目":{"type":"select","select":{"name":"日本史"}},"Order":{"number":1,"type":"number"},"挿入先ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980528a4fd74dab6d8b67"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980b999cfe7bac574200c"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック ID":{"rich_text":[{"type":"text","text":{"content":"1bbb95a4c61980b999cfe7bac574200c"}}],"type":"rich_text"}}
+[2025-03-20T09:34:37.197Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T09:36:16.021Z] [DEBUG] Transformed properties: {"問題":{"title":[{"type":"mention","mention":{"page":{"id":"1a9b95a4c619814b96b6f95df6cf2f65"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"変更":{"type":"status","status":{"name":"変更なし"}},"挿入先ブロック内 Order":{"number":1,"type":"number"},"科目":{"type":"select","select":{"name":"日本史"}},"Order":{"number":1,"type":"number"},"挿入先ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980528a4fd74dab6d8b67"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980b999cfe7bac574200c"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック ID":{"rich_text":[{"type":"text","text":{"content":"1bbb95a4c61980b999cfe7bac574200c"}}],"type":"rich_text"}}
+[2025-03-20T09:36:21.059Z] [DEBUG] Transformed properties: {"問題":{"title":[{"type":"mention","mention":{"page":{"id":"1a9b95a4c6198147b168d6b3e47a419d"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"変更":{"type":"status","status":{"name":"変更なし"}},"挿入先ブロック内 Order":{"number":1,"type":"number"},"科目":{"type":"select","select":{"name":"日本史"}},"Order":{"number":1,"type":"number"},"挿入先ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980528a4fd74dab6d8b67"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980b999cfe7bac574200c"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック ID":{"rich_text":[{"type":"text","text":{"content":"1bbb95a4c61980b999cfe7bac574200c"}}],"type":"rich_text"}}
+[2025-03-20T09:36:22.851Z] [DEBUG] Transformed properties: {"問題":{"title":[{"type":"mention","mention":{"page":{"id":"1a9b95a4c619814b96b6f95df6cf2f65"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"変更":{"type":"status","status":{"name":"変更なし"}},"挿入先ブロック内 Order":{"number":1,"type":"number"},"科目":{"type":"select","select":{"name":"日本史"}},"Order":{"number":1,"type":"number"},"挿入先ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980528a4fd74dab6d8b67"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980b999cfe7bac574200c"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック ID":{"rich_text":[{"type":"text","text":{"content":"1bbb95a4c61980b999cfe7bac574200c"}}],"type":"rich_text"}}
+[2025-03-20T09:36:23.815Z] [DEBUG] Transformed properties: {"問題":{"title":[{"type":"mention","mention":{"page":{"id":"1a9b95a4c6198147b168d6b3e47a419d"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"変更":{"type":"status","status":{"name":"変更なし"}},"挿入先ブロック内 Order":{"number":1,"type":"number"},"科目":{"type":"select","select":{"name":"日本史"}},"Order":{"number":1,"type":"number"},"挿入先ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980528a4fd74dab6d8b67"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980b999cfe7bac574200c"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック ID":{"rich_text":[{"type":"text","text":{"content":"1bbb95a4c61980b999cfe7bac574200c"}}],"type":"rich_text"}}
+[2025-03-20T09:36:28.815Z] [WARN] No response from Notion API for database id: 19bb95a4c61980978b53e913977b3246
+[2025-03-20T09:36:30.023Z] [DEBUG] Transformed properties: {"問題":{"title":[{"type":"mention","mention":{"page":{"id":"1a9b95a4c619814b96b6f95df6cf2f65"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"変更":{"type":"status","status":{"name":"変更なし"}},"挿入先ブロック内 Order":{"number":1,"type":"number"},"科目":{"type":"select","select":{"name":"日本史"}},"Order":{"number":1,"type":"number"},"挿入先ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980528a4fd74dab6d8b67"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980b999cfe7bac574200c"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック ID":{"rich_text":[{"type":"text","text":{"content":"1bbb95a4c61980b999cfe7bac574200c"}}],"type":"rich_text"}}
+[2025-03-20T09:36:31.587Z] [DEBUG] Transformed properties: {"問題":{"title":[{"type":"mention","mention":{"page":{"id":"1a9b95a4c6198147b168d6b3e47a419d"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"変更":{"type":"status","status":{"name":"変更なし"}},"挿入先ブロック内 Order":{"number":1,"type":"number"},"科目":{"type":"select","select":{"name":"日本史"}},"Order":{"number":1,"type":"number"},"挿入先ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980528a4fd74dab6d8b67"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック":{"rich_text":[{"type":"mention","mention":{"page":{"id":"1bbb95a4c61980b999cfe7bac574200c"}},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"rich_text"},"元ブロック ID":{"rich_text":[{"type":"text","text":{"content":"1bbb95a4c61980b999cfe7bac574200c"}}],"type":"rich_text"}}
+[2025-03-20T09:53:31.707Z] [ERROR] Failed to transform Domain Coach Plan to Notion Coach Plan request TypeError: Cannot read properties of undefined (reading 'type')
+[2025-03-20T09:54:48.843Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T09:54:48.844Z] [ERROR] Notion object not found: Could not find database with ID: 19bb95a4-c619-80da-b22b-e7333b95e841. Make sure the relevant pages and databases are shared with your integration.
+[2025-03-20T09:54:48.844Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T09:54:48.845Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T10:07:46.629Z] [ERROR] Error converting DomainCoachRest to NotionCoachRestRequest: Error: Error converting property domain to request: Error: You must provide a mention string: Test Rest Name
+[2025-03-20T10:07:46.633Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T10:07:46.634Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T10:08:42.016Z] [ERROR] Error converting DomainCoachRest to NotionCoachRestRequest: Error: Error converting property domain to request: Error: You must provide a mention string: Test Rest Name
+[2025-03-20T10:08:42.018Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T10:08:42.019Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T10:08:47.775Z] [ERROR] Error converting DomainCoachRest to NotionCoachRestRequest: TypeError: Cannot read properties of undefined (reading 'type')
+[2025-03-20T10:08:47.777Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T10:08:47.778Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T10:09:20.165Z] [ERROR] Error converting DomainCoachRest to NotionCoachRestRequest: TypeError: Cannot read properties of undefined (reading 'type')
+[2025-03-20T10:09:20.166Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T10:09:20.166Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T10:09:21.859Z] [ERROR] Error converting DomainCoachRest to NotionCoachRestRequest: TypeError: Cannot read properties of undefined (reading 'type')
+[2025-03-20T10:09:21.860Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T10:09:21.860Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T13:23:14.988Z] [ERROR] TypeError: Cannot read properties of undefined (reading 'name')
+[2025-03-20T13:23:14.991Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:23:14.992Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T13:23:46.377Z] [ERROR] TypeError: Cannot read properties of undefined (reading 'name')
+[2025-03-20T13:23:46.379Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:23:46.379Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T13:25:19.147Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:25:19.148Z] [ERROR] Validation error: Listening & Speaking is not a property that exists. undefined is not a property that exists.
+[2025-03-20T13:25:19.148Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:25:19.149Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T13:25:32.945Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:25:32.947Z] [ERROR] Validation error: Listening & Speaking is not a property that exists.
+[2025-03-20T13:25:32.947Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:25:32.947Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T13:25:36.117Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:25:36.119Z] [ERROR] Validation error: Listening & Speaking is not a property that exists. Order  is not a property that exists.
+[2025-03-20T13:25:36.119Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:25:36.119Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T13:25:42.155Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:25:42.157Z] [ERROR] Validation error: Listening & Speaking is not a property that exists.
+[2025-03-20T13:25:42.157Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:25:42.158Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T13:30:43.941Z] [ERROR] Failed to transform DomainStudentOverview  to NotionStudentOverviewRequest: TypeError: Cannot read properties of undefined (reading 'name')
+[2025-03-20T13:31:18.343Z] [ERROR] Failed to transform DomainStudentOverview  to NotionStudentOverviewRequest: TypeError: Cannot read properties of undefined (reading 'name')
+[2025-03-20T13:31:18.345Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:31:18.345Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T13:31:52.912Z] [ERROR] Failed to transform DomainStudentOverview  to NotionStudentOverviewRequest: TypeError: Cannot read properties of undefined (reading 'name')
+[2025-03-20T13:31:52.913Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:31:52.913Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T13:32:49.539Z] [ERROR] Failed to transform DomainStudentOverview  to NotionStudentOverviewRequest: TypeError: Cannot read properties of undefined (reading 'name')
+[2025-03-20T13:32:49.541Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:32:49.541Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T13:33:18.899Z] [ERROR] Failed to transform DomainStudentOverview  to NotionStudentOverviewRequest: TypeError: Cannot read properties of undefined (reading 'name')
+[2025-03-20T13:33:18.901Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:33:18.902Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T13:33:33.185Z] [ERROR] Failed to transform DomainStudentOverview  to NotionStudentOverviewRequest: TypeError: Cannot read properties of undefined (reading 'name')
+[2025-03-20T13:33:33.186Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:33:33.187Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T13:33:37.306Z] [ERROR] Failed to transform DomainStudentOverview  to NotionStudentOverviewRequest: TypeError: Cannot read properties of undefined (reading 'name')
+[2025-03-20T13:33:37.307Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:33:37.308Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T13:33:38.543Z] [ERROR] Failed to transform DomainStudentOverview  to NotionStudentOverviewRequest: TypeError: Cannot read properties of undefined (reading 'name')
+[2025-03-20T13:33:38.545Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:33:38.546Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T13:33:54.737Z] [ERROR] Failed to transform DomainStudentOverview  to NotionStudentOverviewRequest: Error: Error converting property domain to request: Error: Invalid RichText option
+[2025-03-20T13:33:54.738Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:33:54.739Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T13:36:30.537Z] [ERROR] Failed to transform DomainStudentOverview  to NotionStudentOverviewRequest: TypeError: Cannot read properties of undefined (reading 'name')
+[2025-03-20T13:36:30.538Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:36:30.538Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T13:37:10.624Z] [ERROR] Failed to transform DomainStudentOverview  to NotionStudentOverviewRequest: TypeError: Cannot read properties of undefined (reading 'name')
+[2025-03-20T13:37:10.626Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:37:10.626Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T13:37:23.622Z] [ERROR] Failed to transform DomainStudentOverview  to NotionStudentOverviewRequest: TypeError: Cannot read properties of undefined (reading 'name')
+[2025-03-20T13:37:23.624Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:37:23.624Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T13:37:37.130Z] [ERROR] Failed to transform NotionStudentOverviewResponse to DomainStudentOverview : Error: Error converting property response to domain: Error: Invalid richText option
+[2025-03-20T13:37:37.139Z] [ERROR] Error retrieving page from Notion
+
+[2025-03-20T13:37:37.579Z] [ERROR] Failed to transform NotionStudentOverviewResponse to DomainStudentOverview : Error: Error converting property response to domain: Error: Invalid richText option
+[2025-03-20T13:37:37.580Z] [ERROR] Error updating Notion page properties, pageId: ${pageId}
+
+[2025-03-20T13:37:41.124Z] [ERROR] Failed to transform NotionStudentOverviewResponse to DomainStudentOverview : Error: Error converting property response to domain: Error: Invalid richText option
+[2025-03-20T13:37:41.125Z] [ERROR] Error updating Notion page properties, pageId: ${pageId}
+
+[2025-03-20T13:37:41.125Z] [ERROR] Failed to update Notion Student Overview page with delay for 数学: Error: Error converting property response to domain: Error: Invalid richText option
+[2025-03-20T13:37:41.474Z] [ERROR] Failed to transform NotionStudentOverviewResponse to DomainStudentOverview : Error: Error converting property response to domain: Error: Invalid richText option
+[2025-03-20T13:37:41.474Z] [ERROR] Error updating Notion page properties, pageId: ${pageId}
+
+[2025-03-20T13:37:41.475Z] [ERROR] Failed to update Notion Student Overview page with plan status: Error: Error converting property response to domain: Error: Invalid richText option
+[2025-03-20T13:37:42.011Z] [ERROR] Failed to transform NotionStudentOverviewResponse to DomainStudentOverview : Error: Error converting property response to domain: Error: Invalid richText option
+[2025-03-20T13:37:42.011Z] [ERROR] Error deleting page in Notion
+
+[2025-03-20T13:37:43.979Z] [ERROR] Failed to transform NotionStudentOverviewResponse to DomainStudentOverview : Error: Error converting property response to domain: Error: Invalid richText option
+[2025-03-20T13:37:43.979Z] [ERROR] Error restoring page in Notion
+
+[2025-03-20T13:45:25.536Z] [ERROR] Failed to transform DomainStudentProblem to NotionStudentProblemRequest: Error: Error converting property domain to request: Error: Invalid input for status property option:a review level. input : 初学
+[2025-03-20T13:45:25.538Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:45:25.538Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T13:46:41.808Z] [ERROR] Failed to transform DomainStudentProblem to NotionStudentProblemRequest: Error: Error converting property domain to request: ReferenceError: isValidStudentProblemsReviewStatusEnum is not defined
+[2025-03-20T13:46:41.810Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:46:41.811Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T13:46:46.133Z] [ERROR] Failed to transform DomainStudentProblem to NotionStudentProblemRequest: TypeError: Cannot read properties of undefined (reading 'name')
+[2025-03-20T13:46:46.135Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:46:46.135Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T13:47:20.231Z] [ERROR] Failed to transform NotionStudentProblemResponse to DomainStudentProblem: Error: Error converting property response to domain: Error: Invalid review level: 初学
+[2025-03-20T13:47:20.235Z] [ERROR] Error retrieving page from Notion
+
+[2025-03-20T13:47:20.782Z] [ERROR] Failed to transform NotionStudentProblemResponse to DomainStudentProblem: Error: Error converting property response to domain: Error: Invalid review level: 初学
+[2025-03-20T13:47:20.782Z] [ERROR] Error updating Notion page properties, pageId: ${pageId}
+
+[2025-03-20T13:47:21.252Z] [ERROR] Failed to transform NotionStudentProblemResponse to DomainStudentProblem: Error: Error converting property response to domain: Error: Invalid review level: 初学
+[2025-03-20T13:47:21.252Z] [ERROR] Error deleting page in Notion
+
+[2025-03-20T13:47:21.944Z] [ERROR] Failed to transform NotionStudentProblemResponse to DomainStudentProblem: Error: Error converting property response to domain: Error: Invalid review level: 初学
+[2025-03-20T13:47:21.944Z] [ERROR] Error restoring page in Notion
+
+[2025-03-20T13:48:02.643Z] [ERROR] Failed to transform NotionStudentProblemResponse to DomainStudentProblem: Error: Error converting property response to domain: ReferenceError: isValidStuden is not defined
+[2025-03-20T13:48:02.647Z] [ERROR] Error retrieving page from Notion
+
+[2025-03-20T13:48:03.181Z] [ERROR] Failed to transform NotionStudentProblemResponse to DomainStudentProblem: Error: Error converting property response to domain: ReferenceError: isValidStuden is not defined
+[2025-03-20T13:48:03.181Z] [ERROR] Error updating Notion page properties, pageId: ${pageId}
+
+[2025-03-20T13:48:03.752Z] [ERROR] Failed to transform NotionStudentProblemResponse to DomainStudentProblem: Error: Error converting property response to domain: ReferenceError: isValidStuden is not defined
+[2025-03-20T13:48:03.753Z] [ERROR] Error deleting page in Notion
+
+[2025-03-20T13:48:04.191Z] [ERROR] Failed to transform NotionStudentProblemResponse to DomainStudentProblem: Error: Error converting property response to domain: ReferenceError: isValidStuden is not defined
+[2025-03-20T13:48:04.191Z] [ERROR] Error restoring page in Notion
+
+[2025-03-20T13:52:48.170Z] [ERROR] Error converting DomainStudentRemaining to NotionStudentRemainingRequest: TypeError: Cannot read properties of undefined (reading 'name')
+[2025-03-20T13:52:48.172Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:52:48.173Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T13:53:06.259Z] [ERROR] Error converting DomainStudentRemaining to NotionStudentRemainingRequest: TypeError: Cannot read properties of undefined (reading 'type')
+[2025-03-20T13:53:06.261Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:53:06.261Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T13:53:31.563Z] [ERROR] Error converting DomainStudentRemaining to NotionStudentRemainingRequest: TypeError: Cannot read properties of undefined (reading 'type')
+[2025-03-20T13:53:31.565Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:53:31.565Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T13:53:37.257Z] [ERROR] Error converting DomainStudentRemaining to NotionStudentRemainingRequest: Error: Error converting property domain to request: Error: Invalid title option
+[2025-03-20T13:53:37.260Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:53:37.261Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T13:57:55.083Z] [ERROR] Error converting DomainStudentSchedule to NotionStudentScheduleRequest: TypeError: Cannot read properties of undefined (reading 'type')
+[2025-03-20T13:57:55.085Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T13:57:55.085Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T14:03:16.503Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:03:16.505Z] [ERROR] Error retrieving page from Notion
+
+[2025-03-20T14:03:17.208Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:03:17.209Z] [ERROR] Error updating Notion page properties, pageId: ${pageId}
+
+[2025-03-20T14:03:17.633Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:03:17.633Z] [ERROR] Error deleting page in Notion
+
+[2025-03-20T14:03:18.025Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:03:18.025Z] [ERROR] Error restoring page in Notion
+
+[2025-03-20T14:05:19.040Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:05:19.043Z] [ERROR] Error retrieving page from Notion
+
+[2025-03-20T14:05:19.266Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:05:19.266Z] [ERROR] Error updating Notion page properties, pageId: ${pageId}
+
+[2025-03-20T14:05:19.689Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:05:19.690Z] [ERROR] Error deleting page in Notion
+
+[2025-03-20T14:05:21.762Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:05:21.762Z] [ERROR] Error restoring page in Notion
+
+[2025-03-20T14:05:51.707Z] [DEBUG] 
+[2025-03-20T14:05:52.528Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:05:52.528Z] [ERROR] Error retrieving page from Notion
+
+[2025-03-20T14:05:52.536Z] [DEBUG] 
+[2025-03-20T14:05:52.766Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:05:52.767Z] [ERROR] Error updating Notion page properties, pageId: ${pageId}
+
+[2025-03-20T14:05:53.690Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:05:53.690Z] [ERROR] Error deleting page in Notion
+
+[2025-03-20T14:05:54.474Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:05:54.474Z] [ERROR] Error restoring page in Notion
+
+[2025-03-20T14:05:55.275Z] [DEBUG] 
+[2025-03-20T14:05:56.194Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:05:56.195Z] [ERROR] Error retrieving page from Notion
+
+[2025-03-20T14:05:56.201Z] [DEBUG] 
+[2025-03-20T14:05:56.426Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:05:56.427Z] [ERROR] Error updating Notion page properties, pageId: ${pageId}
+
+[2025-03-20T14:05:56.870Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:05:56.871Z] [ERROR] Error deleting page in Notion
+
+[2025-03-20T14:05:57.358Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:05:57.358Z] [ERROR] Error restoring page in Notion
+
+[2025-03-20T14:05:58.129Z] [DEBUG] transformed: [object Object]
+[2025-03-20T14:05:59.038Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:05:59.038Z] [ERROR] Error retrieving page from Notion
+
+[2025-03-20T14:05:59.044Z] [DEBUG] transformed: [object Object]
+[2025-03-20T14:05:59.269Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:05:59.269Z] [ERROR] Error updating Notion page properties, pageId: ${pageId}
+
+[2025-03-20T14:06:05.077Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:06:05.077Z] [ERROR] Error deleting page in Notion
+
+[2025-03-20T14:06:05.507Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:06:05.508Z] [ERROR] Error restoring page in Notion
+
+[2025-03-20T14:06:08.462Z] [DEBUG] transformed: [object Object]
+[2025-03-20T14:06:10.605Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:06:10.605Z] [ERROR] Error retrieving page from Notion
+
+[2025-03-20T14:06:10.615Z] [DEBUG] transformed: [object Object]
+[2025-03-20T14:06:10.815Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:06:10.815Z] [ERROR] Error updating Notion page properties, pageId: ${pageId}
+
+[2025-03-20T14:06:11.217Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:06:11.217Z] [ERROR] Error deleting page in Notion
+
+[2025-03-20T14:06:12.298Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:06:12.299Z] [ERROR] Error restoring page in Notion
+
+[2025-03-20T14:06:13.360Z] [DEBUG] transformed: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:06:14.651Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:06:14.651Z] [ERROR] Error retrieving page from Notion
+
+[2025-03-20T14:06:14.663Z] [DEBUG] transformed: {"残り問題数":{"number":5,"type":"number"}}
+[2025-03-20T14:06:14.924Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:06:14.924Z] [ERROR] Error updating Notion page properties, pageId: ${pageId}
+
+[2025-03-20T14:06:16.402Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:06:16.402Z] [ERROR] Error deleting page in Notion
+
+[2025-03-20T14:06:16.787Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:06:16.787Z] [ERROR] Error restoring page in Notion
+
+[2025-03-20T14:07:56.892Z] [DEBUG] transformed: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:07:58.121Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:07:58.121Z] [ERROR] Error retrieving page from Notion
+
+[2025-03-20T14:07:58.123Z] [DEBUG] transformed: {"残り問題数":{"number":5,"type":"number"}}
+[2025-03-20T14:07:58.408Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:07:58.408Z] [ERROR] Error updating Notion page properties, pageId: ${pageId}
+
+[2025-03-20T14:07:59.764Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:07:59.765Z] [ERROR] Error deleting page in Notion
+
+[2025-03-20T14:08:01.288Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:08:01.288Z] [ERROR] Error restoring page in Notion
+
+[2025-03-20T14:08:03.573Z] [DEBUG] transformed: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:08:04.371Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:08:04.372Z] [ERROR] Error retrieving page from Notion
+
+[2025-03-20T14:08:04.377Z] [DEBUG] transformed: {"残り問題数":{"number":5,"type":"number"}}
+[2025-03-20T14:08:04.609Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:08:04.610Z] [ERROR] Error updating Notion page properties, pageId: ${pageId}
+
+[2025-03-20T14:08:05.123Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:08:05.123Z] [ERROR] Error deleting page in Notion
+
+[2025-03-20T14:08:07.088Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:08:07.089Z] [ERROR] Error restoring page in Notion
+
+[2025-03-20T14:08:09.088Z] [DEBUG] transformed: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:08:10.950Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:08:10.950Z] [ERROR] Error retrieving page from Notion
+
+[2025-03-20T14:08:10.953Z] [DEBUG] transformed: {"残り問題数":{"number":5,"type":"number"}}
+[2025-03-20T14:08:11.215Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:08:11.216Z] [ERROR] Error updating Notion page properties, pageId: ${pageId}
+
+[2025-03-20T14:08:13.276Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:08:13.276Z] [ERROR] Error deleting page in Notion
+
+[2025-03-20T14:08:13.782Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:08:13.783Z] [ERROR] Error restoring page in Notion
+
+[2025-03-20T14:08:14.519Z] [DEBUG] transformed: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:08:17.452Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:08:17.452Z] [ERROR] Error retrieving page from Notion
+
+[2025-03-20T14:08:17.461Z] [DEBUG] transformed: {"残り問題数":{"number":5,"type":"number"}}
+[2025-03-20T14:08:17.702Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:08:17.702Z] [ERROR] Error updating Notion page properties, pageId: ${pageId}
+
+[2025-03-20T14:08:18.488Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:08:18.488Z] [ERROR] Error deleting page in Notion
+
+[2025-03-20T14:08:18.890Z] [ERROR] Failed to transform NotionStudentTodoCounterResponse to DomainStudentTodoCounter : Error: Error converting property response to domain: Error: title must be a subfield name
+[2025-03-20T14:08:18.891Z] [ERROR] Error restoring page in Notion
+
+[2025-03-20T14:08:35.319Z] [DEBUG] transformed: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:08:53.105Z] [DEBUG] transformed: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:09:01.775Z] [INFO] result:1bcb95a4-c619-813a-9c78-f9d24c389fc0
+[2025-03-20T14:11:31.379Z] [DEBUG] domainProperties: [object Object]
+[2025-03-20T14:11:31.393Z] [DEBUG] transformed: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:11:31.393Z] [DEBUG] payload: [object Object]
+[2025-03-20T14:11:32.010Z] [INFO] result:1bcb95a4-c619-81a8-ac9d-c31c5aecc529
+[2025-03-20T14:11:47.014Z] [DEBUG] domainProperties: [object Object]
+[2025-03-20T14:11:47.021Z] [DEBUG] transformed: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:11:47.021Z] [DEBUG] payload: [object Object]
+[2025-03-20T14:11:48.979Z] [INFO] result:1bcb95a4-c619-815d-9e5a-fbdbabdbffdc
+[2025-03-20T14:11:52.048Z] [DEBUG] domainProperties: [object Object]
+[2025-03-20T14:11:52.055Z] [DEBUG] transformed: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:11:52.055Z] [DEBUG] payload: {"parent":{"database_id":"1aab95a4c61980f798dbf9b4dae2f432"},"properties":{},"icon":null,"cover":null,"children":[]}
+[2025-03-20T14:11:52.827Z] [INFO] result:1bcb95a4-c619-81da-b353-eb36ca25ff45
+[2025-03-20T14:11:59.051Z] [DEBUG] domainProperties: [object Object]
+[2025-03-20T14:11:59.063Z] [DEBUG] transformed: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:11:59.063Z] [DEBUG] payload: {"parent":{"database_id":"1aab95a4c61980f798dbf9b4dae2f432"},"properties":{},"icon":null,"cover":null,"children":[]}
+[2025-03-20T14:11:59.656Z] [INFO] result:1bcb95a4-c619-81a0-9589-f294e179e899
+[2025-03-20T14:12:02.502Z] [DEBUG] domainProperties: {"subfieldName":"数学","remainingProblemNumber":10,"delay":-2}
+[2025-03-20T14:12:02.516Z] [DEBUG] transformed: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:12:02.516Z] [DEBUG] payload: {"parent":{"database_id":"1aab95a4c61980f798dbf9b4dae2f432"},"properties":{},"icon":null,"cover":null,"children":[]}
+[2025-03-20T14:12:03.357Z] [INFO] result:1bcb95a4-c619-811a-9e2a-f102a2af255b
+[2025-03-20T14:13:14.301Z] [DEBUG] domainProperties: {"subfieldName":"数学","remainingProblemNumber":10,"delay":-2}
+[2025-03-20T14:13:14.309Z] [DEBUG] transformed: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:13:14.309Z] [DEBUG] payload: {"parent":{"database_id":"1aab95a4c61980f798dbf9b4dae2f432"},"properties":{},"icon":null,"cover":null,"children":[]}
+[2025-03-20T14:13:14.968Z] [INFO] result:1bcb95a4-c619-81b2-afa6-d2ef4a385b5d
+[2025-03-20T14:13:18.135Z] [DEBUG] domainProperties: {"subfieldName":"数学","remainingProblemNumber":10,"delay":-2}
+[2025-03-20T14:13:18.136Z] [DEBUG] 
+[2025-03-20T14:13:18.141Z] [DEBUG] transformed: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:13:18.141Z] [DEBUG] payload: {"parent":{"database_id":"1aab95a4c61980f798dbf9b4dae2f432"},"properties":{},"icon":null,"cover":null,"children":[]}
+[2025-03-20T14:13:21.515Z] [INFO] result:1bcb95a4-c619-8107-bb53-f13460b5063c
+[2025-03-20T14:13:22.339Z] [DEBUG] domainProperties: {"subfieldName":"数学","remainingProblemNumber":10,"delay":-2}
+[2025-03-20T14:13:22.341Z] [DEBUG] toNotion:
+[2025-03-20T14:13:22.346Z] [DEBUG] transformed: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:13:22.346Z] [DEBUG] payload: {"parent":{"database_id":"1aab95a4c61980f798dbf9b4dae2f432"},"properties":{},"icon":null,"cover":null,"children":[]}
+[2025-03-20T14:13:22.982Z] [INFO] result:1bcb95a4-c619-815d-8c5b-db86ce595e98
+[2025-03-20T14:13:23.992Z] [DEBUG] domainProperties: {"subfieldName":"数学","remainingProblemNumber":10,"delay":-2}
+[2025-03-20T14:13:23.993Z] [DEBUG] toNotion: 
+[2025-03-20T14:13:23.999Z] [DEBUG] transformed: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:13:23.999Z] [DEBUG] payload: {"parent":{"database_id":"1aab95a4c61980f798dbf9b4dae2f432"},"properties":{},"icon":null,"cover":null,"children":[]}
+[2025-03-20T14:13:24.560Z] [INFO] result:1bcb95a4-c619-8173-8ffa-c217e0ce99e2
+[2025-03-20T14:13:28.875Z] [DEBUG] domainProperties: {"subfieldName":"数学","remainingProblemNumber":10,"delay":-2}
+[2025-03-20T14:13:28.877Z] [DEBUG] toNotion: undefined
+[2025-03-20T14:13:28.882Z] [DEBUG] transformed: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:13:28.883Z] [DEBUG] payload: {"parent":{"database_id":"1aab95a4c61980f798dbf9b4dae2f432"},"properties":{},"icon":null,"cover":null,"children":[]}
+[2025-03-20T14:13:29.644Z] [INFO] result:1bcb95a4-c619-81c6-9dd4-d74e027e2c37
+[2025-03-20T14:13:33.598Z] [DEBUG] domainProperties: {"subfieldName":"数学","remainingProblemNumber":10,"delay":-2}
+[2025-03-20T14:13:33.605Z] [DEBUG] transformed: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:13:33.605Z] [DEBUG] toNotion: {}
+[2025-03-20T14:13:33.606Z] [DEBUG] transformed: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:13:33.606Z] [DEBUG] payload: {"parent":{"database_id":"1aab95a4c61980f798dbf9b4dae2f432"},"properties":{},"icon":null,"cover":null,"children":[]}
+[2025-03-20T14:13:35.592Z] [INFO] result:1bcb95a4-c619-8122-9a78-fae53a367827
+[2025-03-20T14:13:36.326Z] [DEBUG] domainProperties: {"subfieldName":"数学","remainingProblemNumber":10,"delay":-2}
+[2025-03-20T14:13:36.339Z] [DEBUG] transformed: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:13:36.339Z] [DEBUG] toNotion: {}
+[2025-03-20T14:13:36.341Z] [DEBUG] transformed: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:13:36.341Z] [DEBUG] payload: {"parent":{"database_id":"1aab95a4c61980f798dbf9b4dae2f432"},"properties":{},"icon":null,"cover":null,"children":[]}
+[2025-03-20T14:13:42.082Z] [INFO] result:1bcb95a4-c619-8120-9fc3-c14c634a8545
+[2025-03-20T14:14:35.711Z] [DEBUG] domainProperties: {"subfieldName":"数学","remainingProblemNumber":10,"delay":-2}
+[2025-03-20T14:14:35.718Z] [DEBUG] transformed: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:14:35.719Z] [DEBUG] toNotion: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:14:35.720Z] [DEBUG] transformed: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:14:35.720Z] [DEBUG] payload: {"parent":{"database_id":"1aab95a4c61980f798dbf9b4dae2f432"},"properties":{"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}},"icon":null,"cover":null,"children":[]}
+[2025-03-20T14:14:36.540Z] [INFO] result:1bcb95a4-c619-8196-8bde-f4c80eef02f6
+[2025-03-20T14:18:36.538Z] [DEBUG] domainProperties: {"subfieldName":"数学","remainingProblemNumber":10,"delay":-2}
+[2025-03-20T14:18:36.548Z] [DEBUG] transformed: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:18:36.549Z] [DEBUG] toNotion: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:18:36.551Z] [DEBUG] transformed: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:18:36.551Z] [DEBUG] payload: {"parent":{"database_id":"1aab95a4c61980f798dbf9b4dae2f432"},"properties":{"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}},"icon":null,"cover":null,"children":[]}
+[2025-03-20T14:18:37.180Z] [INFO] result:1bcb95a4-c619-810d-8c81-f01cc033ae4c
+[2025-03-20T14:18:46.476Z] [DEBUG] domainProperties: {"subfieldName":"数学","remainingProblemNumber":10,"delay":-2}
+[2025-03-20T14:18:46.485Z] [DEBUG] transformed: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:18:46.485Z] [DEBUG] toNotion: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:18:46.486Z] [DEBUG] transformed: {"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}}
+[2025-03-20T14:18:46.486Z] [DEBUG] payload: {"parent":{"database_id":"1aab95a4c61980f798dbf9b4dae2f432"},"properties":{"科目":{"title":[{"type":"text","text":{"content":"数学","link":null},"annotations":{"bold":false,"italic":false,"underline":false,"strikethrough":false,"code":false}}],"type":"title"},"残り問題数":{"number":10,"type":"number"},"目標日との差":{"number":-2,"type":"number"}},"icon":null,"cover":null,"children":[]}
+[2025-03-20T14:18:47.195Z] [INFO] result:1bcb95a4-c619-811e-9a0a-fa942def9a2b
+[2025-03-20T14:18:47.404Z] [DEBUG] transformed: {"残り問題数":{"number":5,"type":"number"}}
+[2025-03-20T14:18:47.404Z] [DEBUG] toNotion: {"残り問題数":{"number":5,"type":"number"}}
+[2025-03-20T14:18:47.404Z] [DEBUG] transformed: {"残り問題数":{"number":5,"type":"number"}}
+[2025-03-20T14:25:02.509Z] [DEBUG] domainProperties: {"answerStatus":"正解","isDifficult":false,"tryCount":1,"difficultCount":0,"wrongCount":0,"reviewLevel":"レベル２","problemOverallOrder":1,"problemInBlockOrder":1,"studentProblemPageId":"1a9b95a4c61981019a9eebf265d63098","blockPageId":"1bbb95a4c61980528a4fd74dab6d8b67","subfieldName":"日本史"}
+[2025-03-20T14:25:02.511Z] [ERROR] Failed to transform DomainTopProblem to NotionStudentProblemRequest: Error: Error converting property domain to request: Error: Invalid input for select property option:a review level. input : レベル２
+[2025-03-20T14:25:02.511Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T14:25:02.512Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T14:25:02.854Z] [ERROR] Error querying database from Notion
+
+[2025-03-20T14:25:02.854Z] [ERROR] Notion object not found: Could not find database with ID: 19bb95a4-c619-80a7-b5ad-cd8a92f06237. Make sure the relevant pages and databases are shared with your integration.
+[2025-03-20T14:25:02.854Z] [ERROR] Error querying database from Notion API for database id: 19bb95a4c61980a7b5adcd8a92f06237
+[2025-03-20T14:25:21.788Z] [DEBUG] domainProperties: {"answerStatus":"正解","isDifficult":false,"tryCount":1,"difficultCount":0,"wrongCount":0,"reviewLevel":"レベル２","problemOverallOrder":1,"problemInBlockOrder":1,"studentProblemPageId":"1a9b95a4c61981019a9eebf265d63098","blockPageId":"1bbb95a4c61980528a4fd74dab6d8b67","subfieldName":"日本史"}
+[2025-03-20T14:25:21.790Z] [ERROR] Failed to transform DomainTopProblem to NotionStudentProblemRequest: Error: Error converting property domain to request: Error: Invalid input for select property option:a review level. input : レベル２
+[2025-03-20T14:25:21.791Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T14:25:21.791Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T14:25:22.253Z] [ERROR] Error querying database from Notion
+
+[2025-03-20T14:25:22.254Z] [ERROR] Notion object not found: Could not find database with ID: 19bb95a4-c619-80a7-b5ad-cd8a92f06237. Make sure the relevant pages and databases are shared with your integration.
+[2025-03-20T14:25:22.254Z] [ERROR] Error querying database from Notion API for database id: 19bb95a4c61980a7b5adcd8a92f06237
+[2025-03-20T14:26:37.526Z] [DEBUG] domainProperties: {"answerStatus":"正解","isDifficult":false,"tryCount":1,"difficultCount":0,"wrongCount":0,"reviewLevel":"レベル２","problemOverallOrder":1,"problemInBlockOrder":1,"studentProblemPageId":"1a9b95a4c61981019a9eebf265d63098","blockPageId":"1bbb95a4c61980528a4fd74dab6d8b67","subfieldName":"日本史"}
+[2025-03-20T14:26:37.530Z] [DEBUG] payload: {"parent":{"database_id":"19bb95a4c61980a7b5adcd8a92f06237"},"properties":{"回答":{"type":"status","status":{"name":"正解"}},"理解できない":{"checkbox":false},"挑戦回数":{"number":1,"type":"number"},"理解できなかった回数":{"number":0,"type":"number"},"不正解回数":{"number":0,"type":"number"},"復習レベル":{"type":"status","status":{"name":"レベル２"}},"全体順番":{"number":1,"type":"number"},"ブロック内順番":{"number":1,"type":"number"},"ブロック参照":{"relation":[{"id":"1bbb95a4c61980528a4fd74dab6d8b67"}]},"Subfield Name":{"type":"select","select":{"name":"日本史"}}},"icon":null,"cover":null,"children":[]}
+[2025-03-20T14:26:37.931Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T14:26:37.931Z] [ERROR] Notion object not found: Could not find database with ID: 19bb95a4-c619-80a7-b5ad-cd8a92f06237. Make sure the relevant pages and databases are shared with your integration.
+[2025-03-20T14:26:37.931Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T14:26:37.931Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T14:26:38.151Z] [ERROR] Error querying database from Notion
+
+[2025-03-20T14:26:38.152Z] [ERROR] Notion object not found: Could not find database with ID: 19bb95a4-c619-80a7-b5ad-cd8a92f06237. Make sure the relevant pages and databases are shared with your integration.
+[2025-03-20T14:26:38.152Z] [ERROR] Error querying database from Notion API for database id: 19bb95a4c61980a7b5adcd8a92f06237
+[2025-03-20T14:36:15.462Z] [DEBUG] domainProperties: {"answerStatus":"正解","isDifficult":false,"tryCount":1,"difficultCount":0,"wrongCount":0,"reviewLevel":"レベル２","problemOverallOrder":1,"problemInBlockOrder":1,"studentProblemPageId":"1a9b95a4c61981019a9eebf265d63098","blockPageId":"1bbb95a4c61980528a4fd74dab6d8b67","subfieldName":"日本史"}
+[2025-03-20T14:36:15.465Z] [DEBUG] payload: {"parent":{"database_id":"1bcb95a4c61980b091c0e0cd61e8f78d"},"properties":{"回答":{"type":"status","status":{"name":"正解"}},"理解できない":{"checkbox":false},"挑戦回数":{"number":1,"type":"number"},"理解できなかった回数":{"number":0,"type":"number"},"不正解回数":{"number":0,"type":"number"},"復習レベル":{"type":"status","status":{"name":"レベル２"}},"全体順番":{"number":1,"type":"number"},"ブロック内順番":{"number":1,"type":"number"},"ブロック参照":{"relation":[{"id":"1bbb95a4c61980528a4fd74dab6d8b67"}]},"Subfield Name":{"type":"select","select":{"name":"日本史"}}},"icon":null,"cover":null,"children":[]}
+[2025-03-20T14:36:15.719Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T14:36:15.719Z] [ERROR] Notion object not found: Could not find database with ID: 1bcb95a4-c619-80b0-91c0-e0cd61e8f78d. Make sure the relevant pages and databases are shared with your integration.
+[2025-03-20T14:36:15.720Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T14:36:15.720Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T14:36:15.950Z] [ERROR] Error querying database from Notion
+
+[2025-03-20T14:36:15.950Z] [ERROR] Notion object not found: Could not find database with ID: 1bcb95a4-c619-80b0-91c0-e0cd61e8f78d. Make sure the relevant pages and databases are shared with your integration.
+[2025-03-20T14:36:15.951Z] [ERROR] Error querying database from Notion API for database id: 1bcb95a4c61980b091c0e0cd61e8f78d
+[2025-03-20T14:36:51.297Z] [DEBUG] domainProperties: {"answerStatus":"正解","isDifficult":false,"tryCount":1,"difficultCount":0,"wrongCount":0,"reviewLevel":"レベル２","problemOverallOrder":1,"problemInBlockOrder":1,"studentProblemPageId":"1a9b95a4c61981019a9eebf265d63098","blockPageId":"1bbb95a4c61980528a4fd74dab6d8b67","subfieldName":"日本史"}
+[2025-03-20T14:36:51.301Z] [DEBUG] payload: {"parent":{"database_id":"1bcb95a4c61980b091c0e0cd61e8f78d"},"properties":{"回答":{"type":"status","status":{"name":"正解"}},"理解できない":{"checkbox":false},"挑戦回数":{"number":1,"type":"number"},"理解できなかった回数":{"number":0,"type":"number"},"不正解回数":{"number":0,"type":"number"},"復習レベル":{"type":"status","status":{"name":"レベル２"}},"全体順番":{"number":1,"type":"number"},"ブロック内順番":{"number":1,"type":"number"},"ブロック参照":{"relation":[{"id":"1bbb95a4c61980528a4fd74dab6d8b67"}]},"Subfield Name":{"type":"select","select":{"name":"日本史"}}},"icon":null,"cover":null,"children":[]}
+[2025-03-20T14:36:51.670Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T14:36:51.671Z] [ERROR] Validation error: Subfield Name is not a property that exists.
+[2025-03-20T14:36:51.671Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T14:36:51.672Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T14:36:51.878Z] [ERROR] Error querying database from Notion
+
+[2025-03-20T14:36:51.878Z] [ERROR] Validation error: The property type in the database does not match the property type of the filter provided: database property status does not match filter select
+[2025-03-20T14:36:51.879Z] [ERROR] Error querying database from Notion API for database id: 1bcb95a4c61980b091c0e0cd61e8f78d
+[2025-03-20T14:37:33.112Z] [DEBUG] domainProperties: {"answerStatus":"正解","isDifficult":false,"tryCount":1,"difficultCount":0,"wrongCount":0,"reviewLevel":"レベル２","problemOverallOrder":1,"problemInBlockOrder":1,"studentProblemPageId":"1a9b95a4c61981019a9eebf265d63098","blockPageId":"1bbb95a4c61980528a4fd74dab6d8b67","subfieldName":"日本史"}
+[2025-03-20T14:37:33.114Z] [DEBUG] payload: {"parent":{"database_id":"1bcb95a4c61980b091c0e0cd61e8f78d"},"properties":{"回答":{"type":"status","status":{"name":"正解"}},"理解できない":{"checkbox":false},"挑戦回数":{"number":1,"type":"number"},"理解できなかった回数":{"number":0,"type":"number"},"不正解回数":{"number":0,"type":"number"},"復習レベル":{"type":"status","status":{"name":"レベル２"}},"全体順番":{"number":1,"type":"number"},"ブロック内順番":{"number":1,"type":"number"},"ブロック参照":{"relation":[{"id":"1bbb95a4c61980528a4fd74dab6d8b67"}]},"Subfield Name":{"type":"select","select":{"name":"日本史"}}},"icon":null,"cover":null,"children":[]}
+[2025-03-20T14:37:33.388Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T14:37:33.389Z] [ERROR] Validation error: Subfield Name is not a property that exists.
+[2025-03-20T14:37:33.389Z] [ERROR] Error creating page in Notion
+
+[2025-03-20T14:37:33.389Z] [ERROR] Error creating page only with properties in Notion
+
+[2025-03-20T14:37:33.621Z] [ERROR] Error querying database from Notion
+
+[2025-03-20T14:37:33.621Z] [ERROR] Validation error: The property type in the database does not match the property type of the filter provided: database property status does not match filter select
+[2025-03-20T14:37:33.622Z] [ERROR] Error querying database from Notion API for database id: 1bcb95a4c61980b091c0e0cd61e8f78d
+[2025-03-20T14:38:07.702Z] [DEBUG] domainProperties: {"answerStatus":"正解","isDifficult":false,"tryCount":1,"difficultCount":0,"wrongCount":0,"reviewLevel":"レベル２","problemOverallOrder":1,"problemInBlockOrder":1,"studentProblemPageId":"1a9b95a4c61981019a9eebf265d63098","blockPageId":"1bbb95a4c61980528a4fd74dab6d8b67","subfieldName":"日本史"}
+[2025-03-20T14:38:07.704Z] [DEBUG] payload: {"parent":{"database_id":"1bcb95a4c61980b091c0e0cd61e8f78d"},"properties":{"回答":{"type":"status","status":{"name":"正解"}},"理解できない":{"checkbox":false},"挑戦回数":{"number":1,"type":"number"},"理解できなかった回数":{"number":0,"type":"number"},"不正解回数":{"number":0,"type":"number"},"復習レベル":{"type":"status","status":{"name":"レベル２"}},"全体順番":{"number":1,"type":"number"},"ブロック内順番":{"number":1,"type":"number"},"ブロック参照":{"relation":[{"id":"1bbb95a4c61980528a4fd74dab6d8b67"}]},"科目":{"type":"select","select":{"name":"日本史"}}},"icon":null,"cover":null,"children":[]}
+[2025-03-20T14:38:10.634Z] [ERROR] Error querying database from Notion
+
+[2025-03-20T14:38:10.634Z] [ERROR] Validation error: The property type in the database does not match the property type of the filter provided: database property status does not match filter select
+[2025-03-20T14:38:10.634Z] [ERROR] Error querying database from Notion API for database id: 1bcb95a4c61980b091c0e0cd61e8f78d
+[2025-03-20T14:39:58.426Z] [DEBUG] domainProperties: {"answerStatus":"正解","isDifficult":false,"tryCount":1,"difficultCount":0,"wrongCount":0,"reviewLevel":"レベル２","problemOverallOrder":1,"problemInBlockOrder":1,"studentProblemPageId":"1a9b95a4c61981019a9eebf265d63098","blockPageId":"1bbb95a4c61980528a4fd74dab6d8b67","subfieldName":"日本史"}
+[2025-03-20T14:39:58.429Z] [DEBUG] payload: {"parent":{"database_id":"1bcb95a4c61980b091c0e0cd61e8f78d"},"properties":{"回答":{"type":"status","status":{"name":"正解"}},"理解できない":{"checkbox":false},"挑戦回数":{"number":1,"type":"number"},"理解できなかった回数":{"number":0,"type":"number"},"不正解回数":{"number":0,"type":"number"},"復習レベル":{"type":"status","status":{"name":"レベル２"}},"全体順番":{"number":1,"type":"number"},"ブロック内順番":{"number":1,"type":"number"},"ブロック参照":{"relation":[{"id":"1bbb95a4c61980528a4fd74dab6d8b67"}]},"科目":{"type":"select","select":{"name":"日本史"}}},"icon":null,"cover":null,"children":[]}
+[2025-03-20T14:41:02.856Z] [DEBUG] domainProperties: {"answerStatus":"正解","isDifficult":false,"tryCount":1,"difficultCount":0,"wrongCount":0,"reviewLevel":"レベル２","problemOverallOrder":1,"problemInBlockOrder":1,"studentProblemPageId":"1a9b95a4c61981019a9eebf265d63098","blockPageId":"1bbb95a4c61980528a4fd74dab6d8b67","subfieldName":"日本史"}
+[2025-03-20T14:41:02.858Z] [DEBUG] payload: {"parent":{"database_id":"1bcb95a4c61980b091c0e0cd61e8f78d"},"properties":{"回答":{"type":"status","status":{"name":"正解"}},"理解できない":{"checkbox":false},"挑戦回数":{"number":1,"type":"number"},"理解できなかった回数":{"number":0,"type":"number"},"不正解回数":{"number":0,"type":"number"},"復習レベル":{"type":"status","status":{"name":"レベル２"}},"全体順番":{"number":1,"type":"number"},"ブロック内順番":{"number":1,"type":"number"},"ブロック参照":{"relation":[{"id":"1bbb95a4c61980528a4fd74dab6d8b67"}]},"科目":{"type":"select","select":{"name":"日本史"}}},"icon":null,"cover":null,"children":[]}

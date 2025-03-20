@@ -125,6 +125,7 @@ export const SubfieldsSubfieldNameEnum = {
 export type SubfieldsSubfieldNameEnum =
   typeof SubfieldsSubfieldNameEnum[keyof typeof SubfieldsSubfieldNameEnum];
 
+
 export function isValidSubfieldsSubfieldNameEnum(
   value: string
 ): value is SubfieldsSubfieldNameEnum {
@@ -243,4 +244,12 @@ export function isValidStudentDetailInformationSubjectChangeEnum(
   value: string
 ): value is StudentDetailInformationSubjectChangeEnum {
   return value in StudentDetailInformationSubjectChangeEnum;
+}
+
+export type CoachIrretularsIrregularStatusEnum = StudentDetailInformationSubjectChangeEnum
+
+export function isValidCoachIrretularsIrregularStatusEnum(
+  value: string
+): value is CoachIrretularsIrregularStatusEnum {
+  return isValidStudentDetailInformationSubjectChangeEnum(value);
 }

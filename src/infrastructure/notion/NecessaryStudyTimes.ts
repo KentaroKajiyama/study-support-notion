@@ -11,7 +11,9 @@ import { propertyDomainToRequest, propertyResponseToDomain } from "@infrastructu
 import {
   logger
 } from '@utils/index.js';
-import { NotionRepository } from "./NotionRepository.js";
+import {
+  NotionRepository
+} from "@infrastructure/notion/NotionRepository.js";
 
 
 export interface NotionNecessaryStudyTimeResponse extends Record<string, any> {
@@ -61,7 +63,7 @@ const propertyInfo: Record<string, { type: NotionPagePropertyType, name: string 
   ancientChinese: { type: 'number', name: '漢文' },
   math: { type: 'number', name: '数学' },
   reading: { type: 'number', name: 'Reading' },
-  listeningSpeaking: { type: 'number', name: 'Listening & Speaking' },
+  listeningSpeaking: { type: 'number', name: 'Listening&Speaking' },
   writing: { type: 'number', name: 'Writing' },
   physics: { type: 'number', name: '物理' },
   chemistry: { type: 'number', name: '化学' },
@@ -71,6 +73,7 @@ const propertyInfo: Record<string, { type: NotionPagePropertyType, name: string 
   geography: { type: 'number', name: '地理' },
   howManyTimes: { type: 'number', name: '回数' },
   totalOpportunity: { type: 'number', name: '合計日数' },
+  order: { type: 'number', name: 'Order' }
 };
 
 function toDomain(res: NotionNecessaryStudyTimeResponse): DomainNecessaryStudyTime {

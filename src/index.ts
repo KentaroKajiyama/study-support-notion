@@ -1,9 +1,10 @@
+import 'module-alias/register';
 import express from 'express';
 import { 
   requestLogger, 
   errorLogger,
   logger
-} from './utils/index.js';
+} from '@utils/index.js';
 import { 
   regularHandler,
   todoHandler,
@@ -12,9 +13,9 @@ import {
   wrongHandler,
   isDifficultHandler,
   simulationHandler,
-} from './presentation/index.js';
-import { confirmationHandler } from './presentation/coach/plan/confirmationHandler.js';
-import { irregularCheckHandler } from './presentation/coach/plan/irregularCheckHandler.js';
+  confirmationHandler, 
+  irregularCheckHandler
+} from '@presentation/index.js';
 
 const app = express();
 app.use(express.json());

@@ -21,7 +21,9 @@ import {
 import {
   logger
 } from '@utils/index.js';
-import { NotionRepository } from "./NotionRepository.js";
+import {
+  NotionRepository
+} from "@infrastructure/notion/NotionRepository.js";
 
 
 interface NotionTopProblemResponse extends NotionStudentProblemResponse {
@@ -37,12 +39,12 @@ const propertyInfo: Record<string, { type: NotionPagePropertyType, name: string 
   tryCount: { type: 'number', name: '挑戦回数'},
   difficultCount: { type: 'number', name: '理解できなかった回数'},
   wrongCount: { type: 'number', name: '不正解回数'},
-  reviewLevel: { type:'select', name: '復習レベル'},
+  reviewLevel: { type:'status', name: '復習レベル'},
   problemOverallOrder: { type: 'number', name: '全体順番' },
   problemInBlockOrder: { type: 'number', name: 'ブロック内順番' },
   studentProblemPageId: { type: 'formula', name: 'Student Problem ID'},
   blockPageId: { type: 'relation', name: 'ブロック参照'},
-  subfieldName: { type: 'select', name: 'Subfield Name' }
+  subfieldName: { type: 'select', name: '科目' }
 }
 
 function toDomain(res: NotionTopProblemResponse): DomainTopProblem {
@@ -71,7 +73,7 @@ function toDomain(res: NotionTopProblemResponse): DomainTopProblem {
       topProblemPageId:
         res['Top Problem Page ID']!== undefined? propertyResponseToDomain(res['Top Problem Page ID'], 'a page id') as NotionUUID : undefined,
       subfieldName:
-        res['Subfield Name']!== undefined? propertyResponseToDomain(res['Subfield Name'], 'a subfield name') as SubfieldsSubfieldNameEnum : undefined,
+        res['科目']!== undefined? propertyResponseToDomain(res['科目'], 'a subfield name') as SubfieldsSubfieldNameEnum : undefined,
     };
     return Object.fromEntries(
       Object.entries(transformed).filter(([_, value]) => value !== undefined)
@@ -137,8 +139,8 @@ export class NotionTopProblems extends NotionRepository<
       [],
       {
         and: [
-          { property: propertyInfo.reviewLevel.name, 'select': { 'does_not_equal': level0 }},
-          { property: propertyInfo.reviewLevel.name, 'select': { 'does_not_equal': level1 }},
+          { property: propertyInfo.reviewLevel.name, 'status': { 'does_not_equal': level0 }},
+          { property: propertyInfo.reviewLevel.name, 'status': { 'does_not_equal': level1 }},
         ]
       }
     )

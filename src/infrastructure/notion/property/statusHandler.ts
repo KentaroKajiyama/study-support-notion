@@ -17,9 +17,15 @@ import {
   isValidStudentsOverviewsDistributionStatusEnum,
   isValidStudentsOverviewsPlanStatusEnum,
   StudentDetailInformationSubjectChangeEnum,
+  isValidCoachIrretularsIrregularStatusEnum,
+  CoachIrretularsIrregularStatusEnum,
+  isValidStudentProblemsReviewLevelEnum,
 } from "@domain/types/index.js";
+import { stat } from "fs";
+import { isBoolean } from "lodash";
 
 export type StatusResponseOption = 
+  | 'an irregular status'
   | 'a subject change'
   | 'a review level'
   | 'an answer status' 
@@ -32,6 +38,7 @@ export type StatusResponseOption =
   | 'string' 
   | '';
 export type StatusResponseReturnType = 
+  | CoachIrretularsIrregularStatusEnum
   | StudentDetailInformationSubjectChangeEnum
   | StudentProblemsReviewLevelEnum
   | StudentProblemsAnswerStatusEnum 
@@ -41,10 +48,18 @@ export type StatusResponseReturnType =
   | StudentsOverviewsChatStatusEnum
   | StudentsOverviewsDistributionStatusEnum
   | StudentsOverviewsPlanStatusEnum
-  | string ;
+  | string
+  | boolean;
 
 export function statusResponseHandler(statusProp: StatusPropertyResponse, option: StatusResponseOption): StatusResponseReturnType {
   switch (option) {
+    case 'an irregular status':
+      if (statusProp.status!== null &&!isValidCoachIrretularsIrregularStatusEnum(statusProp.status.name)){
+        throw new Error("Invalid irregular status: " + statusProp.status?.name);
+      } else if (statusProp.status === null) {
+        throw new Error("Irregular status is missing.");
+      }
+      return statusProp.status.name === '変更あり' ? true : false;
     case 'a subject change':
       if (statusProp.status!== null &&!isValidProblemsProblemLevelEnum(statusProp.status.name)){
         throw new Error("Invalid subject change: " + statusProp.status?.name);
@@ -74,7 +89,7 @@ export function statusResponseHandler(statusProp: StatusPropertyResponse, option
       }
       return statusProp.status.name;
     case 'a review level':
-      if (statusProp.status!== null &&!isValidStudentProblemsAnswerStatusEnum(statusProp.status.name)){
+      if (statusProp.status!== null &&!isValidStudentProblemsReviewLevelEnum(statusProp.status.name)){
         throw new Error("Invalid review level: " + statusProp.status?.name);
       } else if (statusProp.status === null) {
         throw new Error("Review level is missing.");
@@ -117,6 +132,7 @@ export function statusResponseHandler(statusProp: StatusPropertyResponse, option
 }
 
 export type StatusRequestOption = 
+  | 'an irregular boolean'
   | 'a subject change'
   | 'a review level' 
   | 'an answer status' 
@@ -128,6 +144,7 @@ export type StatusRequestOption =
   | 'a plan status';
 
 export type StatusRequestInputType = 
+  | CoachIrretularsIrregularStatusEnum
   | StudentDetailInformationSubjectChangeEnum
   | StudentProblemsReviewLevelEnum
   | StudentProblemsAnswerStatusEnum 
@@ -141,6 +158,16 @@ export type StatusRequestInputType =
 
 export function statusRequestHandler(input: StatusRequestInputType, option: StatusRequestOption): StatusPropertyRequest {
   switch (option) {
+    case 'an irregular boolean':
+      if (!isBoolean(input)){ throw new Error(`Invalid input: ${input}`);}
+      const status = input ? '変更あり': '変更なし';
+      if (!isValidCoachIrretularsIrregularStatusEnum(status)) throw new Error ("Invalid input for status property option:" + option + ". status: " + status);
+      return {
+        type: "status",
+        status: {
+          name: status,
+        },
+      };
     case 'a subject change':
       if (!isValidProblemsProblemLevelEnum(input)) throw new Error ("Invalid input for status property option:" + option + ". input : " + input);
       return {
@@ -174,7 +201,7 @@ export function statusRequestHandler(input: StatusRequestInputType, option: Stat
         },
       };
     case 'a review level':
-      if (!isValidStudentProblemsAnswerStatusEnum(input)) throw new Error ("Invalid input for status property option:" + option + ". input : " + input);
+      if (!isValidStudentProblemsReviewLevelEnum(input)) throw new Error ("Invalid input for status property option:" + option + ". input : " + input);
       return {
         type: "status",
         status: {

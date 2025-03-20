@@ -22,7 +22,9 @@ import {
 } from "@utils/index.js";
 import { DomainStudentProblem } from '@domain/student/index.js';
 import { propertyDomainToRequest, propertyResponseToDomain } from "@infrastructure/notionProperty.js";
-import { NotionRepository } from "./NotionRepository.js";
+import {
+  NotionRepository
+} from "@infrastructure/notion/NotionRepository.js";
 
 export interface NotionStudentProblemResponse extends Record<string, any> {
   '回答'?: StatusPropertyResponse;
@@ -62,7 +64,7 @@ const propertyInfo: Record<string, { type: NotionPagePropertyType, name: string 
   problemInBlockOrder: { type: 'number', name: 'ブロック内順番' },
   studentProblemPageId: { type: 'formula', name: 'Student Problem ID'},
   blockPageId: { type: 'relation', name: 'ブロック参照'},
-  SubfieldName: { type: 'select', name: '科目'}
+  subfieldName: { type: 'select', name: '科目'}
 }
 
 function toDomain(res: NotionStudentProblemResponse): DomainStudentProblem {

@@ -13,7 +13,7 @@ import {
 import { logger } from "@utils/index.js";
 import {
   NotionRepository
-} from '@infrastructure/notion/index.js';
+} from "@infrastructure/notion/NotionRepository.js";
 
 interface NotionStudentScheduleResponse extends Record<string, any> {
   'ブロック名'?: TitlePropertyResponse;
@@ -63,7 +63,7 @@ function toNotion(data: DomainStudentSchedule): NotionStudentScheduleRequest {
   try {
     const transformed = {
       [propertyInfo.blockName.name]: propertyDomainToRequest(data.blockName, propertyInfo.blockName.type, 'a mention string') as TitlePropertyRequest,
-      [propertyInfo.subfieldName.name]: propertyDomainToRequest(data.subfieldName, propertyInfo.SubfieldName.type, 'a subfield name') as SelectPropertyRequest,
+      [propertyInfo.subfieldName.name]: propertyDomainToRequest(data.subfieldName, propertyInfo.subfieldName.type, 'a subfield name') as SelectPropertyRequest,
       [propertyInfo.period.name]: 
         data.startDate !== undefined && data.endDate != undefined ? propertyDomainToRequest({start: data.startDate, end: data.endDate}, propertyInfo.period.type,'date') as DatePropertyRequest : undefined,
     };

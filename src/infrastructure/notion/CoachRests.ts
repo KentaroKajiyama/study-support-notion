@@ -16,7 +16,7 @@ import {
 import { logger } from "@utils/index.js";
 import {
   NotionRepository
-} from '@infrastructure/notion/index.js';
+} from "@infrastructure/notion/NotionRepository.js";
 
 interface NotionCoachRestResponse extends Record<string, any> {
   'Name'?: TitlePropertyResponse;
@@ -42,7 +42,7 @@ function toDomain(res: NotionCoachRestResponse): DomainCoachRest {
   try {
     const transformed: DomainCoachRest = {
       restName: 
-      res['Name'] !== undefined ? propertyResponseToDomain(res['Name'], 'a mention string') as string: undefined,
+      res['Name'] !== undefined ? propertyResponseToDomain(res['Name'], 'string') as string: undefined,
       subfieldNames:
       res['科目']!== undefined? propertyResponseToDomain(res['科目'], 'subfield names') as SubfieldsSubfieldNameEnum[]: undefined,
       startDate:
@@ -65,8 +65,8 @@ function toDomain(res: NotionCoachRestResponse): DomainCoachRest {
 function toNotion(data: DomainCoachRest): NotionCoachRestRequest {
   try {
     const transformed = {
-      [propertyInfo.restName.name]: propertyDomainToRequest(data.restName, propertyInfo.restName.type, 'a mention string') as TitlePropertyRequest,
-      [propertyInfo.subfieldNames.name]: propertyDomainToRequest(data.subfieldNames, propertyInfo.SubfieldNames.type, 'a subfield name') as SelectPropertyRequest,
+      [propertyInfo.restName.name]: propertyDomainToRequest(data.restName, propertyInfo.restName.type, 'string') as TitlePropertyRequest,
+      [propertyInfo.subfieldNames.name]: propertyDomainToRequest(data.subfieldNames, propertyInfo.subfieldNames.type, 'subfield names') as SelectPropertyRequest,
       [propertyInfo.period.name]: 
         data.startDate !== undefined && data.endDate != undefined ? propertyDomainToRequest({start: data.startDate, end: data.endDate}, propertyInfo.period.type,'date') as DatePropertyRequest : undefined,
     };

@@ -39,7 +39,7 @@ export async function irregularChange(
     } else {
       const notionCoachIrregulars = new NotionCoachIrregulars();
       const deleteProblemPageIds = ensureValue(
-        await notionCoachIrregulars.queryADatabaseWithFormerBlockId(irregularDatabaseId, ensureValue(actualBlockInfo.actualBlockId))
+        await notionCoachIrregulars.queryADatabaseWithFormerBlockId(irregularDatabaseId, ensureValue(actualBlockInfo.studentActualBlockDbNotionPageId))
       ).map(domainCoachIrregular => domainCoachIrregular.irregularPageId).filter(e => e != null);
       await Promise.all(deleteProblemPageIds.map(async deleteProblemPageId => await notionCoachIrregulars.deleteAPage(deleteProblemPageId)));
     }

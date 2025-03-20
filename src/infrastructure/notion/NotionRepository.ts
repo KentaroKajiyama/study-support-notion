@@ -51,6 +51,7 @@ type filter =
   | null
 
 export abstract class NotionRepository<TDomain, TResponse, TRequest> {
+
   protected abstract toDomain(response: TResponse): TDomain;
   protected abstract toNotion(domain: TDomain): TRequest;
 
@@ -103,6 +104,7 @@ export abstract class NotionRepository<TDomain, TResponse, TRequest> {
         cover: cover,
         children: children,
       }
+      logger.debug(`payload: ${JSON.stringify(payload)}`);
       const response = await callNotionWithAdvancedErrorHandling(
         async () => {
           try {
@@ -131,6 +133,7 @@ export abstract class NotionRepository<TDomain, TResponse, TRequest> {
     domainProperties: TDomain
   ): Promise<NotionUUID|null> {
     try {
+      logger.debug('domainProperties: ' + JSON.stringify(domainProperties))
       return await this.createAPage(
         domainParent,
         parentOption,

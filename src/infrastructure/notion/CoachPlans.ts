@@ -23,7 +23,7 @@ import {
 } from "@utils/index.js";
 import {
   NotionRepository
-} from "@infrastructure/notion/index.js";
+} from "@infrastructure/notion/NotionRepository.js";
 
 interface NotionCoachPlanResponse extends Record<string, any> {
   'ブロック名'?: TitlePropertyResponse;
@@ -124,7 +124,7 @@ function toNotion(data: DomainCoachPlan): NotionCoachPlanRequest {
       [propertyInfo.problemLevel.name]: propertyDomainToRequest(data.problemLevel, propertyInfo.problemLevel.type, 'a problem level') as SelectPropertyRequest,
       [propertyInfo.isIrregular.name]: propertyDomainToRequest(data.isIrregular, propertyInfo.isIrregular.type, '') as CheckboxPropertyRequest,
       [propertyInfo.outputDate.name]:
-        data.outputStartDate!== undefined && data.outputEndDate? propertyDomainToRequest({start: data.outputStartDate, end: data.outputEndDate}, propertyInfo.outputStartDate.type, '') as DatePropertyRequest: undefined,
+        data.outputStartDate!= undefined && data.outputEndDate!==undefined? propertyDomainToRequest({start: data.outputStartDate, end: data.outputEndDate}, propertyInfo.outputDate.type, 'date') as DatePropertyRequest: undefined,
       [propertyInfo.subfieldName.name]: propertyDomainToRequest(data.subfieldName, propertyInfo.subfieldName.type, 'a subfield name') as SelectPropertyRequest,
     };
 

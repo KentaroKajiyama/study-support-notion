@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { 
   titleResponseHandler, 
   titleRequestHandler 
-} from "../your-file"; // Adjust path
+} from "@infrastructure/notion/property/index.js"; // Adjust path
 
 import {
   TitlePropertyResponse,
@@ -16,13 +16,15 @@ import {
 import {
   inlineTextToRichText,
   richTextToInlineText,
-  inlineTextToMentionStringArray,
 } from "@utils/index.js";
+import { RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints.js";
 
 describe("titleResponseHandler", () => {
   it("should return a valid mention string when option is 'a mention string'", () => {
     const mockResponse: TitlePropertyResponse = {
-      title: inlineTextToRichText("@mention"),
+      id: "mock",
+      type: "title",
+      title: inlineTextToRichText("@mention") as RichTextItemResponse[],
     };
 
     const result = titleResponseHandler(mockResponse, "a mention string");
@@ -32,7 +34,9 @@ describe("titleResponseHandler", () => {
 
   it("should throw an error when mention information is missing", () => {
     const mockResponse: TitlePropertyResponse = {
-      title: inlineTextToRichText("No mention here"),
+      id: "mock",
+      type: "title",
+      title: inlineTextToRichText("No mention here") as RichTextItemResponse[],
     };
 
     expect(() => titleResponseHandler(mockResponse, "a mention string"))
@@ -41,19 +45,23 @@ describe("titleResponseHandler", () => {
 
   it("should return a valid subfield name when option is 'a subfield name'", () => {
     const mockResponse: TitlePropertyResponse = {
-      title: inlineTextToRichText("Math"),
+      id: "mock",
+      type: "title",
+      title: inlineTextToRichText("数学") as RichTextItemResponse[],
     };
 
     expect(isValidSubfieldsSubfieldNameEnum(richTextToInlineText(mockResponse.title))).toBeTruthy();
 
     const result = titleResponseHandler(mockResponse, "a subfield name");
 
-    expect(result).toBe("Math");
+    expect(result).toBe("数学");
   });
 
   it("should throw an error when title is not a valid subfield name", () => {
     const mockResponse: TitlePropertyResponse = {
-      title: inlineTextToRichText("InvalidSubfield"),
+      id: "mock",
+      type: "title",
+      title: inlineTextToRichText("InvalidSubfield") as RichTextItemResponse[],
     };
 
     expect(() => titleResponseHandler(mockResponse, "a subfield name"))
@@ -62,7 +70,9 @@ describe("titleResponseHandler", () => {
 
   it("should return a valid string when option is 'string'", () => {
     const mockResponse: TitlePropertyResponse = {
-      title: inlineTextToRichText("Hello World"),
+      id: "mock",
+      type: "title",
+      title: inlineTextToRichText("Hello World") as RichTextItemResponse[],
     };
 
     const result = titleResponseHandler(mockResponse, "string");
@@ -72,7 +82,9 @@ describe("titleResponseHandler", () => {
 
   it("should throw an error for an invalid option", () => {
     const mockResponse: TitlePropertyResponse = {
-      title: inlineTextToRichText("Hello"),
+      id: "mock",
+      type: "title",
+      title: inlineTextToRichText("Hello") as RichTextItemResponse[],
     };
 
     expect(() => titleResponseHandler(mockResponse, "invalid-option" as any))
@@ -82,7 +94,7 @@ describe("titleResponseHandler", () => {
 
 describe("titleRequestHandler", () => {
   it("should return a valid TitlePropertyRequest for 'a mention string'", () => {
-    const input: NotionMentionString = "@mention";
+    const input: NotionMentionString = "@[Kentaro Kajiyama (user: 1bbb95a4c61980a58909fe83ab1815cd)]";
     
     expect(isNotionMentionString(input)).toBeTruthy();
 
@@ -102,7 +114,7 @@ describe("titleRequestHandler", () => {
   });
 
   it("should return a valid TitlePropertyRequest for 'a subfield name'", () => {
-    const input: SubfieldsSubfieldNameEnum = "Math";
+    const input: SubfieldsSubfieldNameEnum = "数学";
 
     expect(isValidSubfieldsSubfieldNameEnum(input)).toBeTruthy();
 

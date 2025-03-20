@@ -124,16 +124,16 @@ export async function schedulePlan(
               block.studentScheduleNotionPageId, 
               {
                 blockName: block.blockName,
-                startDate: block.outputStartDate,
-                endDate: block.outputEndDate,
+                startDate: ensureValue(block.outputStartDate),
+                endDate: ensureValue(block.outputEndDate),
               }
             ),
             await notionStudentActualBlocks.updatePageProperties(
               block.studentActualBlockDbNotionPageId, 
               {
                 blockName: block.blockName,
-                startDate: block.outputStartDate,
-                endDate: block.outputEndDate,
+                startDate: ensureValue(block.outputStartDate),
+                endDate: ensureValue(block.outputEndDate),
                 studentProblemRelations: relatedProblemsPageIdArray,
                 speed: block.speed,
                 space: block.space,

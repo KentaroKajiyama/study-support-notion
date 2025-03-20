@@ -11,6 +11,7 @@ import {
   isDateBetween,
 } from "@utils/index.js"; // Adjust path as needed
 import { NotionDate, NotionDateTimeString } from "@domain/types/myNotionTypes.js";
+import { MySQLDate } from "@domain/types/mysqlTypes.js";
 
 // --- Tests for formatDateWithOffset ---
 describe("formatDateWithOffset", () => {
@@ -51,7 +52,7 @@ describe("convertTimeMySQLToNotion", () => {
   });
 
   it("should throw an error for invalid MySQL date format", () => {
-    expect(() => convertTimeMySQLToNotion("03/12/2025")).toThrow("Invalid MySQL date format");
+    expect(() => convertTimeMySQLToNotion("03/12/2025" as any as MySQLDate)).toThrow("Invalid MySQL date format");
   });
 });
 
@@ -71,7 +72,7 @@ describe("convertTimeNotionToMySQL", () => {
   });
 
   it("should throw an error for invalid Notion date format", () => {
-    expect(() => convertTimeNotionToMySQL("03/12/2025")).toThrow("Invalid Notion date format");
+    expect(() => convertTimeNotionToMySQL("03/12/2025" as any as MySQLDate)).toThrow("Invalid Notion date format");
   });
 });
 

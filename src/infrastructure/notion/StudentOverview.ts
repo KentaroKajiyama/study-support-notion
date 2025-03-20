@@ -10,12 +10,10 @@ import {
   MultiSelectPropertyRequest,
   StatusPropertyResponse,
   StatusPropertyRequest,
-  StudentsOverviewsAlertSubfieldEnum,
   StudentsOverviewsChatStatusEnum,
   StudentsOverviewsDistributionStatusEnum,
   NotionMentionString,
   StudentsOverviewsPlanStatusEnum,
-  StudentsOverviewsModifiedPlanSubfieldEnum,
   Int,
   FormulaPropertyResponse,
   NotionUUID,
@@ -26,7 +24,9 @@ import {
 } from "@utils/index.js";
 import { DomainStudentOverview  } from '@domain/coach/index.js';
 import { propertyDomainToRequest, propertyResponseToDomain } from "@infrastructure/notionProperty.js";
-import { NotionRepository } from "./NotionRepository.js";
+import {
+  NotionRepository
+} from "@infrastructure/notion/NotionRepository.js";
 
 export interface NotionStudentOverviewResponse extends Record<string, any> {
   '氏名'?: TitlePropertyResponse;
@@ -80,16 +80,16 @@ export interface NotionStudentOverviewRequest extends Record<string, any> {
 const propertyInfo: Record<string, { type: NotionPagePropertyType, name: string }> = {
   studentName: { type: 'title', name: '氏名'},
   lineName: { type: 'rich_text', name: 'LINE名前' },
-  alertSubjectNames: { type:'multi_select', name: 'アラート科目' },
-  chat: { type:'status', name: 'チャット' },
-  distributionStatus: { type:'status', name: '配信状況' },
+  alertSubfieldNames: { type:'multi_select', name: 'アラート科目' },
+  chatStatus: { type:'status', name: 'チャット' },
+  distStatus: { type:'status', name: '配信状況' },
   studentPage: { type: 'rich_text', name: '生徒ページ' },
   planStatus: { type:'status', name: '計画状況' },
-  planChangeList: { type:'multi_select', name: '計画変更' },
+  modifiedPlanSubfieldNames: { type:'multi_select', name: '計画変更科目' },
   modernJapaneseDelay: { type: 'number', name: '現代文遅れ日数' },
   ancientJapaneseDelay: { type: 'number', name: '古文遅れ日数' },
   ancientChineseDelay: { type: 'number', name: '漢文遅れ日数' },
-  mathematicsDelay: { type: 'number', name: '数学遅れ日数' },
+  mathDelay: { type: 'number', name: '数学遅れ日数' },
   readingDelay: { type: 'number', name: 'Reading 遅れ日数' },
   listeningAndSpeakingDelay: { type: 'number', name: 'Listening&Speaking 遅れ日数' },
   writingDelay: { type: 'number', name: 'Writing 遅れ日数' },
@@ -110,17 +110,17 @@ function toDomain(res: NotionStudentOverviewResponse): DomainStudentOverview  {
       lineName:
         res['LINE名前']!== undefined? propertyResponseToDomain(res['LINE名前'], 'string') as string : undefined,
       alertSubfieldNames:
-        res['アラート科目']!== undefined? propertyResponseToDomain(res['アラート科目'], 'subfield names') as StudentsOverviewsAlertSubfieldEnum[] : undefined,
+        res['アラート科目']!== undefined? propertyResponseToDomain(res['アラート科目'], 'subfield names') as SubfieldsSubfieldNameEnum[] : undefined,
       chatStatus:
         res['チャット']!== undefined? propertyResponseToDomain(res['チャット'], 'a chat status') as StudentsOverviewsChatStatusEnum : undefined,
       distStatus:
         res['配信状況']!== undefined? propertyResponseToDomain(res['配信状況'], 'a distribution status') as StudentsOverviewsDistributionStatusEnum : undefined,
       studentPage:
-        res['生徒ページ']!== undefined? propertyResponseToDomain(res['生徒ページ'], 'a page id') as NotionMentionString : undefined,
+        res['生徒ページ']!== undefined? propertyResponseToDomain(res['生徒ページ'], 'a mention string') as NotionMentionString : undefined,
       planStatus:
         res['計画状況']!== undefined? propertyResponseToDomain(res['計画状況'], 'a plan status') as StudentsOverviewsPlanStatusEnum : undefined,
       modifiedPlanSubfieldNames:
-        res['計画変更']!== undefined? propertyResponseToDomain(res['計画変更'], 'subfield names') as StudentsOverviewsModifiedPlanSubfieldEnum[] : undefined,
+        res['計画変更']!== undefined? propertyResponseToDomain(res['計画変更'], 'subfield names') as SubfieldsSubfieldNameEnum[] : undefined,
       modernJapaneseDelay:
         res['現代文遅れ日数']!== undefined? propertyResponseToDomain(res['現代文遅れ日数'], 'int') as Int : undefined,
       ancientJapaneseDelay:
@@ -166,14 +166,14 @@ function toNotion(data: DomainStudentOverview ): NotionStudentOverviewRequest {
         data.studentName !== undefined? propertyDomainToRequest(data.studentName, propertyInfo.studentName.type, 'string'): undefined,
       [propertyInfo.lineName.name]:
         data.lineName !== undefined? propertyDomainToRequest(data.lineName, propertyInfo.lineName.type, 'string'): undefined,
-      [propertyInfo.alertSubfields.name]:
+      [propertyInfo.alertSubfieldNames.name]:
         data.alertSubfieldNames!== undefined? propertyDomainToRequest(data.alertSubfieldNames, propertyInfo.alertSubfieldNames.type,'subfield names'): undefined,
       [propertyInfo.chatStatus.name]:
         data.chatStatus !== undefined? propertyDomainToRequest(data.chatStatus, propertyInfo.chatStatus.type, 'a chat status'): undefined,
       [propertyInfo.distStatus.name]:
         data.distStatus !== undefined? propertyDomainToRequest(data.distStatus, propertyInfo.distStatus.type, 'a distribution status'): undefined,
       [propertyInfo.studentPage.name]:
-        data.studentPage !== undefined? propertyDomainToRequest(data.studentPage, propertyInfo.studentPage.type, 'a page id'): undefined,
+        data.studentPage !== undefined? propertyDomainToRequest(data.studentPage, propertyInfo.studentPage.type, 'a mention string'): undefined,
       [propertyInfo.planStatus.name]:
         data.planStatus !== undefined? propertyDomainToRequest(data.planStatus, propertyInfo.planStatus.type, 'a plan status'): undefined,
       [propertyInfo.modifiedPlanSubfieldNames.name]:

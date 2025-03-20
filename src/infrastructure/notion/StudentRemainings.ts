@@ -15,7 +15,7 @@ import {
 import { logger } from "@utils/index.js";
 import {
   NotionRepository
-} from '@infrastructure/notion/index.js';
+} from "@infrastructure/notion/NotionRepository.js";
 
 interface NotionStudentRemainingResponse extends Record<string, any> {
   '科目'?: TitlePropertyResponse;
@@ -67,10 +67,10 @@ function toDomain(res: NotionStudentRemainingResponse): DomainStudentRemaining {
 function toNotion(data: DomainStudentRemaining): NotionStudentRemainingRequest {
   try {
     const transformed: NotionStudentRemainingRequest = {
-      [propertyInfo.SubfieldName.name]: 
-        data.subfieldName !== undefined? propertyDomainToRequest(data.subfieldName, propertyInfo.blockName.type, 'a subfield name') as TitlePropertyRequest: undefined,
+      [propertyInfo.subfieldName.name]: 
+        data.subfieldName !== undefined? propertyDomainToRequest(data.subfieldName, propertyInfo.subfieldName.type, 'a subfield name') as TitlePropertyRequest: undefined,
       [propertyInfo.subjectName.name]:
-        data.subjectName !== undefined? propertyDomainToRequest(data.subjectName, propertyInfo.SubfieldName.type, 'a subject name') as SelectPropertyRequest: undefined,
+        data.subjectName !== undefined? propertyDomainToRequest(data.subjectName, propertyInfo.subjectName.type, 'a subject name') as SelectPropertyRequest: undefined,
       [propertyInfo.remainingDay.name]:
         data.remainingDay !== undefined? propertyDomainToRequest(data.remainingDay, propertyInfo.remainingDay.type, 'uint') as NumberPropertyRequest : undefined,
       [propertyInfo.targetDate.name]: 
