@@ -23,7 +23,8 @@ import {
   NotionDate,
   NotionMentionString,
   toNotionMentionString,
-  fromStringToANotionMentionString
+  fromStringToANotionMentionString,
+  toMySQLUintID
 } from '@domain/types/index.js';
 import { RowDataPacket } from "mysql2";
 
@@ -55,7 +56,7 @@ export interface ActualBlock {
   studentId?: MySQLUintID;
   subfieldId?: MySQLUintID;
   defaultBlockId?: MySQLUintID;
-  actualBlockName?: NotionMentionString;
+  actualBlockName?: string;
   space?: Uint;
   speed?: Uint;
   lap?: Uint;
@@ -98,7 +99,7 @@ function toActualBlock(row: Partial<MySQLActualBlock>): ActualBlock {
       studentId: row.studentId,
       subfieldId: row.subfieldId,
       defaultBlockId: row.defaultBlockId,
-      actualBlockName: row.actualBlockName !== undefined ? fromStringToANotionMentionString(row.actualBlockName): undefined,
+      actualBlockName: row.actualBlockName !== undefined ? row.actualBlockName: undefined,
       space: row.space !== undefined ? toUint(row.space) : undefined,
       speed: row.speed !== undefined ? toUint(row.speed) : undefined,
       lap: row.lap !== undefined ? toUint(row.lap) : undefined,
@@ -127,6 +128,7 @@ function toActualBlock(row: Partial<MySQLActualBlock>): ActualBlock {
 
 function toMySQLActualBlock(data: Partial<ActualBlock>): MySQLActualBlock {
   try {
+    logger.debug(`data: ${JSON.stringify(data)}`);
     const transformed: Partial<MySQLActualBlock> = {
       actualBlockId: data.actualBlockId,
       studentId: data.studentId,
@@ -158,7 +160,7 @@ function toMySQLActualBlock(data: Partial<ActualBlock>): MySQLActualBlock {
 }
 
 export class ActualBlocks {
-  static async create(data: ActualBlock): Promise<number> {
+  static async create(data: ActualBlock): Promise<MySQLUintID> {
     try {
       if (!data) {
         logger.error("Invalid data provided for creating an actual block.");
@@ -182,13 +184,12 @@ export class ActualBlocks {
           block_order,
           is_tail,
           actual_block_size,
+          problem_level,
           student_actual_block_db_notion_page_id,
           student_schedule_notion_page_id,
-          coach_plan_notion_page_id,
-          created_at,
-          updated_at
+          coach_plan_notion_page_id
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       `;
 
       const [result] = await db.query(sql, [
@@ -204,12 +205,13 @@ export class ActualBlocks {
         payload.blockOrder,
         payload.isTail,
         payload.actualBlockSize,
+        payload.problemLevel,
         payload.studentActualBlockDbNotionPageId || null,
         payload.studentScheduleNotionPageId || null,
         payload.coachPlanNotionPageId || null,
       ]);
 
-      return (result as { insertId: number }).insertId;
+      return toMySQLUintID((result as { insertId: number }).insertId);
     } catch (error) {
       logger.error("Error creating an actual block", error);
       throw error;
@@ -293,8 +295,9 @@ export class ActualBlocks {
         return [];
       }
 
-      const camelRows = convertToCamelCase(rows) as unknown as MySQLActualBlock[];
-      return camelRows.map((row: Partial<MySQLActualBlock>) => toActualBlock(row));
+      logger.debug(`rows: ${JSON.stringify(rows)}`);
+
+      return rows.map((row => toActualBlock(convertToCamelCase(row) as MySQLActualBlock)))
     } catch (error) {
       logger.error("Error finding all actual blocks", error);
       throw error;
@@ -324,6 +327,7 @@ export class ActualBlocks {
         logger.warn(`No block found for actualBlockId: ${actualBlockId}`);
         return null;
       }
+      logger.debug(`rows: ${JSON.stringify(rows)}`);
 
       const camelRow = convertToCamelCase(rows[0]) as unknown as MySQLActualBlock;
       return toActualBlock(camelRow);

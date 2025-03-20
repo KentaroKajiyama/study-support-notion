@@ -1,7 +1,8 @@
 import db from "@infrastructure/awsDB.js";
 import { 
   logger, 
-  convertToCamelCase
+  convertToCamelCase,
+  convertToSnakeCase
 } from "@utils/index.js";
 import {
   MySQLUintID,
@@ -43,7 +44,7 @@ export interface DefaultBlock {
   defaultBlockId?: MySQLUintID;
   subfieldId?: MySQLUintID;
   notionPageId?: NotionUUID;
-  blockName?: NotionMentionString;
+  blockName?: string;
   space?: Uint;
   speed?: Uint;
   lap?: Uint;
@@ -64,7 +65,7 @@ function toDefaultBlock(row: Partial<MySQLDefaultBlock>): DefaultBlock {
     defaultBlockId: row.defaultBlockId,
     subfieldId: row.subfieldId,
     notionPageId: row.notionPageId ? toNotionUUID(row.notionPageId) : undefined,
-    blockName: row.blockName !== undefined ? fromStringToANotionMentionString(row.blockName) : undefined,
+    blockName: row.blockName !== undefined ? row.blockName : undefined,
     space: row.space,
     speed: row.speed,
     lap: row.lap,
@@ -167,8 +168,7 @@ export class DefaultBlocks {
         return [];
       }
 
-      const camelRows = convertToCamelCase(rows) as unknown as MySQLDefaultBlock[];
-      return camelRows.map((row) => toDefaultBlock(row));
+      return rows.map((row) => toDefaultBlock(convertToCamelCase(row) as MySQLDefaultBlock));
     } catch (error) {
       logger.error("Error finding all default blocks", error);
       throw error;
@@ -196,7 +196,7 @@ export class DefaultBlocks {
         return null;
       }
 
-      return toDefaultBlock(rows[0] as MySQLDefaultBlock);
+      return toDefaultBlock(convertToCamelCase(rows[0]) as MySQLDefaultBlock);
     } catch (error) {
       logger.error(`Error finding default block by ID: ${defaultBlockId}`, error);
       throw error;
@@ -227,8 +227,7 @@ export class DefaultBlocks {
         return [];
       }
 
-      const camelRows = convertToCamelCase(rows) as unknown as MySQLDefaultBlock[];
-      return camelRows.map((row) => toDefaultBlock(row));
+      return rows.map((row) => toDefaultBlock(convertToCamelCase(row) as MySQLDefaultBlock));
     } catch (error) {
       logger.error(`Error finding default blocks by subfieldId: ${subfieldId}`, error);
       throw error;
@@ -259,8 +258,7 @@ export class DefaultBlocks {
         return [];
       }
 
-      const camelRows = convertToCamelCase(rows) as unknown as MySQLDefaultBlock[];
-      return camelRows.map((row) => toDefaultBlock(row));
+      return rows.map((row) => toDefaultBlock(convertToCamelCase(row) as MySQLDefaultBlock));
     } catch (error) {
       logger.error(
         `Error finding default blocks by subfieldId: ${subfieldId} and blockName: ${blockName}`,
@@ -300,8 +298,7 @@ export class DefaultBlocks {
         return [];
       }
 
-      const camelRows = convertToCamelCase(rows) as unknown as MySQLDefaultBlock[];
-      return camelRows.map((row) => toDefaultBlock(row));
+      return rows.map((row) => toDefaultBlock(convertToCamelCase(row) as MySQLDefaultBlock));
     } catch (error) {
       logger.error(
         `Error finding default blocks by subfieldId: ${subfieldId} under level: ${problemLevel}`,
@@ -326,7 +323,7 @@ export class DefaultBlocks {
       }
 
       // Convert incoming updates to DB form
-      const dbPayload = convertToCamelCase(toMySQLDefaultBlock(updates));
+      const dbPayload = convertToSnakeCase(toMySQLDefaultBlock(updates));
 
       // Build SET clause
       const columns: string[] = [];

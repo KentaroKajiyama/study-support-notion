@@ -25,7 +25,7 @@ interface MySQLProblem {
   updatedAt?: MySQLTimestamp;
 }
 
-interface Problem {
+export interface Problem {
   problemId?: MySQLUintID;
   subfieldId?: MySQLUintID;
   defaultBlockId?: MySQLUintID;

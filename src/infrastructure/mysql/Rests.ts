@@ -16,7 +16,8 @@ import {
   isNotionUUID,
   toNotionUUID,
   NotionUUID,
-  NotionDate
+  NotionDate,
+  toMySQLUintID
 } from '@domain/types/index.js';
 import { RowDataPacket, ResultSetHeader } from "mysql2";
 
@@ -53,11 +54,12 @@ function toRest(row: MySQLRest): Rest {
       subfieldId: row.subfieldId,
       notionPageId: row.notionPageId && toNotionUUID(row.notionPageId),
       restName: row.restName,
-      startDate: row.startDate && convertTimeMySQLToNotion(row.startDate),
-      endDate: row.endDate && convertTimeMySQLToNotion(row.endDate),
+      startDate: row.startDate && convertTimeMySQLToNotion(row.startDate, true),
+      endDate: row.endDate && convertTimeMySQLToNotion(row.endDate, true),
       createdAt: row.createdAt,
       updatedAt: row.updatedAt,
     };
+    logger.debug(`transformed: {${JSON.stringify(transformed)}}`)
     return Object.fromEntries(
       Object.entries(transformed).filter(([_, value]) => value!== undefined)
     ) as Rest
@@ -89,21 +91,22 @@ function toMySQLRest(data: Rest): MySQLRest {
 
 export class Rests {
 
-  static async create(data: Rest): Promise<number> {
+  static async create(data: Rest): Promise<MySQLUintID> {
     try {
       const payload = toMySQLRest(data);
       const sql = `
         INSERT INTO rests
-        (student_id, subfield_id, start_date, end_date)
-        VALUES (?,?,?,?)
+        (student_id, subfield_id, rest_name, start_date, end_date)
+        VALUES (?,?,?,?,?)
       `;
       const [result] = await db.query(sql, [
         payload.studentId,
         payload.subfieldId,
+        payload.restName,
         payload.startDate,
         payload.endDate,
       ]);
-      return (result as { insertId: number }).insertId;
+      return toMySQLUintID((result as { insertId: number }).insertId);
     } catch (error) {
       logger.error('Error creating Rest:', error);
       throw error;
@@ -187,24 +190,26 @@ export class Rests {
     }
   }
 
-  static async update(restId: MySQLUintID, updates: Rest[]): Promise<boolean>{
+  static async update(restId: MySQLUintID, updates: Rest): Promise<boolean>{
     try {
       if (!isMySQLUintID(restId)) {
         throw new Error('Invalid restId');
       }
-      if (updates.length === 0){
+      if (updates == null){
         logger.warn('No updates in Problem.ts!')
         return false;
       }
-      const parsedUpdates = convertToSnakeCase(updates.map(data => {
-        if (!data.startDate && !data.endDate) {
+      const parsedUpdates = (() => {
+        if (!updates.startDate && !updates.endDate) {
           throw new Error('At least one of startDate or endDate must be provided');
         }
-        if (data.startDate && data.endDate && isDate1EarlierThanOrSameWithDate2(data.endDate, mySubDays(data.startDate, 1))) {
+        if (updates.startDate && updates.endDate && isDate1EarlierThanOrSameWithDate2(updates.endDate, mySubDays(updates.startDate, 1))) {
           throw new Error('startDate cannot be after endDate');
         }
-        return toMySQLRest(data)
-      }));
+        return convertToSnakeCase(toMySQLRest(updates))
+      })();
+      logger.debug(`updates: ${JSON.stringify(updates)})})}`)
+      logger.debug(`parsedUpdates: ${JSON.stringify(parsedUpdates)}`)
       const columns = Object.keys(parsedUpdates);
       const values = Object.values(parsedUpdates);
       const setClause = columns.map(col => `${col} = ?`).join(", ");
@@ -213,6 +218,7 @@ export class Rests {
         SET ${setClause}
         WHERE rest_id = ?
       `;
+      logger.debug(`sql: ${sql}`);
       const [result] = await db.query(sql, [
         ...values,
         restId,

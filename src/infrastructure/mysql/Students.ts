@@ -19,6 +19,9 @@ import {
   NotionDate
 } from '@domain/types/index.js';
 import { RowDataPacket } from "mysql2";
+import {
+  Student
+} from '@domain/student/index.js';
 
 
 export interface MySQLStudent {
@@ -33,7 +36,7 @@ export interface MySQLStudent {
   remainingDbId?: string;
   wrongDbId?: string;
   isDifficultDbId?: string;
-  studentProgressDbId?: string;
+  todoCounterDbId?: string;
   studentScheduleDbId?: string;
   studentOverviewPageId?: string;
   studentInfoDetailDbId?: string;
@@ -46,99 +49,75 @@ export interface MySQLStudent {
   updatedAt?: MySQLTimestamp;
 }
 
-export interface Student {
-  studentId?: MySQLUintID;
-  studentName?: string;
-  parentName?: string;
-  parentPhoneNumber?: PhoneNumber;
-  parentEmail?: Email;
-  examDate?: NotionDate;
-  studentPageId?: NotionUUID;
-  todoDbId?: NotionUUID;
-  remainingDbId?: NotionUUID;
-  wrongDbId?: NotionUUID;
-  isDifficultDbId?: NotionUUID;
-  studentProgressDbId?: NotionUUID;
-  studentScheduleDbId?: NotionUUID;
-  studentOverviewPageId?: NotionUUID;
-  studentInfoDetailDbId?: NotionUUID;
-  coachRestDbId?: NotionUUID;
-  coachPlanDbId?: NotionUUID;
-  coachIrregularDbId?: NotionUUID;
-  necessaryStudyTimeDbId?: NotionUUID;
-  goalDescription?: string;
-  createdAt?: MySQLTimestamp;
-  updatedAt?: MySQLTimestamp;
-}
-
 export function toStudent(row: MySQLStudent): Student {
   try {
+    logger.debug(`row: ${JSON.stringify(row)}`);
     const transformed: Student = {
       studentId: row.studentId,
       studentName: row.studentName,
       parentName: row.parentName,
       parentPhoneNumber:
-        row.parentPhoneNumber !== undefined
+        row.parentPhoneNumber != undefined
           ? toPhoneNumber(row.parentPhoneNumber)
           : undefined,
       parentEmail:
-        row.parentEmail !== undefined
+        row.parentEmail != undefined
           ? toEmail(row.parentEmail)
           : undefined,
       examDate:
-        row.examDate !== undefined
+        row.examDate != undefined
           ? (convertTimeMySQLToNotion(row.examDate) as NotionDate)
           : undefined,
       studentPageId:
-        row.studentPageId !== undefined
+        row.studentPageId != undefined
           ? toNotionUUID(row.studentPageId)
           : undefined,
       todoDbId:
-        row.todoDbId !== undefined
+        row.todoDbId != undefined
           ? toNotionUUID(row.todoDbId)
           : undefined,
       remainingDbId:
-        row.remainingDbId !== undefined
+        row.remainingDbId != undefined
           ? toNotionUUID(row.remainingDbId)
           : undefined,
       wrongDbId:
-        row.wrongDbId !== undefined
+        row.wrongDbId != undefined
           ? toNotionUUID(row.wrongDbId)
           : undefined,
       isDifficultDbId:
-        row.isDifficultDbId !== undefined
+        row.isDifficultDbId != undefined
           ? toNotionUUID(row.isDifficultDbId)
           : undefined,
-      studentProgressDbId:
-        row.studentProgressDbId !== undefined
-          ? toNotionUUID(row.studentProgressDbId)
+      todoCounterDbId:
+        row.todoCounterDbId != undefined
+          ? toNotionUUID(row.todoCounterDbId)
           : undefined,
       studentScheduleDbId:
-        row.studentScheduleDbId !== undefined
+        row.studentScheduleDbId != undefined
           ? toNotionUUID(row.studentScheduleDbId)
           : undefined,
       studentOverviewPageId:
-        row.studentOverviewPageId !== undefined
+        row.studentOverviewPageId != undefined
           ? toNotionUUID(row.studentOverviewPageId)
           : undefined,
       studentInfoDetailDbId:
-        row.studentInfoDetailDbId !== undefined
+        row.studentInfoDetailDbId != undefined
           ? toNotionUUID(row.studentInfoDetailDbId)
           : undefined,
       coachRestDbId:
-        row.coachRestDbId !== undefined
+        row.coachRestDbId != undefined
           ? toNotionUUID(row.coachRestDbId)
           : undefined,
       coachPlanDbId:
-        row.coachPlanDbId !== undefined
+        row.coachPlanDbId != undefined
           ? toNotionUUID(row.coachPlanDbId)
           : undefined,
       coachIrregularDbId:
-        row.coachIrregularDbId !== undefined
+        row.coachIrregularDbId != undefined
           ? toNotionUUID(row.coachIrregularDbId)
           : undefined,
       necessaryStudyTimeDbId:
-        row.necessaryStudyTimeDbId !== undefined
+        row.necessaryStudyTimeDbId != undefined
           ? toNotionUUID(row.necessaryStudyTimeDbId)
           : undefined,
       goalDescription: row.goalDescription,
@@ -147,7 +126,7 @@ export function toStudent(row: MySQLStudent): Student {
     };
     // Remove undefined fields
     return Object.fromEntries(
-      Object.entries(transformed).filter(([_, value]) => value !== undefined)
+      Object.entries(transformed).filter(([_, value]) => value != undefined)
     ) as Student;
   } catch (error) {
     logger.error('Error transforming MySQLStudent to Student:', error);
@@ -172,7 +151,7 @@ export function toMySQLStudent(data: Student): MySQLStudent {
       remainingDbId: data.remainingDbId,
       wrongDbId: data.wrongDbId,
       isDifficultDbId: data.isDifficultDbId,
-      studentProgressDbId: data.studentProgressDbId,
+      todoCounterDbId: data.todoCounterDbId,
       studentScheduleDbId: data.studentScheduleDbId,
       studentOverviewPageId: data.studentOverviewPageId,
       studentInfoDetailDbId: data.studentInfoDetailDbId,
@@ -185,7 +164,7 @@ export function toMySQLStudent(data: Student): MySQLStudent {
       updatedAt: data.updatedAt,
     };
     return Object.fromEntries(
-      Object.entries(transformed).filter(([_, value]) => value !== undefined)
+      Object.entries(transformed).filter(([_, value]) => value != undefined)
     ) as MySQLStudent;
   } catch (error) {
     logger.error('Error transforming Student to MySQLStudent:', error);
@@ -203,6 +182,8 @@ export class Students {
 
       const payload = toMySQLStudent(data);
 
+      logger.debug(`payload: ${JSON.stringify(payload)}`);
+
       const sql = `
         INSERT INTO students (
           student_name,
@@ -210,21 +191,22 @@ export class Students {
           parent_phone_number,
           parent_email,
           exam_date,
-          student_page_id,
+          student_only_page_id,
           todo_db_id,
           remaining_db_id,
           wrong_db_id,
-          difficult_db_id,
-          student_progress_db_id,
+          is_difficult_db_id,
+          todo_counter_db_id,
           student_schedule_db_id,
           student_overview_page_id,
-          coach_record_db_id,
+          coach_rest_db_id,
           coach_plan_db_id,
           coach_irregular_db_id,
-          coach_student_db_id,
+          necessary_study_time_db_id,
           goal_description
         )
         VALUES (
+          ?,
           ?,
           ?,
           ?,
@@ -256,11 +238,12 @@ export class Students {
         payload.remainingDbId ?? null,
         payload.wrongDbId ?? null,
         payload.isDifficultDbId ?? null,
-        payload.studentProgressDbId ?? null,
+        payload.todoCounterDbId ?? null,
         payload.studentScheduleDbId ?? null,
         payload.studentOverviewPageId ?? null,
         payload.coachRestDbId ?? null,
         payload.coachPlanDbId ?? null,
+        payload.coachIrregularDbId ?? null,
         payload.necessaryStudyTimeDbId ?? null,
         payload.goalDescription ?? null
       ]);
@@ -281,6 +264,8 @@ export class Students {
         logger.warn("No students found in Students.ts");
         return [];
       }
+      logger.debug(`rows: ${JSON.stringify(rows)}`);
+      logger.debug(`rows[0]: ${JSON.stringify(rows[0])}`)
 
       return rows.map(row => toStudent(convertToCamelCase(row) as MySQLStudent)) as Student[];
     } catch (error) {
@@ -298,7 +283,7 @@ export class Students {
   }[]> {
     try {
       const [rows] = await db.query<RowDataPacket[]>(`
-        SELECT student_id, remaining_db_id, todo_db_id, wrong_db_id, difficult_db_id
+        SELECT student_id, remaining_db_id, todo_db_id, wrong_db_id, is_difficult_db_id
         FROM students
       `);
       if (rows.length === 0) {

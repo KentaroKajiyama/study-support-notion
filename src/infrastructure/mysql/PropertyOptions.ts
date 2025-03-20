@@ -19,7 +19,7 @@ interface MySQLPropertyOption {
   createdAt?: MySQLTimestamp
 }
 
-interface PropertyOption {
+export interface PropertyOption {
   propertyOptionId?: MySQLUintID,
   notionDbPropertyId?: MySQLUintID,
   optionKey?: string,
@@ -129,7 +129,7 @@ export class PropertyOptions {
       }
       const [rows] = await db.query<RowDataPacket[]>(
         `
-          SELECT * FROM property_options WHERE property_id =?
+          SELECT * FROM property_options WHERE notion_db_property_id =?
         `,
         [notionDbPropertyid]
       );
@@ -154,7 +154,7 @@ export class PropertyOptions {
       }
       const [rows] = await db.query<RowDataPacket[]>(
         `
-          SELECT * FROM property_options WHERE property_id =? AND option_value =?
+          SELECT * FROM property_options WHERE notion_db_property_id =? AND option_value =?
         `,
         [notionDbPropertyid, optionValue]
       );
@@ -192,7 +192,7 @@ export class PropertyOptions {
       const mysqlData = toMySQLPropertyOption(data);
       const [result] = await db.query<ResultSetHeader>(
         `
-          INSERT INTO property_options (notion_db_property_id, option_key, option_valuet) VALUES (?,?,?)
+          INSERT INTO property_options (notion_db_property_id, option_key, option_value) VALUES (?,?,?)
         `,
         [
           mysqlData.notionDbPropertyId, 

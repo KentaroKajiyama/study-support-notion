@@ -42,22 +42,10 @@ export function convertTimeMySQLToNotion(mysqlDateTime: MySQLDateOrTime | undefi
       mysqlDateTime === null 
     ) return null;
 
-    if (/^\d{4}-\d{2}-\d{2}$/.test(mysqlDateTime)) {
-      // Case: MySQL Date (YYYY-MM-DD)
-      dateObj = new Date(`${mysqlDateTime}T00:00:00.000+09:00`); // Assume JST for DATETIME
-      includeTime = false;
-    } else if (/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(mysqlDateTime)) {
-      // Case: MySQL Datetime or Timestamp (YYYY-MM-DD HH:MM:SS)
-      dateObj = new Date(mysqlDateTime.replace(" ", "T") + "Z"); // Assume UTC for TIMESTAMP
-      includeTime = true;
-      
-      // If TIMESTAMP, enforce UTC
-      if (mysqlDateTime.endsWith("Z")) {
-        isTimestamp = true;
-      }
-    } else {
-      throw new Error("Invalid MySQL date format. Expected YYYY-MM-DD or YYYY-MM-DD HH:MM:SS.");
-    }
+    logger.debug(`mysqlDateTime: ${JSON.stringify(mysqlDateTime)}`);
+
+    dateObj = new Date(mysqlDateTime);
+    includeTime = false;
 
     if (coerceToDate) includeTime = false;
     if (coerceToTime) includeTime = true;
