@@ -99,16 +99,20 @@ export class Rests {
         (student_id, subfield_id, rest_name, start_date, end_date)
         VALUES (?,?,?,?,?)
       `;
-      const [result] = await db.query(sql, [
+      const [result] = await db.query<ResultSetHeader>(sql, [
         payload.studentId,
         payload.subfieldId,
         payload.restName,
         payload.startDate,
         payload.endDate,
       ]);
-      return toMySQLUintID((result as { insertId: number }).insertId);
+      if (result.affectedRows > 0) {
+        return toMySQLUintID(result.insertId);
+      } else {
+        throw new Error(`Failed to create Rest. payload: ${JSON.stringify(payload)}`);
+      }
     } catch (error) {
-      logger.error('Error creating Rest:', error);
+      logger.error(`Error creating Rest. data: ${JSON.stringify(data)}`);
       throw error;
     }
   }

@@ -72,7 +72,7 @@ function toMySQLProblem(data: Problem): MySQLProblem {
 }
 
 export class Problems {
-  static async create(data: Problem): Promise<boolean> {
+  static async create(data: Problem): Promise<MySQLUintID> {
     try {
       if (!data) {
         throw new Error("Problem is not available in cretaion  Problem.ts\n"); 
@@ -92,7 +92,11 @@ export class Problems {
         payload.answer,
         payload.problemLevel,
       ]);
-      return true;
+      if (result.affectedRows > 0) {
+        return result.insertId as MySQLUintID;
+      } else {
+        throw new Error(`Failed to create a new problem row. payload: ${JSON.stringify(data)}`);
+      };
     } catch (error) {
       logger.error('Failed to create problem in create Problems.ts,', error);
       throw error

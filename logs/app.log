@@ -2965,3 +2965,408 @@ body.properties.元ブロック ID.rich_text[0].equation should be defined, inst
 [2025-03-20T18:06:56.238Z] [DEBUG] mysqlDateTime: "2024-01-10T15:00:00.000Z"
 [2025-03-20T18:06:56.238Z] [DEBUG] transformed: {{"restId":32,"studentId":8,"subfieldId":6,"notionPageId":"","restName":"Updated Test Rest","startDate":"2024-01-01","endDate":"2024-01-11","createdAt":"2025-03-20T09:06:54.000Z","updatedAt":"2025-03-20T09:06:54.000Z"}}
 [2025-03-20T18:06:56.255Z] [WARN] No rows found in Rests.ts
+[2025-03-21T02:49:07.876Z] [ERROR] Failed to create notion db property in NotionDbProperties.ts, Error: Duplicate entry 'select' for key 'notion_db_properties.property_type'
+[2025-03-21T02:55:58.772Z] [ERROR] Error deleting problem option by ID: 0 Error: Invalid problemOptionId
+[2025-03-21T02:57:53.261Z] [ERROR] Error creating ProblemOption: Error: Duplicate entry '0' for key 'problem_options.PRIMARY'
+[2025-03-21T03:02:35.807Z] [ERROR] Error creating ProblemOption: ReferenceError: resul is not defined
+[2025-03-21T03:44:30.592Z] [ERROR] Error creating StudentSubjectInformation. data: {"studentId":8,"subjectId":3,"subjectLevel":"基礎３","goalDescription":"Improve in mathematics","subjectGoalLevel":60}
+[2025-03-21T03:44:30.636Z] [WARN] No student subject information was found in findAll StudentSubjectInformation.ts
+[2025-03-21T03:44:30.645Z] [WARN] No student subject information was found in findByStudentId StudentSubjectInformation.ts
+[2025-03-21T03:44:30.652Z] [WARN] No student subject information was found in findIdAndSubjectNameByStudentId StudentSubjectInformation.ts
+[2025-03-21T03:44:30.658Z] [WARN] No student subject information was found in findByCompositeKey StudentSubjectInformation.ts
+[2025-03-21T03:52:06.727Z] [ERROR] Error creating StudentSubjectInformation. data: {"studentId":8,"subjectId":3,"subjectLevel":"基礎３","goalDescription":"Improve in mathematics","subjectGoalLevel":60}
+[2025-03-21T03:52:06.747Z] [WARN] No student subject information was found in findAll StudentSubjectInformation.ts
+[2025-03-21T03:52:06.755Z] [WARN] No student subject information was found in findByStudentId StudentSubjectInformation.ts
+[2025-03-21T03:52:06.762Z] [WARN] No student subject information was found in findIdAndSubjectNameByStudentId StudentSubjectInformation.ts
+[2025-03-21T03:52:06.767Z] [WARN] No student subject information was found in findByCompositeKey StudentSubjectInformation.ts
+[2025-03-21T03:56:45.897Z] [ERROR] Error creating StudentSubjectInformation. data: {"studentId":8,"subjectId":3,"subjectLevel":"基礎３","goalDescription":"Improve in mathematics","subjectGoalLevel":60}
+[2025-03-21T03:56:57.632Z] [ERROR] Error creating StudentSubjectInformation. data: {"studentId":8,"subjectId":3,"subjectLevel":"基礎３","goalDescription":"Improve in mathematics","subjectGoalLevel":60}
+[2025-03-21T03:57:06.974Z] [ERROR] Error creating StudentSubjectInformation. data: {"studentId":8,"subjectId":3,"subjectLevel":"基礎３","goalDescription":"Improve in mathematics","subjectGoalLevel":60}
+[2025-03-21T03:57:23.779Z] [ERROR] Error creating StudentSubjectInformation. data: {"studentId":8,"subjectId":3,"subjectLevel":"基礎３","goalDescription":"旧帝大レベル","subjectGoalLevel":60}
+[2025-03-21T04:00:27.971Z] [WARN] No student subject information was found in findByCompositeKey StudentSubjectInformation.ts
+[2025-03-21T04:01:12.182Z] [WARN] No student subject information was found in findByCompositeKey StudentSubjectInformation.ts
+[2025-03-21T04:01:15.293Z] [WARN] No student subject information was found in findByCompositeKey StudentSubjectInformation.ts
+[2025-03-21T04:02:00.843Z] [WARN] No student subject information was found in findByCompositeKey StudentSubjectInformation.ts
+[2025-03-21T04:02:05.761Z] [WARN] No student subject information was found in findByCompositeKey StudentSubjectInformation.ts
+[2025-03-21T04:10:45.841Z] [ERROR] Error converting StudentProblem to MySQLStudentProblem: Error: Invalid Notion date format. Expected YYYY-MM-DD or YYYY-MM-DDTHH:MM:SS.sssZ.
+[2025-03-21T04:10:45.844Z] [ERROR] Error creating a student problem. data: {"studentId":8,"problemId":3,"actualBlockId":36,"notionPageId":"1bcb95a4c6198163a8bdcb8fa4b03ce1","answerStatus":"未回答","isDifficult":false,"tryCount":1,"difficultCount":0,"wrongCount":0,"reviewLevel":"レベル１","reviewCountDown":0,"reviewAvailableDate":null,"problemInBlockOrder":1,"problemOverallOrder":1,"lastAnsweredDate":"2025-3-20"}
+[2025-03-21T04:10:45.907Z] [WARN] No student problem found with studentId in StudentProblem.ts
+[2025-03-21T04:10:45.915Z] [WARN] No student problem found with notionPageId in StudentProblem.ts
+[2025-03-21T04:10:45.924Z] [ERROR] No studentProblemId provided to findById.
+[2025-03-21T04:10:45.924Z] [ERROR] Error finding student problem by ID: null Error: No studentProblemId provided to findById.
+[2025-03-21T04:13:33.433Z] [ERROR] Error creating a student problem. data: {"studentId":8,"problemId":3,"actualBlockId":36,"notionPageId":"1bcb95a4c6198163a8bdcb8fa4b03ce1","answerStatus":"未回答","isDifficult":false,"tryCount":1,"difficultCount":0,"wrongCount":0,"reviewLevel":"レベル１","reviewCountDown":0,"reviewAvailableDate":null,"problemInBlockOrder":1,"problemOverallOrder":1,"lastAnsweredDate":"2025-03-20"}
+[2025-03-21T04:13:33.454Z] [WARN] No student problem found with studentId in StudentProblem.ts
+[2025-03-21T04:13:33.461Z] [WARN] No student problem found with notionPageId in StudentProblem.ts
+[2025-03-21T04:13:33.470Z] [ERROR] No studentProblemId provided to findById.
+[2025-03-21T04:13:33.470Z] [ERROR] Error finding student problem by ID: null Error: No studentProblemId provided to findById.
+[2025-03-21T04:14:17.063Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:14:17.070Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:14:17.076Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:14:17.089Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:14:17.095Z] [ERROR] Error updating student problem with ID: 1 Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE student_problem_id = 1' at line 3
+[2025-03-21T04:14:17.115Z] [ERROR] Error updating student problems for coach plan: Error: Cannot add or update a child row: a foreign key constraint fails (`kisotetsu_03132025`.`student_problems`, CONSTRAINT `student_problems_ibfk_1` FOREIGN KEY (`actual_block_id`) REFERENCES `actual_blocks` (`actual_block_id`))
+[2025-03-21T04:14:17.128Z] [WARN] No student problem found with studentProblemId in StudentProblem.ts
+[2025-03-21T04:14:58.472Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:14:58.484Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:14:58.491Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:14:58.505Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:14:58.510Z] [ERROR] Error updating student problem with ID: 2 Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE student_problem_id = 2' at line 3
+[2025-03-21T04:14:58.528Z] [ERROR] Error updating student problems for coach plan: Error: Cannot add or update a child row: a foreign key constraint fails (`kisotetsu_03132025`.`student_problems`, CONSTRAINT `student_problems_ibfk_1` FOREIGN KEY (`actual_block_id`) REFERENCES `actual_blocks` (`actual_block_id`))
+[2025-03-21T04:14:58.544Z] [WARN] No student problem found with studentProblemId in StudentProblem.ts
+[2025-03-21T04:16:34.715Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:16:34.722Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:16:34.728Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:16:34.739Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:16:34.753Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:16:34.759Z] [ERROR] Error updating student problems for coach plan: Error: Cannot add or update a child row: a foreign key constraint fails (`kisotetsu_03132025`.`student_problems`, CONSTRAINT `student_problems_ibfk_1` FOREIGN KEY (`actual_block_id`) REFERENCES `actual_blocks` (`actual_block_id`))
+[2025-03-21T04:16:34.777Z] [WARN] No student problem found with studentProblemId in StudentProblem.ts
+[2025-03-21T04:23:57.726Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:23:57.734Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:23:57.740Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:23:57.753Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:23:57.767Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:23:57.791Z] [WARN] No student problem found with studentProblemId in StudentProblem.ts
+[2025-03-21T04:23:58.653Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:23:58.663Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:23:58.668Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:23:58.683Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:23:58.698Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:23:58.713Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:23:58.733Z] [WARN] No student problem found with studentProblemId in StudentProblem.ts
+[2025-03-21T04:24:21.376Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:24:21.383Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:24:21.390Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:24:21.404Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:24:21.418Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:24:21.431Z] [DEBUG] mysqlDateTime: "2025-03-18T15:00:00.000Z"
+[2025-03-21T04:24:21.445Z] [WARN] No student problem found with studentProblemId in StudentProblem.ts
+[2025-03-21T04:26:45.664Z] [ERROR] Error creating a student problem. data: {"studentId":8,"problemId":3,"actualBlockId":36,"notionPageId":"1bcb95a4c6198163a8bdcb8fa4b03ce1","answerStatus":"未回答","isDifficult":false,"tryCount":1,"difficultCount":0,"wrongCount":0,"reviewLevel":"レベル１","reviewCountDown":0,"reviewAvailableDate":null,"problemInBlockOrder":1,"problemOverallOrder":1,"lastAnsweredDate":"2025-03-20"}
+[2025-03-21T04:26:49.288Z] [ERROR] Error creating a student problem. data: {"studentId":8,"problemId":3,"actualBlockId":36,"notionPageId":"1bcb95a4c6198163a8bdcb8fa4b03ce1","answerStatus":"未回答","isDifficult":false,"tryCount":1,"difficultCount":0,"wrongCount":0,"reviewLevel":"レベル１","reviewCountDown":0,"reviewAvailableDate":null,"problemInBlockOrder":1,"problemOverallOrder":1,"lastAnsweredDate":"2025-03-20"}
+[2025-03-21T04:26:54.599Z] [ERROR] Error creating a student problem. data: {"studentId":8,"problemId":3,"actualBlockId":36,"notionPageId":"1bcb95a4c6198163a8bdcb8fa4b03ce1","answerStatus":"未回答","isDifficult":false,"tryCount":1,"difficultCount":0,"wrongCount":0,"reviewLevel":"レベル１","reviewCountDown":0,"reviewAvailableDate":null,"problemInBlockOrder":1,"problemOverallOrder":1,"lastAnsweredDate":"2025-03-20"}
+[2025-03-21T04:30:16.611Z] [WARN] Multiple trackers found by composite key
+[2025-03-21T04:30:16.699Z] [WARN] No Tracker was found
+[2025-03-21T04:45:08.183Z] [DEBUG] rowCamel: [object Object]
+[2025-03-21T04:45:08.198Z] [WARN] Multiple trackers found by composite key
+[2025-03-21T04:45:08.219Z] [DEBUG] rowCamel: [object Object]
+[2025-03-21T04:45:08.231Z] [DEBUG] rowCamel: [object Object]
+[2025-03-21T04:45:08.244Z] [DEBUG] rowCamel: [object Object]
+[2025-03-21T04:45:08.272Z] [DEBUG] rowCamel: [object Object]
+[2025-03-21T04:45:08.284Z] [WARN] No Tracker was found
+[2025-03-21T04:45:09.143Z] [DEBUG] rowCamel: [object Object]
+[2025-03-21T04:45:09.167Z] [WARN] Multiple trackers found by composite key
+[2025-03-21T04:45:09.182Z] [DEBUG] rowCamel: [object Object]
+[2025-03-21T04:45:09.195Z] [DEBUG] rowCamel: [object Object]
+[2025-03-21T04:45:09.209Z] [DEBUG] rowCamel: [object Object]
+[2025-03-21T04:45:09.237Z] [DEBUG] rowCamel: [object Object]
+[2025-03-21T04:45:09.254Z] [WARN] No Tracker was found
+[2025-03-21T04:45:17.617Z] [DEBUG] rowCamel: [object Object]
+[2025-03-21T04:45:17.642Z] [WARN] Multiple trackers found by composite key
+[2025-03-21T04:45:17.656Z] [DEBUG] rowCamel: [object Object]
+[2025-03-21T04:45:17.669Z] [DEBUG] rowCamel: [object Object]
+[2025-03-21T04:45:17.682Z] [DEBUG] rowCamel: [object Object]
+[2025-03-21T04:45:17.712Z] [DEBUG] rowCamel: [object Object]
+[2025-03-21T04:45:17.728Z] [WARN] No Tracker was found
+[2025-03-21T04:45:20.990Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":5,"studentProblemId":8,"actualBlockId":36,"remainingSpace":50,"isEnabled":0,"currentLap":1,"isRest":0,"createdAt":"2025-03-20T19:45:17.000Z","updatedAt":"2025-03-20T19:45:17.000Z"}
+[2025-03-21T04:45:21.014Z] [WARN] Multiple trackers found by composite key
+[2025-03-21T04:45:21.030Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":5,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":0,"currentLap":1,"isRest":0,"createdAt":"2025-03-20T19:45:17.000Z","updatedAt":"2025-03-20T19:45:20.000Z"}
+[2025-03-21T04:45:21.046Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":5,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":0,"currentLap":2,"isRest":0,"createdAt":"2025-03-20T19:45:17.000Z","updatedAt":"2025-03-20T19:45:20.000Z"}
+[2025-03-21T04:45:21.061Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":5,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":0,"currentLap":2,"isRest":1,"createdAt":"2025-03-20T19:45:17.000Z","updatedAt":"2025-03-20T19:45:20.000Z"}
+[2025-03-21T04:45:21.094Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":5,"studentProblemId":8,"actualBlockId":36,"remainingSpace":30,"isEnabled":0,"currentLap":2,"isRest":1,"createdAt":"2025-03-20T19:45:17.000Z","updatedAt":"2025-03-20T19:45:20.000Z"}
+[2025-03-21T04:45:21.115Z] [WARN] No Tracker was found
+[2025-03-21T04:45:42.249Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":6,"studentProblemId":8,"actualBlockId":36,"remainingSpace":50,"isEnabled":0,"currentLap":1,"isRest":0,"createdAt":"2025-03-20T19:45:20.000Z","updatedAt":"2025-03-20T19:45:20.000Z"}
+[2025-03-21T04:45:42.250Z] [DEBUG] 
+[2025-03-21T04:45:42.272Z] [WARN] Multiple trackers found by composite key
+[2025-03-21T04:45:42.289Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":6,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":0,"currentLap":1,"isRest":0,"createdAt":"2025-03-20T19:45:20.000Z","updatedAt":"2025-03-20T19:45:41.000Z"}
+[2025-03-21T04:45:42.289Z] [DEBUG] 
+[2025-03-21T04:45:42.304Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":6,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":0,"currentLap":2,"isRest":0,"createdAt":"2025-03-20T19:45:20.000Z","updatedAt":"2025-03-20T19:45:41.000Z"}
+[2025-03-21T04:45:42.304Z] [DEBUG] 
+[2025-03-21T04:45:42.321Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":6,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":0,"currentLap":2,"isRest":1,"createdAt":"2025-03-20T19:45:20.000Z","updatedAt":"2025-03-20T19:45:41.000Z"}
+[2025-03-21T04:45:42.321Z] [DEBUG] 
+[2025-03-21T04:45:42.351Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":6,"studentProblemId":8,"actualBlockId":36,"remainingSpace":30,"isEnabled":0,"currentLap":2,"isRest":1,"createdAt":"2025-03-20T19:45:20.000Z","updatedAt":"2025-03-20T19:45:41.000Z"}
+[2025-03-21T04:45:42.351Z] [DEBUG] 
+[2025-03-21T04:45:42.366Z] [WARN] No Tracker was found
+[2025-03-21T04:45:44.867Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":7,"studentProblemId":8,"actualBlockId":36,"remainingSpace":50,"isEnabled":0,"currentLap":1,"isRest":0,"createdAt":"2025-03-20T19:45:41.000Z","updatedAt":"2025-03-20T19:45:41.000Z"}
+[2025-03-21T04:45:44.869Z] [DEBUG] resul
+[2025-03-21T04:45:44.891Z] [WARN] Multiple trackers found by composite key
+[2025-03-21T04:45:44.906Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":7,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":0,"currentLap":1,"isRest":0,"createdAt":"2025-03-20T19:45:41.000Z","updatedAt":"2025-03-20T19:45:44.000Z"}
+[2025-03-21T04:45:44.906Z] [DEBUG] resul
+[2025-03-21T04:45:44.920Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":7,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":0,"currentLap":2,"isRest":0,"createdAt":"2025-03-20T19:45:41.000Z","updatedAt":"2025-03-20T19:45:44.000Z"}
+[2025-03-21T04:45:44.920Z] [DEBUG] resul
+[2025-03-21T04:45:44.935Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":7,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":0,"currentLap":2,"isRest":1,"createdAt":"2025-03-20T19:45:41.000Z","updatedAt":"2025-03-20T19:45:44.000Z"}
+[2025-03-21T04:45:44.935Z] [DEBUG] resul
+[2025-03-21T04:45:44.963Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":7,"studentProblemId":8,"actualBlockId":36,"remainingSpace":30,"isEnabled":0,"currentLap":2,"isRest":1,"createdAt":"2025-03-20T19:45:41.000Z","updatedAt":"2025-03-20T19:45:44.000Z"}
+[2025-03-21T04:45:44.963Z] [DEBUG] resul
+[2025-03-21T04:45:44.976Z] [WARN] No Tracker was found
+[2025-03-21T04:45:51.860Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":8,"studentProblemId":8,"actualBlockId":36,"remainingSpace":50,"isEnabled":0,"currentLap":1,"isRest":0,"createdAt":"2025-03-20T19:45:44.000Z","updatedAt":"2025-03-20T19:45:44.000Z"}
+[2025-03-21T04:45:51.861Z] [DEBUG] result: undefined
+[2025-03-21T04:45:51.880Z] [WARN] Multiple trackers found by composite key
+[2025-03-21T04:45:51.895Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":8,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":0,"currentLap":1,"isRest":0,"createdAt":"2025-03-20T19:45:44.000Z","updatedAt":"2025-03-20T19:45:51.000Z"}
+[2025-03-21T04:45:51.895Z] [DEBUG] result: undefined
+[2025-03-21T04:45:51.911Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":8,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":0,"currentLap":2,"isRest":0,"createdAt":"2025-03-20T19:45:44.000Z","updatedAt":"2025-03-20T19:45:51.000Z"}
+[2025-03-21T04:45:51.911Z] [DEBUG] result: undefined
+[2025-03-21T04:45:51.929Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":8,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":0,"currentLap":2,"isRest":1,"createdAt":"2025-03-20T19:45:44.000Z","updatedAt":"2025-03-20T19:45:51.000Z"}
+[2025-03-21T04:45:51.929Z] [DEBUG] result: undefined
+[2025-03-21T04:45:51.971Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":8,"studentProblemId":8,"actualBlockId":36,"remainingSpace":30,"isEnabled":0,"currentLap":2,"isRest":1,"createdAt":"2025-03-20T19:45:44.000Z","updatedAt":"2025-03-20T19:45:51.000Z"}
+[2025-03-21T04:45:51.971Z] [DEBUG] result: undefined
+[2025-03-21T04:45:51.987Z] [WARN] No Tracker was found
+[2025-03-21T04:45:55.601Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":9,"studentProblemId":8,"actualBlockId":36,"remainingSpace":50,"isEnabled":0,"currentLap":1,"isRest":0,"createdAt":"2025-03-20T19:45:51.000Z","updatedAt":"2025-03-20T19:45:51.000Z"}
+[2025-03-21T04:45:55.602Z] [DEBUG] result: {"trackerId":9,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":50,"isRest":0,"currentLap":1,"isEnabled":0,"createdAt":"2025-03-20T19:45:51.000Z","updatedAt":"2025-03-20T19:45:51.000Z"}
+[2025-03-21T04:45:55.623Z] [WARN] Multiple trackers found by composite key
+[2025-03-21T04:45:55.636Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":9,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":0,"currentLap":1,"isRest":0,"createdAt":"2025-03-20T19:45:51.000Z","updatedAt":"2025-03-20T19:45:55.000Z"}
+[2025-03-21T04:45:55.636Z] [DEBUG] result: {"trackerId":9,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":40,"isRest":0,"currentLap":1,"isEnabled":0,"createdAt":"2025-03-20T19:45:51.000Z","updatedAt":"2025-03-20T19:45:55.000Z"}
+[2025-03-21T04:45:55.649Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":9,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":0,"currentLap":2,"isRest":0,"createdAt":"2025-03-20T19:45:51.000Z","updatedAt":"2025-03-20T19:45:55.000Z"}
+[2025-03-21T04:45:55.649Z] [DEBUG] result: {"trackerId":9,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":40,"isRest":0,"currentLap":2,"isEnabled":0,"createdAt":"2025-03-20T19:45:51.000Z","updatedAt":"2025-03-20T19:45:55.000Z"}
+[2025-03-21T04:45:55.668Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":9,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":0,"currentLap":2,"isRest":1,"createdAt":"2025-03-20T19:45:51.000Z","updatedAt":"2025-03-20T19:45:55.000Z"}
+[2025-03-21T04:45:55.668Z] [DEBUG] result: {"trackerId":9,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":40,"isRest":true,"currentLap":2,"isEnabled":0,"createdAt":"2025-03-20T19:45:51.000Z","updatedAt":"2025-03-20T19:45:55.000Z"}
+[2025-03-21T04:45:55.695Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":9,"studentProblemId":8,"actualBlockId":36,"remainingSpace":30,"isEnabled":0,"currentLap":2,"isRest":1,"createdAt":"2025-03-20T19:45:51.000Z","updatedAt":"2025-03-20T19:45:55.000Z"}
+[2025-03-21T04:45:55.695Z] [DEBUG] result: {"trackerId":9,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":30,"isRest":true,"currentLap":2,"isEnabled":0,"createdAt":"2025-03-20T19:45:51.000Z","updatedAt":"2025-03-20T19:45:55.000Z"}
+[2025-03-21T04:45:55.708Z] [WARN] No Tracker was found
+[2025-03-21T04:45:59.613Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":10,"studentProblemId":8,"actualBlockId":36,"remainingSpace":50,"isEnabled":0,"currentLap":1,"isRest":0,"createdAt":"2025-03-20T19:45:55.000Z","updatedAt":"2025-03-20T19:45:55.000Z"}
+[2025-03-21T04:45:59.614Z] [DEBUG] result: {"trackerId":10,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":50,"isRest":0,"currentLap":1,"isEnabled":0,"createdAt":"2025-03-20T19:45:55.000Z","updatedAt":"2025-03-20T19:45:55.000Z"}
+[2025-03-21T04:45:59.632Z] [WARN] Multiple trackers found by composite key
+[2025-03-21T04:45:59.645Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":10,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":0,"currentLap":1,"isRest":0,"createdAt":"2025-03-20T19:45:55.000Z","updatedAt":"2025-03-20T19:45:59.000Z"}
+[2025-03-21T04:45:59.645Z] [DEBUG] result: {"trackerId":10,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":40,"isRest":0,"currentLap":1,"isEnabled":0,"createdAt":"2025-03-20T19:45:55.000Z","updatedAt":"2025-03-20T19:45:59.000Z"}
+[2025-03-21T04:45:59.658Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":10,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":0,"currentLap":2,"isRest":0,"createdAt":"2025-03-20T19:45:55.000Z","updatedAt":"2025-03-20T19:45:59.000Z"}
+[2025-03-21T04:45:59.658Z] [DEBUG] result: {"trackerId":10,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":40,"isRest":0,"currentLap":2,"isEnabled":0,"createdAt":"2025-03-20T19:45:55.000Z","updatedAt":"2025-03-20T19:45:59.000Z"}
+[2025-03-21T04:45:59.670Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":10,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":0,"currentLap":2,"isRest":1,"createdAt":"2025-03-20T19:45:55.000Z","updatedAt":"2025-03-20T19:45:59.000Z"}
+[2025-03-21T04:45:59.671Z] [DEBUG] result: {"trackerId":10,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":40,"isRest":true,"currentLap":2,"isEnabled":0,"createdAt":"2025-03-20T19:45:55.000Z","updatedAt":"2025-03-20T19:45:59.000Z"}
+[2025-03-21T04:45:59.697Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":10,"studentProblemId":8,"actualBlockId":36,"remainingSpace":30,"isEnabled":0,"currentLap":2,"isRest":1,"createdAt":"2025-03-20T19:45:55.000Z","updatedAt":"2025-03-20T19:45:59.000Z"}
+[2025-03-21T04:45:59.698Z] [DEBUG] result: {"trackerId":10,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":30,"isRest":true,"currentLap":2,"isEnabled":0,"createdAt":"2025-03-20T19:45:55.000Z","updatedAt":"2025-03-20T19:45:59.000Z"}
+[2025-03-21T04:45:59.710Z] [WARN] No Tracker was found
+[2025-03-21T05:11:42.708Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":11,"studentProblemId":8,"actualBlockId":36,"remainingSpace":50,"isEnabled":0,"currentLap":1,"isRest":0,"createdAt":"2025-03-20T19:45:59.000Z","updatedAt":"2025-03-20T19:45:59.000Z"}
+[2025-03-21T05:11:42.710Z] [DEBUG] result: {"trackerId":11,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":50,"isRest":false,"currentLap":1,"isEnabled":false,"createdAt":"2025-03-20T19:45:59.000Z","updatedAt":"2025-03-20T19:45:59.000Z"}
+[2025-03-21T05:11:42.728Z] [WARN] Multiple trackers found by composite key
+[2025-03-21T05:11:42.744Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":11,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":0,"currentLap":1,"isRest":0,"createdAt":"2025-03-20T19:45:59.000Z","updatedAt":"2025-03-20T20:11:42.000Z"}
+[2025-03-21T05:11:42.744Z] [DEBUG] result: {"trackerId":11,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":40,"isRest":false,"currentLap":1,"isEnabled":false,"createdAt":"2025-03-20T19:45:59.000Z","updatedAt":"2025-03-20T20:11:42.000Z"}
+[2025-03-21T05:11:42.762Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":11,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":0,"currentLap":2,"isRest":0,"createdAt":"2025-03-20T19:45:59.000Z","updatedAt":"2025-03-20T20:11:42.000Z"}
+[2025-03-21T05:11:42.762Z] [DEBUG] result: {"trackerId":11,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":40,"isRest":false,"currentLap":2,"isEnabled":false,"createdAt":"2025-03-20T19:45:59.000Z","updatedAt":"2025-03-20T20:11:42.000Z"}
+[2025-03-21T05:11:42.777Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":11,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":0,"currentLap":2,"isRest":1,"createdAt":"2025-03-20T19:45:59.000Z","updatedAt":"2025-03-20T20:11:42.000Z"}
+[2025-03-21T05:11:42.778Z] [DEBUG] result: {"trackerId":11,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":40,"isRest":true,"currentLap":2,"isEnabled":false,"createdAt":"2025-03-20T19:45:59.000Z","updatedAt":"2025-03-20T20:11:42.000Z"}
+[2025-03-21T05:11:42.818Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":11,"studentProblemId":8,"actualBlockId":36,"remainingSpace":30,"isEnabled":1,"currentLap":2,"isRest":1,"createdAt":"2025-03-20T19:45:59.000Z","updatedAt":"2025-03-20T20:11:42.000Z"}
+[2025-03-21T05:11:42.818Z] [DEBUG] result: {"trackerId":11,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":30,"isRest":true,"currentLap":2,"isEnabled":true,"createdAt":"2025-03-20T19:45:59.000Z","updatedAt":"2025-03-20T20:11:42.000Z"}
+[2025-03-21T05:11:42.832Z] [WARN] No Tracker was found
+[2025-03-21T05:11:43.718Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":12,"studentProblemId":8,"actualBlockId":36,"remainingSpace":50,"isEnabled":1,"currentLap":1,"isRest":0,"createdAt":"2025-03-20T20:11:42.000Z","updatedAt":"2025-03-20T20:11:42.000Z"}
+[2025-03-21T05:11:43.719Z] [DEBUG] result: {"trackerId":12,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":50,"isRest":false,"currentLap":1,"isEnabled":true,"createdAt":"2025-03-20T20:11:42.000Z","updatedAt":"2025-03-20T20:11:42.000Z"}
+[2025-03-21T05:11:43.731Z] [WARN] Multiple trackers found by composite key
+[2025-03-21T05:11:43.746Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":12,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":1,"currentLap":1,"isRest":0,"createdAt":"2025-03-20T20:11:42.000Z","updatedAt":"2025-03-20T20:11:43.000Z"}
+[2025-03-21T05:11:43.746Z] [DEBUG] result: {"trackerId":12,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":40,"isRest":false,"currentLap":1,"isEnabled":true,"createdAt":"2025-03-20T20:11:42.000Z","updatedAt":"2025-03-20T20:11:43.000Z"}
+[2025-03-21T05:11:43.762Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":12,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":1,"currentLap":2,"isRest":0,"createdAt":"2025-03-20T20:11:42.000Z","updatedAt":"2025-03-20T20:11:43.000Z"}
+[2025-03-21T05:11:43.763Z] [DEBUG] result: {"trackerId":12,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":40,"isRest":false,"currentLap":2,"isEnabled":true,"createdAt":"2025-03-20T20:11:42.000Z","updatedAt":"2025-03-20T20:11:43.000Z"}
+[2025-03-21T05:11:43.778Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":12,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":1,"currentLap":2,"isRest":1,"createdAt":"2025-03-20T20:11:42.000Z","updatedAt":"2025-03-20T20:11:43.000Z"}
+[2025-03-21T05:11:43.778Z] [DEBUG] result: {"trackerId":12,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":40,"isRest":true,"currentLap":2,"isEnabled":true,"createdAt":"2025-03-20T20:11:42.000Z","updatedAt":"2025-03-20T20:11:43.000Z"}
+[2025-03-21T05:11:43.819Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":12,"studentProblemId":8,"actualBlockId":36,"remainingSpace":30,"isEnabled":1,"currentLap":2,"isRest":1,"createdAt":"2025-03-20T20:11:42.000Z","updatedAt":"2025-03-20T20:11:43.000Z"}
+[2025-03-21T05:11:43.819Z] [DEBUG] result: {"trackerId":12,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":30,"isRest":true,"currentLap":2,"isEnabled":true,"createdAt":"2025-03-20T20:11:42.000Z","updatedAt":"2025-03-20T20:11:43.000Z"}
+[2025-03-21T05:11:43.835Z] [WARN] No Tracker was found
+[2025-03-21T05:11:49.371Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":13,"studentProblemId":8,"actualBlockId":36,"remainingSpace":50,"isEnabled":1,"currentLap":1,"isRest":0,"createdAt":"2025-03-20T20:11:43.000Z","updatedAt":"2025-03-20T20:11:43.000Z"}
+[2025-03-21T05:11:49.372Z] [DEBUG] result: {"trackerId":13,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":50,"isRest":false,"currentLap":1,"isEnabled":true,"createdAt":"2025-03-20T20:11:43.000Z","updatedAt":"2025-03-20T20:11:43.000Z"}
+[2025-03-21T05:11:49.384Z] [WARN] Multiple trackers found by composite key
+[2025-03-21T05:11:49.400Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":13,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":1,"currentLap":1,"isRest":0,"createdAt":"2025-03-20T20:11:43.000Z","updatedAt":"2025-03-20T20:11:48.000Z"}
+[2025-03-21T05:11:49.400Z] [DEBUG] result: {"trackerId":13,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":40,"isRest":false,"currentLap":1,"isEnabled":true,"createdAt":"2025-03-20T20:11:43.000Z","updatedAt":"2025-03-20T20:11:48.000Z"}
+[2025-03-21T05:11:49.413Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":13,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":1,"currentLap":2,"isRest":0,"createdAt":"2025-03-20T20:11:43.000Z","updatedAt":"2025-03-20T20:11:48.000Z"}
+[2025-03-21T05:11:49.414Z] [DEBUG] result: {"trackerId":13,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":40,"isRest":false,"currentLap":2,"isEnabled":true,"createdAt":"2025-03-20T20:11:43.000Z","updatedAt":"2025-03-20T20:11:48.000Z"}
+[2025-03-21T05:11:49.427Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":13,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":1,"currentLap":2,"isRest":1,"createdAt":"2025-03-20T20:11:43.000Z","updatedAt":"2025-03-20T20:11:48.000Z"}
+[2025-03-21T05:11:49.427Z] [DEBUG] result: {"trackerId":13,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":40,"isRest":true,"currentLap":2,"isEnabled":true,"createdAt":"2025-03-20T20:11:43.000Z","updatedAt":"2025-03-20T20:11:48.000Z"}
+[2025-03-21T05:11:49.462Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":13,"studentProblemId":8,"actualBlockId":36,"remainingSpace":30,"isEnabled":1,"currentLap":2,"isRest":1,"createdAt":"2025-03-20T20:11:43.000Z","updatedAt":"2025-03-20T20:11:48.000Z"}
+[2025-03-21T05:11:49.463Z] [DEBUG] result: {"trackerId":13,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":30,"isRest":true,"currentLap":2,"isEnabled":true,"createdAt":"2025-03-20T20:11:43.000Z","updatedAt":"2025-03-20T20:11:48.000Z"}
+[2025-03-21T05:11:49.476Z] [WARN] No Tracker was found
+[2025-03-21T05:11:54.129Z] [ERROR] Error converting MySQLTracker to Tracker: ReferenceError: rowtoBoolean is not defined
+[2025-03-21T05:11:54.131Z] [ERROR] Error finding trackers by studentId: 8 ReferenceError: rowtoBoolean is not defined
+[2025-03-21T05:11:54.143Z] [ERROR] Error converting MySQLTracker to Tracker: ReferenceError: rowtoBoolean is not defined
+[2025-03-21T05:11:54.143Z] [ERROR] Error finding trackers by studentId: 8 ReferenceError: rowtoBoolean is not defined
+[2025-03-21T05:11:54.151Z] [WARN] Multiple trackers found by composite key
+[2025-03-21T05:11:54.151Z] [ERROR] Error converting MySQLTracker to Tracker: ReferenceError: rowtoBoolean is not defined
+[2025-03-21T05:11:54.152Z] [ERROR] Error finding trackers by compositeKey (sId=8, sfId=6): ReferenceError: rowtoBoolean is not defined
+[2025-03-21T05:11:54.169Z] [ERROR] Error converting MySQLTracker to Tracker: ReferenceError: rowtoBoolean is not defined
+[2025-03-21T05:11:54.169Z] [ERROR] Error finding trackers by studentId: 8 ReferenceError: rowtoBoolean is not defined
+[2025-03-21T05:12:04.062Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":14,"studentProblemId":8,"actualBlockId":36,"remainingSpace":50,"isEnabled":0,"currentLap":1,"isRest":0,"createdAt":"2025-03-20T20:11:48.000Z","updatedAt":"2025-03-20T20:11:53.000Z"}
+[2025-03-21T05:12:04.063Z] [DEBUG] result: {"trackerId":14,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":50,"isRest":false,"currentLap":1,"isEnabled":false,"createdAt":"2025-03-20T20:11:48.000Z","updatedAt":"2025-03-20T20:11:53.000Z"}
+[2025-03-21T05:12:04.079Z] [WARN] Multiple trackers found by composite key
+[2025-03-21T05:12:04.092Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":14,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":0,"currentLap":1,"isRest":0,"createdAt":"2025-03-20T20:11:48.000Z","updatedAt":"2025-03-20T20:12:03.000Z"}
+[2025-03-21T05:12:04.092Z] [DEBUG] result: {"trackerId":14,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":40,"isRest":false,"currentLap":1,"isEnabled":false,"createdAt":"2025-03-20T20:11:48.000Z","updatedAt":"2025-03-20T20:12:03.000Z"}
+[2025-03-21T05:12:04.110Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":14,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":0,"currentLap":2,"isRest":0,"createdAt":"2025-03-20T20:11:48.000Z","updatedAt":"2025-03-20T20:12:03.000Z"}
+[2025-03-21T05:12:04.110Z] [DEBUG] result: {"trackerId":14,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":40,"isRest":false,"currentLap":2,"isEnabled":false,"createdAt":"2025-03-20T20:11:48.000Z","updatedAt":"2025-03-20T20:12:03.000Z"}
+[2025-03-21T05:12:04.122Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":14,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":0,"currentLap":2,"isRest":1,"createdAt":"2025-03-20T20:11:48.000Z","updatedAt":"2025-03-20T20:12:03.000Z"}
+[2025-03-21T05:12:04.122Z] [DEBUG] result: {"trackerId":14,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":40,"isRest":true,"currentLap":2,"isEnabled":false,"createdAt":"2025-03-20T20:11:48.000Z","updatedAt":"2025-03-20T20:12:03.000Z"}
+[2025-03-21T05:12:04.155Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":14,"studentProblemId":8,"actualBlockId":36,"remainingSpace":30,"isEnabled":1,"currentLap":2,"isRest":1,"createdAt":"2025-03-20T20:11:48.000Z","updatedAt":"2025-03-20T20:12:03.000Z"}
+[2025-03-21T05:12:04.156Z] [DEBUG] result: {"trackerId":14,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":30,"isRest":true,"currentLap":2,"isEnabled":true,"createdAt":"2025-03-20T20:11:48.000Z","updatedAt":"2025-03-20T20:12:03.000Z"}
+[2025-03-21T05:12:04.168Z] [WARN] No Tracker was found
+[2025-03-21T05:13:33.336Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":15,"studentProblemId":8,"actualBlockId":36,"remainingSpace":50,"isEnabled":1,"currentLap":1,"isRest":0,"createdAt":"2025-03-20T20:11:53.000Z","updatedAt":"2025-03-20T20:12:03.000Z"}
+[2025-03-21T05:13:33.338Z] [DEBUG] result: {"trackerId":15,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":50,"isRest":false,"currentLap":1,"isEnabled":true,"createdAt":"2025-03-20T20:11:53.000Z","updatedAt":"2025-03-20T20:12:03.000Z"}
+[2025-03-21T05:13:33.352Z] [WARN] Multiple trackers found by composite key
+[2025-03-21T05:13:33.368Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":15,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":1,"currentLap":1,"isRest":0,"createdAt":"2025-03-20T20:11:53.000Z","updatedAt":"2025-03-20T20:13:32.000Z"}
+[2025-03-21T05:13:33.368Z] [DEBUG] result: {"trackerId":15,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":40,"isRest":false,"currentLap":1,"isEnabled":true,"createdAt":"2025-03-20T20:11:53.000Z","updatedAt":"2025-03-20T20:13:32.000Z"}
+[2025-03-21T05:13:33.385Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":15,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":1,"currentLap":2,"isRest":0,"createdAt":"2025-03-20T20:11:53.000Z","updatedAt":"2025-03-20T20:13:32.000Z"}
+[2025-03-21T05:13:33.385Z] [DEBUG] result: {"trackerId":15,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":40,"isRest":false,"currentLap":2,"isEnabled":true,"createdAt":"2025-03-20T20:11:53.000Z","updatedAt":"2025-03-20T20:13:32.000Z"}
+[2025-03-21T05:13:33.403Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":15,"studentProblemId":8,"actualBlockId":36,"remainingSpace":40,"isEnabled":1,"currentLap":2,"isRest":1,"createdAt":"2025-03-20T20:11:53.000Z","updatedAt":"2025-03-20T20:13:32.000Z"}
+[2025-03-21T05:13:33.403Z] [DEBUG] result: {"trackerId":15,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":40,"isRest":true,"currentLap":2,"isEnabled":true,"createdAt":"2025-03-20T20:11:53.000Z","updatedAt":"2025-03-20T20:13:32.000Z"}
+[2025-03-21T05:13:33.446Z] [DEBUG] rowCamel: {"subfieldId":6,"studentId":8,"trackerId":15,"studentProblemId":8,"actualBlockId":36,"remainingSpace":30,"isEnabled":1,"currentLap":2,"isRest":1,"createdAt":"2025-03-20T20:11:53.000Z","updatedAt":"2025-03-20T20:13:32.000Z"}
+[2025-03-21T05:13:33.447Z] [DEBUG] result: {"trackerId":15,"studentId":8,"subfieldId":6,"actualBlockId":36,"studentProblemId":8,"remainingSpace":30,"isRest":true,"currentLap":2,"isEnabled":true,"createdAt":"2025-03-20T20:11:53.000Z","updatedAt":"2025-03-20T20:13:32.000Z"}
+[2025-03-21T05:13:33.462Z] [WARN] No Tracker was found
+[2025-03-21T05:15:54.530Z] [ERROR] Error creating StudentSubfieldTrace: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')
+        VALUES (8, 6)' at line 5
+[2025-03-21T05:15:54.553Z] [WARN] No trace is found in findAll StudentSubfieldTrace.ts
+[2025-03-21T05:15:54.563Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:15:54.570Z] [WARN] No trace is found in findOnlySubfieldInfoByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:15:54.580Z] [WARN] No trace is found in findOnlyReviewAlertByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:15:54.588Z] [ERROR] Error finding StudentSubfieldTrace by compositeKey (studentId=8, subfieldId=6): Error: Unknown column 'student_traces.student_id' in 'where clause'
+[2025-03-21T05:15:54.595Z] [WARN] No trace is found in findOnlytodoCounterByCompositeKey StudentSubfieldTrace.ts
+[2025-03-21T05:15:54.601Z] [ERROR] Error updating StudentSubfieldTrace by composite key: Error: Unknown column 'todo_counter' in 'field list'
+[2025-03-21T05:15:54.613Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:16:13.423Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:16:13.425Z] [ERROR] Error finding all StudentSubfieldTraces: Error: Invalid Notion UUID: null
+[2025-03-21T05:16:13.433Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:16:13.434Z] [ERROR] Error finding StudentSubfieldTrace by studentId: 8 Error: Invalid Notion UUID: null
+[2025-03-21T05:16:13.453Z] [ERROR] Error finding StudentSubfieldTrace by compositeKey (studentId=8, subfieldId=6): Error: Unknown column 'student_traces.student_id' in 'where clause'
+[2025-03-21T05:16:13.466Z] [ERROR] Error updating StudentSubfieldTrace by composite key: Error: Unknown column 'todo_counter' in 'field list'
+[2025-03-21T05:16:13.482Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:16:31.274Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:16:31.275Z] [ERROR] Error finding StudentSubfieldTrace by studentId: 8 Error: Invalid Notion UUID: null
+[2025-03-21T05:16:31.288Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:16:31.289Z] [ERROR] Error finding all StudentSubfieldTraces: Error: Invalid Notion UUID: null
+[2025-03-21T05:16:31.295Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:16:31.295Z] [ERROR] Error finding StudentSubfieldTrace by studentId: 8 Error: Invalid Notion UUID: null
+[2025-03-21T05:16:31.315Z] [ERROR] Error finding StudentSubfieldTrace by compositeKey (studentId=8, subfieldId=6): Error: Unknown column 'student_traces.student_id' in 'where clause'
+[2025-03-21T05:16:31.329Z] [ERROR] Error updating StudentSubfieldTrace by composite key: Error: Unknown column 'todo_counter' in 'field list'
+[2025-03-21T05:16:31.347Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:18:16.962Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:18:16.964Z] [ERROR] Error finding StudentSubfieldTrace by studentId: 8 Error: Invalid Notion UUID: null
+[2025-03-21T05:18:16.982Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:18:16.982Z] [ERROR] Error finding all StudentSubfieldTraces: Error: Invalid Notion UUID: null
+[2025-03-21T05:18:16.989Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:18:16.990Z] [ERROR] Error finding StudentSubfieldTrace by studentId: 8 Error: Invalid Notion UUID: null
+[2025-03-21T05:18:17.012Z] [ERROR] Error finding StudentSubfieldTrace by compositeKey (studentId=8, subfieldId=6): Error: Unknown column 'student_traces.student_id' in 'where clause'
+[2025-03-21T05:18:17.026Z] [ERROR] Error updating StudentSubfieldTrace by composite key: Error: Unknown column 'todo_counter' in 'field list'
+[2025-03-21T05:18:17.039Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:18:21.907Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:18:21.908Z] [ERROR] Error finding StudentSubfieldTrace by studentId: 8 Error: Invalid Notion UUID: null
+[2025-03-21T05:18:21.919Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:18:21.919Z] [ERROR] Error finding all StudentSubfieldTraces: Error: Invalid Notion UUID: null
+[2025-03-21T05:18:21.926Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:18:21.926Z] [ERROR] Error finding StudentSubfieldTrace by studentId: 8 Error: Invalid Notion UUID: null
+[2025-03-21T05:18:21.943Z] [ERROR] Error finding StudentSubfieldTrace by compositeKey (studentId=8, subfieldId=6): Error: Unknown column 'student_traces.student_id' in 'where clause'
+[2025-03-21T05:18:21.958Z] [ERROR] Error updating StudentSubfieldTrace by composite key: Error: Unknown column 'todo_counter' in 'field list'
+[2025-03-21T05:18:21.974Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:18:27.777Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:18:27.779Z] [ERROR] Error finding StudentSubfieldTrace by studentId: 8 Error: Invalid Notion UUID: null
+[2025-03-21T05:18:27.791Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:18:27.791Z] [ERROR] Error finding all StudentSubfieldTraces: Error: Invalid Notion UUID: null
+[2025-03-21T05:18:27.797Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:18:27.798Z] [ERROR] Error finding StudentSubfieldTrace by studentId: 8 Error: Invalid Notion UUID: null
+[2025-03-21T05:18:27.812Z] [ERROR] Error finding StudentSubfieldTrace by compositeKey (studentId=8, subfieldId=6): Error: Unknown column 'student_traces.student_id' in 'where clause'
+[2025-03-21T05:18:27.823Z] [ERROR] Error updating StudentSubfieldTrace by composite key: Error: Unknown column 'todo_counter' in 'field list'
+[2025-03-21T05:18:27.837Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:18:32.827Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:18:32.828Z] [ERROR] Error finding StudentSubfieldTrace by studentId: 8 Error: Invalid Notion UUID: null
+[2025-03-21T05:18:32.840Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:18:32.840Z] [ERROR] Error finding all StudentSubfieldTraces: Error: Invalid Notion UUID: null
+[2025-03-21T05:18:32.846Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:18:32.846Z] [ERROR] Error finding StudentSubfieldTrace by studentId: 8 Error: Invalid Notion UUID: null
+[2025-03-21T05:18:32.865Z] [ERROR] Error finding StudentSubfieldTrace by compositeKey (studentId=8, subfieldId=6): Error: Unknown column 'student_traces.student_id' in 'where clause'
+[2025-03-21T05:18:32.879Z] [ERROR] Error updating StudentSubfieldTrace by composite key: Error: Unknown column 'todo_counter' in 'field list'
+[2025-03-21T05:18:32.894Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:18:37.036Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:18:37.037Z] [ERROR] Error finding StudentSubfieldTrace by studentId: 8 Error: Invalid Notion UUID: null
+[2025-03-21T05:18:37.051Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:18:37.052Z] [ERROR] Error finding all StudentSubfieldTraces: Error: Invalid Notion UUID: null
+[2025-03-21T05:18:37.060Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:18:37.060Z] [ERROR] Error finding StudentSubfieldTrace by studentId: 8 Error: Invalid Notion UUID: null
+[2025-03-21T05:18:37.080Z] [ERROR] Error finding StudentSubfieldTrace by compositeKey (studentId=8, subfieldId=6): Error: Unknown column 'student_traces.student_id' in 'where clause'
+[2025-03-21T05:18:37.094Z] [ERROR] Error updating StudentSubfieldTrace by composite key: Error: Unknown column 'todo_counter' in 'field list'
+[2025-03-21T05:18:37.113Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:18:42.462Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:18:42.463Z] [ERROR] Error finding StudentSubfieldTrace by studentId: 8 Error: Invalid Notion UUID: null
+[2025-03-21T05:18:42.478Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:18:42.478Z] [ERROR] Error finding all StudentSubfieldTraces: Error: Invalid Notion UUID: null
+[2025-03-21T05:18:42.483Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:18:42.483Z] [ERROR] Error finding StudentSubfieldTrace by studentId: 8 Error: Invalid Notion UUID: null
+[2025-03-21T05:18:42.497Z] [ERROR] Error finding StudentSubfieldTrace by compositeKey (studentId=8, subfieldId=6): Error: Unknown column 'student_traces.student_id' in 'where clause'
+[2025-03-21T05:18:42.509Z] [ERROR] Error updating StudentSubfieldTrace by composite key: Error: Unknown column 'todo_counter' in 'field list'
+[2025-03-21T05:18:42.523Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:19:31.752Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:19:31.753Z] [ERROR] Error finding StudentSubfieldTrace by studentId: 8 Error: Invalid Notion UUID: null
+[2025-03-21T05:19:31.765Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:19:31.765Z] [ERROR] Error finding all StudentSubfieldTraces: Error: Invalid Notion UUID: null
+[2025-03-21T05:19:31.772Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:19:31.772Z] [ERROR] Error finding StudentSubfieldTrace by studentId: 8 Error: Invalid Notion UUID: null
+[2025-03-21T05:19:31.789Z] [ERROR] Error finding StudentSubfieldTrace by compositeKey (studentId=8, subfieldId=6): Error: Unknown column 'student_traces.student_id' in 'where clause'
+[2025-03-21T05:19:31.800Z] [ERROR] Error updating StudentSubfieldTrace by composite key: Error: Unknown column 'todo_counter' in 'field list'
+[2025-03-21T05:19:31.817Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:19:35.445Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:19:35.446Z] [ERROR] Error finding StudentSubfieldTrace by studentId: 8 Error: Invalid Notion UUID: null
+[2025-03-21T05:19:35.457Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:19:35.457Z] [ERROR] Error finding all StudentSubfieldTraces: Error: Invalid Notion UUID: null
+[2025-03-21T05:19:35.464Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:19:35.464Z] [ERROR] Error finding StudentSubfieldTrace by studentId: 8 Error: Invalid Notion UUID: null
+[2025-03-21T05:19:35.484Z] [ERROR] Error finding StudentSubfieldTrace by compositeKey (studentId=8, subfieldId=6): Error: Unknown column 'student_traces.student_id' in 'where clause'
+[2025-03-21T05:19:35.498Z] [ERROR] Error updating StudentSubfieldTrace by composite key: Error: Unknown column 'todo_counter' in 'field list'
+[2025-03-21T05:19:35.519Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:19:45.764Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:19:45.765Z] [ERROR] Error finding StudentSubfieldTrace by studentId: 8 Error: Invalid Notion UUID: null
+[2025-03-21T05:19:45.778Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:19:45.778Z] [ERROR] Error finding all StudentSubfieldTraces: Error: Invalid Notion UUID: null
+[2025-03-21T05:19:45.783Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:19:45.783Z] [ERROR] Error finding StudentSubfieldTrace by studentId: 8 Error: Invalid Notion UUID: null
+[2025-03-21T05:19:45.799Z] [ERROR] Error finding StudentSubfieldTrace by compositeKey (studentId=8, subfieldId=6): Error: Unknown column 'student_traces.student_id' in 'where clause'
+[2025-03-21T05:19:45.809Z] [ERROR] Error updating StudentSubfieldTrace by composite key: Error: Unknown column 'todo_counter' in 'field list'
+[2025-03-21T05:19:45.824Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:19:55.918Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:19:55.921Z] [ERROR] Error finding StudentSubfieldTrace by studentId: 8 Error: Invalid Notion UUID: null
+[2025-03-21T05:19:55.935Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:19:55.936Z] [ERROR] Error finding all StudentSubfieldTraces: Error: Invalid Notion UUID: null
+[2025-03-21T05:19:55.942Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:19:55.943Z] [ERROR] Error finding StudentSubfieldTrace by studentId: 8 Error: Invalid Notion UUID: null
+[2025-03-21T05:19:55.963Z] [ERROR] Error finding StudentSubfieldTrace by compositeKey (studentId=8, subfieldId=6): Error: Unknown column 'student_traces.student_id' in 'where clause'
+[2025-03-21T05:19:55.981Z] [ERROR] Error updating StudentSubfieldTrace by composite key: Error: Unknown column 'todo_counter' in 'field list'
+[2025-03-21T05:19:56.002Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:19:58.850Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:19:58.852Z] [ERROR] Error finding StudentSubfieldTrace by studentId: 8 Error: Invalid Notion UUID: null
+[2025-03-21T05:19:58.868Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:19:58.869Z] [ERROR] Error finding all StudentSubfieldTraces: Error: Invalid Notion UUID: null
+[2025-03-21T05:19:58.876Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:19:58.876Z] [ERROR] Error finding StudentSubfieldTrace by studentId: 8 Error: Invalid Notion UUID: null
+[2025-03-21T05:19:58.896Z] [ERROR] Error finding StudentSubfieldTrace by compositeKey (studentId=8, subfieldId=6): Error: Unknown column 'student_traces.student_id' in 'where clause'
+[2025-03-21T05:19:58.910Z] [ERROR] Error updating StudentSubfieldTrace by composite key: Error: Unknown column 'todo_counter' in 'field list'
+[2025-03-21T05:19:58.926Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:20:04.540Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:20:04.541Z] [ERROR] Error finding StudentSubfieldTrace by studentId: 8 Error: Invalid Notion UUID: null
+[2025-03-21T05:20:04.572Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:20:04.572Z] [ERROR] Error finding all StudentSubfieldTraces: Error: Invalid Notion UUID: null
+[2025-03-21T05:20:04.578Z] [ERROR] Error transforming MySQLStudentSubfieldTrace -> StudentSubfieldTrace: Error: Invalid Notion UUID: null
+[2025-03-21T05:20:04.578Z] [ERROR] Error finding StudentSubfieldTrace by studentId: 8 Error: Invalid Notion UUID: null
+[2025-03-21T05:20:04.596Z] [ERROR] Error finding StudentSubfieldTrace by compositeKey (studentId=8, subfieldId=6): Error: Unknown column 'student_traces.student_id' in 'where clause'
+[2025-03-21T05:20:04.608Z] [ERROR] Error updating StudentSubfieldTrace by composite key: Error: Unknown column 'todo_counter' in 'field list'
+[2025-03-21T05:20:04.626Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:20:06.775Z] [ERROR] Error finding StudentSubfieldTrace by compositeKey (studentId=8, subfieldId=6): Error: Unknown column 'student_traces.student_id' in 'where clause'
+[2025-03-21T05:20:06.805Z] [ERROR] Error updating StudentSubfieldTrace by composite key: Error: Unknown column 'todo_counter' in 'field list'
+[2025-03-21T05:20:06.819Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:20:11.900Z] [ERROR] Error finding StudentSubfieldTrace by compositeKey (studentId=8, subfieldId=6): Error: Unknown column 'student_traces.student_id' in 'where clause'
+[2025-03-21T05:20:11.928Z] [ERROR] Error updating StudentSubfieldTrace by composite key: Error: Unknown column 'todo_counter' in 'field list'
+[2025-03-21T05:20:11.941Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:20:16.113Z] [ERROR] Error finding StudentSubfieldTrace by compositeKey (studentId=8, subfieldId=6): Error: Unknown column 'student_traces.student_id' in 'where clause'
+[2025-03-21T05:20:16.142Z] [ERROR] Error updating StudentSubfieldTrace by composite key: Error: Unknown column 'todo_counter' in 'field list'
+[2025-03-21T05:20:16.155Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:20:20.524Z] [ERROR] Error finding StudentSubfieldTrace by compositeKey (studentId=8, subfieldId=6): Error: Unknown column 'student_traces.student_id' in 'where clause'
+[2025-03-21T05:20:20.567Z] [ERROR] Error updating StudentSubfieldTrace by composite key: Error: Unknown column 'todo_counter' in 'field list'
+[2025-03-21T05:20:20.587Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:20:25.018Z] [ERROR] Error finding StudentSubfieldTrace by compositeKey (studentId=8, subfieldId=6): Error: Unknown column 'student_traces.student_id' in 'where clause'
+[2025-03-21T05:20:25.051Z] [ERROR] Error updating StudentSubfieldTrace by composite key: Error: Unknown column 'todo_counter' in 'field list'
+[2025-03-21T05:20:25.065Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:20:29.274Z] [ERROR] Error finding StudentSubfieldTrace by compositeKey (studentId=8, subfieldId=6): Error: Unknown column 'student_traces.student_id' in 'where clause'
+[2025-03-21T05:20:29.310Z] [ERROR] Error updating StudentSubfieldTrace by composite key: Error: Unknown column 'todo_counter' in 'field list'
+[2025-03-21T05:20:29.325Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:21:51.069Z] [ERROR] Error finding StudentSubfieldTrace by compositeKey (studentId=8, subfieldId=6): Error: Unknown column 'student_traces.subfield_id' in 'where clause'
+[2025-03-21T05:21:51.110Z] [ERROR] Error updating StudentSubfieldTrace by composite key: Error: Unknown column 'todo_counter' in 'field list'
+[2025-03-21T05:21:51.126Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:21:56.685Z] [WARN] No trace is found in findByCompositeKey StudentSubfieldTrace.ts
+[2025-03-21T05:21:56.718Z] [ERROR] Error updating StudentSubfieldTrace by composite key: Error: Unknown column 'todo_counter' in 'field list'
+[2025-03-21T05:21:56.733Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:26:10.799Z] [WARN] No trace is found in findByCompositeKey StudentSubfieldTrace.ts
+[2025-03-21T05:26:10.810Z] [ERROR] Error finding todoCounter by compositeKey (studentId=8, subfieldId=6): Error: Unknown column 'todo_remaining_counter' in 'field list'
+[2025-03-21T05:26:10.848Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:26:46.786Z] [WARN] No trace is found in findByCompositeKey StudentSubfieldTrace.ts
+[2025-03-21T05:26:46.834Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:26:54.262Z] [WARN] No trace is found in findByCompositeKey StudentSubfieldTrace.ts
+[2025-03-21T05:26:54.320Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:27:05.973Z] [WARN] No trace is found in findByCompositeKey StudentSubfieldTrace.ts
+[2025-03-21T05:27:06.037Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts
+[2025-03-21T05:28:07.923Z] [WARN] No trace is found in findByStudentId StudentSubfieldTrace.ts

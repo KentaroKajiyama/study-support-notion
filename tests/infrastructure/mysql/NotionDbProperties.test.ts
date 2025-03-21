@@ -14,9 +14,9 @@ interface TestNotionDbProperty {
 
 // Use a unique propertyName for testing so you can reliably find it later.
 const testProperty: TestNotionDbProperty = {
-  dbName: "todo_db",
-  programName: "subfieldName",
-  propertyName: "科目",
+  dbName: "problems",
+  programName: "period",
+  propertyName: "時代区分",
   propertyType: "select",
 };
 
@@ -25,15 +25,15 @@ describe("NotionDbProperties Integration Tests", () => {
   let createdRecordId: MySQLUintID | null = null;
 
   // Cleanup: After all tests, try to delete the test record if it still exists.
-  afterAll(async () => {
-    if (createdRecordId !== null) {
-      try {
-        await NotionDbProperties.delete(createdRecordId);
-      } catch (err) {
-        console.error("Cleanup error:", err);
-      }
-    }
-  });
+  // afterAll(async () => {
+  //   if (createdRecordId !== null) {
+  //     try {
+  //       await NotionDbProperties.delete(createdRecordId);
+  //     } catch (err) {
+  //       console.error("Cleanup error:", err);
+  //     }
+  //   }
+  // });
 
   it.only("should create a new notion db property", async () => {
     const created = await NotionDbProperties.create(testProperty);

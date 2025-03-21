@@ -7,6 +7,7 @@ import {
 import {
   MySQLUintID,
   MySQLTimestamp,
+  toMySQLUintID,
 } from '@domain/types/index.js';
 import { RowDataPacket, ResultSetHeader } from "mysql2";
 
@@ -171,7 +172,7 @@ export class PropertyOptions {
       throw error;
     }
   };
-  static async create(data: PropertyOption): Promise<boolean> {
+  static async create(data: PropertyOption): Promise<MySQLUintID> {
     try {
       if (!data) {
         logger.error('No data provided to create a PropertyOption.');
@@ -200,11 +201,11 @@ export class PropertyOptions {
           mysqlData.optionValue
         ]
       );
-      if (!result.insertId) {
-        logger.error('No insertId returned from create query in PropertyOptions.ts');
-        throw new Error('No insertId returned from create query in PropertyOptions.ts');
+      if (result.affectedRows > 0) {
+        return toMySQLUintID(result.insertId);
+      } else {
+        throw new Error(`Failed to insert into property_options table. payload: ${JSON.stringify(mysqlData)}`);
       }
-      return true;
     } catch (error) {
       logger.error('Error creating PropertyOption:', error);
       throw error;

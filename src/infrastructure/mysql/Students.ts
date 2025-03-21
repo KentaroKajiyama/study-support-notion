@@ -16,9 +16,10 @@ import {
   toEmail,
   toNotionUUID,
   NotionUUID,
-  NotionDate
+  NotionDate,
+  toMySQLUintID
 } from '@domain/types/index.js';
-import { RowDataPacket } from "mysql2";
+import { ResultSetHeader, RowDataPacket } from "mysql2";
 import {
   Student
 } from '@domain/student/index.js';
@@ -173,7 +174,7 @@ export function toMySQLStudent(data: Student): MySQLStudent {
 }
 
 export class Students {
-  static async create(data: Student): Promise<boolean> {
+  static async create(data: Student): Promise<MySQLUintID> {
     try {
       if (!data) {
         logger.error("No data provided for creating a student.");
@@ -227,7 +228,7 @@ export class Students {
         )
       `;
 
-      await db.query(sql, [
+      const [result] = await db.query<ResultSetHeader>(sql, [
         payload.studentName,
         payload.parentName ?? null,
         payload.parentPhoneNumber ?? null,
@@ -250,9 +251,13 @@ export class Students {
 
       logger.info(`Student info has been created succeedly. StudentName: ${payload.studentName} in Students.ts`);
 
-      return true
+      if (result.affectedRows > 0) {
+        return toMySQLUintID(result.insertId);
+      } else {
+        throw new Error(`Failed to insert student information. payload: ${payload}`);
+      }
     } catch (error) {
-      logger.error("Error creating a student:", error);
+      logger.error(`Error creating a student. data: ${JSON.stringify(data)}`);
       throw error;
     }
   }

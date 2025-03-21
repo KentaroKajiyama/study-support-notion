@@ -8,9 +8,10 @@ import {
   MySQLUintID,
   MySQLTimestamp,
   StudentSubjectInformationSubjectLevelEnum,
-  StudentSubjectInformationSubjectGoalLevelEnum
+  StudentSubjectInformationSubjectGoalLevelEnum,
+  toMySQLUintID
 } from '@domain/types/index.js';
-import { RowDataPacket } from "mysql2";
+import { ResultSetHeader, RowDataPacket } from "mysql2";
 
 
 export interface MySQLStudentSubjectInformation {
@@ -99,7 +100,7 @@ function toMySQLStudentSubjectInformation(
 }
 
 export class StudentSubjectInformationData {
-  static async create(data: StudentSubjectInformation): Promise<boolean> {
+  static async create(data: StudentSubjectInformation): Promise<MySQLUintID> {
     try {
       if (!data || !data.studentId || !data.subjectId) {
         logger.error("Missing required fields for creating StudentSubjectInformation.");
@@ -116,12 +117,12 @@ export class StudentSubjectInformationData {
             subject_id,
             subject_level,
             goal_description,
-            goal_level,
+            goal_level
           )
         VALUES (?, ?, ?, ?, ?)
       `;
 
-      const [result] = await db.query(sql, [
+      const [result] = await db.query<ResultSetHeader>(sql, [
         payload.studentId,
         payload.subjectId,
         payload.subjectLevel ?? null,
@@ -129,11 +130,13 @@ export class StudentSubjectInformationData {
         payload.subjectGoalLevel ?? null,
       ]);
 
-      // If no rows were inserted, return false; otherwise true.
-      const affectedRows = (result as { affectedRows: number }).affectedRows;
-      return affectedRows > 0;
+      if (result.affectedRows > 0) {
+        return toMySQLUintID(result.insertId);
+      } else {
+        throw new Error(`Failed to insert student_subject_information. payload: ${JSON.stringify(payload)}`);
+      };
     } catch (error) {
-      logger.error("Error creating StudentSubjectInformation:", error);
+      logger.error(`Error creating StudentSubjectInformation. data: ${JSON.stringify(data)}`);
       throw error;
     }
   }

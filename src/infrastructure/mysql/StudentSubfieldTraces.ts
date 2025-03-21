@@ -17,8 +17,10 @@ import {
   toNotionUUID,
   NotionUUID,
   NotionDate,
-  SubfieldsSubfieldNameEnum
+  SubfieldsSubfieldNameEnum,
+  toMySQLUintID
 } from '@domain/types/index.js';
+import { ResultSetHeader } from "mysql2";
 
 
 export interface MySQLStudentSubfieldTrace {
@@ -28,12 +30,12 @@ export interface MySQLStudentSubfieldTrace {
   todoCounter?: Uint;
   todoCounterNotionPageId?: string | null;
   remainingDay?: Uint;
-  remainingDayNotionPageId?: string;
+  remainingDayNotionPageId?: string | null;
   actualEndDate?: MySQLDate | null;
   targetDate?: MySQLDate | null;
   examDate?: MySQLDate | null;
   delay?: Int;
-  notionProblemsDbId?: string;
+  notionProblemsDbId?: string | null;
   reviewSpeed?: Uint;
   reviewSpace?: Uint;
   reviewRemainingSpace?: Uint;
@@ -85,24 +87,24 @@ export function toStudentSubfieldTrace(
           : undefined,
       remainingDay: row.remainingDay,
       remainingDayNotionPageId:
-        row.remainingDayNotionPageId !== undefined
+        row.remainingDayNotionPageId != null
           ? toNotionUUID(row.remainingDayNotionPageId)
           : undefined,
       actualEndDate:
-        row.actualEndDate !== undefined
+        row.actualEndDate != null
           ? (convertTimeMySQLToNotion(row.actualEndDate) as NotionDate)
           : undefined,
       targetDate:
-        row.targetDate !== undefined
+        row.targetDate != null
           ? (convertTimeMySQLToNotion(row.targetDate) as NotionDate)
           : undefined,
       examDate:
-        row.examDate !== undefined
+        row.examDate != null
           ? (convertTimeMySQLToNotion(row.examDate) as NotionDate)
           : undefined,
       delay: row.delay,
       notionProblemsDbId:
-        row.notionProblemsDbId !== undefined
+        row.notionProblemsDbId != null
           ? toNotionUUID(row.notionProblemsDbId)
           : undefined,
       reviewSpeed: row.reviewSpeed,
@@ -134,29 +136,29 @@ export function toStudentSubfieldTraceWithSubfieldName(
       subfieldName: row.subfieldName,
       todoCounter: row.todoCounter,
       todoCounterNotionPageId:
-        row.todoCounterNotionPageId != undefined
+        row.todoCounterNotionPageId != null
           ? toNotionUUID(row.todoCounterNotionPageId)
           : undefined,
       remainingDay: row.remainingDay,
       remainingDayNotionPageId:
-        row.remainingDayNotionPageId !== undefined
+        row.remainingDayNotionPageId != null
           ? toNotionUUID(row.remainingDayNotionPageId)
           : undefined,
       actualEndDate:
-        row.actualEndDate !== undefined
+        row.actualEndDate != null
           ? (convertTimeMySQLToNotion(row.actualEndDate) as NotionDate)
           : undefined,
       targetDate:
-        row.targetDate !== undefined
+        row.targetDate != null
           ? (convertTimeMySQLToNotion(row.targetDate) as NotionDate)
           : undefined,
       examDate:
-        row.examDate !== undefined
+        row.examDate != null
           ? (convertTimeMySQLToNotion(row.examDate) as NotionDate)
           : undefined,
       delay: row.delay,
       notionProblemsDbId:
-        row.notionProblemsDbId !== undefined
+        row.notionProblemsDbId != null
           ? toNotionUUID(row.notionProblemsDbId)
           : undefined,
       reviewSpeed: row.reviewSpeed,
@@ -239,7 +241,7 @@ export class StudentSubfieldTraces {
   }: {
     studentId: MySQLUintID;
     subfieldId: MySQLUintID;
-  }): Promise<boolean> {
+  }): Promise<MySQLUintID> {
     try {
       if (!studentId || !subfieldId) {
         logger.error("Invalid input for creating StudentSubfieldTrace: missing IDs.");
@@ -250,17 +252,21 @@ export class StudentSubfieldTraces {
         INSERT INTO student_subfield_traces
         (
           student_id,
-          subfield_id,
+          subfield_id
         )
         VALUES (?, ?)
       `;
-      await db.query(sql, [
+      const [result] = await db.query<ResultSetHeader>(sql, [
         studentId,
         subfieldId,      
       ]);
 
       // Return how many rows were affected or the insertId
-      return true;
+      if (result.affectedRows > 0) {
+        return toMySQLUintID(result.insertId);
+      } else {
+        throw new Error(`Failed to insert a row into student_subfield_field.`)
+      }
     } catch (error) {
       logger.error("Error creating StudentSubfieldTrace:", error);
       throw error;
@@ -408,8 +414,8 @@ export class StudentSubfieldTraces {
         `
           SELECT student_subfield_traces.*, subfields.subfield_name
           FROM student_subfield_traces
-          INNER JOIN subfields ON student_subfield_traces.subfield_id = subfields.subfield_name
-          WHERE student_traces.student_id = ? AND student_traces.subfield_id = ?
+          INNER JOIN subfields ON student_subfield_traces.subfield_id = subfields.subfield_id
+          WHERE student_subfield_traces.student_id = ? AND student_subfield_traces.subfield_id = ?
         `,
         [studentId, subfieldId]
       );
@@ -432,7 +438,7 @@ export class StudentSubfieldTraces {
     }
   }
 
-  static async findOnlytodoCounterByCompositeKey(
+  static async findOnlyTodoCounterByCompositeKey(
     studentId: MySQLUintID,
     subfieldId: MySQLUintID
   ): Promise<number | null> {
@@ -444,7 +450,7 @@ export class StudentSubfieldTraces {
 
       const [rows] = await db.query(
         `
-          SELECT todo_remaining_counter
+          SELECT todo_counter
           FROM student_subfield_traces
           WHERE student_id = ? AND subfield_id = ?
         `,

@@ -8,8 +8,10 @@ import {
   MySQLUintID,
   MySQLTimestamp,
   SubjectsSubjectNameEnum,
-  isValidSubjectsSubjectNameEnum
+  isValidSubjectsSubjectNameEnum,
+  toMySQLUintID
 } from '@domain/types/index.js';
+import { ResultSetHeader } from "mysql2";
 
 
 export interface MySQLSubject {
@@ -65,7 +67,7 @@ function toMySQLSubject(data: Subject): MySQLSubject {
 }
 
 export class Subjects {
-  static async create(data: Subject): Promise<boolean> {
+  static async create(data: Subject): Promise<MySQLUintID> {
     try {
       if (!data || !data.subjectName) {
         logger.error("Invalid data for creating subject: missing `subjectName`.");
@@ -79,15 +81,18 @@ export class Subjects {
         VALUES (?, ?)
       `;
 
-      const [result] = await db.query(sql, [
+      const [result] = await db.query<ResultSetHeader>(sql, [
         payload.subjectId ?? null,
         payload.subjectName
       ]);
 
-      const affectedRows = (result as { affectedRows: number }).affectedRows;
-      return affectedRows > 0;
+      if (result.affectedRows > 0) {
+        return toMySQLUintID(result.insertId);
+      } else {
+        throw new Error(`Failed to create subject. payload; ${JSON.stringify(payload)}`);
+      }
     } catch (error) {
-      logger.error("Error creating subject:", error);
+      logger.error(`Error creating subject. data: ${JSON.stringify(data)}`);
       throw error;
     }
   }

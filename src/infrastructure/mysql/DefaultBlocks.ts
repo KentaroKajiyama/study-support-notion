@@ -19,8 +19,9 @@ import {
   ActualBlocksProblemLevelEnum,
   NotionMentionString,
   fromStringToANotionMentionString,
+  toMySQLUintID,
 } from '@domain/types/index.js';
-import { RowDataPacket } from "mysql2";
+import { ResultSetHeader, RowDataPacket } from "mysql2";
 
 
 export interface MySQLDefaultBlock {
@@ -107,7 +108,7 @@ function toMySQLDefaultBlock(data: Partial<DefaultBlock>): MySQLDefaultBlock {
 
 export class DefaultBlocks {
 
-  static async create(data: DefaultBlock): Promise<boolean> {
+  static async create(data: DefaultBlock): Promise<MySQLUintID> {
     try {
       if (!data) {
         logger.error("Invalid data provided for creating a default block.");
@@ -134,7 +135,7 @@ export class DefaultBlocks {
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       `;
 
-      await db.query(sql, [
+      const [result] = await db.query<ResultSetHeader>(sql, [
         payload.subfieldId,
         payload.notionPageId ?? null,
         payload.blockName ?? null,
@@ -148,7 +149,11 @@ export class DefaultBlocks {
         payload.averageExpectedTime ?? null,
       ]);
 
-      return true;
+      if (result.affectedRows > 0){
+        return toMySQLUintID((result as { insertId: number}).insertId);
+      } else {
+        throw new Error(`No default block created. payload: ${JSON.stringify(payload)}`);
+      }
     } catch (error) {
       logger.error("Error creating a default block", error);
       throw error;

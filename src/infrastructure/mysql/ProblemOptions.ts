@@ -7,6 +7,7 @@ import {
 import {
   MySQLUintID,
   MySQLTimestamp,
+  toMySQLUintID,
 } from '@domain/types/index.js';
 import { RowDataPacket, ResultSetHeader } from "mysql2";
 
@@ -68,7 +69,7 @@ function toMySQLProblemOption(data: ProblemOption): MySQLProblemOption {
 }
 
 export class ProblemOptions {
-  static async create(data: ProblemOption): Promise<boolean> {
+  static async create(data: ProblemOption): Promise<MySQLUintID> {
     try {
       const payload = toMySQLProblemOption(data);
       const sql = `
@@ -81,10 +82,9 @@ export class ProblemOptions {
         payload.optionValue,
       ]);
       if(result.affectedRows > 0) {
-        return true;
+        return toMySQLUintID((result as { insertId: number }).insertId);
       } else {
-        logger.warn('No rows were affected during creation of ProblemOption');
-        return false;
+        throw new Error(`No rows were affected during creation of ProblemOption: ${JSON.stringify(payload)}`);
       }
     } catch (error) {
       logger.error('Error creating ProblemOption:', error);

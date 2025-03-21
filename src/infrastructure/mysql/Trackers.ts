@@ -12,7 +12,9 @@ import {
   toMySQLBoolean,
   Uint,
   toUint,
+  toMySQLUintID,
 } from '@domain/types/index.js';
+import { ResultSetHeader } from "mysql2";
 
 
 
@@ -53,9 +55,9 @@ function toTracker(row: MySQLTracker): Tracker {
     actualBlockId: row.actualBlockId,
     studentProblemId: row.studentProblemId,
     remainingSpace: row.remainingSpace,
-    isRest: row.isRest && toBoolean(row.isRest),
+    isRest: row.isRest !== undefined? toBoolean(row.isRest): undefined,
     currentLap: row.currentLap,
-    isEnabled: row.isEnabled && toBoolean(row.isEnabled),
+    isEnabled: row.isEnabled !== undefined? toBoolean(row.isEnabled): undefined,
     createdAt: row.createdAt,
     updatedAt: row.updatedAt,
     };
@@ -98,18 +100,22 @@ function toMySQLTracker(data: Tracker): MySQLTracker {
 
 export class Trackers {
   static async create(data: {
-    studentId: MySQLUintID;
-    subfieldId: MySQLUintID;
+    studentId?: MySQLUintID;
+    subfieldId?: MySQLUintID;
     actualBlockId?: MySQLUintID;
     studentProblemId?: MySQLUintID;
-    order?: Uint; 
     remainingSpace?: Uint; 
     isRest?: boolean; 
     lap?: Uint; 
-  }): Promise<boolean> {
+    isEnabled?: boolean;
+  }): Promise<MySQLUintID> {
     try {
       if (!data.studentId) {
         logger.error("Missing required studentId for creating tracker.");
+        throw new Error("Invalid input for creating a tracker.");
+      }
+      if (!data.subfieldId) {
+        logger.error("Missing required subfieldId for creating tracker.");
         throw new Error("Invalid input for creating a tracker.");
       }
 
@@ -122,7 +128,7 @@ export class Trackers {
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
       `;
 
-      const [result] = await db.query(sql, [
+      const [result] = await db.query<ResultSetHeader>(sql, [
         payload.studentId,
         payload.subfieldId,
         payload.actualBlockId,
@@ -133,8 +139,11 @@ export class Trackers {
         payload.isEnabled || 0
       ]);
 
-      const { affectedRows } = result as { affectedRows: number };
-      return affectedRows > 0;
+      if (result.affectedRows > 0) {
+        return toMySQLUintID(result.insertId);
+      } else {
+        throw new Error(`Failed to insert a tracker. payload: ${JSON.stringify(payload)}`);
+      }
     } catch (error) {
       logger.error("Error creating tracker:", error);
       throw error;
@@ -178,6 +187,8 @@ export class Trackers {
       }
 
       const rowCamel = convertToCamelCase(rows[0]) as MySQLTracker;
+      logger.debug(`rowCamel: ${JSON.stringify(rowCamel)}`);
+      logger.debug(`result: ${JSON.stringify(toTracker(rowCamel))}`);
       return toTracker(rowCamel);
     } catch (error) {
       logger.error(`Error finding tracker by ID: ${trackerId}`, error);

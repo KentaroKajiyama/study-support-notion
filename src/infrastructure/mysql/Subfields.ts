@@ -9,8 +9,10 @@ import {
   MySQLTimestamp,
   SubfieldsSubfieldNameEnum,
   isValidSubfieldsSubfieldNameEnum,
-  SubjectsSubjectNameEnum
+  SubjectsSubjectNameEnum,
+  toMySQLUintID
 } from '@domain/types/index.js';
+import { ResultSetHeader } from "mysql2";
 
 
 export interface MySQLSubfield {
@@ -95,7 +97,7 @@ function toMySQLSubfield(data: Subfield): MySQLSubfield {
 }
 
 export class Subfields {
-  static async create(data: Subfield): Promise<boolean> {
+  static async create(data: Subfield): Promise<MySQLUintID> {
     try {
       if (!data || !data.subjectId || !data.subfieldName) {
         logger.error("Invalid data for creating subfield: missing subjectId or subfieldName.");
@@ -111,16 +113,19 @@ export class Subfields {
           (?, ?, ?)
       `;
 
-      const [result] = await db.query(sql, [
+      const [result] = await db.query<ResultSetHeader>(sql, [
         payload.subfieldId ?? null,
         payload.subjectId,
         payload.subfieldName
       ]);
 
-      const affectedRows = (result as { affectedRows: number }).affectedRows;
-      return affectedRows > 0;
+      if (result.affectedRows > 0) {
+        return toMySQLUintID(result.insertId);
+      } else {
+        throw new Error(`Failed to insert into subfields. payload: ${JSON.stringify(payload)}`);
+      }
     } catch (error) {
-      logger.error("Error creating subfield:", error);
+      logger.error(`Error creating subfield. data: ${JSON.stringify(data)}`);
       throw error;
     }
   }

@@ -16,7 +16,7 @@ const dummyProblem: Problem = {
 describe('Problems Repository Integration Tests', () => {
   let createdProblemId: MySQLUintID | null = null;
 
-  it('should create a new problem', async () => {
+  it.only('should create a new problem', async () => {
     const createResult = await Problems.create(dummyProblem);
     expect(createResult).toBe(true);
     // Since create() returns a boolean, we retrieve the created record using findBySubfieldId.

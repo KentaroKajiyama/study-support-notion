@@ -220,7 +220,7 @@ export function toMySQLStudentProblem(data: StudentProblem): MySQLStudentProblem
 
 export class StudentProblems {
 
-  static async create(data: StudentProblem): Promise<number> {
+  static async create(data: StudentProblem): Promise<MySQLUintID> {
     try {
       if (!data) {
         logger.error("Invalid data provided to create a StudentProblem.");
@@ -245,13 +245,13 @@ export class StudentProblems {
           review_level,
           review_count_down,
           problem_in_block_order,
-          problem_order_overall,
+          problem_overall_order,
           last_answered_date
         )
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       `;
 
-      const [result] = await db.query(sql, [
+      const [result] = await db.query<ResultSetHeader>(sql, [
         payload.studentProblemId ?? null,
         payload.studentId ?? null,
         payload.problemId ?? null,
@@ -269,9 +269,13 @@ export class StudentProblems {
         payload.lastAnsweredDate ?? null
       ]);
 
-      return (result as { insertId: number }).insertId;
+      if (result.affectedRows > 0) {
+        return toMySQLUintID(result.insertId);
+      } else {
+        throw new Error(`Failed to create a student problem row. payload: ${JSON.stringify(payload)}`);
+      }
     } catch (error) {
-      logger.error("Error creating a student problem:", error);
+      logger.error(`Error creating a student problem. data: ${JSON.stringify(data)}`);
       throw error;
     }
   }
@@ -373,7 +377,7 @@ export class StudentProblems {
       const [rows] = await db.query<RowDataPacket[]>(
         `
         SELECT * FROM student_problems
-        WHERE student_id = ? AND subfield_id = ? AND problem_order_overall = ?
+        WHERE student_id = ? AND subfield_id = ? AND problem_overall_order = ?
       `,
         [studentId, subfieldId, problemOverallOrder]
       );
@@ -385,7 +389,7 @@ export class StudentProblems {
       return rows.map(row => toStudentProblem(convertToCamelCase(row) as MySQLStudentProblem)) as StudentProblem[];
     } catch (error) {
       logger.error(
-        `Error finding student problems by composite key (problem_order_overall).`,
+        `Error finding student problems by composite key (problem_overall_order).`,
         error
       );
       throw error;
@@ -693,7 +697,7 @@ export class StudentProblems {
 
       const sql = `
         UPDATE student_problems
-        SET ${setClause},
+        SET ${setClause}
         WHERE student_problem_id = ?
       `;
 
@@ -738,7 +742,7 @@ export class StudentProblems {
       };
 
       const actualBlockIdCase = buildCase("actual_block_id", "actualBlockId");
-      const overallOrderCase = buildCase("problem_order_overall", "probOverallOrder");
+      const overallOrderCase = buildCase("problem_overall_order", "probOverallOrder");
       const inBlockOrderCase = buildCase("problem_in_block_order", "probInBlockOrder");
 
       // Collect only those CASE statements that actually had updates
@@ -763,7 +767,6 @@ export class StudentProblems {
       return true;
     } catch (error: any) {
       logger.error("Error updating student problems for coach plan:", error);
-      await db.rollback();
       throw new Error("Error updating student problems for coach plan.");
     }
   }

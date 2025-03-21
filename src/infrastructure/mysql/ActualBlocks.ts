@@ -26,7 +26,7 @@ import {
   fromStringToANotionMentionString,
   toMySQLUintID
 } from '@domain/types/index.js';
-import { RowDataPacket } from "mysql2";
+import { ResultSetHeader, RowDataPacket } from "mysql2";
 
 
 interface MySQLActualBlock {
@@ -192,7 +192,7 @@ export class ActualBlocks {
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       `;
 
-      const [result] = await db.query(sql, [
+      const [result] = await db.query<ResultSetHeader>(sql, [
         payload.studentId,
         payload.subfieldId,
         payload.defaultBlockId || null,
@@ -211,7 +211,12 @@ export class ActualBlocks {
         payload.coachPlanNotionPageId || null,
       ]);
 
-      return toMySQLUintID((result as { insertId: number }).insertId);
+      if (result.affectedRows > 0) {
+        logger.info(`Created actual block with ID: ${result.insertId}`);
+        return toMySQLUintID((result as { insertId: number }).insertId);
+      } else {
+        throw new Error(`Failed to create actual block. payload: ${JSON.stringify(payload)}`);
+      };
     } catch (error) {
       logger.error("Error creating an actual block", error);
       throw error;

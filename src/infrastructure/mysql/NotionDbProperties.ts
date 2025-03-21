@@ -8,7 +8,8 @@ import {
   MySQLUintID,
   MySQLTimestamp,
   NotionDbPropertiesPropertyTypeEnum,
-  isValidNotionDbPropertiesPropertyType
+  isValidNotionDbPropertiesPropertyType,
+  toMySQLUintID
 } from '@domain/types/index.js';
 import { RowDataPacket, ResultSetHeader } from "mysql2";
 
@@ -71,7 +72,7 @@ function toMySQLNotionDbProperty(row: NotionDbProperty): MySQLNotionDbProperty {
 }
 
 export class NotionDbProperties {
-  static async create(data: NotionDbProperty): Promise<boolean> {
+  static async create(data: NotionDbProperty): Promise<MySQLUintID|null> {
     try {
       if (!data) {
         logger.error("Invalid data provided for creating a notion db property.");
@@ -86,10 +87,9 @@ export class NotionDbProperties {
       `;
       const [result] = await db.query<ResultSetHeader>(sql, Object.values(payload));
       if (result.affectedRows > 0) {
-        return true;
+        return toMySQLUintID((result as { insertId: number }).insertId);
       } else {
-        logger.warn('No rows were affected during creation of notion db property in NotionDbProperties.ts');
-        return false;
+        throw new Error(`No rows were affected during creation of notion db property in NotionDbProperties.ts. payload: ${JSON.stringify(payload)}`);
       }
     } catch (error) {
       logger.error('Failed to create notion db property in NotionDbProperties.ts,', error);
