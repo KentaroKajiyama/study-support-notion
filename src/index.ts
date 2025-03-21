@@ -22,25 +22,25 @@ app.use(express.json());
 app.use(requestLogger);
 
 // 1) Students daily distribution request
-app.get('/students/distribution/regular', async (req, res) => {
+app.get('/student/distribution/regular', async (req, res) => {
   await regularHandler(req, res);
 });
 
 // 2) Students interaction with top problems
-app.post('/students/interaction/todo', async (req, res) => {
+app.post('/student/interaction/todo', async (req, res) => {
   await todoHandler(req, res);
 });
 
-app.post('/students/interaction/wrong', async (req, res) => {
+app.post('/student/interaction/wrong', async (req, res) => {
   await wrongHandler(req, res);
 });
 
-app.post('/students/interaction/is_difficult', async (req, res) => {
+app.post('/student/interaction/is_difficult', async (req, res) => {
   await isDifficultHandler(req, res);
 });
 
 // 3) Students interaction with source problems
-app.post('/students/interaction/student_problem', async (req, res) => {
+app.post('/student/interaction/student_problem', async (req, res) => {
   await studentProblemHandler(req, res);
 });
 

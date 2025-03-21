@@ -9,14 +9,14 @@ import {
 } from "@utils/index.js";
 
 export type PeopleResponseOption = 
-  | 'a person'
+  | 'a user id'
 
 export type PeopleResponseReturnType =
   | NotionUUID
 
 export function peopleResponseHandler(peopleProp: PeoplePropertyResponse, option: PeopleResponseOption): PeopleResponseReturnType {
   switch (option) {
-    case 'a person':
+    case 'a user id':
       if (peopleProp.people.length === 0) {
         throw new Error('People property is empty');
       } else if (peopleProp.people.length >= 2) {
@@ -29,14 +29,14 @@ export function peopleResponseHandler(peopleProp: PeoplePropertyResponse, option
 }
 
 export type PeopleRequestOption = 
-  | 'a person'
+  | 'a user id'
 
 export type PeopleRequestInputType = 
   | NotionUUID
 
 export function peopleRequestHandler(input: PeopleRequestInputType, option: PeopleRequestOption): PeoplePropertyRequest {
   switch (option) {
-    case 'a person':
+    case 'a user id':
       return {
         type: "people",
         people: [{ id: input }],

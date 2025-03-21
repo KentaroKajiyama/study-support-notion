@@ -15,7 +15,7 @@ import { NotionCoachIrregulars } from "@infrastructure/notion/index.js";
 
 export async function irregularChange(
   studentId: MySQLUintID, 
-  actualBLockName: RichTextPropertyResponse,
+  actualBLockName: NotionMentionString,
   isChecked: boolean,
   coachPlanNotionPageId?: NotionUUID,
 ) {
@@ -24,11 +24,7 @@ export async function irregularChange(
     const irregularDatabaseId = ensureValue(studentInfo.coachIrregularDbId);
     // TODO: Just in case the coach rewrite block name manually, we should implement redundant fetch logic.
     //       Fetch block info by block name as well.
-    const studentActualBlockDbNotionPageId = ensureValue(
-      extractMentionDetails(
-        propertyResponseToDomain(actualBLockName, 'a mention string') as NotionMentionString
-      ) as MentionDetailId
-    ).id;
+    const studentActualBlockDbNotionPageId = ensureValue(extractMentionDetails(actualBLockName) as MentionDetailId).id;
     const actualBlockInfo = ensureValue(await ActualBlocks.findByStudentActualBlockDbNotionPageId(studentActualBlockDbNotionPageId));
     // const actualBlockInfo = (await ActualBlocks.findByCoachPlanNotionPageId(ensureValue(coachPlanNotionPageId)));
     if (isChecked) {

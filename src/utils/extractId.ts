@@ -29,7 +29,7 @@ export const extractIdFromUrl = (url: URLString) => {
 
 export const extractStudentUserIdFromPeople = (peopleProperty: PeoplePropertyResponse): NotionUUID => {
   try {
-    return propertyResponseToDomain(peopleProperty, 'a person') as NotionUUID;
+    return propertyResponseToDomain(peopleProperty, 'a user id') as NotionUUID;
   } catch (error) {
     logger.error('Something went wrong in extractIdFromPeople', error);
     throw error;

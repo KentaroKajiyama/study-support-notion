@@ -1,6 +1,5 @@
 import { 
   logger,
-  extractStudentUserIdFromPeople, 
   ensureValue
 } from "@utils/index.js";
 import {
@@ -8,18 +7,17 @@ import {
 } from '@infrastructure/mysql/index.js';
 import { irregularChange } from "@usecase/index.js";
 import { Request, Response } from "express";
+import { parseCoachPlanIrregularCheckWebhook } from "@presentation/notionWebhook.js";
 
 export const irregularCheckHandler = async function (req: Request, res: Response) {
   try {
-    const peopleArray = req.body.people;
-    const studentUserId = extractStudentUserIdFromPeople(peopleArray);
+    const webhookBody = req.body;
+    const { blockName, isChecked, studentUserId } = parseCoachPlanIrregularCheckWebhook(webhookBody);
     // TODO: Modify this correctly after you determine the form of requesting.
-    const irregularPageId = req.body.pageId
-    const isChecked = req.body.isChecked;
     const studentId = ensureValue(
       ensureValue(await Students.findByNotionUserId(studentUserId)).studentId
     )
-    await irregularChange(studentId, irregularPageId, isChecked);
+    await irregularChange(studentId, blockName, isChecked);
     res.status(200).json({ message: "Simulation has been scheduled successfully." });
   } catch (error) {
     logger.error(`Error in simulationHandler: ${error}`);

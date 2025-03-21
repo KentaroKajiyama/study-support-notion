@@ -11,11 +11,15 @@ import {
   Request,
   Response
 } from 'express'
+import {
+  NotionWebhookCoachPlanSchedule,
+  parseCoachPlanScheduleWebhook
+} from '@presentation/notionWebhook.js'
 
 export const simulationHandler = async function (req: Request, res: Response) {
   try {
-    const peopleArray = req.body.people;
-    const studentUserId = extractStudentUserIdFromPeople(peopleArray);
+    const webhookBody = req.body as NotionWebhookCoachPlanSchedule
+    const { studentUserId } = parseCoachPlanScheduleWebhook(webhookBody);
     const studentInfo = ensureValue(await Students.findByNotionUserId(studentUserId));
     await schedulePlan(
       ensureValue(studentInfo.studentId), 

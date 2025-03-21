@@ -1,27 +1,26 @@
-import { NotionUUID, PeoplePropertyResponse } from "@domain/types/myNotionTypes.js";
 import { 
   answerStatusChange, 
   isDifficultChange 
 } from "@usecase/index.js";
 import { 
   logger,
-  extractStudentUserIdFromPeople,
   ensureValue
 } from '@utils/index.js';
 import { Request, Response } from "express";
 import {
   Students
 } from '@infrastructure/mysql/Students.js';
+import {
+  parseProblemStatusWebhook
+} from '@presentation/notionWebhook.js';
 
 export const wrongHandler = async (req: Request, res: Response) => {
   try {
-    const peopleArray = req.body.people;
-    // TODO: Confirm this after contracting the charged plan.
-    const studentUserId = extractStudentUserIdFromPeople(peopleArray as PeoplePropertyResponse);
+    const webhookBody = req.body;
+    const { studentUserId, studentProblemPageId } = parseProblemStatusWebhook(webhookBody);
     const studentId = ensureValue(
       ensureValue(await Students.findByNotionUserId(studentUserId)).studentId
     )
-    const studentProblemPageId = req.body.studentProblemPageId as NotionUUID;
     await Promise.all([
       await answerStatusChange(studentId, studentProblemPageId, false, false, true),
       await isDifficultChange(studentId, studentProblemPageId, true),
